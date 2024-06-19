@@ -19,5 +19,7 @@ public class EnemyScriptable : ScriptableObject
 
     [Header("Movement")]
     public float MovementSpeed;
+    [Range(0f, 100f)]
+    public float MovementSpeedVariance;
     public EnemyMovementType MovementTargetType;
 }

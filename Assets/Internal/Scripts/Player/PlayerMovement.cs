@@ -100,6 +100,6 @@ public class PlayerMovement : MonoBehaviour
         if (MovementLocked)
             moveInput = Vector2.zero;
 
-        RB.velocity = moveInput.normalized * AdjustableStats.PlayerMovespeed;
+        RB.velocity = moveInput.normalized * PlayerScriptableSettings.PlayerMovespeed;
     }
 }

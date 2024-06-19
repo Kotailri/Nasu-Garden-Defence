@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour
     private float DodgeChance;
     private int   HealthRegenPerSecond;
 
-    private int CurrentHealth;
+    public int CurrentHealth;
 
     public void SetEnemyHealth(int _health, float _resistPercent, float _dodgeChance, int _healthRegenPerSecond)
     {
@@ -32,8 +32,16 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (Random.Range(0f, 1f) < DodgeChance)
-            CurrentHealth -= Mathf.FloorToInt(damage * Resistance);
+        if (Random.Range(0f, 1f) >= DodgeChance)
+        {
+            CurrentHealth -= damage - Mathf.FloorToInt(damage * Resistance);
+            Global.damageTextSpawner.SpawnText(transform.position, damage.ToString(), DamageTextType.White);
+        }
+        else
+        {
+            Global.damageTextSpawner.SpawnText(transform.position, "dodged", DamageTextType.Status);
+        }
+            
 
         CheckHealth();
     }

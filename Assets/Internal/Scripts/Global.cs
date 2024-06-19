@@ -9,6 +9,10 @@ public static class Global
 
     public static PlayerControls playerControls;
     public static GameOverManager gameOverManager;
+    public static WaveManager waveManager;
+    public static TextSpawner damageTextSpawner;
+
+    public static float MaxX = 18.47f;
 
     public static void GameOver()
     {
@@ -21,14 +25,24 @@ public static class Config
 {
     public static double ControllerDeadZone = 0.5f;
     public static float CursorSpeed = 12f;
-    public static float ProjectileSpawnDistFromPlayer = 0.75f;
 }
 
-public static class AdjustableStats
+public static class PlayerScriptableSettings
 {
-    public static float PlayerMovespeed = 0f;
-    public static float BonusProjectileSpeed = 0f;
-    public static float InvincibilityDuration = 0.0f;
+    //[Header("Moving")]
+    public static float PlayerMovespeed;
+
+    //[Header("Shooting")]
+    public static float ShootTimer;
+    public static int ProjectileDamage;
+    public static float ProjectileSpeed;
+
+    //[Space(5f)]
+    public static GameObject ProjectilePrefab;
+
+    //[Header("Combat")]
+    public static float InvincibilityDuration;
+    public static float PlayerDamageAmp;
 }
 
 public static class Player

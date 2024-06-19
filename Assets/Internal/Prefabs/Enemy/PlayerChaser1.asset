@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d10f9d1ca41c3a47a3fbd3e1e336b26, type: 3}
-  m_Name: Settings1
+  m_Script: {fileID: 11500000, guid: 966c88dd126f8bf418a7f9b2fda060b2, type: 3}
+  m_Name: PlayerChaser1
   m_EditorClassIdentifier: 
-  PlayerMovespeed: 5
-  BonusProjectileSpeed: 0
-  InvincibilityDuration: 1
+  Health: 2
+  Resistance: 0
+  DodgeChance: 0
+  HealthRegenPerSecond: 0
+  MovementSpeed: 2
+  MovementSpeedVariance: 0.5
+  MovementTargetType: 1

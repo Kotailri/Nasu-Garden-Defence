@@ -6,16 +6,18 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyHealth))]
 public class BasicEnemyController : EnemyController
 {
-    public EnemyMovement _movement;
-    public EnemyHealth _health;
+    private EnemyMovement _movement;
+    private EnemyHealth _health;
 
-    private void Start()
+    private void Awake()
     {
         if (TryGetComponent(out EnemyMovement movement))
         {
             _movement = movement;
             movement.SetMovementType(enemyScriptable.MovementTargetType);
-            movement.SetMovementSpeed(enemyScriptable.MovementSpeed);
+            movement.SetMovementSpeed(Random.Range(
+                enemyScriptable.MovementSpeed-enemyScriptable.MovementSpeedVariance, 
+                enemyScriptable.MovementSpeed + enemyScriptable.MovementSpeedVariance));
         }
         else
         {

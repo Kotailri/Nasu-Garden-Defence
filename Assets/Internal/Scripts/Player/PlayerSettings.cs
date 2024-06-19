@@ -6,11 +6,19 @@ public class PlayerSettings : MonoBehaviour
 {
     public PlayerScriptable settings;
 
-    void Start()
+    private void Awake()
     {
-        AdjustableStats.PlayerMovespeed = settings.PlayerMovespeed;
-        AdjustableStats.BonusProjectileSpeed = settings.BonusProjectileSpeed;
-        AdjustableStats.InvincibilityDuration = settings.InvincibilityDuration;
-    }
+        PlayerScriptableSettings.PlayerMovespeed = settings.PlayerMovespeed;
+        
+        PlayerScriptableSettings.ShootTimer = settings.ShootTimer;
+        PlayerScriptableSettings.ProjectileDamage = settings.ProjectileDamage;
+        PlayerScriptableSettings.ProjectileSpeed = settings.ProjectileSpeed;
+
+        PlayerScriptableSettings.ProjectilePrefab = settings.ProjectilePrefab;
+
+      
+        PlayerScriptableSettings.InvincibilityDuration = settings.InvincibilityDuration;
+        PlayerScriptableSettings.PlayerDamageAmp = settings.PlayerDamageAmp;
+}
 }
 

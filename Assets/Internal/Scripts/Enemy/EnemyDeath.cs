@@ -6,6 +6,7 @@ public class EnemyDeath : MonoBehaviour
 {
     public void Die()
     {
+        EventManager.TriggerEvent(EventStrings.ENEMY_KILLED, null);
         Destroy(gameObject);
     }
 }

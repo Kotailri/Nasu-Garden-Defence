@@ -20,7 +20,7 @@ public class PlayerHitbox : MonoBehaviour, IHasTriggerStay
         spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
         canTakeDamage = false;
 
-        yield return new WaitForSeconds(AdjustableStats.InvincibilityDuration);
+        yield return new WaitForSeconds(PlayerScriptableSettings.InvincibilityDuration);
 
         spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
         canTakeDamage = true;
@@ -31,6 +31,7 @@ public class PlayerHitbox : MonoBehaviour, IHasTriggerStay
         if (canTakeDamage && collisionObject.TryGetComponent(out DamagesPlayerOnHit dm))
         {
             health.RemoveHealth(dm.GetDamage());
+            Global.damageTextSpawner.SpawnText(transform.position, "-" + dm.GetDamage().ToString(), DamageTextType.Red);
             StartCoroutine(IFrames());
         }
     }
