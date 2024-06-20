@@ -20,6 +20,9 @@ public class PlayerScriptable : ScriptableObject
     public float InvincibilityDuration;
     [Range(1f, 1000f)]
     public float PlayerDamageAmp;
+    [Range(0f, 0.9f)]
+    public float ContactSlowAmount;
+    public float ContactSlowTime;
 
     private void OnValidate()
     {

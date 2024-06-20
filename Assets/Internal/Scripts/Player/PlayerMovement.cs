@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D RB;
 
     private bool MovementLocked = false;
+    private float currentSlowAmount = 0f;
 
     // Clamp
     public Transform TopLeft;
@@ -26,6 +27,23 @@ public class PlayerMovement : MonoBehaviour
         maxX = BotRight.position.x;
         minY = BotRight.position.y;
         maxY = TopLeft.position.y;
+    }
+
+    public void ApplySlow(float amount, float time)
+    {
+        if (amount <= currentSlowAmount)
+        {
+            return;
+        }
+
+        StartCoroutine(ApplySlowCoroutine());
+
+        IEnumerator ApplySlowCoroutine()
+        {
+            currentSlowAmount = amount;
+            yield return new WaitForSeconds(time);
+            currentSlowAmount = 0;
+        }
     }
 
     public Vector2 GetMoveInput()
@@ -100,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
         if (MovementLocked)
             moveInput = Vector2.zero;
 
-        RB.velocity = moveInput.normalized * PlayerScriptableSettings.PlayerMovespeed;
+        RB.velocity = moveInput.normalized * 
+            (PlayerScriptableSettings.PlayerMovespeed - PlayerScriptableSettings.PlayerMovespeed * currentSlowAmount);
     }
 }

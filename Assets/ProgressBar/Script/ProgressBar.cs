@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class ProgressBar : MonoBehaviour
 {
+    public bool HideOnFull;
+
     [Header("Bar Setting")]
     public Color BarColor;   
     public Color BarBackGroundColor;
@@ -45,8 +47,27 @@ public class ProgressBar : MonoBehaviour
         barBackground.sprite = BarBackGroundSprite;
 
         //UpdateValue(barValue);
+        CheckVisibility();
 
+    }
 
+    private void CheckVisibility()
+    {
+        if (!HideOnFull)
+        {
+            return;
+        }
+
+        if (bar.fillAmount == 1)
+        {
+            bar.color = new Color(bar.color.r, bar.color.g, bar.color.b, 0);
+            barBackground.color = new Color(barBackground.color.r, barBackground.color.g, barBackground.color.b, 0);
+        }
+        else
+        {
+            bar.color = new Color(bar.color.r, bar.color.g, bar.color.b, 1);
+            barBackground.color = new Color(barBackground.color.r, barBackground.color.g, barBackground.color.b, 1);
+        }
     }
 
     public void UpdateValue(float percent)
@@ -61,7 +82,7 @@ public class ProgressBar : MonoBehaviour
         {
             bar.color = BarColor;
         }
-
+        CheckVisibility();
     }
 
 

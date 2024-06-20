@@ -43,6 +43,9 @@ public static class PlayerScriptableSettings
     //[Header("Combat")]
     public static float InvincibilityDuration;
     public static float PlayerDamageAmp;
+
+    public static float ContactSlowAmount;
+    public static float ContactSlowTime;
 }
 
 public static class Player

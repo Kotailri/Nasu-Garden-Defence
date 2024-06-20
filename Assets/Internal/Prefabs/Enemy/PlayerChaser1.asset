@@ -19,3 +19,4 @@ MonoBehaviour:
   MovementSpeed: 2
   MovementSpeedVariance: 0.5
   MovementTargetType: 1
+  ContactDamage: 4

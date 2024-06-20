@@ -32,6 +32,7 @@ public class PlayerHitbox : MonoBehaviour, IHasTriggerStay
         {
             health.RemoveHealth(dm.GetDamage());
             Global.damageTextSpawner.SpawnText(transform.position, "-" + dm.GetDamage().ToString(), DamageTextType.Red);
+            GetComponent<PlayerMovement>().ApplySlow(PlayerScriptableSettings.ContactSlowAmount, PlayerScriptableSettings.ContactSlowTime);
             StartCoroutine(IFrames());
         }
     }

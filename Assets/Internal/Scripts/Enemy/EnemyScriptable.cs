@@ -22,4 +22,7 @@ public class EnemyScriptable : ScriptableObject
     [Range(0f, 100f)]
     public float MovementSpeedVariance;
     public EnemyMovementType MovementTargetType;
+
+    [Header("Combat")]
+    public int ContactDamage;
 }

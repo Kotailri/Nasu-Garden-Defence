@@ -19,6 +19,8 @@ public class PlayerSettings : MonoBehaviour
       
         PlayerScriptableSettings.InvincibilityDuration = settings.InvincibilityDuration;
         PlayerScriptableSettings.PlayerDamageAmp = settings.PlayerDamageAmp;
+        PlayerScriptableSettings.ContactSlowAmount = settings.ContactSlowAmount;
+        PlayerScriptableSettings.ContactSlowTime = settings.ContactSlowTime;
 }
 }
 
