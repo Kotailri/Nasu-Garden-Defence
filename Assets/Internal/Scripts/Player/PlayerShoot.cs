@@ -18,6 +18,23 @@ public class PlayerShoot : MonoBehaviour
         SetProjectilePrefab(PlayerScriptableSettings.ProjectilePrefab);
     }
 
+    private void ShootProjectile(Vector2 startPos)
+    {
+        GameObject projectile = Instantiate(ProjectilePrefab, startPos + new Vector2(0.25f, -0.25f), Quaternion.Euler(0, 0, Random.Range(0f, 360f)));
+        projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(PlayerScriptableSettings.ProjectileSpeed + PlayerScriptableSettings.PlayerMovespeed, 0);
+    }
+
+    private void Shoot()
+    {
+        ShootProjectile(transform.position);
+        if (GlobalItemToggles.HasBwo && Global.keystoneItemManager.CanBwoShoot)
+        {
+            ShootProjectile(GameObject.FindGameObjectWithTag("Bwo").transform.position);
+        }
+
+        EventManager.TriggerEvent(EventStrings.PLAYER_SHOOT, null);
+    }
+
     private void Update()
     {
         if (!Global.gameplayStarted) { return; }
@@ -25,8 +42,7 @@ public class PlayerShoot : MonoBehaviour
         if (currentShootTimer >= PlayerScriptableSettings.ShootTimer)
         {
             currentShootTimer = 0;
-            GameObject projectile = Instantiate(ProjectilePrefab, transform.position + new Vector3(0.25f,-0.25f,0), Quaternion.Euler(0,0,Random.Range(0f,360f)));
-            projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(PlayerScriptableSettings.ProjectileSpeed + PlayerScriptableSettings.PlayerMovespeed, 0);
+            Shoot();
         }
         else
         {

@@ -1533,7 +1533,7 @@ MonoBehaviour:
   cam: {fileID: 519420031}
   GameplayPosition: {x: 1.92, y: 1.18}
   MenuPosition: {x: -24, y: 1.18}
-  StartsAtMenu: 0
+  StartsAtMenu: 1
 --- !u!1 &541149276
 GameObject:
   m_ObjectHideFlags: 0
@@ -3286,7 +3286,9 @@ MonoBehaviour:
   SlowTime: 1
   MovespeedLevelIncrease: 0
   DistanceAmplificationAmount: 0.11
-  BwoMovespeed: 0
+  BwoPrefab: {fileID: 727051979461847241, guid: 40dd3284dc6b6ae4e8bcaef93040eae4, type: 3}
+  BwoMovespeed: 3
+  CanBwoShoot: 1
   PurpleShedPrefab: {fileID: 0}
   ShedTimer: 0
   EnemyMovespeedAmplifier: 0
