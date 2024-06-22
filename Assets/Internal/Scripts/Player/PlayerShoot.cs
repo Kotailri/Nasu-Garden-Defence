@@ -20,11 +20,12 @@ public class PlayerShoot : MonoBehaviour
 
     private void Update()
     {
-        
+        if (!Global.gameplayStarted) { return; }
+
         if (currentShootTimer >= PlayerScriptableSettings.ShootTimer)
         {
             currentShootTimer = 0;
-            GameObject projectile = Instantiate(ProjectilePrefab, transform.position + new Vector3(0.25f,0,0), Quaternion.identity);
+            GameObject projectile = Instantiate(ProjectilePrefab, transform.position + new Vector3(0.25f,-0.25f,0), Quaternion.Euler(0,0,Random.Range(0f,360f)));
             projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(PlayerScriptableSettings.ProjectileSpeed + PlayerScriptableSettings.PlayerMovespeed, 0);
         }
         else

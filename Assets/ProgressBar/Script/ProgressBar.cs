@@ -14,7 +14,7 @@ public class ProgressBar : MonoBehaviour
     public Color BarColor;   
     public Color BarBackGroundColor;
     public Sprite BarBackGroundSprite;
-    [Range(1f, 100f)]
+    [Range(0f, 100f)]
     public int Alert = 20;
     public Color BarAlertColor;
 

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -110,10 +109,21 @@ public class PlayerMovement : MonoBehaviour
             moveInput.x = 0;
         }
 
-        if (moveInput.x < 0 && transform.position.x <= minX)
+        if (Global.gameplayStarted)
         {
-            moveInput.x = 0;
+            if (moveInput.x < 0 && transform.position.x <= minX)
+            {
+                moveInput.x = 0;
+            }
         }
+        else
+        {
+            if (moveInput.x < 0 && transform.position.x <= -40f)
+            {
+                moveInput.x = 0;
+            }
+        }
+        
 
         if (MovementLocked)
             moveInput = Vector2.zero;

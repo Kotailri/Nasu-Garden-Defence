@@ -2,34 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemyMovement : MonoBehaviour, EnemyMovement
+public class BasicEnemyMovement : EnemyMovement
 {
-    private Transform Player;
-
-    private float movespeed;
-    private EnemyMovementType currentTargetType;
-
-    public void SetMovementType(EnemyMovementType movementType)
-    {
-        currentTargetType = movementType;
-    }
-
-    public void SetMovementSpeed(float speed)
-    {
-        movespeed = speed;
-    }
-
     private void Update()
     {
+        float appliedMovespeed = movespeed - (movespeed * currentSlowAmount);
+
         switch (currentTargetType)
         {
             case EnemyMovementType.TargetGarden:
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x - 100, transform.position.y), movespeed * Time.deltaTime);
+                RB.velocity = new Vector3(-1, 0, 0) * appliedMovespeed;
                 break;
 
             case EnemyMovementType.TargetPlayer:
-                transform.position = Vector2.MoveTowards(transform.position, Global.playerTransform.position, movespeed * Time.deltaTime);
+                RB.velocity = (Global.playerTransform.position - transform.position).normalized* appliedMovespeed;
                 break;
         }
     }
+
+    
 }

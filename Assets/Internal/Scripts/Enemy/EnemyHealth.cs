@@ -12,6 +12,13 @@ public class EnemyHealth : MonoBehaviour
 
     public int CurrentHealth;
 
+    private ProgressBar healthBar;
+
+    public void SetHealthBar(ProgressBar bar)
+    {
+        healthBar = bar;
+    }
+
     public void SetEnemyHealth(int _health, float _resistPercent, float _dodgeChance, int _healthRegenPerSecond)
     {
         Health = _health;
@@ -35,7 +42,7 @@ public class EnemyHealth : MonoBehaviour
         if (Random.Range(0f, 1f) >= DodgeChance)
         {
             CurrentHealth -= damage - Mathf.FloorToInt(damage * Resistance);
-            Global.damageTextSpawner.SpawnText(transform.position, damage.ToString(), DamageTextType.White);
+            Global.damageTextSpawner.SpawnText(transform.position, (damage - Mathf.FloorToInt(damage * Resistance)).ToString(), DamageTextType.White);
         }
         else
         {
@@ -52,6 +59,8 @@ public class EnemyHealth : MonoBehaviour
         {
             CurrentHealth = Health;
         }
+
+        healthBar?.UpdateValue((float)CurrentHealth/(float)Health);
 
         if (CurrentHealth <= 0)
         {

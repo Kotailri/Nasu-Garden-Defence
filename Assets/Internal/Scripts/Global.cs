@@ -4,13 +4,17 @@ using UnityEngine;
 
 public static class Global
 {
+    public static bool gameplayStarted = false;
+
     public static Transform playerTransform;
     public static Transform cursorTransform;
 
     public static PlayerControls playerControls;
     public static GameOverManager gameOverManager;
+    public static GardenHealthUI gardenHealthUI;
     public static WaveManager waveManager;
     public static TextSpawner damageTextSpawner;
+    public static KeystoneItemManager keystoneItemManager;
 
     public static float MaxX = 18.47f;
 
@@ -46,6 +50,9 @@ public static class PlayerScriptableSettings
 
     public static float ContactSlowAmount;
     public static float ContactSlowTime;
+
+    // Items
+
 }
 
 public static class Player

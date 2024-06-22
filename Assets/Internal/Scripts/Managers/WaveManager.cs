@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
@@ -8,7 +9,7 @@ public class WaveManager : MonoBehaviour
     public int CurrentWaveIndex = 0;
 
     private GameObject currentWave;
-    private bool waveEnded = false;
+    public TextMeshProUGUI waveNameUI;
 
     private void Awake()
     {
@@ -16,6 +17,11 @@ public class WaveManager : MonoBehaviour
     }
 
     private void Start()
+    {
+        
+    }
+
+    public void StartGame()
     {
         SpawnNextWave();
     }
@@ -32,11 +38,6 @@ public class WaveManager : MonoBehaviour
 
     private void CheckWaveEnd(Dictionary<string, object> message)
     {
-        if (!waveEnded)
-        {
-            return;
-        }
-
         if (GameObject.FindGameObjectsWithTag("Enemy").Length == 1)
         {
             Destroy(currentWave);
@@ -46,6 +47,7 @@ public class WaveManager : MonoBehaviour
 
     private void SpawnNextWave()
     {
+        waveNameUI.text = "Wave " + (CurrentWaveIndex+1);
         currentWave = Instantiate(waves[CurrentWaveIndex], new Vector3(Global.MaxX, 0, transform.position.z), Quaternion.identity);
         CurrentWaveIndex++;
 
@@ -53,12 +55,5 @@ public class WaveManager : MonoBehaviour
         {
             CurrentWaveIndex = 0;
         }
-
-        waveEnded = false;
-    }
-
-    public void TriggerLastEnemySpawned()
-    {
-        waveEnded = true;
     }
 }

@@ -14,8 +14,8 @@ public class BasicEnemyController : EnemyController
             _movement = movement;
             movement.SetMovementType(enemyScriptable.MovementTargetType);
             movement.SetMovementSpeed(Random.Range(
-                enemyScriptable.MovementSpeed-enemyScriptable.MovementSpeedVariance, 
-                enemyScriptable.MovementSpeed + enemyScriptable.MovementSpeedVariance));
+                enemyScriptable.MovementSpeedMin, 
+                enemyScriptable.MovementSpeedMax));
         }
         else
         {
