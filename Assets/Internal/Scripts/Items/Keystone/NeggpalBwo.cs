@@ -182,6 +182,15 @@ public class BwoChaseState : IBwoState
         {
             bwo.RB.velocity = Vector2.zero;
         }
+
+        if (currentEnemyTarget.transform.position.x < bwo.transform.position.x)
+        {
+            bwo.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            bwo.GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 
     public bool IsEndStateTriggered()
