@@ -4,33 +4,40 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    public GameObject ProjectilePrefab;
     public ProgressBar ShootCooldownBar;
 
     private float currentShootTimer = 0f;
+    private List<PlayerAttack> attackList = new();
+    private int attackCount = 1;
 
-    public void SetProjectilePrefab(GameObject prefab)
+    public void RefreshAttackList()
     {
-        ProjectilePrefab = prefab;
+        attackList = new(GetComponents<PlayerAttack>());
     }
+
     private void Start()
     {
-        SetProjectilePrefab(PlayerScriptableSettings.ProjectilePrefab);
-    }
-
-    private void ShootProjectile(Vector2 startPos)
-    {
-        GameObject projectile = Instantiate(ProjectilePrefab, startPos + new Vector2(0.25f, -0.25f), Quaternion.Euler(0, 0, Random.Range(0f, 360f)));
-        projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(PlayerScriptableSettings.ProjectileSpeed + PlayerScriptableSettings.PlayerMovespeed, 0);
+        RefreshAttackList();
     }
 
     private void Shoot()
     {
-        ShootProjectile(transform.position);
-        if (GlobalItemToggles.HasBwo && Global.keystoneItemManager.CanBwoShoot)
+        foreach (PlayerAttack attack in attackList)
         {
-            ShootProjectile(GameObject.FindGameObjectWithTag("Bwo").transform.position);
+            attack.DoAttack(transform.position, attackCount);
+
+            if (GlobalItemToggles.HasBwo)
+            {
+                if (!attack.IsFacingRequired || (attack.IsFacingRequired && Global.keystoneItemManager.IsBwoFacingAttackDirection))
+                {
+                    attack.DoAttack(GameObject.FindGameObjectWithTag("Bwo").transform.position, attackCount);
+                }
+            }
         }
+
+        attackCount++;
+        if (attackCount > 10)
+            attackCount = 1;
 
         EventManager.TriggerEvent(EventStrings.PLAYER_SHOOT, null);
     }

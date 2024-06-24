@@ -11,6 +11,7 @@ public class KeystoneItemManager : MonoBehaviour
     }
 
     [Header("Winter Coat")]
+    public ItemScriptable WinterCoatItemInfo;
     public GameObject WinterCoatPrefab;
     public float SlowAmount;
     public float SlowTime;
@@ -24,16 +25,30 @@ public class KeystoneItemManager : MonoBehaviour
     }
 
     [Space(10f)]
+
     [Header("Apex Stride")]
-    public int MovespeedLevelIncrease;
+    public int ApexStrideLevel = 0;
+    public ItemScriptable ApexStrideItemInfo;
+    public float StrideSpeedMultiplier1;
+    public float StrideSpeedMultiplier2;
+    public float DamageBoostMultiplier;
+    public float TimeBeforeTimeout;
+
+    [Space(5f)]
+    public GameObject StrideParticles;
+    public GameObject StrideParticlesMAX;
 
     public void ActivateApexStride()
     {
         GlobalItemToggles.HasApexStride = true;
+        Global.playerTransform.gameObject.AddComponent<ApexStride>();
+        Global.playerTransform.gameObject.GetComponent<ApexStride>().Initialize(StrideParticles, StrideParticlesMAX, TimeBeforeTimeout);
     }
 
     [Space(10f)]
+
     [Header("Amplification")]
+    public ItemScriptable AmplificationItemInfo;
     [Range(0.01f, 1f)]
     public float DistanceAmplificationAmount = 1;
 
@@ -43,11 +58,13 @@ public class KeystoneItemManager : MonoBehaviour
     }
 
     [Space(10f)]
+
     [Header("Bwo")]
+    public ItemScriptable BwoItemInfo;
     public GameObject BwoPrefab;
     public float BwoMovespeed;
     [HideInInspector]
-    public bool CanBwoShoot = true;
+    public bool IsBwoFacingAttackDirection = true;
 
     public void ActivateBwo()
     {
@@ -56,19 +73,30 @@ public class KeystoneItemManager : MonoBehaviour
     }
 
     [Space(10f)]
+
     [Header("Purple Shed")]
+    public ItemScriptable PurpleShedItemInfo;
     public GameObject PurpleShedPrefab;
     public float ShedTimer;
+    public float FurDuration;
+    public float ShedSlowAmount;
+    public float ShedDamageTimer;
+    public int ShedDamage;
 
     public void ActivatePurpleShed()
     {
         GlobalItemToggles.HasPurpleShed = true;
+        Global.playerTransform.gameObject.AddComponent<PurpleFurSpawner>();
+        Global.playerTransform.gameObject.GetComponent<PurpleFurSpawner>().Initialize(PurpleShedPrefab, ShedTimer, FurDuration, ShedSlowAmount, ShedDamageTimer, ShedDamage);
     }
 
     [Space(10f)]
+
     [Header("Immortal Harmony")]
-    [Range(1f, 10f)]
-    public float EnemyMovespeedAmplifier;
+    public ItemScriptable ImmortalHarmonyItemInfo;
+    public float IFrameExtensionDuration;
+    public float ExplosionDamage;
+    public int HealPerHit;
 
     public void ActivateImmortalHarmony()
     {
@@ -78,11 +106,40 @@ public class KeystoneItemManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) { ActivateWinterCoat(); }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) { ActivateApexStride(); }
-        if (Input.GetKeyDown(KeyCode.Alpha3)) { ActivateAmplification(); }
-        if (Input.GetKeyDown(KeyCode.Alpha4)) { ActivateBwo(); }
-        if (Input.GetKeyDown(KeyCode.Alpha5)) { ActivatePurpleShed(); }
-        if (Input.GetKeyDown(KeyCode.Alpha6)) { ActivateImmortalHarmony(); }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) 
+        { 
+            ActivateWinterCoat();
+            Global.itemUI.AddItemToUI(WinterCoatItemInfo);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2)) 
+        { 
+            ActivateApexStride();
+            Global.itemUI.AddItemToUI(ApexStrideItemInfo);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3)) 
+        { 
+            ActivateAmplification();
+            Global.itemUI.AddItemToUI(AmplificationItemInfo);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4)) 
+        { 
+            ActivateBwo();
+            Global.itemUI.AddItemToUI(BwoItemInfo);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha5)) 
+        { 
+            ActivatePurpleShed();
+            Global.itemUI.AddItemToUI(PurpleShedItemInfo);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha6)) 
+        { 
+            ActivateImmortalHarmony();
+            Global.itemUI.AddItemToUI(ImmortalHarmonyItemInfo);
+        }
     }
 }

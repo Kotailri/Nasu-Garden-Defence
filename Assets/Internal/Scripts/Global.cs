@@ -9,12 +9,15 @@ public static class Global
     public static Transform playerTransform;
     public static Transform cursorTransform;
 
+    // Mangagers
     public static PlayerControls playerControls;
     public static GameOverManager gameOverManager;
     public static GardenHealthUI gardenHealthUI;
     public static WaveManager waveManager;
     public static TextSpawner damageTextSpawner;
     public static KeystoneItemManager keystoneItemManager;
+    public static PlayerAttackPrefabHolder attackPrefabHolder;
+    public static ItemUI itemUI;
 
     public static float MaxX = 18.47f;
 

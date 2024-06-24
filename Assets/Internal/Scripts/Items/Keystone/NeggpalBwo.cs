@@ -5,7 +5,6 @@ using UnityEngine;
 public enum BwoStateEnum
 {
     Chase,
-    Idle,
     Wander,
     Follow
 }
@@ -21,18 +20,20 @@ public class NeggpalBwo : MonoBehaviour
 
     private float currentStateTime = 0f;
     private int stateRepeatCounter = 0;
-    private readonly int stateRepeatMax = 2;
+    private readonly int stateRepeatMax = 3;
 
+    [HideInInspector]
     public Rigidbody2D RB;
+    [HideInInspector]
     public float movespeed;
 
     private readonly Dictionary<BwoStateEnum, IBwoState> states = new() 
     {
-        //{ BwoStateEnum.Idle, new BwoIdleState() },
         { BwoStateEnum.Chase, new BwoChaseState() },
         { BwoStateEnum.Wander, new BwoWanderState() },
         { BwoStateEnum.Follow, new BwoFollowState() }
     };
+    private float CumulativeStateChances = 0f;
 
     private void Awake()
     {
@@ -41,6 +42,11 @@ public class NeggpalBwo : MonoBehaviour
 
     private void Start()
     {
+        foreach (var state in states)
+        {
+            CumulativeStateChances += state.Value.GetStateChance();
+        }
+
         movespeed = Global.keystoneItemManager.BwoMovespeed;
         ChangeState(states[0]);
     }
@@ -84,6 +90,19 @@ public class NeggpalBwo : MonoBehaviour
         BwoStateEnum newBwoStateEnum = _stateslist[Random.Range(0, _stateslist.Count)];
         IBwoState newIBwoState = states[newBwoStateEnum];
 
+        float randomValue = Random.Range(0f, CumulativeStateChances);
+        float cumulativeWeight = 0f;
+        foreach (var state in states)
+        {
+            cumulativeWeight += state.Value.GetStateChance();
+            if (randomValue < cumulativeWeight)
+            {
+                newBwoStateEnum = state.Key;
+                newIBwoState = state.Value;
+                break;
+            }
+        }
+
         CurrentBwoStateEnum = newBwoStateEnum;
 
         if (newIBwoState == CurrentState) 
@@ -121,34 +140,18 @@ public interface IBwoState
     public void OnStateUpdate(NeggpalBwo bwo);
     public void OnStateEnd(NeggpalBwo bwo);
     public bool IsEndStateTriggered();
-}
-
-public class BwoIdleState : IBwoState
-{
-    public void OnStateStart(NeggpalBwo bwo)
-    {
-        bwo.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        Global.keystoneItemManager.CanBwoShoot = true;
-    }
-
-    public void OnStateEnd(NeggpalBwo bwo) { }
-    public void OnStateUpdate(NeggpalBwo bwo) { }
-
-    public bool IsEndStateTriggered()
-    {
-        return false;
-    }
+    public float GetStateChance();
 }
 
 public class BwoChaseState : IBwoState
 {
     GameObject currentEnemyTarget;
     float DistanceToTarget = 0.5f;
-    float FrontalDistance = 2f;
+    float FrontalDistance = 4f;
 
     public void OnStateStart(NeggpalBwo bwo)
     {
-        Global.keystoneItemManager.CanBwoShoot = true;
+        Global.keystoneItemManager.IsBwoFacingAttackDirection = true;
         float minDistance = Mathf.Infinity;
         GameObject currentEnemy = null;
         foreach (GameObject enemy in Global.GetActiveEnemies())
@@ -186,9 +189,11 @@ public class BwoChaseState : IBwoState
         if (currentEnemyTarget.transform.position.x < bwo.transform.position.x)
         {
             bwo.GetComponent<SpriteRenderer>().flipX = true;
+            Global.keystoneItemManager.IsBwoFacingAttackDirection = false;
         }
         else
         {
+            Global.keystoneItemManager.IsBwoFacingAttackDirection = true;
             bwo.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
@@ -196,6 +201,11 @@ public class BwoChaseState : IBwoState
     public bool IsEndStateTriggered()
     {
         return currentEnemyTarget == null;
+    }
+
+    public float GetStateChance()
+    {
+        return 0.5f;
     }
 }
 
@@ -205,21 +215,28 @@ public class BwoWanderState : IBwoState
     public float DistanceToTarget = 1.0f;
     private bool stateEndTriggered = false;
 
+    private float xWanderRange = 2f;
+    private float yWanderRange = 10f;
+
     public void OnStateStart(NeggpalBwo bwo)
     {
-        Global.keystoneItemManager.CanBwoShoot = true;
+        Global.keystoneItemManager.IsBwoFacingAttackDirection = true;
+        bwo.GetComponent<SpriteRenderer>().flipX = false;
         stateEndTriggered = false;
         MoveTowardsNewLocation(bwo);
     }
 
-    public void OnStateEnd(NeggpalBwo bwo) 
-    {
-        //bwo.GetComponent<SpriteRenderer>().flipX = false;
-    }
+    public void OnStateEnd(NeggpalBwo bwo) { }
 
     private void MoveTowardsNewLocation(NeggpalBwo bwo)
     {
-        wanderLocation = new Vector2(Random.Range(Global.XRange.min, Global.XRange.max), Random.Range(Global.YRange.min, Global.YRange.max));
+        float wanderLocationX = Mathf.Clamp(Random.Range(Global.playerTransform.position.x - xWanderRange, Global.playerTransform.position.x + xWanderRange), 
+            Global.XRange.min, Global.XRange.max);
+
+        float wanderLocationY = Mathf.Clamp(Random.Range(Global.playerTransform.position.y - yWanderRange, Global.playerTransform.position.y + yWanderRange),
+            Global.YRange.min, Global.YRange.max);
+       
+        wanderLocation = new Vector2(wanderLocationX, wanderLocationY);
         bwo.RB.velocity = (wanderLocation - (Vector2)bwo.transform.position).normalized * bwo.movespeed;
     }
 
@@ -227,25 +244,18 @@ public class BwoWanderState : IBwoState
     {
         if (Vector2.Distance(bwo.gameObject.transform.position, wanderLocation) <= DistanceToTarget)
         {
-            //stateEndTriggered = true;
             MoveTowardsNewLocation(bwo);
-        }
-
-        if (bwo.RB.velocity.x < 0)
-        {
-            bwo.GetComponent<SpriteRenderer>().flipX = true;
-            Global.keystoneItemManager.CanBwoShoot = false;
-        }
-        else
-        {
-            bwo.GetComponent<SpriteRenderer>().flipX = false;
-            Global.keystoneItemManager.CanBwoShoot = true;
         }
     }
 
     public bool IsEndStateTriggered()
     {
         return stateEndTriggered;
+    }
+
+    public float GetStateChance()
+    {
+        return 0.35f;
     }
 }
 
@@ -262,7 +272,7 @@ public class BwoFollowState : IBwoState
 
     public void OnStateStart(NeggpalBwo bwo) 
     {
-        Global.keystoneItemManager.CanBwoShoot = true;
+        Global.keystoneItemManager.IsBwoFacingAttackDirection = true;
     }
 
     public void OnStateUpdate(NeggpalBwo bwo)
@@ -272,21 +282,26 @@ public class BwoFollowState : IBwoState
         {
             bwo.RB.velocity = Vector2.zero;
             bwo.GetComponent<SpriteRenderer>().flipX = false;
-            Global.keystoneItemManager.CanBwoShoot = true;
+            Global.keystoneItemManager.IsBwoFacingAttackDirection = true;
         }
         else
         {
             if (bwo.RB.velocity.x < 0)
             {
                 bwo.GetComponent<SpriteRenderer>().flipX = true;
-                Global.keystoneItemManager.CanBwoShoot = false;
+                Global.keystoneItemManager.IsBwoFacingAttackDirection = false;
             }
             else
             {
                 bwo.GetComponent<SpriteRenderer>().flipX = false;
-                Global.keystoneItemManager.CanBwoShoot = true;
+                Global.keystoneItemManager.IsBwoFacingAttackDirection = true;
             }
         }
+    }
+
+    public float GetStateChance()
+    {
+        return 0.15f;
     }
 }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-public class PlayerProjectile : MonoBehaviour, IHasTriggerEnter, AffectedByAmplifier
+public class PlayerProjectile : MonoBehaviour, IHasTriggerEnter, AffectedByAmplifier, AffectedByApexStride
 {
     private void Awake()
     {
@@ -13,6 +13,10 @@ public class PlayerProjectile : MonoBehaviour, IHasTriggerEnter, AffectedByAmpli
     
     private void Start()
     {
+        if (Global.keystoneItemManager.ApexStrideLevel == 2)
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
+        }
         SaveShootPosition();
     }
 
@@ -22,9 +26,11 @@ public class PlayerProjectile : MonoBehaviour, IHasTriggerEnter, AffectedByAmpli
         {
             if (collisionObject.TryGetComponent(out EnemyGetHit hit))
             {
-                hit.GetHit(Mathf.FloorToInt(PlayerScriptableSettings.ProjectileDamage
+                int damage = Mathf.FloorToInt(PlayerScriptableSettings.ProjectileDamage
                     * PlayerScriptableSettings.PlayerDamageAmp
-                    * GetAmplifiedRangeAmount(ShootPosition,transform.position)));
+                    * GetAmplifiedRangeAmount(ShootPosition, transform.position));
+                damage = AddApexStrideDamage(damage);
+                hit.GetHit(damage);
             }
             Destroy(gameObject);
         }
@@ -52,5 +58,14 @@ public class PlayerProjectile : MonoBehaviour, IHasTriggerEnter, AffectedByAmpli
     public void SaveShootPosition()
     {
         ShootPosition = transform.position;
+    }
+
+    public int AddApexStrideDamage(int damage)
+    {
+        if (Global.keystoneItemManager.ApexStrideLevel == 2)
+        {
+            return damage + (int)(damage * Global.keystoneItemManager.DamageBoostMultiplier);
+        }
+        return damage;
     }
 }

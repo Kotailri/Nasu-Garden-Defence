@@ -41,6 +41,12 @@ public class PlayerHealth : MonoBehaviour
     public void RemoveHealth(int _hp)
     {
         CurrentHP -= _hp;
+
+        if (TryGetComponent(out ApexStride stride))
+        {
+            stride.SetRampingLevel(0);
+        }
+
         CheckDeath();
         bar.UpdateValue((float)CurrentHP / (float)MaxHP);
     }

@@ -130,5 +130,15 @@ public class PlayerMovement : MonoBehaviour
 
         RB.velocity = moveInput.normalized * 
             (PlayerScriptableSettings.PlayerMovespeed - PlayerScriptableSettings.PlayerMovespeed * currentSlowAmount);
+
+        if (Global.keystoneItemManager.ApexStrideLevel == 2)
+        {
+            RB.velocity *= Global.keystoneItemManager.StrideSpeedMultiplier2;
+        }
+        else
+        if (Global.keystoneItemManager.ApexStrideLevel == 1)
+        {
+            RB.velocity *= Global.keystoneItemManager.StrideSpeedMultiplier1;
+        }
     }
 }
