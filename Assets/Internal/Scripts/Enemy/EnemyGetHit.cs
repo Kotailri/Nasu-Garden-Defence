@@ -6,6 +6,18 @@ public class EnemyGetHit : MonoBehaviour
 {
     public void GetHit(int damage)
     {
-        GetComponent<EnemyHealth>().TakeDamage(damage);
+        int newDamage = damage;
+        if (GlobalItemToggles.HasAmplifier)
+        {
+            newDamage = Mathf.RoundToInt(damage * Global.keystoneItemManager.DistanceAmplificationAmount * Vector2.Distance(Global.playerTransform.position, transform.position));
+        }
+
+        if (newDamage < damage) 
+        {
+            newDamage = damage;
+        }
+
+
+        GetComponent<EnemyHealth>().TakeDamage(newDamage);
     }
 }

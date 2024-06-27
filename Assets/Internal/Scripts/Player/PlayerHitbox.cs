@@ -20,7 +20,7 @@ public class PlayerHitbox : MonoBehaviour, IHasTriggerStay
         spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
         canTakeDamage = false;
 
-        yield return new WaitForSeconds(PlayerScriptableSettings.InvincibilityDuration);
+        yield return new WaitForSeconds(GlobalPlayer.InvincibilityDuration);
 
         spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
         canTakeDamage = true;
@@ -32,7 +32,7 @@ public class PlayerHitbox : MonoBehaviour, IHasTriggerStay
         {
             health.RemoveHealth(dm.GetDamage());
             Global.damageTextSpawner.SpawnText(transform.position, "-" + dm.GetDamage().ToString(), DamageTextType.Red);
-            GetComponent<PlayerMovement>().ApplySlow(PlayerScriptableSettings.ContactSlowAmount, PlayerScriptableSettings.ContactSlowTime);
+            GetComponent<PlayerMovement>().ApplySlow(GlobalPlayer.ContactSlowAmount, GlobalPlayer.ContactSlowTime);
             StartCoroutine(IFrames());
         }
     }

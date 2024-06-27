@@ -5,17 +5,98 @@ using UnityEngine;
 public abstract class PlayerAttack : MonoBehaviour
 {
     public GameObject AttackPrefab;
-    public bool IsFacingRequired = false;
+    [Tooltip("Does the pet need to be facing forwards to attack")]
+    public bool IsPetFacingRequired = false;
+    public Color AttackColor = Color.white;
+    public int BaseDamage = 1;
 
-    public void SetAttackPrefab(GameObject _prefab)
+    [Tooltip("Damage Multiplier from INTERNAL Sources")]
+    public float DamageMultiplier = 1f;
+
+    [Space(10f)]
+    public int AttackLevel = 1;
+
+    [Space(5f)]
+    [Header("Attack Timer")]
+    public bool IsOnAttackTimer;
+    [Range(1, 10)]
+    [Tooltip("Attacks every X number of basic attacks")]
+    public int  AttackCount;
+
+    public void SetFromScriptable(PlayerAttackScriptable atk)
     {
-        AttackPrefab = _prefab;
+        AttackPrefab = atk.AttackPrefab;
+        IsPetFacingRequired = atk.IsPetFacingRequired;
+        AttackColor = atk.AttackColor;
+        BaseDamage = atk.BaseDamage;
+        DamageMultiplier = atk.DamageMultiplier;
+
+        IsOnAttackTimer = atk.IsOnAttackTimer;
+        AttackCount = atk.AttackCount;
     }
 
-    public void SetRequiredPetFacing(bool _facingRequired)
+    public void SetAttackPrefab(GameObject prefab)
     {
-        IsFacingRequired = _facingRequired;
+        AttackPrefab = prefab;
     }
 
-    public abstract void DoAttack(Vector2 attackPosition, int attackCount);
+    public void SetPetFacingRequirement(bool isRequired)
+    {
+        IsPetFacingRequired = isRequired;
+    }
+
+    public void SetAttackColour(Color col)
+    {
+        AttackColor = col;
+    }
+
+    public void SetBaseDamage(int damage, bool isRelative=false)
+    {
+        BaseDamage = damage;
+    }
+
+    public void SetDamageMultiplier(float damageMultiplier, bool isRelative=false)
+    {
+        if (isRelative)
+        {
+            DamageMultiplier += damageMultiplier;
+        }
+        else
+        {
+            DamageMultiplier = damageMultiplier;
+        }
+    }
+
+    public void IncrementLevel(int level)
+    {
+        AttackLevel += level;
+    }
+
+    public void SetAttackTiming(bool IsOnTimer,  int AttackTiming)
+    {
+        IsOnAttackTimer = IsOnTimer;
+        AttackCount = AttackTiming;
+    }
+
+    public int GetDamage()
+    {
+        return Mathf.RoundToInt(BaseDamage * DamageMultiplier * GlobalPlayer.PlayerDamageAmp);
+    }
+
+    public abstract void DoAttack(Vector2 attackPosition);
+}
+
+[CreateAssetMenu(fileName = "PlayerAttack")]
+public class PlayerAttackScriptable : ScriptableObject
+{
+    public GameObject AttackPrefab;
+    public bool IsPetFacingRequired = false;
+    public Color AttackColor = Color.white;
+    public int BaseDamage = 1;
+    public float DamageMultiplier = 1f;
+
+    [Header("On Attack Timer")]
+    public bool IsOnAttackTimer;
+    [Range(1, 10)]
+    public int AttackCount;
 }

@@ -11,6 +11,7 @@ public class ApexStride : MonoBehaviour
     public GameObject StrideParticlesMAX;
 
     private Rigidbody2D RB;
+    private PlayerMovement playerMovement;
     private float currentTimeoutTime = 0f;
 
     private int rampingLevel = 0;
@@ -19,19 +20,31 @@ public class ApexStride : MonoBehaviour
     private float rampingLevel1Time = 2f;
     private float rampingLevel2Time = 5f;
 
+    private float currentSpeedMultiplier = 0f;
+    private float level1SpeedMultiplier = 0.5f;
+    private float level2SpeedMultiplier = 1.5f;
+
+    private float damageMultiplier = 0f;
+    private float currentDamageMultiplier = 0f;
+
     private GameObject currentParticles;
 
     private void Awake()
     {
         RB = GetComponent<Rigidbody2D>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
-    public void Initialize(GameObject _strideParticles, GameObject _strideParticlesMax, float _timeBeforeTimeout)
+    public void Initialize(GameObject _strideParticles, GameObject _strideParticlesMax, float _timeBeforeTimeout, float _lvl1speed, float _lvl2speed, float damageMult)
     {
         TimeBeforeTimeout = _timeBeforeTimeout;
 
         StrideParticles = _strideParticles;
         StrideParticlesMAX = _strideParticlesMax;
+
+        level1SpeedMultiplier = _lvl1speed;
+        level2SpeedMultiplier = _lvl2speed;
+        damageMultiplier = damageMult;
     }
 
     public void SetRampingLevel(int level)
@@ -42,25 +55,32 @@ public class ApexStride : MonoBehaviour
         }
 
         Global.keystoneItemManager.ApexStrideLevel = level;
+        GlobalPlayer.PlayerDamageAmp -= currentDamageMultiplier;
+        playerMovement.SetCurrentSpeedModifier(-currentSpeedMultiplier, true);
 
         Destroy(currentParticles);
         switch (level)
         {
             case 0:
                 currentRampingTime = 0f;
+                currentSpeedMultiplier = 0;
                 break;
 
             case 1:
                 currentParticles = Instantiate(StrideParticles, Vector2.zero, Quaternion.identity);
                 currentParticles.transform.SetParent(transform, false);
+                currentSpeedMultiplier = level1SpeedMultiplier;
                 break;
 
             case 2:
                 currentParticles = Instantiate(StrideParticlesMAX, Vector2.zero, Quaternion.identity);
                 currentParticles.transform.SetParent(transform, false);
+                currentSpeedMultiplier = level2SpeedMultiplier;
+                currentDamageMultiplier = damageMultiplier;
                 break;
         }
-
+        GlobalPlayer.PlayerDamageAmp += currentDamageMultiplier;
+        playerMovement.SetCurrentSpeedModifier(currentSpeedMultiplier, true);
         rampingLevel = level;
     }
 
@@ -96,3 +116,15 @@ public class ApexStride : MonoBehaviour
         }
     }
 }
+
+/*
+if (Global.keystoneItemManager.ApexStrideLevel == 2)
+{
+    RB.velocity *= Global.keystoneItemManager.StrideSpeedMultiplier2;
+}
+else
+        if (Global.keystoneItemManager.ApexStrideLevel == 1)
+{
+    RB.velocity *= Global.keystoneItemManager.StrideSpeedMultiplier1;
+}
+*/

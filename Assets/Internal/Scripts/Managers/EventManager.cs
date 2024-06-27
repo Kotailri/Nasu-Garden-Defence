@@ -5,7 +5,7 @@ using System.Diagnostics;
 public static class EventStrings
 {
     public static readonly string ENEMY_KILLED  = "ENEMY_KILLED";
-    public static readonly string PLAYER_SHOOT  = "PLAYER_SHOOT";
+    public static readonly string PLAYER_ATTACK  = "PLAYER_ATTACK";
 }
 
 public static class EventManager

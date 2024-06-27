@@ -8,7 +8,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D RB;
 
     private bool MovementLocked = false;
-    private float currentSlowAmount = 0f;
+
+    private float currentSpeedModifier = 1f;
+    private float currentSlowMultiplier = 1f;
 
     // Clamp
     public Transform TopLeft;
@@ -28,9 +30,25 @@ public class PlayerMovement : MonoBehaviour
         maxY = TopLeft.position.y;
     }
 
+    public void SetCurrentSpeedModifier(float speed, bool isRelative)
+    {
+        if (isRelative)
+        {
+            currentSpeedModifier += speed;
+        }
+        else
+        {
+            currentSpeedModifier = speed;
+        }
+    }
+
+    public float GetCurrentSpeedModifier() {  return currentSpeedModifier; }
+
     public void ApplySlow(float amount, float time)
     {
-        if (amount <= currentSlowAmount)
+        currentSlowMultiplier = Mathf.Clamp(currentSlowMultiplier, 0f, 1f);
+
+        if (amount >= currentSlowMultiplier)
         {
             return;
         }
@@ -39,9 +57,9 @@ public class PlayerMovement : MonoBehaviour
 
         IEnumerator ApplySlowCoroutine()
         {
-            currentSlowAmount = amount;
+            currentSlowMultiplier = amount;
             yield return new WaitForSeconds(time);
-            currentSlowAmount = 0;
+            currentSlowMultiplier = 1;
         }
     }
 
@@ -129,16 +147,7 @@ public class PlayerMovement : MonoBehaviour
             moveInput = Vector2.zero;
 
         RB.velocity = moveInput.normalized * 
-            (PlayerScriptableSettings.PlayerMovespeed - PlayerScriptableSettings.PlayerMovespeed * currentSlowAmount);
+            (GlobalPlayer.PlayerMovespeed * currentSpeedModifier * currentSlowMultiplier);
 
-        if (Global.keystoneItemManager.ApexStrideLevel == 2)
-        {
-            RB.velocity *= Global.keystoneItemManager.StrideSpeedMultiplier2;
-        }
-        else
-        if (Global.keystoneItemManager.ApexStrideLevel == 1)
-        {
-            RB.velocity *= Global.keystoneItemManager.StrideSpeedMultiplier1;
-        }
     }
 }

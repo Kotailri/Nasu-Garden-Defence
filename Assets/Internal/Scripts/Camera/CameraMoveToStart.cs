@@ -21,6 +21,11 @@ public class CameraMoveToStart : MonoBehaviour
             Global.gameplayStarted = true;
             Global.waveManager.StartGame();
         }
+        else
+        {
+            cam.gameObject.transform.position = new Vector3(MenuPosition.x, MenuPosition.y, transform.position.z);
+            Global.playerTransform.position = new Vector3(-27, 0, 0);
+        }
     }
 
     public void MoveToGameplay()

@@ -16,7 +16,6 @@ public static class Global
     public static WaveManager waveManager;
     public static TextSpawner damageTextSpawner;
     public static KeystoneItemManager keystoneItemManager;
-    public static PlayerAttackPrefabHolder attackPrefabHolder;
     public static ItemUI itemUI;
 
     public static float MaxX = 18.47f;
@@ -61,28 +60,15 @@ public static class Config
     public static float CursorSpeed = 12f;
 }
 
-public static class PlayerScriptableSettings
+public static class GlobalPlayer
 {
-    //[Header("Moving")]
-    public static float PlayerMovespeed;
+    public static float PlayerMovespeed = 5f;
 
-    //[Header("Shooting")]
-    public static float ShootTimer;
-    public static int ProjectileDamage;
-    public static float ProjectileSpeed;
+    public static float InvincibilityDuration = 1f;
+    public static float PlayerDamageAmp = 0f;
 
-    //[Space(5f)]
-    public static GameObject ProjectilePrefab;
-
-    //[Header("Combat")]
-    public static float InvincibilityDuration;
-    public static float PlayerDamageAmp;
-
-    public static float ContactSlowAmount;
-    public static float ContactSlowTime;
-
-    // Items
-
+    public static float ContactSlowAmount = 0.5f;
+    public static float ContactSlowTime = 1f;
 }
 
 public static class Player

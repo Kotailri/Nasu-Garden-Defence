@@ -27,6 +27,7 @@ public class KeystoneItemManager : MonoBehaviour
     [Space(10f)]
 
     [Header("Apex Stride")]
+    [HideInInspector]
     public int ApexStrideLevel = 0;
     public ItemScriptable ApexStrideItemInfo;
     public float StrideSpeedMultiplier1;
@@ -42,7 +43,7 @@ public class KeystoneItemManager : MonoBehaviour
     {
         GlobalItemToggles.HasApexStride = true;
         Global.playerTransform.gameObject.AddComponent<ApexStride>();
-        Global.playerTransform.gameObject.GetComponent<ApexStride>().Initialize(StrideParticles, StrideParticlesMAX, TimeBeforeTimeout);
+        Global.playerTransform.gameObject.GetComponent<ApexStride>().Initialize(StrideParticles, StrideParticlesMAX, TimeBeforeTimeout, StrideSpeedMultiplier1, StrideSpeedMultiplier2, DamageBoostMultiplier);
     }
 
     [Space(10f)]
