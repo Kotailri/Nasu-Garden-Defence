@@ -80,7 +80,7 @@ public abstract class PlayerAttack : MonoBehaviour
 
     public int GetDamage()
     {
-        return Mathf.RoundToInt(BaseDamage * DamageMultiplier * GlobalPlayer.PlayerDamageAmp);
+        return Mathf.RoundToInt(BaseDamage * DamageMultiplier * GlobalPlayer.CurrentPlayerDamageMultiplier);
     }
 
     public abstract void DoAttack(Vector2 attackPosition);

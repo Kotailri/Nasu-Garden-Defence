@@ -43,6 +43,22 @@ public static class Global
         return activeEnemies;
     }
 
+    public static Transform GetNearestEnemy(Vector2 point)
+    {
+        Transform closestTransform = null;
+        float closestDistance = Mathf.Infinity;
+        foreach (GameObject g in GetActiveEnemies())
+        {
+            float currentDistance = Vector2.Distance(point, g.transform.position);
+            if (currentDistance < closestDistance)
+            {
+                closestDistance = currentDistance;
+                closestTransform = g.transform;
+            }
+        }
+
+        return closestTransform;
+    }
 
 }
 
@@ -62,13 +78,19 @@ public static class Config
 
 public static class GlobalPlayer
 {
-    public static float PlayerMovespeed = 5f;
-
     public static float InvincibilityDuration = 1f;
-    public static float PlayerDamageAmp = 0f;
-
     public static float ContactSlowAmount = 0.5f;
     public static float ContactSlowTime = 1f;
+
+    public static PlayerStat MovespeedStat;
+    public static PlayerStat DodgeStat;
+    public static PlayerStat AttackspeedStat;
+    public static PlayerStat DamageStat;
+    public static PlayerStat ProjectileDamageStat;
+    public static PlayerStat ProjectileSpeedStat;
+    public static PlayerStat MeleeDamageStat;
+
+    public static float CurrentPlayerDamageMultiplier = 1f;
 }
 
 public static class Player

@@ -173,4 +173,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DestroyWhenOutside: 1
   DestroyOnContact: 1
-  Damage: 10
+  AttackType: 1

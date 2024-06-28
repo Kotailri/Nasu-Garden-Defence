@@ -1943,6 +1943,7 @@ GameObject:
   - component: {fileID: 844188797}
   - component: {fileID: 844188798}
   - component: {fileID: 844188799}
+  - component: {fileID: 844188800}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2266,6 +2267,19 @@ MonoBehaviour:
   IsOnAttackTimer: 1
   AttackCount: 0
   ProjectileSpeed: 3
+--- !u!114 &844188800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844188785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d311317f64d621f47950a99b40c2a840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: d6f886a6f97e6b7429dc4e6e36e31916, type: 2}
 --- !u!1 &910864243
 GameObject:
   m_ObjectHideFlags: 0

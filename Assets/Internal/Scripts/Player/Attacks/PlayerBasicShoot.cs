@@ -11,7 +11,7 @@ public class PlayerBasicShoot : PlayerAttack
         if (AttackPrefab != null)
         {
             GameObject projectile = Instantiate(AttackPrefab, attackPosition + new Vector2(0.25f, -0.25f), Quaternion.Euler(0, 0, Random.Range(0f, 360f)));
-            projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(ProjectileSpeed + GlobalPlayer.PlayerMovespeed, 0);
+            projectile.GetComponent<Rigidbody2D>().velocity = new Vector2((ProjectileSpeed*GlobalPlayer.ProjectileSpeedStat.GetStat()) + GlobalPlayer.MovespeedStat.GetStat(), 0);
             projectile.GetComponent<PlayerAttackPrefab>().SetDamage(BaseDamage);
         }
     }

@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerAttackType
+{
+    Melee,
+    Projectile
+}
+
 public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
 {
     public bool DestroyWhenOutside;
     public bool DestroyOnContact;
+    
+    public PlayerAttackType AttackType;
     private int Damage;
 
     private void Awake()
@@ -24,7 +32,20 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
         {
             if (collisionObject.TryGetComponent(out EnemyGetHit hit))
             {
-                int damage = Mathf.FloorToInt(Damage * GlobalPlayer.PlayerDamageAmp);
+                int damage = 0;
+                switch (AttackType)
+                {
+                    case PlayerAttackType.Projectile:
+                        damage = Mathf.FloorToInt(Damage * GlobalPlayer.CurrentPlayerDamageMultiplier * 
+                            GlobalPlayer.DamageStat.GetStat() * GlobalPlayer.ProjectileDamageStat.GetStat());
+                        break;
+
+                    case PlayerAttackType.Melee:
+                        damage = Mathf.FloorToInt(Damage * GlobalPlayer.CurrentPlayerDamageMultiplier * 
+                            GlobalPlayer.DamageStat.GetStat() * GlobalPlayer.MeleeDamageStat.GetStat());
+                        break;
+
+                }
                 hit.GetHit(damage);
             }
 

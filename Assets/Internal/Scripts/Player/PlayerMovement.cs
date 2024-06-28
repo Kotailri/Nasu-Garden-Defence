@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
             moveInput = Vector2.zero;
 
         RB.velocity = moveInput.normalized * 
-            (GlobalPlayer.PlayerMovespeed * currentSpeedModifier * currentSlowMultiplier);
+            (GlobalPlayer.MovespeedStat.GetStat() * currentSpeedModifier * currentSlowMultiplier);
 
     }
 }

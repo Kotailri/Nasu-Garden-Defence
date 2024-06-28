@@ -55,7 +55,7 @@ public class ApexStride : MonoBehaviour
         }
 
         Global.keystoneItemManager.ApexStrideLevel = level;
-        GlobalPlayer.PlayerDamageAmp -= currentDamageMultiplier;
+        GlobalPlayer.CurrentPlayerDamageMultiplier -= currentDamageMultiplier;
         playerMovement.SetCurrentSpeedModifier(-currentSpeedMultiplier, true);
 
         Destroy(currentParticles);
@@ -79,7 +79,7 @@ public class ApexStride : MonoBehaviour
                 currentDamageMultiplier = damageMultiplier;
                 break;
         }
-        GlobalPlayer.PlayerDamageAmp += currentDamageMultiplier;
+        GlobalPlayer.CurrentPlayerDamageMultiplier += currentDamageMultiplier;
         playerMovement.SetCurrentSpeedModifier(currentSpeedMultiplier, true);
         rampingLevel = level;
     }
