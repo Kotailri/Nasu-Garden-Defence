@@ -11,9 +11,15 @@ public class TextSpawner : MonoBehaviour
         Global.damageTextSpawner = this;
     }
 
-    public void SpawnText(Vector2 position, string damageNumber, DamageTextType col)
+    public void SpawnText(Vector2 position, string damageNumber, DamageTextType col, float variance = 0f)
     {
-        GameObject gm = Instantiate(damageTextObject, position, Quaternion.identity);
+        Vector2 spawnPos = position;
+        if (variance > 0f)
+        {
+            spawnPos += new Vector2(Random.Range(-variance, variance), Random.Range(-variance, variance));
+        }
+
+        GameObject gm = Instantiate(damageTextObject, spawnPos, Quaternion.identity);
         gm.GetComponent<DamageText>().CreateText(damageNumber, col);
     }
 }

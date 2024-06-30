@@ -7,10 +7,12 @@ public class GardenHealth : MonoBehaviour
     public int MaxHP;
     public int CurrentHP;
 
+    public ProgressBarWithText gardenHealthUI;
+
     private void Start()
     {
         CurrentHP = MaxHP;
-        Global.gardenHealthUI.UpdateUI(CurrentHP);
+        UpdateUI(CurrentHP);
     }
 
     public int GetHealth()
@@ -31,7 +33,7 @@ public class GardenHealth : MonoBehaviour
             CurrentHP = MaxHP;
         }
 
-        Global.gardenHealthUI.UpdateUI(CurrentHP);
+        UpdateUI(CurrentHP);
     }
 
     public void RemoveHealth(int _hp)
@@ -39,14 +41,15 @@ public class GardenHealth : MonoBehaviour
         CurrentHP -= _hp;
         CheckDeath();
 
-        Global.gardenHealthUI.UpdateUI(CurrentHP);
+        UpdateUI(CurrentHP);
     }
 
     public void AddMaxHealth(int _hp)
     {
         CurrentHP += _hp;
         MaxHP = _hp;
-        Global.gardenHealthUI.UpdateUI(CurrentHP);
+
+        UpdateUI(CurrentHP);
     }
 
     public void RemoveMaxHealth(int _hp)
@@ -59,7 +62,13 @@ public class GardenHealth : MonoBehaviour
             CurrentHP = MaxHP;
         }
 
-        Global.gardenHealthUI.UpdateUI(CurrentHP);
+        UpdateUI(CurrentHP);
+    }
+
+    private void UpdateUI(int CurrentHP)
+    {
+        gardenHealthUI.UpdateValue((float)CurrentHP / (float)MaxHP);
+        gardenHealthUI.UpdateText(CurrentHP);
     }
 
     private void CheckDeath()

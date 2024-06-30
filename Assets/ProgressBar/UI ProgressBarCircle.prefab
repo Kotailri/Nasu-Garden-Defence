@@ -143,7 +143,7 @@ MonoBehaviour:
   BarBackGroundColor: {r: 0.25146616, g: 1, b: 0, a: 1}
   MaskColor: {r: 1, g: 1, b: 1, a: 0.85882354}
   BarBackGroundSprite: {fileID: 21300000, guid: 01727dd432139bb49b9d906c6bdb0d3c, type: 3}
-  Alert: 20
+  Alert: 18
   BarAlertColor: {r: 1, g: 0.020000001, b: 0, a: 1}
   sound: {fileID: 0}
   repeat: 0

@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df063680e9467da4ea2b10fdcf8eccf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 0.25
+  Timer: 0.1
   RedText: {fileID: 2712092133135576671}
   WhiteText: {fileID: 8516364674676175342}
   StatusText: {fileID: 8787844006964598993}

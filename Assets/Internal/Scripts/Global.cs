@@ -12,7 +12,6 @@ public static class Global
     // Mangagers
     public static PlayerControls playerControls;
     public static GameOverManager gameOverManager;
-    public static GardenHealthUI gardenHealthUI;
     public static WaveManager waveManager;
     public static TextSpawner damageTextSpawner;
     public static KeystoneItemManager keystoneItemManager;

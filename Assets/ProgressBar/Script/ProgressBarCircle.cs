@@ -6,10 +6,6 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 
 public class ProgressBarCircle : MonoBehaviour {
-    [Header("Title Setting")]
-    public string Title;
-    public Color TitleColor;
-    public Font TitleFont;    
 
     [Header("Bar Setting")]
     public Color BarColor;
@@ -20,14 +16,9 @@ public class ProgressBarCircle : MonoBehaviour {
     public int Alert = 20;
     public Color BarAlertColor;
 
-    [Header("Sound Alert")]
-    public AudioClip sound;
-    public bool repeat = false;
-    public float RepearRate = 1f;
 
     private Image bar, barBackground,Mask;
     private float nextPlay;
-    private AudioSource audiosource;
     private Text txtTitle;
     private float barValue;
     public float BarValue
@@ -49,17 +40,11 @@ public class ProgressBarCircle : MonoBehaviour {
         txtTitle = transform.Find("Text").GetComponent<Text>();
         barBackground = transform.Find("BarBackgroundCircle").GetComponent<Image>();
         bar = transform.Find("BarCircle").GetComponent<Image>();
-        audiosource = GetComponent<AudioSource>();
         Mask= transform.Find("Mask").GetComponent<Image>();
     }
 
     private void Start()
     {
-        txtTitle.text = Title;
-        txtTitle.color = TitleColor;
-        txtTitle.font = TitleFont;
-       
-
         bar.color = BarColor;
         Mask.color = MaskColor;
         barBackground.color = BarBackGroundColor;
@@ -75,7 +60,7 @@ public class ProgressBarCircle : MonoBehaviour {
        
         bar.fillAmount = -(val / 100) + 1f;
 
-        txtTitle.text = Title + " " + val + "%";
+        txtTitle.text = val + "%";
 
         if (Alert >= val)
         {
@@ -91,28 +76,11 @@ public class ProgressBarCircle : MonoBehaviour {
 
     private void Update()
     {
-       
-
-        if (!Application.isPlaying)
-        {
-           
-            UpdateValue(50);
-            txtTitle.color = TitleColor;
-            txtTitle.font = TitleFont;
-            Mask.color = MaskColor;
-            bar.color = BarColor;
-            barBackground.color = BarBackGroundColor;
-            barBackground.sprite = BarBackGroundSprite;
-            
-        }
-        else
-        {
-            if (Alert >= barValue && Time.time > nextPlay)
-            {
-                nextPlay = Time.time + RepearRate;
-                audiosource.PlayOneShot(sound);
-            }
-        }
+        UpdateValue(50);
+        Mask.color = MaskColor;
+        bar.color = BarColor;
+        barBackground.color = BarBackGroundColor;
+        barBackground.sprite = BarBackGroundSprite;
     }
 
 }

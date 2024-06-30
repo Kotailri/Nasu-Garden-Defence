@@ -42,7 +42,7 @@ public class EnemyHealth : MonoBehaviour
         if (Random.Range(0f, 1f) >= DodgeChance)
         {
             CurrentHealth -= damage - Mathf.FloorToInt(damage * Resistance);
-            Global.damageTextSpawner.SpawnText(transform.position, (damage - Mathf.FloorToInt(damage * Resistance)).ToString(), DamageTextType.White);
+            Global.damageTextSpawner.SpawnText(transform.position, (damage - Mathf.FloorToInt(damage * Resistance)).ToString(), DamageTextType.White, 1f);
         }
         else
         {

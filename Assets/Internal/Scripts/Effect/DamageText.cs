@@ -19,6 +19,7 @@ public class DamageText : MonoBehaviour
     public TextMeshProUGUI WhiteText;
     public TextMeshProUGUI StatusText;
 
+    private Vector3 baseScale;
 
     public void CreateText(string damageNumber, DamageTextType col)
     {
@@ -47,6 +48,16 @@ public class DamageText : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, Timer);
+        baseScale = transform.localScale;
+        transform.localScale = Vector3.zero;
+        StartCoroutine(TweenAnim());
+        
+    }
+
+    private IEnumerator TweenAnim()
+    {
+        LeanTween.scale(gameObject, baseScale, 0.1f);
+        yield return new WaitForSeconds(0.25f + Timer);
+        LeanTween.scale(gameObject, Vector2.zero, 0.15f).setEaseInBounce().setOnComplete(() => { Destroy(gameObject); });
     }
 }
