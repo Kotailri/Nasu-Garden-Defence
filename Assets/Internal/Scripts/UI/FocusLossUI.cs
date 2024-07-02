@@ -21,10 +21,12 @@ public class FocusLossUI : MonoBehaviour
         if (hasFocus)
         {
             FocusLossUIObject.SetActive(false);
+            Time.timeScale = 1f;
         }
         else
         {
             FocusLossUIObject.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 }

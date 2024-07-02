@@ -15,7 +15,7 @@ MonoBehaviour:
   EnemyName: BananaSlug
   Health: 50
   Resistance: 0
-  DodgeChance: 0.1
+  DodgeChance: 0
   HealthRegenPerSecond: 0
   MovementSpeedMin: 1
   MovementSpeedMax: 1

@@ -11,6 +11,8 @@ public class WaveManager : MonoBehaviour
     private GameObject currentWave;
     public TextMeshProUGUI waveNameUI;
 
+    private bool isWaveOngoing = false;
+
     private void Awake()
     {
         Global.waveManager = this;
@@ -20,6 +22,12 @@ public class WaveManager : MonoBehaviour
     {
         
     }
+
+    public bool IsWaveOngoing()
+    {
+        return isWaveOngoing;
+    }
+
 
     public void StartGame()
     {
@@ -41,12 +49,16 @@ public class WaveManager : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("Enemy").Length == 1)
         {
             Destroy(currentWave);
+            isWaveOngoing = false;
+
+            // TODO pause game to get items
             SpawnNextWave();
         }
     }
 
     private void SpawnNextWave()
     {
+        isWaveOngoing = true;
         waveNameUI.text = "Wave " + (CurrentWaveIndex+1);
         currentWave = Instantiate(waves[CurrentWaveIndex], new Vector3(Global.MaxX, 0, transform.position.z), Quaternion.identity);
         CurrentWaveIndex++;

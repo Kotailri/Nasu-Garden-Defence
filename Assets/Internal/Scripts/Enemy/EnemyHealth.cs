@@ -46,7 +46,7 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            Global.damageTextSpawner.SpawnText(transform.position, "dodged", DamageTextType.Status);
+            Global.damageTextSpawner.SpawnText(transform.position, "dodged", DamageTextType.Status, 1f);
         }
             
 

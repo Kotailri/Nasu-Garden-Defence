@@ -139,6 +139,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "StatMenu",
+                    "type": "Button",
+                    "id": "feaac994-d87f-47ab-919d-08658c34a1bf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -381,6 +390,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "UIDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "85d28edc-db00-4592-9b5a-cb47f00a893e",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StatMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "64add9ad-fa6d-4024-8fac-89ba6f6dff94",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StatMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

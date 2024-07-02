@@ -7,11 +7,23 @@ public abstract class PlayerStat
     private int    StatLevel = 0;
     private float  StatBase = 0;
     private float  StatIncrease = 0;
-    private string StatName = "";
+    private string StatName = "Stat Name";
+    private string StatDescription = "Stat Description";
+    private PlayerStatEnum StatEnum;
 
     public int GetLevel()
     {
         return StatLevel;
+    }
+
+    public PlayerStatEnum GetStatEnum()
+    {
+        return StatEnum;
+    }
+
+    public string GetStatDescription()
+    {
+        return StatDescription;
     }
 
     protected float GetStatBase()
@@ -41,12 +53,14 @@ public abstract class PlayerStat
         }
     }
 
-    protected PlayerStat(string statName, float statBase, float statIncrease)
+    protected PlayerStat(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease)
     {
         StatLevel = 0;
         StatIncrease = statIncrease;
         StatName = statName;
         StatBase = statBase;
+        StatEnum = statEnum;
+        StatDescription = statDescription;
     }
 
     public abstract float GetStat();
@@ -61,7 +75,9 @@ public enum PlayerStatGrowthType
 
 public class PlayerStatLinear : PlayerStat
 {
-    public PlayerStatLinear(string statName, float statBase, float statIncrease) : base(statName, statBase, statIncrease) { }
+    public PlayerStatLinear(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease) : base(statName, statEnum, statDescription, statBase, statIncrease)
+    {
+    }
 
     public override float GetStat()
     {
@@ -71,7 +87,9 @@ public class PlayerStatLinear : PlayerStat
 
 public class PlayerStatCompound : PlayerStat
 {
-    public PlayerStatCompound(string statName, float statBase, float statIncrease) : base(statName, statBase, statIncrease) { }
+    public PlayerStatCompound(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease) : base(statName, statEnum, statDescription, statBase, statIncrease)
+    {
+    }
 
     public override float GetStat()
     {
@@ -81,7 +99,9 @@ public class PlayerStatCompound : PlayerStat
 
 public class PlayerStatExponential : PlayerStat
 {
-    public PlayerStatExponential(string statName, float statBase, float statIncrease) : base(statName, statBase, statIncrease) { }
+    public PlayerStatExponential(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease) : base(statName, statEnum, statDescription, statBase, statIncrease)
+    {
+    }
 
     public override float GetStat()
     {
@@ -91,16 +111,16 @@ public class PlayerStatExponential : PlayerStat
 
 public static class PlayerStatFactory
 {
-    public static PlayerStat CreatePlayerStat(string statName, float statBase, float statIncrease, PlayerStatGrowthType growthType)
+    public static PlayerStat CreatePlayerStat(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease, PlayerStatGrowthType growthType)
     {
         switch (growthType)
         {
             case PlayerStatGrowthType.Compound:
-                return new PlayerStatCompound(statName, statBase, statIncrease);
+                return new PlayerStatCompound(statName, statEnum, statDescription, statBase, statIncrease);
             case PlayerStatGrowthType.Exponential:
-                return new PlayerStatExponential(statName, statBase, statIncrease);
+                return new PlayerStatExponential(statName, statEnum, statDescription, statBase, statIncrease);
             case PlayerStatGrowthType.Linear:
-                return new PlayerStatLinear(statName, statBase, statIncrease);
+                return new PlayerStatLinear(statName, statEnum, statDescription, statBase, statIncrease);
         }
         return null;
     }

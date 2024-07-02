@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu()]
+[CreateAssetMenu(menuName = "Item/Create Item Scriptable")]
 public class ItemScriptable : ScriptableObject
 {
     public string ItemName;
@@ -10,4 +11,10 @@ public class ItemScriptable : ScriptableObject
     public string ItemDescription;
     public Sprite ItemIconImage;
     public Color ItemSpriteColor;
+}
+
+[CreateAssetMenu(menuName = "Item/Create Item Scriptable with Component")]
+public class ItemScriptableComponent : ItemScriptable
+{
+    public MonoScript ItemScript;
 }

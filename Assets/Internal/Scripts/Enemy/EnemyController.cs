@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     public EnemyScriptable enemyScriptable;
     public ProgressBar healthBar;
+    public int GardenContactDamage;
 
     protected EnemyHealth _healthComponent;
     protected DamagesPlayerOnHit _contactDamageComponent;
@@ -19,6 +20,8 @@ public class EnemyController : MonoBehaviour
 
         _contactDamageComponent = gameObject.AddComponent<DamagesPlayerOnHit>();
         _contactDamageComponent.SetDamage(enemyScriptable.ContactDamage);
+
+        GardenContactDamage = enemyScriptable.GardenContactDamage;
 
         gameObject.AddComponent<EnemyGetHit>();
         gameObject.AddComponent<CallsTriggerCollisions>();

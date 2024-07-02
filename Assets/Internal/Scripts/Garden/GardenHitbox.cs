@@ -7,10 +7,13 @@ public class GardenHitbox : MonoBehaviour, IHasTriggerStay
 {
     public void OnTriggerStayEvent(GameObject collisionObject)
     {
-        if (collisionObject.CompareTag("Enemy"))
+        if (collisionObject.TryGetComponent(out EnemyController em))
         {
-            GetComponent<GardenHealth>().RemoveHealth(1);
-            collisionObject.gameObject.GetComponent<EnemyDeath>().Die();
+            if (em.GardenContactDamage > 0)
+            {
+                GetComponent<GardenHealth>().SetHealth(-em.GardenContactDamage, true);
+                collisionObject.gameObject.GetComponent<EnemyDeath>().Die();
+            }
         }
     }
 }

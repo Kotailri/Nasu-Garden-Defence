@@ -20,7 +20,7 @@ public class PlayerHitbox : MonoBehaviour, IHasTriggerStay
         spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
         canTakeDamage = false;
 
-        yield return new WaitForSeconds(GlobalPlayer.InvincibilityDuration);
+        yield return new WaitForSeconds(GlobalPlayer.GetStatValue(PlayerStatEnum.invincDuration));
 
         spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
         canTakeDamage = true;

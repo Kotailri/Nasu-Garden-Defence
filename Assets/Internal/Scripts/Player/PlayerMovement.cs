@@ -47,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
     public void ApplySlow(float amount, float time)
     {
         currentSlowMultiplier = Mathf.Clamp(currentSlowMultiplier, 0f, 1f);
+        amount = Mathf.Clamp(amount, 0f, 1f);
+        amount += (amount * GlobalPlayer.GetStatValue(PlayerStatEnum.slowReduction));
 
         if (amount >= currentSlowMultiplier)
         {
@@ -147,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
             moveInput = Vector2.zero;
 
         RB.velocity = moveInput.normalized * 
-            (GlobalPlayer.MovespeedStat.GetStat() * currentSpeedModifier * currentSlowMultiplier);
+            (GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSpeedModifier * currentSlowMultiplier);
 
     }
 }

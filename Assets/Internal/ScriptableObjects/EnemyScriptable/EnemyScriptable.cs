@@ -29,4 +29,5 @@ public class EnemyScriptable : ScriptableObject
 
     [Header("Combat")]
     public int ContactDamage;
+    public int GardenContactDamage;
 }

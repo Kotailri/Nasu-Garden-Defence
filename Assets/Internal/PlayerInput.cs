@@ -161,6 +161,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StatMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""feaac994-d87f-47ab-919d-08658c34a1bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -405,6 +414,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""UIDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""85d28edc-db00-4592-9b5a-cb47f00a893e"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StatMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64add9ad-fa6d-4024-8fac-89ba6f6dff94"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StatMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -428,6 +459,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_GameplayControls_UIRight = m_GameplayControls.FindAction("UIRight", throwIfNotFound: true);
         m_GameplayControls_UIUp = m_GameplayControls.FindAction("UIUp", throwIfNotFound: true);
         m_GameplayControls_UIDown = m_GameplayControls.FindAction("UIDown", throwIfNotFound: true);
+        m_GameplayControls_StatMenu = m_GameplayControls.FindAction("StatMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -504,6 +536,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_GameplayControls_UIRight;
     private readonly InputAction m_GameplayControls_UIUp;
     private readonly InputAction m_GameplayControls_UIDown;
+    private readonly InputAction m_GameplayControls_StatMenu;
     public struct GameplayControlsActions
     {
         private @PlayerInput m_Wrapper;
@@ -523,6 +556,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @UIRight => m_Wrapper.m_GameplayControls_UIRight;
         public InputAction @UIUp => m_Wrapper.m_GameplayControls_UIUp;
         public InputAction @UIDown => m_Wrapper.m_GameplayControls_UIDown;
+        public InputAction @StatMenu => m_Wrapper.m_GameplayControls_StatMenu;
         public InputActionMap Get() { return m_Wrapper.m_GameplayControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -577,6 +611,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @UIDown.started += instance.OnUIDown;
             @UIDown.performed += instance.OnUIDown;
             @UIDown.canceled += instance.OnUIDown;
+            @StatMenu.started += instance.OnStatMenu;
+            @StatMenu.performed += instance.OnStatMenu;
+            @StatMenu.canceled += instance.OnStatMenu;
         }
 
         private void UnregisterCallbacks(IGameplayControlsActions instance)
@@ -626,6 +663,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @UIDown.started -= instance.OnUIDown;
             @UIDown.performed -= instance.OnUIDown;
             @UIDown.canceled -= instance.OnUIDown;
+            @StatMenu.started -= instance.OnStatMenu;
+            @StatMenu.performed -= instance.OnStatMenu;
+            @StatMenu.canceled -= instance.OnStatMenu;
         }
 
         public void RemoveCallbacks(IGameplayControlsActions instance)
@@ -660,5 +700,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnUIRight(InputAction.CallbackContext context);
         void OnUIUp(InputAction.CallbackContext context);
         void OnUIDown(InputAction.CallbackContext context);
+        void OnStatMenu(InputAction.CallbackContext context);
     }
 }

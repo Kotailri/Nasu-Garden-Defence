@@ -42,7 +42,7 @@ public class PlayerAttackManager : MonoBehaviour
     {
         if (!Global.gameplayStarted) { return; }
 
-        if (currentAttackTimer >= AttackTimer)
+        if (currentAttackTimer >= (AttackTimer - (AttackTimer * GlobalPlayer.GetStatValue(PlayerStatEnum.attackspeed))))
         {
             currentAttackTimer = 0;
             Shoot();

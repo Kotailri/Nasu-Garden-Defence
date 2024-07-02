@@ -37,12 +37,12 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
                 {
                     case PlayerAttackType.Projectile:
                         damage = Mathf.FloorToInt(Damage * GlobalPlayer.CurrentPlayerDamageMultiplier * 
-                            GlobalPlayer.DamageStat.GetStat() * GlobalPlayer.ProjectileDamageStat.GetStat());
+                            GlobalPlayer.GetStatValue(PlayerStatEnum.damage) * GlobalPlayer.GetStatValue(PlayerStatEnum.projectileDamage));
                         break;
 
                     case PlayerAttackType.Melee:
-                        damage = Mathf.FloorToInt(Damage * GlobalPlayer.CurrentPlayerDamageMultiplier * 
-                            GlobalPlayer.DamageStat.GetStat() * GlobalPlayer.MeleeDamageStat.GetStat());
+                        damage = Mathf.FloorToInt(Damage * GlobalPlayer.CurrentPlayerDamageMultiplier *
+                            GlobalPlayer.GetStatValue(PlayerStatEnum.damage) * GlobalPlayer.GetStatValue(PlayerStatEnum.meleeDamage));
                         break;
 
                 }
