@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemUI : MonoBehaviour
 {
@@ -30,15 +30,17 @@ public class ItemUI : MonoBehaviour
 
     public void AddItemToUI(ItemScriptable item, List<KeyValuePair<string, string>> descriptionReplacements = null)
     {
-        GameObject newItem = Instantiate(UIItemPrefab.gameObject);
+        GameObject newItem = Instantiate(UIItemPrefab.gameObject, Vector2.zero, Quaternion.identity);
+
         newItem.transform.SetParent(this.transform, false);
+        newItem.transform.localPosition = Vector3.zero;
         newItem.transform.position += new Vector3(LeftMargin,0,0);
         newItem.GetComponent<UIItem>().SetItem(item, descriptionReplacements);
         ItemInventory.Add(newItem);
 
         LeftMargin += 80f;
 
-        if (CurrentPage == (ItemInventory.Count / NumSlots) - 1 && ItemInventory.Count % 10 == 1)
+        if (CurrentPage == (ItemInventory.Count / NumSlots) - 1 && ItemInventory.Count % NumSlots == 1)
         {
             RightArrow.SetActive(true);
         }
@@ -46,6 +48,8 @@ public class ItemUI : MonoBehaviour
 
     private void ArrowOnClick(int moveDirection)
     {
+        float moveAmount = 80f * NumSlots;
+
         if (!ButtonsInteractable)
         {
             return;
@@ -53,10 +57,10 @@ public class ItemUI : MonoBehaviour
 
         foreach (GameObject item in ItemInventory)
         {
-            item.transform.position += new Vector3(800f * moveDirection, 0, 0);
+            item.transform.position += new Vector3(moveAmount * moveDirection, 0, 0);
         }
 
-        LeftMargin += (800f * moveDirection);
+        LeftMargin += (moveAmount * moveDirection);
 
         if (CurrentPage == 0)
         {
