@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089ffc9a3e46d1d46bf5b113cf702d0b, type: 3}
   m_Name: ProjectileDamage
   m_EditorClassIdentifier: 
-  StatName: 
-  StatEnum: 0
-  StatBase: 0
-  StatGrowth: 0
-  StatGrowthType: 0
+  StatName: Projectile Dmg
+  StatEnum: 15
+  StatDescription: Increases the damage of projectile attacks.
+  StatBase: 1
+  StatGrowth: 0.1
+  StatGrowthType: 1

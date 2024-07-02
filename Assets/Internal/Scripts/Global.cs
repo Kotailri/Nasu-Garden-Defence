@@ -17,6 +17,7 @@ public static class Global
     public static TextSpawner damageTextSpawner;
     public static KeystoneItemManager keystoneItemManager;
     public static ItemUI itemUI;
+    public static ItemSelectManager itemSelectManager;
     public static StatManager statManager;
 
     public static float MaxX = 18.47f;
@@ -60,6 +61,18 @@ public static class Global
 
         return closestTransform;
     }
+
+    public static TValue GetRandomDictionaryValue<TKey, TValue>(Dictionary<TKey, TValue> dictionary)
+    {
+        if (dictionary.Count == 0)
+        {
+            throw new System.InvalidOperationException("Cannot get a random value from an empty dictionary.");
+        }
+
+        List<TValue> values = new List<TValue>(dictionary.Values);
+        int randomIndex = UnityEngine.Random.Range(0, values.Count);
+        return values[randomIndex];
+    }
 }
 
 public static class MathHelper
@@ -88,7 +101,7 @@ public enum PlayerStatEnum
     gardenResist         = 7,
     invincDuration       = 8,
     meleeDamage          = 9,
-    //meleeAttackSize      = 18,
+    meleeAttackSize      = 18,
     movespeed = 10,
     damage               = 11,
     playerHealth         = 12,

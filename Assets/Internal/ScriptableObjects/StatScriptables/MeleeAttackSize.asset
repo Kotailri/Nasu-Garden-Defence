@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MeleeAttackSize
   m_EditorClassIdentifier: 
   StatName: Melee Size
-  StatEnum: 0
+  StatEnum: 18
   StatDescription: Increases the size of melee attacks
   StatBase: 1
   StatGrowth: 0.2

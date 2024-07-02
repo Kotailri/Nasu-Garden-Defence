@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089ffc9a3e46d1d46bf5b113cf702d0b, type: 3}
   m_Name: PlayerHealthRegen
   m_EditorClassIdentifier: 
-  StatName: 
-  StatEnum: 0
+  StatName: Player Regen
+  StatEnum: 13
+  StatDescription: Increases the rate of the player's health recovery.
   StatBase: 0
-  StatGrowth: 0
+  StatGrowth: 0.5
   StatGrowthType: 0

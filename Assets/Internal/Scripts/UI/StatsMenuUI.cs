@@ -66,21 +66,20 @@ public class StatsMenuUI : MonoBehaviour
         }
     }
 
-    private float slideTime = 0.1f;
+    private float slideTime = 0.2f;
     private bool canOpen = true;
 
     public void OnStatsDisplayOpen(bool isOpening)
     {
         if (canOpen && isOpening && !LeanTween.isTweening(gameObject))
         {
-            StartCoroutine(OpenCooldown());
             UpdateStatsDisplay();
-            LeanTween.moveX(gameObject, activePosition.x, slideTime);
+            LeanTween.moveX(gameObject, activePosition.x, slideTime).setEaseOutQuad();
         }
 
         else
         {
-            LeanTween.moveX(gameObject, activePosition.x - leftSlideAmount, slideTime);
+            transform.position = new Vector3(activePosition.x - leftSlideAmount, transform.position.y, transform.position.z);
         }
     }
 
@@ -95,12 +94,5 @@ public class StatsMenuUI : MonoBehaviour
         {
             OnStatsDisplayOpen(false);
         }
-    }
-
-    private IEnumerator OpenCooldown()
-    {
-        canOpen = false;
-        yield return new WaitForSeconds(slideTime);
-        canOpen = true;
     }
 }

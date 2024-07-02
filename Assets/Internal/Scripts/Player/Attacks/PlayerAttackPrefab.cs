@@ -21,6 +21,21 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
         gameObject.AddComponent<CallsTriggerCollisions>();
     }
 
+    private void Start()
+    {
+        switch (AttackType)
+        {
+            case PlayerAttackType.Projectile:
+                transform.localScale *= GlobalPlayer.GetStatValue(PlayerStatEnum.projectileSize);
+                break;
+
+            case PlayerAttackType.Melee:
+                transform.localScale *= GlobalPlayer.GetStatValue(PlayerStatEnum.meleeAttackSize);
+                break;
+
+        }
+    }
+
     public void SetDamage(int damage)
     {
         Damage = damage;

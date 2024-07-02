@@ -27,13 +27,13 @@ public class KeystoneItemManager : MonoBehaviour
     [Space(10f)]
 
     [Header("Apex Stride")]
-    [HideInInspector]
-    public int ApexStrideLevel = 0;
     public ItemScriptable ApexStrideItemInfo;
     public float StrideSpeedMultiplier1;
     public float StrideSpeedMultiplier2;
     public float DamageBoostMultiplier;
     public float TimeBeforeTimeout;
+    [HideInInspector]
+    public int ApexStrideLevel = 0;
 
     [Space(5f)]
     public GameObject StrideParticles;

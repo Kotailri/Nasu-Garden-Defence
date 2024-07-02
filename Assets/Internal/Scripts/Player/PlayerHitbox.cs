@@ -30,7 +30,7 @@ public class PlayerHitbox : MonoBehaviour, IHasTriggerStay
     {
         if (canTakeDamage && collisionObject.TryGetComponent(out DamagesPlayerOnHit dm))
         {
-            health.RemoveHealth(dm.GetDamage());
+            health.SetHealth(-dm.GetDamage(), true);
             Global.damageTextSpawner.SpawnText(transform.position, "-" + dm.GetDamage().ToString(), DamageTextType.Red);
             GetComponent<PlayerMovement>().ApplySlow(GlobalPlayer.ContactSlowAmount, GlobalPlayer.ContactSlowTime);
             StartCoroutine(IFrames());

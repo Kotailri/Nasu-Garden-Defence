@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089ffc9a3e46d1d46bf5b113cf702d0b, type: 3}
   m_Name: SlowReduction
   m_EditorClassIdentifier: 
-  StatName: 
-  StatEnum: 0
+  StatName: Slow Reduction
+  StatEnum: 17
+  StatDescription: Reduces the effects of slows.
   StatBase: 0
-  StatGrowth: 0
+  StatGrowth: 0.05
   StatGrowthType: 0

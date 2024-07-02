@@ -10,11 +10,38 @@ public class PlayerHealth : MonoBehaviour
 
     [Space(10f)]
     public ProgressBar bar;
+    private float currentRegenAmount = 0f;
 
     private void Start()
     {
+        MaxHP = (int)GlobalPlayer.GetStatValue(PlayerStatEnum.playerHealth);
         CurrentHP = MaxHP;
-        bar.UpdateValue((float)CurrentHP / (float)MaxHP);
+        UpdateUI(CurrentHP);
+    }
+
+    private void Update()
+    {
+        if (!Global.waveManager.IsWaveOngoing())
+        {
+            return;
+        }
+
+        currentRegenAmount += GlobalPlayer.GetStatValue(PlayerStatEnum.playerRegen) * Time.deltaTime;
+        if (currentRegenAmount >= 1)
+        {
+            SetHealth(Mathf.FloorToInt(currentRegenAmount), true);
+            currentRegenAmount %= 1;
+        }
+    }
+
+    private void OnEnable()
+    {
+        EventManager.StartListening(EventStrings.STATS_UPDATED, OnMaxHpStatChanged);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening(EventStrings.STATS_UPDATED, OnMaxHpStatChanged);
     }
 
     public int GetHealth()
@@ -27,47 +54,59 @@ public class PlayerHealth : MonoBehaviour
         return MaxHP;
     }
 
-    public void AddHealth(int _hp)
+    public void SetHealth(int _hp, bool isRelative)
     {
-        CurrentHP += _hp;
+        if (isRelative)
+        {
+            if (_hp >= 0)
+            {
+                CurrentHP += _hp;
+            }
+            else
+            {
+                CurrentHP += (int)Mathf.Clamp(_hp + Mathf.FloorToInt(Mathf.Abs(_hp) 
+                    * GlobalPlayer.GetStatValue(PlayerStatEnum.playerResist)), Mathf.NegativeInfinity, 0f);
+            }
+
+        }
+        else
+        {
+            CurrentHP = _hp;
+        }
+
         if (CurrentHP > MaxHP)
         {
             CurrentHP = MaxHP;
-        }
-
-        bar.UpdateValue((float)CurrentHP/(float)MaxHP);
-    }
-
-    public void RemoveHealth(int _hp)
-    {
-        CurrentHP -= _hp;
-
-        if (TryGetComponent(out ApexStride stride))
-        {
-            stride.SetRampingLevel(0);
         }
 
         CheckDeath();
-        bar.UpdateValue((float)CurrentHP / (float)MaxHP);
+        UpdateUI(CurrentHP);
     }
 
-    public void AddMaxHealth(int _hp)
+    public void OnMaxHpStatChanged(Dictionary<string, object> message)
     {
-        CurrentHP += _hp;
-        MaxHP = _hp;
-        bar.UpdateValue((float)CurrentHP / (float)MaxHP);
+        SetMaxHealth(Mathf.FloorToInt(GlobalPlayer.GetStatValue(PlayerStatEnum.playerHealth)) - MaxHP, true);
+        UpdateUI(CurrentHP);
     }
 
-    public void RemoveMaxHealth(int _hp)
+    public void SetMaxHealth(int _hp, bool isRelative)
     {
-        MaxHP -= _hp;
-        if (MaxHP <= 0) { MaxHP = 1; }
-
-        if (CurrentHP > MaxHP)
+        if (isRelative)
         {
-            CurrentHP = MaxHP;
+            CurrentHP += _hp;
+            MaxHP += _hp;
+        }
+        else
+        {
+            CurrentHP = _hp;
+            MaxHP = _hp;
         }
 
+        UpdateUI(CurrentHP);
+    }
+
+    private void UpdateUI(int CurrentHP)
+    {
         bar.UpdateValue((float)CurrentHP / (float)MaxHP);
     }
 

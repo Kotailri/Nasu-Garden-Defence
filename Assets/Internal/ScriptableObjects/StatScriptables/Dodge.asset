@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089ffc9a3e46d1d46bf5b113cf702d0b, type: 3}
   m_Name: Dodge
   m_EditorClassIdentifier: 
-  StatName: 
-  StatEnum: 0
+  StatName: Dodge Chance
+  StatEnum: 2
+  StatDescription: When you would take damage, increases the chance of negating the
+    damage.
   StatBase: 0
-  StatGrowth: 0
+  StatGrowth: 0.01
   StatGrowthType: 0

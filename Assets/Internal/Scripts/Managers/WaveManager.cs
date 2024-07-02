@@ -50,13 +50,11 @@ public class WaveManager : MonoBehaviour
         {
             Destroy(currentWave);
             isWaveOngoing = false;
-
-            // TODO pause game to get items
-            SpawnNextWave();
+            Global.itemSelectManager.CreateItems();
         }
     }
 
-    private void SpawnNextWave()
+    public void SpawnNextWave()
     {
         isWaveOngoing = true;
         waveNameUI.text = "Wave " + (CurrentWaveIndex+1);

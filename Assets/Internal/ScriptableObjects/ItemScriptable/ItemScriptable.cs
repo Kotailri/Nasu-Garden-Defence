@@ -12,9 +12,3 @@ public class ItemScriptable : ScriptableObject
     public Sprite ItemIconImage;
     public Color ItemSpriteColor;
 }
-
-[CreateAssetMenu(menuName = "Item/Create Item Scriptable with Component")]
-public class ItemScriptableComponent : ItemScriptable
-{
-    public MonoScript ItemScript;
-}

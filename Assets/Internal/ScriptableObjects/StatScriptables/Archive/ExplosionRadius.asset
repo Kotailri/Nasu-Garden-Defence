@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ExplosionRadius
   m_EditorClassIdentifier: 
   StatName: Explosion Radius
-  StatEnum: 0
+  StatEnum: 4
   StatDescription: Increases the radius of explosion attacks.
   StatBase: 1
   StatGrowth: 0.2
