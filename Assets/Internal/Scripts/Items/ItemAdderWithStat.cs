@@ -14,6 +14,11 @@ public class ItemAdderWithStat : ItemAdder
 {
     public List<ItemStatAdder> statList = new();
 
+    public override bool IsExcemptFromPoolRemoval()
+    {
+        return true;
+    }
+
     public override void OnItemGet()
     {
         AddItemToUI();

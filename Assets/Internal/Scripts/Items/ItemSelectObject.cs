@@ -54,5 +54,6 @@ public class ItemSelectObject : MonoBehaviour
     {
         isItemActive = false;
         itemAdder.OnItemGet();
+        Global.itemInventoryManager.PoolToInventory(itemAdder);
     }
 }

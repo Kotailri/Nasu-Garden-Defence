@@ -6,12 +6,13 @@ public abstract class ItemAdder : MonoBehaviour
 {
     public ItemScriptable ItemScriptableInfo;
     public abstract void OnItemGet();
+    public abstract bool IsExcemptFromPoolRemoval();
     public ItemScriptable GetInfo()
     {
         return ItemScriptableInfo;
     }
 
-    protected void AddItemToUI()
+    public void AddItemToUI()
     {
         Global.itemUI.AddItemToUI(ItemScriptableInfo);
     }

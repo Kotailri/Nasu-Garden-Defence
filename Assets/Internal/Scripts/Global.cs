@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -11,14 +12,20 @@ public static class Global
     public static Transform cursorTransform;
 
     // Mangagers
+    public static TextSpawner damageTextSpawner;
+
     public static PlayerControls playerControls;
+    public static StatManager statManager;
+
     public static GameOverManager gameOverManager;
     public static WaveManager waveManager;
-    public static TextSpawner damageTextSpawner;
+
     public static KeystoneItemManager keystoneItemManager;
     public static ItemUI itemUI;
     public static ItemSelectManager itemSelectManager;
-    public static StatManager statManager;
+    public static ItemInventoryManager itemInventoryManager;
+
+    
 
     public static float MaxX = 18.47f;
 
@@ -72,6 +79,32 @@ public static class Global
         List<TValue> values = new List<TValue>(dictionary.Values);
         int randomIndex = UnityEngine.Random.Range(0, values.Count);
         return values[randomIndex];
+    }
+
+    public static List<T> GetRandomElements<T>(List<T> list, int count)
+    {
+        if (list == null || list.Count == 0)
+        {
+            return new List<T>(); // Return an empty list if the input list is null or empty
+        }
+
+        List<T> copyList = new List<T>(list);
+        System.Random rng = new System.Random();
+
+        int n = copyList.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            T value = copyList[k];
+            copyList[k] = copyList[n];
+            copyList[n] = value;
+        }
+
+        // Adjust count to be the minimum of the requested count and the list's length
+        count = Math.Min(count, copyList.Count);
+
+        return copyList.GetRange(0, count);
     }
 }
 

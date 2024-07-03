@@ -40,7 +40,7 @@ public class PlayerAttackManager : MonoBehaviour
 
     private void Update()
     {
-        if (!Global.gameplayStarted) { return; }
+        if (!Global.gameplayStarted || !Global.waveManager.IsWaveOngoing()) { return; }
 
         if (currentAttackTimer >= (AttackTimer - (AttackTimer * GlobalPlayer.GetStatValue(PlayerStatEnum.attackspeed))))
         {

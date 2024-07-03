@@ -18,11 +18,6 @@ public class WaveManager : MonoBehaviour
         Global.waveManager = this;
     }
 
-    private void Start()
-    {
-        
-    }
-
     public bool IsWaveOngoing()
     {
         return isWaveOngoing;
@@ -50,7 +45,16 @@ public class WaveManager : MonoBehaviour
         {
             Destroy(currentWave);
             isWaveOngoing = false;
-            Global.itemSelectManager.CreateItems();
+
+            if (CurrentWaveIndex == 2)
+            {
+                Global.itemSelectManager.CreateItems(ItemTier.Keystone);
+            }
+            else
+            {
+                Global.itemSelectManager.CreateItems(ItemTier.Tier1);
+            }
+            
         }
     }
 
@@ -63,7 +67,7 @@ public class WaveManager : MonoBehaviour
 
         if (CurrentWaveIndex >= waves.Count)
         {
-            CurrentWaveIndex = 0;
+            //CurrentWaveIndex = 0;
         }
     }
 }

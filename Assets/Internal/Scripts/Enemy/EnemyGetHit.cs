@@ -9,7 +9,8 @@ public class EnemyGetHit : MonoBehaviour
         int newDamage = damage;
         if (GlobalItemToggles.HasAmplifier)
         {
-            newDamage = Mathf.RoundToInt(damage * Global.keystoneItemManager.DistanceAmplificationAmount * Vector2.Distance(Global.playerTransform.position, transform.position));
+            newDamage = Mathf.RoundToInt(damage * Global.keystoneItemManager.DistanceAmplificationAmount 
+                * Vector2.Distance(Global.playerTransform.position, transform.position));
         }
 
         if (newDamage < damage) 

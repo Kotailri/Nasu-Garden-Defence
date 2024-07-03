@@ -20,23 +20,48 @@ public class ItemSelectManager : MonoBehaviour
         Global.itemSelectManager = this;
     }
 
-    public void CreateItems()
+    public void CreateItems(ItemTier tier)
     {
         float animTime = 1f;
         float startingHeight = 20f;
 
-        GameObject item1 = Instantiate(SelectObject, ItemLocation1.position + new Vector3(0, startingHeight, 0), Quaternion.identity);
-        LeanTween.moveY(item1, ItemLocation1.position.y, animTime).setEaseInOutBounce();
+        StartCoroutine(ItemSpawnCoroutine());
 
-        GameObject item2 = Instantiate(SelectObject, ItemLocation2.position + new Vector3(0, startingHeight, 0), Quaternion.identity);
-        LeanTween.moveY(item2, ItemLocation2.position.y, animTime).setEaseInOutBounce();
+        IEnumerator ItemSpawnCoroutine()
+        {
+            List<ItemAdder> randomItems = Global.itemInventoryManager.GetRandomFromPool(3, tier);
 
-        GameObject item3 = Instantiate(SelectObject, ItemLocation3.position + new Vector3(0, startingHeight, 0), Quaternion.identity);
-        LeanTween.moveY(item3, ItemLocation3.position.y, animTime).setEaseInOutBounce();
+            if (randomItems.Count == 0)
+            {
+                Global.waveManager.SpawnNextWave();
+                yield break;
+            }
 
-        currentItems.Add(item1);
-        currentItems.Add(item2);
-        currentItems.Add(item3);
+            GameObject item1 = Instantiate(SelectObject, ItemLocation1.position + new Vector3(0, startingHeight, 0), Quaternion.identity);
+            LeanTween.moveY(item1, ItemLocation1.position.y, animTime).setEaseInOutBounce();
+            item1.GetComponent<ItemSelectObject>().SetItem(randomItems[0]);
+            currentItems.Add(item1);
+
+            if (randomItems.Count == 1)
+                yield break;
+
+            yield return new WaitForSeconds(0.25f);
+
+            GameObject item2 = Instantiate(SelectObject, ItemLocation2.position + new Vector3(0, startingHeight, 0), Quaternion.identity);
+            LeanTween.moveY(item2, ItemLocation2.position.y, animTime).setEaseInOutBounce();
+            item2.GetComponent<ItemSelectObject>().SetItem(randomItems[1]);
+            currentItems.Add(item2);
+
+            if (randomItems.Count == 2) 
+                yield break;
+
+            yield return new WaitForSeconds(0.25f);
+
+            GameObject item3 = Instantiate(SelectObject, ItemLocation3.position + new Vector3(0, startingHeight, 0), Quaternion.identity);
+            LeanTween.moveY(item3, ItemLocation3.position.y, animTime).setEaseInOutBounce();
+            item3.GetComponent<ItemSelectObject>().SetItem(randomItems[2]);
+            currentItems.Add(item3);
+        }
     }
 
     public void SetItemSelected(GameObject item)
@@ -55,10 +80,14 @@ public class ItemSelectManager : MonoBehaviour
                 {
                     Destroy(item);
                 }
-                Global.waveManager.SpawnNextWave();
+                StartCoroutine(SpawnNextWaveDelay());
             }
         }
+    }
 
-        
+    private IEnumerator SpawnNextWaveDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        Global.waveManager.SpawnNextWave();
     }
 }

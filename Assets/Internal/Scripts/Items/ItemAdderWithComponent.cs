@@ -7,6 +7,11 @@ public class ItemAdderWithComponent : ItemAdder
 {
     public MonoScript component;
 
+    public override bool IsExcemptFromPoolRemoval()
+    {
+        return false;
+    }
+
     public override void OnItemGet()
     {
         AddItemToUI();
