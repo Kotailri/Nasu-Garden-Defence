@@ -7,6 +7,7 @@ public static class EventStrings
     public static readonly string ENEMY_KILLED  = "ENEMY_KILLED";
     public static readonly string PLAYER_ATTACK  = "PLAYER_ATTACK";
     public static readonly string STATS_UPDATED = "STATS_UPDATED";
+    public static readonly string PLAYER_TAKE_DAMAGE = "PLAYER_TAKE_DAMAGE";
 }
 
 public static class EventManager

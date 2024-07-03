@@ -20,7 +20,7 @@ public class PlayerHitbox : MonoBehaviour, IHasTriggerStay
         spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
         canTakeDamage = false;
 
-        yield return new WaitForSeconds(GlobalPlayer.GetStatValue(PlayerStatEnum.invincDuration));
+        yield return new WaitForSeconds(GlobalPlayer.GetStatValue(PlayerStatEnum.invincDuration) + Global.keystoneItemManager.ImmortalHarmonyShieldTime);
 
         spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
         canTakeDamage = true;
@@ -30,6 +30,7 @@ public class PlayerHitbox : MonoBehaviour, IHasTriggerStay
     {
         if (canTakeDamage && collisionObject.TryGetComponent(out DamagesPlayerOnHit dm))
         {
+            EventManager.TriggerEvent(EventStrings.PLAYER_TAKE_DAMAGE, null);
             health.SetHealth(-dm.GetDamage(), true);
             Global.damageTextSpawner.SpawnText(transform.position, "-" + dm.GetDamage().ToString(), DamageTextType.Red);
             GetComponent<PlayerMovement>().ApplySlow(GlobalPlayer.ContactSlowAmount, GlobalPlayer.ContactSlowTime);

@@ -12,6 +12,9 @@ public enum ItemTier
 
 public class ItemInventoryManager : MonoBehaviour
 {
+    public List<ItemAdder> debugInventory = new();
+
+    [Space(10f)]
     public List<ItemAdder> ItemPool_T1 = new();
     public List<ItemAdder> ItemPool_T2 = new();
     public List<ItemAdder> ItemPool_Keystone = new();
@@ -28,6 +31,14 @@ public class ItemInventoryManager : MonoBehaviour
     private void Awake()
     {
         Global.itemInventoryManager = this;
+    }
+
+    private void Start()
+    {
+        foreach (ItemAdder item in debugInventory)
+        {
+            item.OnItemGet();
+        }
     }
 
     public List<ItemAdder> GetRandomFromPool(int num, ItemTier tier)

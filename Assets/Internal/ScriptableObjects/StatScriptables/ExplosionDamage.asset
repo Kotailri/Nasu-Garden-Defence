@@ -17,4 +17,4 @@ MonoBehaviour:
   StatDescription: Increases the damage of explosion attacks.
   StatBase: 1
   StatGrowth: 0.1
-  StatGrowthType: 1
+  StatGrowthType: 0

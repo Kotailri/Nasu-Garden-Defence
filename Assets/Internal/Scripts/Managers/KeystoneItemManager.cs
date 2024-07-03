@@ -14,4 +14,5 @@ public class KeystoneItemManager : MonoBehaviour
     public float DistanceAmplificationAmount = 0;
     public bool IsBwoFacingAttackDirection = true;
     public float BwoMovespeed = 0;
+    public float ImmortalHarmonyShieldTime = 0f;
 }

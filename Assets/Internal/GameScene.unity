@@ -2961,7 +2961,7 @@ Transform:
   m_GameObject: {fileID: 844188785}
   serializedVersion: 2
   m_LocalRotation: {x: -0.21643952, y: 0, z: 0, w: 0.97629607}
-  m_LocalPosition: {x: 0, y: -2.21, z: 1.03}
+  m_LocalPosition: {x: 0, y: 0, z: 1.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3299,6 +3299,8 @@ MonoBehaviour:
   stats:
   - {fileID: 11400000, guid: 5e61a29903ea9f1499bdaedf78e48707, type: 2}
   - {fileID: 11400000, guid: b3da2b22abbe7044f97e6ce748ff3476, type: 2}
+  - {fileID: 11400000, guid: 035b7741cb72cb44396cf19628fa4e45, type: 2}
+  - {fileID: 11400000, guid: 817ccef19d5f68e4e8f75172e25c3c42, type: 2}
   - {fileID: 11400000, guid: 03b7d7b1d4a5d0b40ab28c3b6aaac9d4, type: 2}
   - {fileID: 11400000, guid: f61629b6ed9d9b14f9ab97a33e9ea3f7, type: 2}
   - {fileID: 11400000, guid: 6b710e699563c2f4ba5e76bff817997d, type: 2}
@@ -4972,6 +4974,7 @@ MonoBehaviour:
   DistanceAmplificationAmount: 0.09
   IsBwoFacingAttackDirection: 1
   BwoMovespeed: 3
+  ImmortalHarmonyShieldTime: 0
 --- !u!4 &1643973015
 Transform:
   m_ObjectHideFlags: 0
@@ -4999,16 +5002,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59518da54228be4781498ce713f0b14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugInventory:
+  - {fileID: 6557298777855185877, guid: cd5326d0ffeda4b4f8891ba6a6cf12d6, type: 3}
   ItemPool_T1:
   - {fileID: -7017748002371972496, guid: eb889fb4073b4ca45b68b3dc43ee6c18, type: 3}
   - {fileID: 9026936276916520277, guid: 930b9fdaf2a661b44866d7c6a68b41d9, type: 3}
   - {fileID: 9026936276916520277, guid: 754227f7668a6ef419a11a15f1176778, type: 3}
+  - {fileID: 9026936276916520277, guid: 568df3139b2912549b37b6ddc3353abf, type: 3}
+  - {fileID: 9026936276916520277, guid: a158d211443cf92438d29cbcd12da157, type: 3}
   ItemPool_T2: []
   ItemPool_Keystone:
   - {fileID: 7842913364747402881, guid: 9005d5a311ffddb45b291013a8c1dfc3, type: 3}
   - {fileID: -4875413434145479176, guid: e05ddf21ea42e80468e2c365240ec953, type: 3}
   - {fileID: 6260268218188063753, guid: f60d2edb10214d444ad12753189548fd, type: 3}
-  - {fileID: 6557298777855185877, guid: cd5326d0ffeda4b4f8891ba6a6cf12d6, type: 3}
   - {fileID: 4125796069539608252, guid: a53106315735b5f428ba5efbebcdc0bb, type: 3}
   - {fileID: 1749273351251613610, guid: 61188645988b3a04ba6a2a8ed6bf6fee, type: 3}
   ItemInventory: []

@@ -47,5 +47,7 @@ MonoBehaviour:
   ItemScriptableInfo: {fileID: 11400000, guid: 3261fb773995cba409b6599834db6472, type: 2}
   isExcamptFromPoolRemoval: 0
   ShieldDuration: 1
-  ExplosionDamage: 10
+  ExplosionDamage: 5
   HealPerHit: 2
+  explosionPrefab: {fileID: 4708034332075412972, guid: 5d2e5ca6048e26e499be9726bccd7420, type: 3}
+  shieldPrefab: {fileID: 8567575732299764758, guid: 6e1de9bdc53ceb34cb4471c542d33345, type: 3}
