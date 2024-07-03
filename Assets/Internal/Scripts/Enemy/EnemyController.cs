@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     protected void Awake()
     {
         _healthComponent = gameObject.AddComponent<EnemyHealth>();
-        _healthComponent.SetEnemyHealth(enemyScriptable.Health, enemyScriptable.Resistance, enemyScriptable.DodgeChance, enemyScriptable.HealthRegenPerSecond);
+        _healthComponent.SetEnemyHealth(enemyScriptable.Health, enemyScriptable.Resistance, enemyScriptable.DodgeChance, enemyScriptable.HealthRegen);
         if (healthBar != null )
             _healthComponent.SetHealthBar(healthBar);
 

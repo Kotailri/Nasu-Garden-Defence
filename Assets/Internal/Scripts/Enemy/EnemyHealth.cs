@@ -8,10 +8,11 @@ public class EnemyHealth : MonoBehaviour
     private int   Health;
     private float Resistance;
     private float DodgeChance;
-    private int   HealthRegenPerSecond;
+    private int   HealthRegen;
 
     public int CurrentHealth;
 
+    private float currentRegenAmount = 0f;
     private ProgressBar healthBar;
 
     public void SetHealthBar(ProgressBar bar)
@@ -24,16 +25,15 @@ public class EnemyHealth : MonoBehaviour
         Health = _health;
         Resistance = _resistPercent;
         DodgeChance = _dodgeChance;
-        HealthRegenPerSecond = _healthRegenPerSecond;
+        HealthRegen = _healthRegenPerSecond;
 
         CurrentHealth = _health;
-        InvokeRepeating(nameof(RegenHealth), 0, 1);
     }
 
     public void Heal(int heal)
     {
         CurrentHealth += heal;
-
+        Global.damageTextSpawner.SpawnText(transform.position, heal.ToString(), DamageTextType.Green, 1f);
         CheckHealth();
     }
 
@@ -68,8 +68,13 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    private void RegenHealth()
+    private void Update()
     {
-        Heal(HealthRegenPerSecond);
+        currentRegenAmount += HealthRegen * Time.deltaTime;
+        if (currentRegenAmount >= 1)
+        {
+            Heal(Mathf.FloorToInt(currentRegenAmount));
+            currentRegenAmount %= 1;
+        }
     }
 }

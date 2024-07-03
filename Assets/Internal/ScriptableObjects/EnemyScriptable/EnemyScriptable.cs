@@ -18,7 +18,7 @@ public class EnemyScriptable : ScriptableObject
     public int Health;
     public float Resistance;
     public float DodgeChance;
-    public int HealthRegenPerSecond;
+    public int HealthRegen;
 
     [Header("Movement")]
     [Range(0f, 100f)]

@@ -5015,6 +5015,7 @@ MonoBehaviour:
   - {fileID: 7842913364747402881, guid: 9005d5a311ffddb45b291013a8c1dfc3, type: 3}
   - {fileID: -4875413434145479176, guid: e05ddf21ea42e80468e2c365240ec953, type: 3}
   - {fileID: 6260268218188063753, guid: f60d2edb10214d444ad12753189548fd, type: 3}
+  - {fileID: 6557298777855185877, guid: cd5326d0ffeda4b4f8891ba6a6cf12d6, type: 3}
   - {fileID: 4125796069539608252, guid: a53106315735b5f428ba5efbebcdc0bb, type: 3}
   - {fileID: 1749273351251613610, guid: 61188645988b3a04ba6a2a8ed6bf6fee, type: 3}
   ItemInventory: []

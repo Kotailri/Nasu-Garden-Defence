@@ -58,14 +58,17 @@ public class PlayerHealth : MonoBehaviour
     {
         if (isRelative)
         {
-            if (_hp >= 0)
+            if (_hp > 0)
             {
                 CurrentHP += _hp;
+                Global.damageTextSpawner.SpawnText(transform.position, _hp.ToString(), DamageTextType.Green, 1f);
             }
             else
             {
-                CurrentHP += (int)Mathf.Clamp(_hp + Mathf.FloorToInt(Mathf.Abs(_hp) 
-                    * GlobalPlayer.GetStatValue(PlayerStatEnum.playerResist)), Mathf.NegativeInfinity, 0f);
+                int damage = (int)Mathf.Clamp(_hp + Mathf.FloorToInt(Mathf.Abs(_hp) * GlobalPlayer.GetStatValue(PlayerStatEnum.playerResist)), Mathf.NegativeInfinity, 0f);
+                CurrentHP += damage;
+                    
+                Global.damageTextSpawner.SpawnText(transform.position, "-" + Mathf.FloorToInt(Mathf.Abs(damage)).ToString(), DamageTextType.Red, 1f);
             }
 
         }

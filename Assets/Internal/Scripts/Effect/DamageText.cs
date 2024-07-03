@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,51 +8,45 @@ public enum DamageTextType
 {
     Red,
     White,
-    Status
+    Status,
+    Green,
+}
+
+[Serializable]
+public class ColouredDamageText
+{
+    public DamageTextType type;
+    public TextMeshProUGUI textbox;
 }
 
 public class DamageText : MonoBehaviour
 {
     public float Timer;
-
-    [Space(5f)]
-    public TextMeshProUGUI RedText;
-    public TextMeshProUGUI WhiteText;
-    public TextMeshProUGUI StatusText;
+    public List<ColouredDamageText> damageTexts = new();
 
     private Vector3 baseScale;
-
-    public void CreateText(string damageNumber, DamageTextType col)
-    {
-        WhiteText.gameObject.SetActive(false);
-        RedText.gameObject.SetActive(false);
-        StatusText.gameObject.SetActive(false);
-
-        switch (col)
-        {
-            case DamageTextType.Red:
-                RedText.gameObject.SetActive(true);
-                RedText.text = damageNumber;
-                break;
-
-            case DamageTextType.White:
-                WhiteText.gameObject.SetActive(true);
-                WhiteText.text = damageNumber;
-                break;
-
-            case DamageTextType.Status:
-                StatusText.gameObject.SetActive(true);
-                StatusText.text = damageNumber;
-                break;
-        }
-    }
 
     private void Start()
     {
         baseScale = transform.localScale;
         transform.localScale = Vector3.zero;
         StartCoroutine(TweenAnim());
-        
+    }
+
+    public void CreateText(string damageNumber, DamageTextType col)
+    {
+        foreach (ColouredDamageText damageText in damageTexts)
+        {
+            if (damageText.type == col)
+            {
+                damageText.textbox.gameObject.SetActive(true);
+                damageText.textbox.text = damageNumber;
+            }
+            else
+            {
+                damageText.textbox.gameObject.SetActive(false);
+            }
+        }
     }
 
     private IEnumerator TweenAnim()

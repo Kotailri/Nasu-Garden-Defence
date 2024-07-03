@@ -16,7 +16,7 @@ MonoBehaviour:
   Health: 50
   Resistance: 0
   DodgeChance: 0
-  HealthRegenPerSecond: 0
+  HealthRegen: 5
   MovementSpeedMin: 1
   MovementSpeedMax: 1
   MovementTargetType: 0
