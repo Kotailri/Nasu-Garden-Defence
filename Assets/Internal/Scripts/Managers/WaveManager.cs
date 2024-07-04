@@ -41,20 +41,18 @@ public class WaveManager : MonoBehaviour
 
     private void CheckWaveEnd(Dictionary<string, object> message)
     {
-        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 1)
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 1 && isWaveOngoing)
         {
             Destroy(currentWave);
             isWaveOngoing = false;
 
-            if (CurrentWaveIndex == 2)
+            /*if (CurrentWaveIndex == 2)
             {
                 Global.itemSelectManager.CreateItems(ItemTier.Keystone);
-            }
-            else
-            {
-                Global.itemSelectManager.CreateItems(ItemTier.Tier1);
-            }
-            
+                return;
+            }*/
+
+            Global.itemSelectManager.CreateItems(ItemTier.Tier1);
         }
     }
 

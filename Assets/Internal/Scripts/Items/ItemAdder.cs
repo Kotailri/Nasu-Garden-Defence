@@ -14,6 +14,7 @@ public abstract class ItemAdder : MonoBehaviour
 
     public void AddItemToUI()
     {
+        Global.playerTransform.gameObject.GetComponent<PlayerAttackManager>().RefreshAttackList();
         Global.itemUI.AddItemToUI(ItemScriptableInfo);
     }
 }

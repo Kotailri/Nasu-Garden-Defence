@@ -6,7 +6,7 @@ public class PlayerBasicShoot : PlayerAttack
 {
     public float ProjectileSpeed = 3f;
 
-    public override void DoAttack(Vector2 attackPosition)
+    public override void DoAttack(Vector2 attackPosition, Transform attachObject = null)
     {
         if (AttackPrefab != null)
         {

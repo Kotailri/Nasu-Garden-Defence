@@ -7,6 +7,8 @@ public abstract class PlayerAttack : MonoBehaviour
     public GameObject AttackPrefab;
     [Tooltip("Does the pet need to be facing forwards to attack")]
     public bool IsPetFacingRequired = false;
+    [Tooltip("Is the attack attached to the player")]
+    public bool IsAttached = false;
     public Color AttackColor = Color.white;
     public int BaseDamage = 1;
 
@@ -22,6 +24,12 @@ public abstract class PlayerAttack : MonoBehaviour
     [Range(1, 10)]
     [Tooltip("Attacks every X number of basic attacks")]
     public int  AttackCount;
+
+    private void OnValidate()
+    {
+        if (AttackCount <= 0)
+            AttackCount = 1;
+    }
 
     public void SetFromScriptable(PlayerAttackScriptable atk)
     {
@@ -83,7 +91,7 @@ public abstract class PlayerAttack : MonoBehaviour
         return Mathf.RoundToInt(BaseDamage * DamageMultiplier * GlobalPlayer.CurrentPlayerDamageMultiplier);
     }
 
-    public abstract void DoAttack(Vector2 attackPosition);
+    public abstract void DoAttack(Vector2 attackPosition, Transform attachObject=null);
 }
 
 [CreateAssetMenu(fileName = "PlayerAttack")]

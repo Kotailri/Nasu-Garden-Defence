@@ -8,11 +8,11 @@ public class PlayerAttackManager : MonoBehaviour
     public float AttackTimer = 2f;
 
     private float currentAttackTimer = 0f;
-    private List<PlayerAttack> attackList = new();
+    public List<PlayerAttack> attackList = new();
 
     public void RefreshAttackList()
     {
-        attackList = new(GetComponents<PlayerAttack>());
+        attackList = new(GetComponentsInChildren<PlayerAttack>(false));
     }
 
     private void Start()
@@ -20,20 +20,40 @@ public class PlayerAttackManager : MonoBehaviour
         RefreshAttackList();
     }
 
-    private void Shoot()
+    int count = 1;
+    private void Attack()
     {
+        
         foreach (PlayerAttack attack in attackList)
         {
+            if (attack.IsOnAttackTimer && count % attack.AttackCount != 0)
+            {
+                continue;
+            }
+
             attack.DoAttack(transform.position);
 
             if (GlobalItemToggles.HasBwo)
             {
                 if (!attack.IsPetFacingRequired || (attack.IsPetFacingRequired && Global.keystoneItemManager.IsBwoFacingAttackDirection))
                 {
-                    attack.DoAttack(GameObject.FindGameObjectWithTag("Bwo").transform.position);
+                    if (attack.IsAttached)
+                    {
+                        attack.DoAttack(GameObject.FindGameObjectWithTag("Bwo").transform.position, GameObject.FindGameObjectWithTag("Bwo").transform);
+                    }
+                    else
+                    {
+                        attack.DoAttack(GameObject.FindGameObjectWithTag("Bwo").transform.position);
+                    }
+
                 }
             }
+            
         }
+
+        count++;
+        if (count == 11)
+            count = 1;
 
         EventManager.TriggerEvent(EventStrings.PLAYER_ATTACK, null);
     }
@@ -45,7 +65,7 @@ public class PlayerAttackManager : MonoBehaviour
         if (currentAttackTimer >= (AttackTimer - (AttackTimer * GlobalPlayer.GetStatValue(PlayerStatEnum.attackspeed))))
         {
             currentAttackTimer = 0;
-            Shoot();
+            Attack();
         }
         else
         {

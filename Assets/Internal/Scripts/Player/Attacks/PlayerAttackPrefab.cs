@@ -21,7 +21,7 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
         gameObject.AddComponent<CallsTriggerCollisions>();
     }
 
-    private void Start()
+    public virtual void Start()
     {
         switch (AttackType)
         {
@@ -32,7 +32,6 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
             case PlayerAttackType.Melee:
                 transform.localScale *= GlobalPlayer.GetStatValue(PlayerStatEnum.meleeAttackSize);
                 break;
-
         }
     }
 
@@ -71,7 +70,7 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
         }
     }
 
-    void Update()
+    protected void Update()
     {
         if (DestroyWhenOutside && transform.position.x >= Global.MaxX)
         {

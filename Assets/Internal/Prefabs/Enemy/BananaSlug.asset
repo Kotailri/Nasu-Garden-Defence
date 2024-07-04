@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 966c88dd126f8bf418a7f9b2fda060b2, type: 3}
-  m_Name: StrawBunny
+  m_Name: BananaSlug
   m_EditorClassIdentifier: 
-  EnemyName: StrawBunny
-  Health: 15
+  EnemyName: BananaSlug
+  Health: 50
   Resistance: 0
   DodgeChance: 0
-  HealthRegenPerSecond: 0
+  HealthRegen: 1
   MovementSpeedMin: 1
-  MovementSpeedMax: 2
+  MovementSpeedMax: 1
   MovementTargetType: 0
   ContactDamage: 4
-  GardenContactDamage: 1
+  GardenContactDamage: 3

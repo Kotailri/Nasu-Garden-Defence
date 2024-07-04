@@ -16,9 +16,9 @@ MonoBehaviour:
   Health: 25
   Resistance: 0
   DodgeChance: 0
-  HealthRegenPerSecond: 0
-  MovementSpeedMin: 1
+  HealthRegen: 0
+  MovementSpeedMin: 3
   MovementSpeedMax: 3
-  MovementTargetType: 1
-  ContactDamage: 4
+  MovementTargetType: 0
+  ContactDamage: 5
   GardenContactDamage: 1
