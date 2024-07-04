@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class PlayerStatInitializer : MonoBehaviour
 {
+    public string ScriptableStatsLocation;
     public List<PlayerStatScriptable> stats;
 
     [ContextMenu("Load Items From Folder")]
     public void LoadItems()
     {
-        stats = LoadAllItems<PlayerStatScriptable>("Assets/Internal/ScriptableObjects/StatScriptables");
+        stats = LoadAllItems<PlayerStatScriptable>(ScriptableStatsLocation);
     }
 
     public List<T> LoadAllItems<T>(string path) where T : ScriptableObject

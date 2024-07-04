@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4395892911007226349}
   - component: {fileID: 6624949670255233272}
   m_Layer: 0
-  m_Name: explosion
+  m_Name: ImmortalHarmonyExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

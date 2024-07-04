@@ -418,7 +418,7 @@ MonoBehaviour:
   - {fileID: 4110626928451635750, guid: ee45f1366510ca244a482e1b11da2105, type: 3}
   - {fileID: 4110626928451635750, guid: 7d456c98454912a4ca6206fbbb5b8e27, type: 3}
   - {fileID: 4110626928451635750, guid: 8f02cadc497800f449c03b73260236df, type: 3}
-  CurrentWaveIndex: 1
+  CurrentWaveIndex: 0
   waveNameUI: {fileID: 2040071331}
 --- !u!4 &86849628
 Transform:
@@ -2943,7 +2943,6 @@ GameObject:
   - component: {fileID: 844188797}
   - component: {fileID: 844188798}
   - component: {fileID: 844188799}
-  - component: {fileID: 844188800}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3285,38 +3284,6 @@ MonoBehaviour:
   IsOnAttackTimer: 1
   AttackCount: 1
   ProjectileSpeed: 3
---- !u!114 &844188800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844188785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d311317f64d621f47950a99b40c2a840, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats:
-  - {fileID: 11400000, guid: 5e61a29903ea9f1499bdaedf78e48707, type: 2}
-  - {fileID: 11400000, guid: b3da2b22abbe7044f97e6ce748ff3476, type: 2}
-  - {fileID: 11400000, guid: 035b7741cb72cb44396cf19628fa4e45, type: 2}
-  - {fileID: 11400000, guid: 817ccef19d5f68e4e8f75172e25c3c42, type: 2}
-  - {fileID: 11400000, guid: 03b7d7b1d4a5d0b40ab28c3b6aaac9d4, type: 2}
-  - {fileID: 11400000, guid: f61629b6ed9d9b14f9ab97a33e9ea3f7, type: 2}
-  - {fileID: 11400000, guid: 6b710e699563c2f4ba5e76bff817997d, type: 2}
-  - {fileID: 11400000, guid: a88e9baf2956d364dad0fc91a7f18a2b, type: 2}
-  - {fileID: 11400000, guid: d870a389bd0b65640b57741935225a67, type: 2}
-  - {fileID: 11400000, guid: f3b312c8091b89c45b1c9b494dec3ffe, type: 2}
-  - {fileID: 11400000, guid: d7b994758ad2ef54280ce08724cd6259, type: 2}
-  - {fileID: 11400000, guid: 1f81e7cc3ff4eb947b9da56eb9696453, type: 2}
-  - {fileID: 11400000, guid: 20cff199299320e49b8d32a225addb64, type: 2}
-  - {fileID: 11400000, guid: e3e86de3f8dfb0f4d8ba2821249d7358, type: 2}
-  - {fileID: 11400000, guid: 8f8b59babd48ecf448f19cc484a34b24, type: 2}
-  - {fileID: 11400000, guid: cf339e08acda9184c914906665e2bf47, type: 2}
-  - {fileID: 11400000, guid: 89bf5d1c8f7e3d343a60aea08154360a, type: 2}
-  - {fileID: 11400000, guid: f0ae8c8330564354db945cf81cf098da, type: 2}
-  - {fileID: 11400000, guid: e0f63106981a07b4c81e9b2a47562836, type: 2}
 --- !u!1 &910864243
 GameObject:
   m_ObjectHideFlags: 0
@@ -4695,6 +4662,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1523279624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1523279626}
+  - component: {fileID: 1523279625}
+  m_Layer: 0
+  m_Name: StatManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1523279625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523279624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d311317f64d621f47950a99b40c2a840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScriptableStatsLocation: Assets/Internal/StatScriptables
+  stats:
+  - {fileID: 11400000, guid: 5e61a29903ea9f1499bdaedf78e48707, type: 2}
+  - {fileID: 11400000, guid: b3da2b22abbe7044f97e6ce748ff3476, type: 2}
+  - {fileID: 11400000, guid: 035b7741cb72cb44396cf19628fa4e45, type: 2}
+  - {fileID: 11400000, guid: 817ccef19d5f68e4e8f75172e25c3c42, type: 2}
+  - {fileID: 11400000, guid: 03b7d7b1d4a5d0b40ab28c3b6aaac9d4, type: 2}
+  - {fileID: 11400000, guid: f61629b6ed9d9b14f9ab97a33e9ea3f7, type: 2}
+  - {fileID: 11400000, guid: 6b710e699563c2f4ba5e76bff817997d, type: 2}
+  - {fileID: 11400000, guid: a88e9baf2956d364dad0fc91a7f18a2b, type: 2}
+  - {fileID: 11400000, guid: d870a389bd0b65640b57741935225a67, type: 2}
+  - {fileID: 11400000, guid: f3b312c8091b89c45b1c9b494dec3ffe, type: 2}
+  - {fileID: 11400000, guid: d7b994758ad2ef54280ce08724cd6259, type: 2}
+  - {fileID: 11400000, guid: 1f81e7cc3ff4eb947b9da56eb9696453, type: 2}
+  - {fileID: 11400000, guid: 20cff199299320e49b8d32a225addb64, type: 2}
+  - {fileID: 11400000, guid: e3e86de3f8dfb0f4d8ba2821249d7358, type: 2}
+  - {fileID: 11400000, guid: 8f8b59babd48ecf448f19cc484a34b24, type: 2}
+  - {fileID: 11400000, guid: cf339e08acda9184c914906665e2bf47, type: 2}
+  - {fileID: 11400000, guid: 89bf5d1c8f7e3d343a60aea08154360a, type: 2}
+  - {fileID: 11400000, guid: f0ae8c8330564354db945cf81cf098da, type: 2}
+  - {fileID: 11400000, guid: e0f63106981a07b4c81e9b2a47562836, type: 2}
+--- !u!4 &1523279626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523279624}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11.278008, y: -0.74941957, z: -0.13028516}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1527641940
 GameObject:
   m_ObjectHideFlags: 0
@@ -5020,9 +5052,9 @@ MonoBehaviour:
   - {fileID: 4125796069539608252, guid: a53106315735b5f428ba5efbebcdc0bb, type: 3}
   - {fileID: 1749273351251613610, guid: 61188645988b3a04ba6a2a8ed6bf6fee, type: 3}
   ItemInventory: []
-  Tier1ItemPath: Assets/Internal/Prefabs/ItemAdders/Tier1
-  Tier2ItemPath: Assets/Internal/Prefabs/ItemAdders/Tier2
-  KeystoneItemPath: Assets/Internal/Prefabs/ItemAdders/Keystone
+  Tier1ItemPath: Assets/Internal/ItemAdders/Tier1
+  Tier2ItemPath: Assets/Internal/ItemAdders/Tier2
+  KeystoneItemPath: Assets/Internal/ItemAdders/Keystone
 --- !u!1 &1733412400
 GameObject:
   m_ObjectHideFlags: 0
@@ -6853,6 +6885,7 @@ SceneRoots:
   - {fileID: 1531515172}
   - {fileID: 1598946436}
   - {fileID: 580499923}
+  - {fileID: 1523279626}
   - {fileID: 1643973015}
   - {fileID: 86849628}
   - {fileID: 1527641942}
