@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class EnemyDeath : MonoBehaviour
 {
-    public void Die() // children of EnemyDeath should call base.Die()
+    public virtual void Die() // children of EnemyDeath should call base.Die()
     {
         EventManager.TriggerEvent(EventStrings.ENEMY_KILLED, null);
-        Destroy(gameObject);
+        GetComponent<Collider2D>().enabled = false;
+        if (TryGetComponent(out EnemyMovement movement))
+        {
+            movement.DisableMovement();
+            movement.DoKnockback(7);
+        }
+        LeanTween.alpha(gameObject, 0, 0.5f).setOnComplete(() => { Destroy(gameObject); });
+        
     }
 }

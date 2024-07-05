@@ -12,10 +12,37 @@ public abstract class EnemyMovement : MonoBehaviour
     protected EnemyMovementType currentTargetType;
 
     protected bool isMovementStarted = false;
+    protected float appliedSpeed = 0;
+    protected bool isBeingKnockedBack = false;
+    protected Vector2 appliedDirection = Vector2.zero;
+    protected Vector2 appliedPullForce = Vector2.zero;
 
     private void Awake()
     {
         RB = GetComponent<Rigidbody2D>();
+    }
+
+    protected virtual void Update()
+    {
+        if (!isMovementStarted && transform.position.x > 18.5f)
+        {
+            transform.position += new Vector3(-Time.deltaTime * Global.WaveSpeed, 0, 0);
+            return;
+        }
+        else if (!isMovementStarted)
+        {
+            isMovementStarted = true;
+            UpdateAppliedMovementDirection();
+            UpdateAppliedMovementSpeed();
+
+            if (TryGetComponent(out Animator animator))
+                animator.speed = 1f;
+        }
+
+        if (isMovementStarted && !isBeingKnockedBack && !_movementDisabled)
+        {
+            RB.velocity = (appliedDirection.normalized * appliedSpeed) + appliedPullForce;
+        }
     }
 
     public void SetMovementType(EnemyMovementType movementType)
@@ -28,59 +55,48 @@ public abstract class EnemyMovement : MonoBehaviour
         movespeed = speed;
     }
 
-    protected abstract void StartMovement();
-
-    protected virtual void RestartMovement()
+    public virtual void UpdateAppliedMovementSpeed()
     {
-        if (isBeingPulled)
-        {
-            return;
-        }
+        appliedSpeed = movespeed - (movespeed * currentSlowAmount);
+    }
 
-        StartMovement();
+    public virtual void UpdateAppliedMovementDirection()
+    {
+        appliedDirection = new Vector2(-1,0);
     }
 
     public virtual void DoKnockback(float force)
     {
-        if (isMovementStarted && force > 0f)
+        if (isMovementStarted && force > 0f && !isBeingKnockedBack)
         {
-            RB.AddForce(new Vector2(force, 0), ForceMode2D.Impulse);
             StartCoroutine(KnockbackTime());
+            RB.velocity = Vector2.zero;
+            RB.AddForce(new Vector2(force, 0), ForceMode2D.Impulse);
         }
 
         IEnumerator KnockbackTime()
         {
+            isBeingKnockedBack = true;
             yield return new WaitForSeconds(force/25f);
-            RestartMovement();
+            isBeingKnockedBack = false;
+            RB.velocity = Vector2.zero;
         }
     }
 
-    protected virtual void Update()
+    private bool _movementDisabled = false;
+    public void DisableMovement()
     {
-        if (!isMovementStarted && transform.position.x > 18.5f)
-        {
-            transform.position += new Vector3(-Time.deltaTime, 0, 0);
-        }
-        else if (!isMovementStarted)
-        {
-            isMovementStarted = true;
-            StartMovement();
-        }
+        _movementDisabled = true;
     }
-
-    protected bool isBeingPulled = false;
 
     public void ApplyMovementPull(Vector2 pullForce)
     {
-        RestartMovement();
-        isBeingPulled = true;
-        RB.velocity += pullForce;
+        appliedPullForce += pullForce;
     }
 
-    public void RemoveMovementPull()
+    public void RemoveMovementPull(Vector2 pullForce)
     {
-        isBeingPulled = false;
-        RestartMovement();
+        appliedPullForce -= pullForce;
     }
 
     public void ApplyMovementSlow(float slowAmount, float slowTime)
@@ -92,13 +108,11 @@ public abstract class EnemyMovement : MonoBehaviour
         IEnumerator MovementSlowTimer()
         {
             currentSlowAmount = slowAmount;
-            RestartMovement();
             GetComponent<SpriteRenderer>().color = Color.blue;
 
             yield return new WaitForSeconds(slowTime);
 
             currentSlowAmount = 0;
-            RestartMovement();
             GetComponent<SpriteRenderer>().color = Color.white;
         }
     }

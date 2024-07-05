@@ -26,8 +26,14 @@ public class NasuSwordSwing : PlayerAttackPrefab
         yield return new WaitForSeconds(StartDelay);
         GetComponent<BoxCollider2D>().enabled = true;
         if (ReverseSwing)
-            LeanTween.rotateZ(gameObject, 0f, SwingSpeed).setEaseInOutCubic().setOnComplete(() => { Destroy(gameObject, DestroyDelay); });
+            LeanTween.rotateZ(gameObject, 0f, SwingSpeed).setEaseInOutCubic().setOnComplete(() => {
+                GetComponent<BoxCollider2D>().enabled = false;
+                Destroy(gameObject, DestroyDelay); 
+            });
         else
-            LeanTween.rotateZ(gameObject, 180f, SwingSpeed).setEaseInOutCubic().setOnComplete(() => { Destroy(gameObject, DestroyDelay); });
+            LeanTween.rotateZ(gameObject, 180f, SwingSpeed).setEaseInOutCubic().setOnComplete(() => {
+                GetComponent<BoxCollider2D>().enabled = false;
+                Destroy(gameObject, DestroyDelay); 
+            });
     }
 }

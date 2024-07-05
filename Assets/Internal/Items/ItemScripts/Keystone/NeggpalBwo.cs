@@ -205,7 +205,7 @@ public class BwoChaseState : IBwoState
 
     public float GetStateChance()
     {
-        return 0.5f;
+        return 0.8f;
     }
 }
 
@@ -255,7 +255,7 @@ public class BwoWanderState : IBwoState
 
     public float GetStateChance()
     {
-        return 0.35f;
+        return 0.05f;
     }
 }
 

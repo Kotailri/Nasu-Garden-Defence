@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class BasicEnemyMovement : EnemyMovement
 {
-    public float MovementUpdateTime = 0.1f;
 
-    private void Start()
+    protected override void Update()
     {
         if (currentTargetType == EnemyMovementType.TargetPlayer)
         {
-            InvokeRepeating(nameof(StartMovement), 0, MovementUpdateTime);
+            UpdateAppliedMovementDirection();
         }
+
+        base.Update();
     }
 
-    protected override void StartMovement()
+    public override void UpdateAppliedMovementDirection()
     {
-        float appliedMovespeed = movespeed - (movespeed * currentSlowAmount);
         switch (currentTargetType)
         {
             case EnemyMovementType.TargetGarden:
-                RB.velocity = new Vector3(-1, 0, 0) * appliedMovespeed;
+                appliedDirection = new Vector3(-1, 0, 0);
                 break;
 
             case EnemyMovementType.TargetPlayer:
-                RB.velocity = (Global.playerTransform.position - transform.position).normalized * appliedMovespeed;
+                appliedDirection = (Global.playerTransform.position - transform.position).normalized;
                 break;
         }
     }

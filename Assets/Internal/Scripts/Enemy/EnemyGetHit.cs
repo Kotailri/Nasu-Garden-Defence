@@ -18,7 +18,9 @@ public class EnemyGetHit : MonoBehaviour
             newDamage = damage;
         }
 
-
+        if (TryGetComponent(out DamageFlash flash)) {
+            flash.DoDamageFlash();
+        }
         GetComponent<EnemyHealth>().TakeDamage(newDamage);
     }
 }

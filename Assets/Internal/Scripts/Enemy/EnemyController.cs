@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -25,5 +26,13 @@ public class EnemyController : MonoBehaviour
 
         gameObject.AddComponent<EnemyGetHit>();
         gameObject.AddComponent<CallsTriggerCollisions>();
+
+        if (TryGetComponent(out Animator animator))
+            animator.speed = 0f;
+    }
+
+    public bool IsEnemyActive()
+    {
+        return transform.position.x < 18.5f;
     }
 }

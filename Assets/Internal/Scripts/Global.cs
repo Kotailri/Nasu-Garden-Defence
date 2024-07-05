@@ -25,8 +25,8 @@ public static class Global
     public static ItemSelectManager itemSelectManager;
     public static ItemInventoryManager itemInventoryManager;
 
-    
-
+    public static float WaveSpeed = 1f;
+    public static float DamageFlashTimer = 0.1f;
     public static float MaxX = 16.5f;
 
     public static (float min, float max) XRange = (-14.13f, 18.31f);
