@@ -17,6 +17,8 @@ public class NasuSwordSwingSpawner : PlayerAttack
         }
 
         g.GetComponent<PlayerAttackPrefab>().SetDamage(BaseDamage);
+        g.GetComponent<PlayerAttackPrefab>().SetKnockback(KnockbackAmount);
+       
         g.transform.localPosition = Vector3.zero;
     }
 }

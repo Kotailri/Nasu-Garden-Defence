@@ -66,6 +66,7 @@ public class WaveManager : MonoBehaviour
         if (CurrentWaveIndex >= waves.Count)
         {
             //CurrentWaveIndex = 0;
+            waveNameUI.text = "End";
         }
     }
 }

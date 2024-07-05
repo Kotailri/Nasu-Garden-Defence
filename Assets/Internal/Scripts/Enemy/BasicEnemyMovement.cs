@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class BasicEnemyMovement : EnemyMovement
 {
-    private void Update()
+    public float MovementUpdateTime = 0.1f;
+
+    private void Start()
     {
-        if (transform.position.x > Global.MaxX)
+        if (currentTargetType == EnemyMovementType.TargetPlayer)
         {
-            RB.velocity = new Vector3(-1, 0, 0);
-            return;
+            InvokeRepeating(nameof(StartMovement), 0, MovementUpdateTime);
         }
+    }
 
+    protected override void StartMovement()
+    {
         float appliedMovespeed = movespeed - (movespeed * currentSlowAmount);
-
         switch (currentTargetType)
         {
             case EnemyMovementType.TargetGarden:
@@ -25,6 +28,4 @@ public class BasicEnemyMovement : EnemyMovement
                 break;
         }
     }
-
-    
 }

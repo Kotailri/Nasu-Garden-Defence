@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2561017734537266322}
   - component: {fileID: 2384641242547824215}
   m_Layer: 0
-  m_Name: nasuSwordSwing
+  m_Name: nasuSwordSlice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   StartDelay: 0.25
   SwingSpeed: 1
   DestroyDelay: 0.25
-  ReverseSwing: 0
+  ReverseSwing: 1
 --- !u!61 &2384641242547824215
 BoxCollider2D:
   m_ObjectHideFlags: 0

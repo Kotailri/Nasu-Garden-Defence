@@ -27,7 +27,7 @@ public static class Global
 
     
 
-    public static float MaxX = 18.47f;
+    public static float MaxX = 16.5f;
 
     public static (float min, float max) XRange = (-14.13f, 18.31f);
     public static (float min, float max) YRange = (-7f, 6.95f);

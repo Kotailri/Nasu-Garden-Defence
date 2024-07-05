@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8979697588048922835}
   - component: {fileID: -9211614162873798740}
   m_Layer: 0
-  m_Name: NasuSwordSwingSpawner
+  m_Name: NasuSwordSliceSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac45c25479a8c404294d4790a52c595a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackPrefab: {fileID: 1728485751695770270, guid: a076fe3922faa4b4f8216d43d5534f1e, type: 3}
+  AttackPrefab: {fileID: 1728485751695770270, guid: f10e32b62f1059546a0ca7df5264176a, type: 3}
   IsPetFacingRequired: 1
   IsAttached: 1
   AttackColor: {r: 1, g: 1, b: 1, a: 1}

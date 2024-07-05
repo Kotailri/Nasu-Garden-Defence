@@ -79,7 +79,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -356940509
-  m_SortingLayer: 1
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: -1042686805, guid: c003043fceeb151488b95e1ad15f7d99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -202,6 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyScriptable: {fileID: 11400000, guid: d0000b4e216cebe4c8231f65cbb4a562, type: 2}
   healthBar: {fileID: 4877999229259543217}
+  GardenContactDamage: 0
 --- !u!95 &5599539138237655584
 Animator:
   serializedVersion: 5
@@ -239,7 +240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1337212454005903277
 Transform:
   m_ObjectHideFlags: 0

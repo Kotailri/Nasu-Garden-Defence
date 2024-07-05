@@ -15,6 +15,7 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
     
     public PlayerAttackType AttackType;
     private int Damage;
+    private float Knockback;
 
     private void Awake()
     {
@@ -40,6 +41,11 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
         Damage = damage;
     }
 
+    public void SetKnockback(float knockback)
+    {
+        Knockback = knockback;
+    }
+
     public void OnTriggerEnterEvent(GameObject collisionObject)
     {
         if (collisionObject.CompareTag("Enemy"))
@@ -61,6 +67,11 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
 
                 }
                 hit.GetHit(damage);
+            }
+
+            if (collisionObject.TryGetComponent(out EnemyMovement move))
+            {
+                move.DoKnockback(Knockback);
             }
 
             if (DestroyOnContact)
