@@ -21,4 +21,4 @@ MonoBehaviour:
   MovementSpeedMax: 5
   MovementTargetType: 0
   ContactDamage: 15
-  GardenContactDamage: 5
+  GardenContactDamage: 3

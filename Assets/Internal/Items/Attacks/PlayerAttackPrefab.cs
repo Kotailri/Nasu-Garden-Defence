@@ -81,7 +81,7 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
         }
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         if (DestroyWhenOutside && transform.position.x >= Global.MaxX)
         {

@@ -16,6 +16,7 @@ public class NasuSwordSwingSpawner : PlayerAttack
             g.transform.SetParent(Global.playerTransform);
         }
 
+        g.transform.localScale *= GlobalPlayer.GetStatValue(PlayerStatEnum.meleeAttackSize);
         g.GetComponent<PlayerAttackPrefab>().SetDamage(BaseDamage);
         g.GetComponent<PlayerAttackPrefab>().SetKnockback(KnockbackAmount);
        

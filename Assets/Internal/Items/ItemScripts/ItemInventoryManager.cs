@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 public enum ItemTier
@@ -38,6 +40,20 @@ public class ItemInventoryManager : MonoBehaviour
         foreach (ItemAdder item in debugInventory)
         {
             item.OnItemGet();
+        }
+
+        // debug check item info
+        foreach (ItemAdder item in ItemPool_T1)
+        {
+            item.GetInfo();
+        }
+        foreach (ItemAdder item in ItemPool_T2)
+        {
+            item.GetInfo();
+        }
+        foreach (ItemAdder item in ItemPool_Keystone)
+        {
+            item.GetInfo();
         }
     }
 
@@ -84,6 +100,7 @@ public class ItemInventoryManager : MonoBehaviour
         
     }
 
+#if UNITY_EDITOR
     [ContextMenu("Load Tier 1s")]
     public void LoadTier1()
     {
@@ -145,4 +162,5 @@ public class ItemInventoryManager : MonoBehaviour
             }
         }
     }
+#endif
 }

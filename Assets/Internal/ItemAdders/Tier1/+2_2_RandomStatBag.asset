@@ -15,6 +15,7 @@ MonoBehaviour:
   ItemName: 2x Stat Bag
   ItemDescription: 'Adds 2 levels to 2 random stats.
 
+
     Stat1 +2
 
     Stat2 +2'

@@ -45,4 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemScriptableInfo: {fileID: 11400000, guid: 807c3a1a556fc7044b4ad7b3e54f5b75, type: 2}
+  statList: []
+  statLevelUps: 01000000
+  isExcemptFromPoolRemoval: 0
   prefab: {fileID: 6909247007285987802, guid: cee3de673875fee4485770b73635338b, type: 3}

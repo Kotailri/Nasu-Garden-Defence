@@ -27,10 +27,10 @@ public class PlayerHealth : MonoBehaviour
         }
 
         currentRegenAmount += GlobalPlayer.GetStatValue(PlayerStatEnum.playerRegen) * Time.deltaTime;
-        if (currentRegenAmount >= 1)
+        if (currentRegenAmount >= 5)
         {
             SetHealth(Mathf.FloorToInt(currentRegenAmount), true);
-            currentRegenAmount %= 1;
+            currentRegenAmount %= 5;
         }
     }
 

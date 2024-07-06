@@ -25,6 +25,8 @@ public abstract class PlayerAttack : MonoBehaviour
     [Range(1, 10)]
     [Tooltip("Attacks every X number of basic attacks")]
     public int  AttackCount;
+    [HideInInspector]
+    public bool OnOffset = false;
 
     private void OnValidate()
     {

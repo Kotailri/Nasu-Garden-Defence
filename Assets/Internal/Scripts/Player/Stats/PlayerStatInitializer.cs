@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 public class PlayerStatInitializer : MonoBehaviour
 {
     public string ScriptableStatsLocation;
     public List<PlayerStatScriptable> stats;
-
+#if UNITY_EDITOR
     [ContextMenu("Load Items From Folder")]
     public void LoadItems()
     {
         stats = LoadAllItems<PlayerStatScriptable>(ScriptableStatsLocation);
     }
+
 
     public List<T> LoadAllItems<T>(string path) where T : ScriptableObject
     {
@@ -35,6 +38,7 @@ public class PlayerStatInitializer : MonoBehaviour
 
         return assets;
     }
+#endif
 
     private void Awake()
     {

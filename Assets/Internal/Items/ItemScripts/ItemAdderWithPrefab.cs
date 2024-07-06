@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemAdderWithPrefab : ItemAdder
 {
+    [Header("Prefab")]
     public GameObject prefab;
     public override bool IsExcemptFromPoolRemoval()
     {

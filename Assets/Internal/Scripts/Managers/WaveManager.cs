@@ -52,7 +52,28 @@ public class WaveManager : MonoBehaviour
                 return;
             }*/
 
+            if (CurrentWaveIndex == 1) { Global.EnemySpeedMultiplier = 0.75f; }
+            if (CurrentWaveIndex == 2) { Global.EnemySpeedMultiplier = 1; }
+
             Global.itemSelectManager.CreateItems(ItemTier.Tier1);
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            //StartCoroutine(KillWave());
+        }
+    }
+
+    private IEnumerator KillWave()
+    {
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            yield return new WaitForSeconds(0.1f);
+            EventManager.TriggerEvent(EventStrings.ENEMY_KILLED, null);
+            Destroy(g);
         }
     }
 
@@ -60,13 +81,19 @@ public class WaveManager : MonoBehaviour
     {
         isWaveOngoing = true;
         waveNameUI.text = "Wave " + (CurrentWaveIndex+1);
+
+        if (CurrentWaveIndex >= waves.Count)
+        {
+            waveNameUI.text = "End";
+            return;
+        }
+
         currentWave = Instantiate(waves[CurrentWaveIndex], new Vector3(Global.MaxX, 0, transform.position.z), Quaternion.identity);
         CurrentWaveIndex++;
 
         if (CurrentWaveIndex >= waves.Count)
         {
             //CurrentWaveIndex = 0;
-            waveNameUI.text = "End";
         }
     }
 }

@@ -13,6 +13,15 @@ public class PlayerAttackManager : MonoBehaviour
     public void RefreshAttackList()
     {
         attackList = new(GetComponentsInChildren<PlayerAttack>(false));
+        bool onOffset = false;
+        foreach (PlayerAttack attack in attackList)
+        {
+            if (attack.AttackCount == 2)
+            {
+                attack.OnOffset = onOffset;
+                onOffset = !onOffset;
+            }
+        }
     }
 
     private void Start()
@@ -23,30 +32,31 @@ public class PlayerAttackManager : MonoBehaviour
     int count = 1;
     private void Attack()
     {
-        
         foreach (PlayerAttack attack in attackList)
         {
-            if (attack.IsOnAttackTimer && count % attack.AttackCount != 0)
+            if (!attack.IsOnAttackTimer 
+                || (!attack.OnOffset && count % attack.AttackCount == 0)
+                || (attack.OnOffset && count % attack.AttackCount == 1))
             {
-                continue;
-            }
 
-            attack.DoAttack(transform.position);
+                attack.DoAttack(transform.position);
 
-            if (GlobalItemToggles.HasBwo)
-            {
-                if (!attack.IsPetFacingRequired || (attack.IsPetFacingRequired && Global.keystoneItemManager.IsBwoFacingAttackDirection))
+                if (GlobalItemToggles.HasBwo)
                 {
-                    if (attack.IsAttached)
+                    if (!attack.IsPetFacingRequired || (attack.IsPetFacingRequired && Global.keystoneItemManager.IsBwoFacingAttackDirection))
                     {
-                        attack.DoAttack(GameObject.FindGameObjectWithTag("Bwo").transform.position, GameObject.FindGameObjectWithTag("Bwo").transform);
-                    }
-                    else
-                    {
-                        attack.DoAttack(GameObject.FindGameObjectWithTag("Bwo").transform.position);
-                    }
+                        if (attack.IsAttached)
+                        {
+                            attack.DoAttack(GameObject.FindGameObjectWithTag("Bwo").transform.position, GameObject.FindGameObjectWithTag("Bwo").transform);
+                        }
+                        else
+                        {
+                            attack.DoAttack(GameObject.FindGameObjectWithTag("Bwo").transform.position);
+                        }
 
+                    }
                 }
+
             }
             
         }

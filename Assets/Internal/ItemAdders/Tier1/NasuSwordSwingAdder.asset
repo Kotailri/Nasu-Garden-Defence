@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Nasword Chop
   ItemDescription: 'Swing a sword in a downwards arc in front of the player that
-    knocks enemies back and damages them.
+    knocks enemies back and damages them. Also gives +1 to a random stat.
+
+
+    Stat1
+    +1
 
 '
   ItemIconImage: {fileID: 21300000, guid: 0a1b6e831aa5ac4469e1dfd44078c1b3, type: 3}

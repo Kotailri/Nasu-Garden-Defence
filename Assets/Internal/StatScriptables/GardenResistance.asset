@@ -16,5 +16,5 @@ MonoBehaviour:
   StatEnum: 7
   StatDescription: Increases the % of garden damage resisted.
   StatBase: 0
-  StatGrowth: 0.05
+  StatGrowth: 0.1
   StatGrowthType: 0

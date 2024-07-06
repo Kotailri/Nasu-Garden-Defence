@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: BananaSlug
   m_EditorClassIdentifier: 
   EnemyName: BananaSlug
-  Health: 50
+  Health: 65
   Resistance: 0
   DodgeChance: 0
-  HealthRegen: 1
+  HealthRegen: 0
   MovementSpeedMin: 1
   MovementSpeedMax: 1
   MovementTargetType: 0
   ContactDamage: 4
-  GardenContactDamage: 3
+  GardenContactDamage: 2

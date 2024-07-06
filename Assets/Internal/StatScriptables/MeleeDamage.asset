@@ -16,5 +16,5 @@ MonoBehaviour:
   StatEnum: 9
   StatDescription: Increases the damage of melee attacks.
   StatBase: 1
-  StatGrowth: 0.1
+  StatGrowth: 0.3
   StatGrowthType: 1

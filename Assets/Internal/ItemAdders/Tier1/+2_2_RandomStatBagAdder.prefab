@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5123569703163986646}
-  - component: {fileID: -7017748002371972496}
+  - component: {fileID: -1074873575541276554}
   m_Layer: 0
   m_Name: +2_2_RandomStatBagAdder
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7017748002371972496
+--- !u!114 &-1074873575541276554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4433426472838914580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073ea07e2a9491c479ca61b28cd942db, type: 3}
+  m_Script: {fileID: 11500000, guid: c5f88c6de23bf13408908c478bc9f2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ItemScriptableInfo: {fileID: 11400000, guid: 3b13dbb173d3ec54c93c15f2e85a4650, type: 2}
+  statList: []
   statLevelUps: 0200000002000000
   isExcemptFromPoolRemoval: 1

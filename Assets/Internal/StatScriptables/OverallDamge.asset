@@ -16,5 +16,5 @@ MonoBehaviour:
   StatEnum: 11
   StatDescription: Increases overall damage.
   StatBase: 1
-  StatGrowth: 0.1
+  StatGrowth: 0.2
   StatGrowthType: 0

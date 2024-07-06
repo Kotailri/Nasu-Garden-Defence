@@ -15,6 +15,6 @@ MonoBehaviour:
   StatName: Garden Regen
   StatEnum: 6
   StatDescription: Increases the rate of the garden's health recovery.
-  StatBase: 0.05
-  StatGrowth: 0.1
+  StatBase: 0
+  StatGrowth: 0.05
   StatGrowthType: 0

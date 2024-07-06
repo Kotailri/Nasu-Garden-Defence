@@ -58,6 +58,7 @@ public abstract class EnemyMovement : MonoBehaviour
     public virtual void UpdateAppliedMovementSpeed()
     {
         appliedSpeed = movespeed - (movespeed * currentSlowAmount);
+        appliedSpeed *= Global.EnemySpeedMultiplier;
     }
 
     public virtual void UpdateAppliedMovementDirection()

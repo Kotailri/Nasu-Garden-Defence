@@ -25,6 +25,7 @@ public static class Global
     public static ItemSelectManager itemSelectManager;
     public static ItemInventoryManager itemInventoryManager;
 
+    public static float EnemySpeedMultiplier = 0.5f;
     public static float WaveSpeed = 1f;
     public static float DamageFlashTimer = 0.2f;
     public static float MaxX = 16.5f;
@@ -156,6 +157,8 @@ public static class GlobalPlayer
 {
     public static float ContactSlowAmount = 0.5f;
     public static float ContactSlowTime = 1f;
+
+    
 
     public static Dictionary<PlayerStatEnum, PlayerStat> PlayerStatDict = new();
     public static float GetStatValue(PlayerStatEnum stat)

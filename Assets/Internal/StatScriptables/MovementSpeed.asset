@@ -15,6 +15,6 @@ MonoBehaviour:
   StatName: Movespeed
   StatEnum: 10
   StatDescription: Increases the player's movement speed.
-  StatBase: 4
-  StatGrowth: 0.25
+  StatBase: 3
+  StatGrowth: 0.4
   StatGrowthType: 0
