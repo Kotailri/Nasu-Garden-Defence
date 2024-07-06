@@ -113,7 +113,7 @@ public class GardenHealth : MonoBehaviour
     {
         if (CurrentHP <= 0)
         {
-            Global.GameOver();
+            Global.GameOver(DeathCondition.GardenDeath);
         }
     }
 }

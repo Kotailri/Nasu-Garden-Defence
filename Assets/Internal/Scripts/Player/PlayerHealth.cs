@@ -117,7 +117,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (CurrentHP <= 0)
         {
-            Global.GameOver();
+            Global.GameOver(DeathCondition.PlayerDeath);
         }
     }
 }

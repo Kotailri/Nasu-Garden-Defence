@@ -6,8 +6,9 @@ public class FocusLossUI : MonoBehaviour
 {
     public GameObject FocusLossUIObject;
 
-    private void OnEnable()
+    private void Awake()
     {
+        FocusLossUIObject.SetActive(false);
         Application.focusChanged += OnFocusChanged;
     }
 
@@ -21,12 +22,10 @@ public class FocusLossUI : MonoBehaviour
         if (hasFocus)
         {
             FocusLossUIObject.SetActive(false);
-            Time.timeScale = 1f;
         }
         else
         {
             FocusLossUIObject.SetActive(true);
-            Time.timeScale = 0f;
         }
     }
 }

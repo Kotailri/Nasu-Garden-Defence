@@ -38,6 +38,7 @@ public class PlayerStatInitializer : MonoBehaviour
 
     private void Awake()
     {
+        GlobalPlayer.PlayerStatDict.Clear();
         foreach (PlayerStatScriptable stat in stats)
         {
             if (GlobalPlayer.PlayerStatDict.ContainsKey(stat.StatEnum))

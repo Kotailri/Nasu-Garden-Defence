@@ -11,6 +11,7 @@ public class DamageFlash : MonoBehaviour
     {
         FlashSprite.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         gameObject.AddComponent<SyncSpriteMask>();
+        FlashSprite.color = new Color(1,1,1,0.25f);
         FlashSprite.gameObject.SetActive(false);
     }
 

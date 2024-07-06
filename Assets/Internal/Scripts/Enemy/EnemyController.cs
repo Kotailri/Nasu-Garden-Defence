@@ -31,6 +31,21 @@ public class EnemyController : MonoBehaviour
             animator.speed = 0f;
     }
 
+    private void OnEnable()
+    {
+        EventManager.StartListening(EventStrings.GAME_OVER, DestroyFromGameOver);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening(EventStrings.GAME_OVER, DestroyFromGameOver);
+    }
+
+    private void DestroyFromGameOver(Dictionary<string, object> msg)
+    {
+        Destroy(gameObject);
+    }
+
     public bool IsEnemyActive()
     {
         return transform.position.x < 18.5f;

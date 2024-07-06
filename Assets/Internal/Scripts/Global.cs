@@ -26,16 +26,16 @@ public static class Global
     public static ItemInventoryManager itemInventoryManager;
 
     public static float WaveSpeed = 1f;
-    public static float DamageFlashTimer = 0.1f;
+    public static float DamageFlashTimer = 0.2f;
     public static float MaxX = 16.5f;
 
     public static (float min, float max) XRange = (-14.13f, 18.31f);
     public static (float min, float max) YRange = (-7f, 6.95f);
 
-    public static void GameOver()
+    public static void GameOver(DeathCondition deathCondition)
     {
         if (gameOverManager == null) return;
-        gameOverManager.DoGameOver();
+        gameOverManager.DoGameOver(deathCondition);
     }
 
     public static List<GameObject> GetActiveEnemies()
@@ -120,6 +120,12 @@ public static class Config
 {
     public static double ControllerDeadZone = 0.5f;
     public static float CursorSpeed = 12f;
+}
+
+public enum DeathCondition
+{
+    PlayerDeath,
+    GardenDeath
 }
 
 public enum PlayerStatEnum
