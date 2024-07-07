@@ -15,12 +15,22 @@ public class WaveManager : MonoBehaviour
 
     private GameObject currentWave;
     public TextMeshProUGUI waveNameUI;
+    public ProgressBar waveProgressBar;
 
     private bool isWaveOngoing = false;
+
+    private GameObject lastEnemy = null;
+    private float lastEnemyStartingX = 0f;
 
     private void Awake()
     {
         Global.waveManager = this;
+        
+    }
+
+    private void Start()
+    {
+        waveProgressBar.UpdateValue(0);
     }
 
     public bool IsWaveOngoing()
@@ -81,6 +91,14 @@ public class WaveManager : MonoBehaviour
             StartCoroutine(KillWave());
         }
 #endif
+
+        if (lastEnemy != null)
+        {
+            float totalDistance = lastEnemyStartingX - Global.MaxX;
+            float distanceCovered = lastEnemyStartingX - lastEnemy.transform.position.x;
+
+            waveProgressBar.UpdateValue(Mathf.Clamp(distanceCovered/totalDistance, 0f, 1f));
+        }
     }
 
     private IEnumerator KillWave()
@@ -105,6 +123,7 @@ public class WaveManager : MonoBehaviour
         }
 
         StartCoroutine(DelayNextWave(1f));
+        waveProgressBar.UpdateValue(0);
 
         IEnumerator DelayNextWave(float delay)
         {
@@ -116,8 +135,26 @@ public class WaveManager : MonoBehaviour
             {
                 //CurrentWaveIndex = 0;
             }
+
+            MarkLastEnemy();
         }
     }
+
+    
+    private void MarkLastEnemy()
+    {
+        lastEnemy = null;
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            if (lastEnemy == null || enemy.transform.position.x > lastEnemy.transform.position.x)
+            {
+                lastEnemy = enemy;
+            }
+        }
+        lastEnemyStartingX = lastEnemy.transform.position.x;
+        
+    }
+
 
 #if UNITY_EDITOR
     [ContextMenu("Refresh Waves")]
