@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Nasu Tornado
   ItemDescription: 'Create a tornado in a random forwards direction that knocks enemies
-    back. Also gives +1 to a random stat.
+    back but does no damage  Also gives +1 to a random stat.
 
 
     Stat1 +1

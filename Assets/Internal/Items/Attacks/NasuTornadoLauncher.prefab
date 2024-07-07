@@ -53,7 +53,7 @@ MonoBehaviour:
   DamageMultiplier: 0
   AttackLevel: 1
   IsOnAttackTimer: 1
-  AttackCount: 3
+  AttackCount: 2
   OnOffset: 0
-  speed: 8
+  speed: 6
   distance: 12

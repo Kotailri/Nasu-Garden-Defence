@@ -7675,6 +7675,7 @@ MonoBehaviour:
   - {fileID: -5874812564439802505, guid: fc34b17e2d0b1e541a6c567b5cc21ca6, type: 3}
   - {fileID: -8111987116572309452, guid: d723018ff41426c48807be293a638a03, type: 3}
   - {fileID: -2324429805443389761, guid: f9d9a9bcb697dbc4aaa39cd3f57ed443, type: 3}
+  - {fileID: -1074873575541276554, guid: eb889fb4073b4ca45b68b3dc43ee6c18, type: 3}
   ItemPool_T2: []
   ItemPool_Keystone:
   - {fileID: 7842913364747402881, guid: 9005d5a311ffddb45b291013a8c1dfc3, type: 3}
