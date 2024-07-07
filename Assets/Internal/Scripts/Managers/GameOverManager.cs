@@ -24,7 +24,10 @@ public class GameOverManager : MonoBehaviour
 
     public void DoGameOver(DeathCondition deathCondition)
     {
-        EventManager.TriggerEvent(EventStrings.GAME_OVER, null);
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
+        {
+            EventManager.TriggerEvent(EventStrings.GAME_OVER_KILL_ALL, null);
+        }
 
         Global.playerTransform.gameObject.GetComponent<PlayerHitbox>().enabled = false;
         Global.playerTransform.gameObject.GetComponent<PlayerMovement>().enabled = false;

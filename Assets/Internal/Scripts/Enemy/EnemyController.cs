@@ -33,12 +33,12 @@ public class EnemyController : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.StartListening(EventStrings.GAME_OVER, DestroyFromGameOver);
+        EventManager.StartListening(EventStrings.GAME_OVER_KILL_ALL, DestroyFromGameOver);
     }
 
     private void OnDisable()
     {
-        EventManager.StopListening(EventStrings.GAME_OVER, DestroyFromGameOver);
+        EventManager.StopListening(EventStrings.GAME_OVER_KILL_ALL, DestroyFromGameOver);
     }
 
     private void DestroyFromGameOver(Dictionary<string, object> msg)

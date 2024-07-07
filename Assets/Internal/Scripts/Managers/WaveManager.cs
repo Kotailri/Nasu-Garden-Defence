@@ -61,10 +61,12 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            //StartCoroutine(KillWave());
+            StartCoroutine(KillWave());
         }
+#endif
     }
 
     private IEnumerator KillWave()

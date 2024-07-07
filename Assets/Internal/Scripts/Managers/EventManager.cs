@@ -8,7 +8,7 @@ public static class EventStrings
     public static readonly string PLAYER_ATTACK  = "PLAYER_ATTACK";
     public static readonly string STATS_UPDATED = "STATS_UPDATED";
     public static readonly string PLAYER_TAKE_DAMAGE = "PLAYER_TAKE_DAMAGE";
-    public static readonly string GAME_OVER = "GAME_OVER_EVENT";
+    public static readonly string GAME_OVER_KILL_ALL = "GAME_OVER_EVENT";
 }
 
 public static class EventManager

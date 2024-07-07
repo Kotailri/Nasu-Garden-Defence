@@ -24,10 +24,11 @@ public class StatsMenuUI : MonoBehaviour
 
     private Vector2 activePosition;
     private float leftSlideAmount = 1000f;
+    private bool isOpen = false;
 
     private void Awake()
     {
-        leftSlideAmount = GetComponent<RectTransform>().rect.width + 100f;
+        leftSlideAmount = GetComponent<RectTransform>().rect.width;
 
         activePosition = transform.position;
         transform.position = activePosition - new Vector2(leftSlideAmount, 0);
@@ -67,32 +68,32 @@ public class StatsMenuUI : MonoBehaviour
     }
 
     private float slideTime = 0.2f;
-    private bool canOpen = true;
 
-    public void OnStatsDisplayOpen(bool isOpening)
+    public void OnStatsDisplayOpen()
     {
-        if (canOpen && isOpening && !LeanTween.isTweening(gameObject))
+        if (LeanTween.isTweening(gameObject))
         {
+            return;
+        }
+
+        if (!isOpen)
+        { 
             UpdateStatsDisplay();
             LeanTween.moveX(gameObject, activePosition.x, slideTime).setEaseOutQuad();
         }
-
         else
         {
-            transform.position = new Vector3(activePosition.x - leftSlideAmount, transform.position.y, transform.position.z);
+            LeanTween.moveX(gameObject, activePosition.x - leftSlideAmount, slideTime).setEaseOutQuad();
         }
+
+        isOpen = !isOpen;
     }
 
     public void OnStatsDisplayButton(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            OnStatsDisplayOpen(true);
-        }
-
-        else if (context.canceled)
-        {
-            OnStatsDisplayOpen(false);
+            OnStatsDisplayOpen();
         }
     }
 }

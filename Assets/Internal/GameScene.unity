@@ -541,7 +541,7 @@ MonoBehaviour:
   - {fileID: 4110626928451635750, guid: e733fcfc42d770946935da77b95af192, type: 3}
   - {fileID: 4110626928451635750, guid: 0fdaaedeec1f90a4b962645a587a1990, type: 3}
   - {fileID: 4110626928451635750, guid: a9f097dcca040094d89af5c3e09d8a4e, type: 3}
-  CurrentWaveIndex: 0
+  CurrentWaveIndex: 7
   waveNameUI: {fileID: 2040071331}
 --- !u!4 &86849628
 Transform:
@@ -10372,7 +10372,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -581.1, y: -47.6}
+  m_AnchoredPosition: {x: -581.1, y: -47.600098}
   m_SizeDelta: {x: 171.76001, y: 19.580002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1506991692872613362

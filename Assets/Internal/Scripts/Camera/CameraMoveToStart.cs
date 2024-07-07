@@ -24,7 +24,7 @@ public class CameraMoveToStart : MonoBehaviour
         else
         {
             cam.gameObject.transform.position = new Vector3(MenuPosition.x, MenuPosition.y, transform.position.z);
-            Global.playerTransform.position = new Vector3(-27, 0, 0);
+            Global.playerTransform.position = new Vector3(-23, 0, 0);
         }
     }
 
