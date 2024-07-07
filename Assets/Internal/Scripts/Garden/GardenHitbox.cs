@@ -12,6 +12,7 @@ public class GardenHitbox : MonoBehaviour, IHasTriggerStay
             if (em.GardenContactDamage > 0)
             {
                 GetComponent<GardenHealth>().SetHealth(-em.GardenContactDamage, true);
+                EventManager.TriggerEvent(EventStrings.ENEMY_DELETED, null);
                 Destroy(collisionObject);
             }
         }

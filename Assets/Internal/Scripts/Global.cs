@@ -23,6 +23,7 @@ public static class Global
     public static ItemUI itemUI;
     public static ItemSelectManager itemSelectManager;
     public static ItemInventoryManager itemInventoryManager;
+    public static ItemPassiveManager itemPassiveManager;
 
     public static float EnemySpeedMultiplier = 0.5f;
     public static float WaveSpeed = 1f;
@@ -35,6 +36,7 @@ public static class Global
     public static void GameOver(DeathCondition deathCondition)
     {
         if (gameOverManager == null) return;
+        GlobalPlayer.ResetStats();
         gameOverManager.DoGameOver(deathCondition);
     }
 
@@ -157,8 +159,6 @@ public static class GlobalPlayer
     public static float ContactSlowAmount = 0.5f;
     public static float ContactSlowTime = 1f;
 
-    
-
     public static Dictionary<PlayerStatEnum, PlayerStat> PlayerStatDict = new();
     public static float GetStatValue(PlayerStatEnum stat)
     {
@@ -182,6 +182,14 @@ public static class GlobalPlayer
         {
             Debug.LogWarning("Stat val for key " + stat + " not found");
             return null;
+        }
+    }
+
+    public static void ResetStats()
+    {
+        foreach (var stat in PlayerStatDict)
+        {
+            PlayerStatDict[stat.Key].SetLevel(0, false);
         }
     }
 

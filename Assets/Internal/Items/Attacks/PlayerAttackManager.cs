@@ -13,7 +13,7 @@ public class PlayerAttackManager : MonoBehaviour
     public void RefreshAttackList()
     {
         attackList = new(GetComponentsInChildren<PlayerAttack>(false));
-        bool onOffset = false;
+        /*bool onOffset = false;
         foreach (PlayerAttack attack in attackList)
         {
             if (attack.AttackCount == 2)
@@ -21,7 +21,7 @@ public class PlayerAttackManager : MonoBehaviour
                 attack.OnOffset = onOffset;
                 onOffset = !onOffset;
             }
-        }
+        }*/
     }
 
     private void Start()

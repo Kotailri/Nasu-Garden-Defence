@@ -13,6 +13,8 @@ public struct ItemStatAdder
 public abstract class ItemAdder : MonoBehaviour
 {
     public ItemScriptable ItemScriptableInfo;
+    [Tooltip("Minimum wave index for adder to appear.")]
+    public int MinWaveIndex;
 
     [Header("Set Stats")]
     public List<ItemStatAdder> statList = new();

@@ -43,6 +43,12 @@ public abstract class EnemyMovement : MonoBehaviour
         {
             RB.velocity = (appliedDirection.normalized * appliedSpeed) + appliedPullForce;
         }
+
+        if (isMovementStarted)
+        {
+            transform.position = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y, Global.YRange.min, Global.YRange.max));
+        }
+        
     }
 
     public void SetMovementType(EnemyMovementType movementType)

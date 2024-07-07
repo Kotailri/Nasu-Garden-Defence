@@ -29,7 +29,9 @@ public class ItemSelectManager : MonoBehaviour
 
         IEnumerator ItemSpawnCoroutine()
         {
-            List<ItemAdder> randomItems = Global.itemInventoryManager.GetRandomFromPool(3, tier);
+            yield return new WaitForSeconds(1f);
+
+            List<ItemAdder> randomItems = Global.itemInventoryManager.GetRandomFromPool(3, tier, Global.waveManager.CurrentWaveIndex);
 
             if (randomItems.Count == 0)
             {

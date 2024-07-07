@@ -27,7 +27,7 @@ public class PurpleBoomerang : PlayerAttackPrefab
         GetComponent<Rigidbody2D>().velocity = launchVector;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (hasLaunched && isReturning && collision.gameObject.CompareTag("Player"))
         {

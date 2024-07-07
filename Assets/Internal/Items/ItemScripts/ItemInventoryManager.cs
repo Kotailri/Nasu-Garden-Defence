@@ -57,20 +57,28 @@ public class ItemInventoryManager : MonoBehaviour
         }
     }
 
-    public List<ItemAdder> GetRandomFromPool(int num, ItemTier tier)
+    public List<ItemAdder> GetRandomFromPool(int num, ItemTier tier, int waveRequirement=0)
     {
+        List<ItemAdder> selectedPool = new();
+
         switch(tier)
         {
             case ItemTier.Tier1:
-                return Global.GetRandomElements(ItemPool_T1, num);
+                selectedPool = new List<ItemAdder>(ItemPool_T1);
+                break;
             case ItemTier.Tier2:
-                return Global.GetRandomElements(ItemPool_T2, num);
+                selectedPool = new List<ItemAdder>(ItemPool_T2);
+                break;
             case ItemTier.Keystone:
-                return Global.GetRandomElements(ItemPool_Keystone, num);
+                selectedPool = new List<ItemAdder>(ItemPool_Keystone);
+                break;
         }
-        return new List<ItemAdder>(); 
-    } 
-    
+
+        selectedPool.RemoveAll(adder => adder.MinWaveIndex > waveRequirement);
+
+        return Global.GetRandomElements(selectedPool, num);
+    }
+
     public List<ItemAdder> GetRandomFromInventory(int num)
     {
         return Global.GetRandomElements(ItemInventory, num);

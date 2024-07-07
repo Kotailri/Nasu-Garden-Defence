@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BananaSlug
   m_EditorClassIdentifier: 
   EnemyName: BananaSlug
-  Health: 65
+  Health: 62
   Resistance: 0
   DodgeChance: 0
   HealthRegen: 0

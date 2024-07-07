@@ -148,8 +148,17 @@ public class PlayerMovement : MonoBehaviour
         if (MovementLocked)
             moveInput = Vector2.zero;
 
-        RB.velocity = moveInput.normalized * 
+        if (Global.gameplayStarted)
+        {
+            RB.velocity = moveInput.normalized *
             (GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSpeedModifier * currentSlowMultiplier);
+        }
+        else
+        {
+            RB.velocity = moveInput.normalized *
+            (GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSpeedModifier * currentSlowMultiplier * 2);
+        }
+        
 
     }
 }
