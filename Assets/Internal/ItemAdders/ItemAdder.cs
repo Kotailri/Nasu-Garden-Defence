@@ -25,6 +25,7 @@ public abstract class ItemAdder : MonoBehaviour
 
     [Space(10f)]
     public bool isExcemptFromPoolRemoval;
+    public bool addsToUI = true;
 
     private List<KeyValuePair<string, string>> replacements = new();
     private List<PlayerStat> statsLeveled = new();
@@ -78,6 +79,10 @@ public abstract class ItemAdder : MonoBehaviour
         ApplySetStats();
         ApplyRandomStats();
         Global.playerTransform.gameObject.GetComponent<PlayerAttackManager>().RefreshAttackList();
-        Global.itemUI.AddItemToUI(ItemScriptableInfo, replacements);
+        if (addsToUI)
+        {
+            Global.itemUI.AddItemToUI(ItemScriptableInfo, replacements);
+        }
+        
     }
 }

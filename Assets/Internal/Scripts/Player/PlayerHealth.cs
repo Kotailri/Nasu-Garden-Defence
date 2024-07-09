@@ -65,7 +65,7 @@ public class PlayerHealth : MonoBehaviour
             }
             else
             {
-                int damage = (int)Mathf.Clamp(_hp + Mathf.FloorToInt(Mathf.Abs(_hp) * GlobalPlayer.GetStatValue(PlayerStatEnum.playerResist)), Mathf.NegativeInfinity, 0f);
+                int damage = _hp;
                 CurrentHP += damage;
                     
                 Global.damageTextSpawner.SpawnText(transform.position, "-" + Mathf.FloorToInt(Mathf.Abs(damage)).ToString(), DamageTextType.Red, 1f);

@@ -469,7 +469,7 @@ MonoBehaviour:
   - {fileID: 4110626928451635750, guid: a9f097dcca040094d89af5c3e09d8a4e, type: 3}
   - {fileID: 4110626928451635750, guid: 886d1acf3202ef54ab121ee3965625f7, type: 3}
   WavesLocation: Assets/Internal/Waves
-  CurrentWaveIndex: 0
+  CurrentWaveIndex: 6
   waveNameUI: {fileID: 2040071331}
   waveProgressBar: {fileID: 7695761220067284831}
 --- !u!4 &86849628
@@ -7665,7 +7665,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59518da54228be4781498ce713f0b14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugInventory: []
+  debugInventory:
+  - {fileID: 6557298777855185877, guid: cd5326d0ffeda4b4f8891ba6a6cf12d6, type: 3}
+  - {fileID: -5580221820512699650, guid: a7593df9ffc656949aaf126d06bf7c53, type: 3}
+  - {fileID: -5580221820512699650, guid: 0000ccedb3e9b9e428b06ed2c3ff6737, type: 3}
+  - {fileID: -5874812564439802505, guid: f9ad0f2798518b143a4c1aaab8a4316d, type: 3}
+  - {fileID: -5874812564439802505, guid: fc34b17e2d0b1e541a6c567b5cc21ca6, type: 3}
+  - {fileID: -2324429805443389761, guid: f9d9a9bcb697dbc4aaa39cd3f57ed443, type: 3}
   ItemPool_T1:
   - {fileID: -1074873575541276554, guid: eb889fb4073b4ca45b68b3dc43ee6c18, type: 3}
   - {fileID: -4960585179473724930, guid: 29bd14e1548c16e49b80fedcc5010b22, type: 3}
@@ -10601,7 +10607,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 22.1, y: -14.6}
+  m_AnchoredPosition: {x: 22.1, y: -14.599976}
   m_SizeDelta: {x: 171.76001, y: 19.580002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7515429661992487283

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089ffc9a3e46d1d46bf5b113cf702d0b, type: 3}
   m_Name: MeleeDamage
   m_EditorClassIdentifier: 
-  StatName: Melee Dmg
+  StatName: Melee Damage
   StatEnum: 9
   StatDescription: Increases the damage of melee attacks.
   StatBase: 1

@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemScriptableInfo: {fileID: 11400000, guid: c8b86f43147adec46b32957b50260e8c, type: 2}
+  MinWaveIndex: 0
   statList: []
-  statLevelUps: 01000000
+  statLevelUps: 
   isExcemptFromPoolRemoval: 0
+  addsToUI: 1
   prefab: {fileID: 6909247007285987802, guid: 25bc8c61dd034f14f8d7fe456758f52e, type: 3}

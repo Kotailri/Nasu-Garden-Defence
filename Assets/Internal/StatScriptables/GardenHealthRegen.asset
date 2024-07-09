@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089ffc9a3e46d1d46bf5b113cf702d0b, type: 3}
   m_Name: GardenHealthRegen
   m_EditorClassIdentifier: 
-  StatName: Garden Regen
+  StatName: Garden Regeneration
   StatEnum: 6
   StatDescription: Increases the rate of the garden's health recovery.
   StatBase: 0

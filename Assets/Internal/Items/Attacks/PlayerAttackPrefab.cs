@@ -24,16 +24,7 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
 
     public virtual void Start()
     {
-        switch (AttackType)
-        {
-            case PlayerAttackType.Projectile:
-                transform.localScale *= GlobalPlayer.GetStatValue(PlayerStatEnum.projectileSize);
-                break;
-
-            case PlayerAttackType.Melee:
-                transform.localScale *= GlobalPlayer.GetStatValue(PlayerStatEnum.meleeAttackSize);
-                break;
-        }
+        transform.localScale *= GlobalPlayer.GetStatValue(PlayerStatEnum.attackSize);
     }
 
     public void SetDamage(int damage)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089ffc9a3e46d1d46bf5b113cf702d0b, type: 3}
   m_Name: GardenHealth
   m_EditorClassIdentifier: 
-  StatName: Garden HP
+  StatName: Garden Health
   StatEnum: 5
   StatDescription: Increases the max health of the garden.
   StatBase: 10

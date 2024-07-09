@@ -150,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc978411f4a881942869f62675c91b62
-      internalID: -1042686805
+      spriteID: f4b45011aa2c0174e8267b20bfbc9339
+      internalID: 2113711652
       vertices: []
       indices: 
       edges: []
@@ -171,8 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a36f0d5eea256d249b52fd164a5b0060
-      internalID: -311052491
+      spriteID: 51a6bf6d16cafe445a019be89e49d5c5
+      internalID: 1691774456
       vertices: []
       indices: 
       edges: []
@@ -188,8 +188,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bananaslug-Sheet_0: -1042686805
-      bananaslug-Sheet_1: -311052491
+      bananaslug-Sheet_0: 2113711652
+      bananaslug-Sheet_1: 1691774456
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

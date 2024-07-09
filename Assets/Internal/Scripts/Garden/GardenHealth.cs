@@ -57,15 +57,8 @@ public class GardenHealth : MonoBehaviour
     {
         if (isRelative)
         {
-            if (_hp >= 0)
-            {
-                CurrentHP += _hp;
-            }
-            else
-            {
-                CurrentHP += (int)Mathf.Clamp(_hp + Mathf.FloorToInt(Mathf.Abs(_hp) * GlobalPlayer.GetStatValue(PlayerStatEnum.gardenResist)), Mathf.NegativeInfinity, 0f);
-            }
-            
+            CurrentHP += _hp;
+
         }
         else
         {

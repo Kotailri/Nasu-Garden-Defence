@@ -139,19 +139,20 @@ public enum PlayerStatEnum
     explosionRadius      = 4,
     gardenHealth         = 5,
     gardenRegen          = 6,
-    gardenResist         = 7,
+    //gardenResist         = 7,
     invincDuration       = 8,
     meleeDamage          = 9,
-    meleeAttackSize      = 18,
+    //meleeAttackSize      = 18,
     movespeed = 10,
     damage               = 11,
     playerHealth         = 12,
     playerRegen          = 13,
-    playerResist         = 14,
+    //playerResist         = 14,
     projectileDamage     = 15,
     projectileSpeed      = 16,    
-    projectileSize       = 19,
+    //projectileSize       = 19,
     slowReduction = 17,
+    attackSize = 20
 }
 
 public static class GlobalPlayer

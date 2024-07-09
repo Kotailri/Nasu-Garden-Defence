@@ -58,8 +58,8 @@ public class WaveManager : MonoBehaviour
     {
         if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 1 && isWaveOngoing)
         {
-            Destroy(currentWave);
             isWaveOngoing = false;
+            Destroy(currentWave);
 
             /*if (CurrentWaveIndex == 2)
             {
@@ -67,18 +67,16 @@ public class WaveManager : MonoBehaviour
                 return;
             }*/
 
-            if (CurrentWaveIndex == 1) { Global.EnemySpeedMultiplier = 0.6f; }
-            if (CurrentWaveIndex == 2) { Global.EnemySpeedMultiplier = 0.75f; }
-            if (CurrentWaveIndex == 3) { Global.EnemySpeedMultiplier = 0.9f; }
-            if (CurrentWaveIndex == 4) { Global.EnemySpeedMultiplier = 1f; }
+            if (CurrentWaveIndex == 1) { Global.EnemySpeedMultiplier = 0.75f; }
+            if (CurrentWaveIndex == 2) { Global.EnemySpeedMultiplier = 1f; }
 
-            if (CurrentWaveIndex % 2 == 0) 
+            if (CurrentWaveIndex % 2 == 0 || CurrentWaveIndex == 1) 
             {
                 Global.itemSelectManager.CreateItems(ItemTier.Tier1);
             }
             else
             {
-                SpawnNextWave();
+                Global.itemSelectManager.CreateItems(ItemTier.Tier2);
             }
         }
     }

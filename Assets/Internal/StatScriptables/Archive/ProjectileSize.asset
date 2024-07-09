@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ProjectileSize
   m_EditorClassIdentifier: 
   StatName: Projectile Size
-  StatEnum: 19
+  StatEnum: 1
   StatDescription: Increases the size of projectile attacks
   StatBase: 1
   StatGrowth: 0.1
