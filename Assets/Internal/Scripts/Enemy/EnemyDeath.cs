@@ -6,7 +6,6 @@ public class EnemyDeath : MonoBehaviour
 {
     public virtual void Die() // children of EnemyDeath should call base.Die()
     {
-        EventManager.TriggerEvent(EventStrings.ENEMY_DELETED, null);
         GetComponent<Collider2D>().enabled = false;
         if (TryGetComponent(out EnemyMovement movement))
         {

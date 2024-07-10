@@ -5,14 +5,14 @@ using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour
 {
-    private int   Health;
-    private float Resistance;
-    private float DodgeChance;
-    private int   HealthRegen;
+    protected int   Health;
+    protected float Resistance;
+    protected float DodgeChance;
+    protected int   HealthRegen;
 
     public int CurrentHealth;
 
-    private float currentRegenAmount = 0f;
+    protected float currentRegenAmount = 0f;
     private ProgressBar healthBar;
 
     public void SetHealthBar(ProgressBar bar)
@@ -37,7 +37,7 @@ public class EnemyHealth : MonoBehaviour
         CheckHealth();
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         if (damage == 0)
         {
@@ -64,7 +64,7 @@ public class EnemyHealth : MonoBehaviour
         CheckHealth();
     }
 
-    private void CheckHealth()
+    protected virtual void CheckHealth()
     {
         if (CurrentHealth > Health)
         {

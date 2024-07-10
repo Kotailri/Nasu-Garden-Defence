@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class StatsUIDisplay
@@ -15,6 +16,7 @@ public class StatsMenuUI : MonoBehaviour
 {
     public GameObject StatsObject;
     public Transform StatsAnchorPoint;
+    public Button StatsButton;
 
     private float spacing = 20f;
 
@@ -86,7 +88,16 @@ public class StatsMenuUI : MonoBehaviour
             LeanTween.moveX(gameObject, activePosition.x - leftSlideAmount, slideTime).setEaseOutQuad();
         }
 
+        StatsButton.interactable = false;
+        StartCoroutine(WaitButtonTime());
+
         isOpen = !isOpen;
+    }
+
+    private IEnumerator WaitButtonTime()
+    {
+        yield return new WaitForSeconds(slideTime/2);
+        StatsButton.interactable = true;
     }
 
     public void OnStatsDisplayButton(InputAction.CallbackContext context)

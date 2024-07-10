@@ -53,6 +53,6 @@ MonoBehaviour:
   DamageMultiplier: 1
   AttackLevel: 1
   IsOnAttackTimer: 1
-  AttackCount: 1
-  OnOffset: 0
-  BombFuseTimer: 2
+  AttackCount: 2
+  OnOffset: 1
+  BombFuseTimer: 2.5

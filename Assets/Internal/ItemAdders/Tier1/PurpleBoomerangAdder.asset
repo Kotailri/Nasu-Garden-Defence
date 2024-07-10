@@ -13,10 +13,7 @@ MonoBehaviour:
   m_Name: PurpleBoomerangAdder
   m_EditorClassIdentifier: 
   ItemName: Purple Boomerang
-  ItemDescription: 'Launches a boomerang in a random direction that damages enemies
-    on hit and returns to the player. Gives +1 to a random stat.
-
-
-    Stat1 +1'
+  ItemDescription: Launches a boomerang in a random direction that damages enemies
+    on hit and returns to the player.
   ItemIconImage: {fileID: 21300000, guid: c19c7629b8fb94dbe9184927802380c4, type: 3}
   ItemSpriteColor: {r: 1, g: 1, b: 1, a: 1}

@@ -20,10 +20,13 @@ public static class Global
     public static WaveManager waveManager;
 
     public static KeystoneItemManager keystoneItemManager;
+    
     public static ItemUI itemUI;
     public static ItemSelectManager itemSelectManager;
     public static ItemInventoryManager itemInventoryManager;
     public static ItemPassiveManager itemPassiveManager;
+
+    public static BossHealthBarManager bossHealthBarManager;
 
     public static float EnemySpeedMultiplier = 0.5f;
     public static float WaveSpeed = 1f;

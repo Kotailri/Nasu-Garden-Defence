@@ -49,11 +49,11 @@ MonoBehaviour:
   IsAttached: 0
   AttackColor: {r: 1, g: 1, b: 1, a: 1}
   BaseDamage: 2
-  KnockbackAmount: 4
+  KnockbackAmount: 5
   DamageMultiplier: 1
   AttackLevel: 1
   IsOnAttackTimer: 1
-  AttackCount: 1
+  AttackCount: 2
   OnOffset: 0
   ProjectileSpeed: 20
   numberOfProjectiles: 7

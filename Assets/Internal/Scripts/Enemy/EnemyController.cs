@@ -41,6 +41,11 @@ public class EnemyController : MonoBehaviour
         EventManager.StopListening(EventStrings.GAME_OVER_KILL_ALL, DestroyFromGameOver);
     }
 
+    private void OnDestroy()
+    {
+        EventManager.TriggerEvent(EventStrings.ENEMY_DELETED, null);
+    }
+
     private void DestroyFromGameOver(Dictionary<string, object> msg)
     {
         Destroy(gameObject);

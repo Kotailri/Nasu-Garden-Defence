@@ -56,7 +56,7 @@ public class WaveManager : MonoBehaviour
 
     private void CheckWaveEnd(Dictionary<string, object> message)
     {
-        if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 1 && isWaveOngoing)
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && isWaveOngoing)
         {
             isWaveOngoing = false;
             Destroy(currentWave);
@@ -67,9 +67,6 @@ public class WaveManager : MonoBehaviour
                 return;
             }*/
 
-            if (CurrentWaveIndex == 1) { Global.EnemySpeedMultiplier = 0.75f; }
-            if (CurrentWaveIndex == 2) { Global.EnemySpeedMultiplier = 1f; }
-
             if (CurrentWaveIndex % 2 == 0 || CurrentWaveIndex == 1) 
             {
                 Global.itemSelectManager.CreateItems(ItemTier.Tier1);
@@ -78,6 +75,8 @@ public class WaveManager : MonoBehaviour
             {
                 Global.itemSelectManager.CreateItems(ItemTier.Tier2);
             }
+
+            EventManager.TriggerEvent(EventStrings.WAVE_END, null);
         }
     }
 
@@ -103,14 +102,17 @@ public class WaveManager : MonoBehaviour
     {
         foreach (GameObject g in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            yield return new WaitForSeconds(0.1f);
-            EventManager.TriggerEvent(EventStrings.ENEMY_DELETED, null);
+            //yield return new WaitForSeconds(0.1f);
             Destroy(g);
         }
+        yield return null;
     }
 
     public void SpawnNextWave()
     {
+        if (CurrentWaveIndex == 1) { print("Wave 1 speed reduction");  Global.EnemySpeedMultiplier = 0.75f; }
+        if (CurrentWaveIndex == 2) { print("Wave 2 speed reduction");  Global.EnemySpeedMultiplier = 1f; }
+
         isWaveOngoing = true;
         waveNameUI.text = "Wave " + (CurrentWaveIndex+1);
 

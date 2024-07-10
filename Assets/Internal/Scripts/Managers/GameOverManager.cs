@@ -34,6 +34,9 @@ public class GameOverManager : MonoBehaviour
         Global.playerTransform.gameObject.GetComponent<PlayerAttackManager>().enabled = false;
         playerRenderer.enabled = false;
 
+        foreach (Transform t in Global.playerTransform)
+            Destroy(t.gameObject);
+
         GameOverUIFade.gameObject.SetActive(true);
 
         StartCoroutine(GameOverCoroutine());

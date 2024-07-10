@@ -21,6 +21,8 @@ public class ItemSelectObject : MonoBehaviour
     {
         defaultScale = transform.localScale;
         Canvas.transform.localScale = Vector3.zero;
+        LeanTween.scale(Canvas, defaultScale, 0.5f);
+        //Canvas.transform.localScale = Vector3.zero;
     }
 
     public void SetItem(ItemAdder _itemAdder)
@@ -35,7 +37,7 @@ public class ItemSelectObject : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Canvas.transform.localScale = defaultScale;
+            Canvas.transform.localScale = defaultScale + new Vector3(0.1f,0.1f,0.1f);
             Global.itemSelectManager.SetItemSelected(gameObject);
             isItemActive = true;
         }
@@ -45,7 +47,7 @@ public class ItemSelectObject : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Canvas.transform.localScale = Vector3.zero;
+            Canvas.transform.localScale = defaultScale;
             isItemActive = false;
         }
     }
