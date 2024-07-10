@@ -8,7 +8,12 @@ public class KeystoneItemManager : MonoBehaviour
     private void Awake()
     {
         Global.keystoneItemManager = this;
-    }
+        ApexStrideLevel = 0;
+        DistanceAmplificationAmount = 0;
+        IsBwoFacingAttackDirection = true;
+        BwoMovespeed = 0;
+        ImmortalHarmonyShieldTime = 0f;
+}
 
     public int ApexStrideLevel = 0;
     public float DistanceAmplificationAmount = 0;

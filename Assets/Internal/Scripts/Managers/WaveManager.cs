@@ -22,6 +22,9 @@ public class WaveManager : MonoBehaviour
     private GameObject lastEnemy = null;
     private float lastEnemyStartingX = 0f;
 
+    [Space(5f)]
+    public GameObject DemoCompleteUI;
+
     private void Awake()
     {
         Global.waveManager = this;
@@ -31,6 +34,7 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         waveProgressBar.UpdateValue(0);
+        DemoCompleteUI.SetActive(false);
     }
 
     public bool IsWaveOngoing()
@@ -61,13 +65,12 @@ public class WaveManager : MonoBehaviour
             isWaveOngoing = false;
             Destroy(currentWave);
 
-            /*if (CurrentWaveIndex == 2)
+            if (CurrentWaveIndex == 3)
             {
                 Global.itemSelectManager.CreateItems(ItemTier.Keystone);
-                return;
-            }*/
+            }
 
-            if (CurrentWaveIndex % 2 == 0 || CurrentWaveIndex == 1) 
+            else if (CurrentWaveIndex % 2 == 1) 
             {
                 Global.itemSelectManager.CreateItems(ItemTier.Tier1);
             }
@@ -111,14 +114,15 @@ public class WaveManager : MonoBehaviour
     public void SpawnNextWave()
     {
         if (CurrentWaveIndex == 1) { print("Wave 1 speed reduction");  Global.EnemySpeedMultiplier = 0.75f; }
-        if (CurrentWaveIndex == 2) { print("Wave 2 speed reduction");  Global.EnemySpeedMultiplier = 1f; }
+        if (CurrentWaveIndex == 2) { print("speed restored");  Global.EnemySpeedMultiplier = 1f; }
 
         isWaveOngoing = true;
         waveNameUI.text = "Wave " + (CurrentWaveIndex+1);
 
         if (CurrentWaveIndex >= waves.Count)
         {
-            waveNameUI.text = "End";
+            waveNameUI.text = "Thanks for Playing!";
+            DemoCompleteUI.SetActive(true);
             return;
         }
 

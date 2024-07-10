@@ -12,7 +12,7 @@ public class BossScriptable : ScriptableObject
     public int Health;
     public float Resistance;
     public float DodgeChance;
-    public int HealthRegen;
+    public float HealthRegen;
 
     [Header("Movement")]
     public float MovementSpeed;

@@ -13,7 +13,7 @@ public class GardenHealth : MonoBehaviour
 
     private void Start()
     {
-        MaxHP = (int)GlobalPlayer.GetStatValue(PlayerStatEnum.gardenHealth);
+        MaxHP = (int)GlobalPlayer.GetStatValue(PlayerStatEnum.gardenHealth) * 10;
         CurrentHP = MaxHP;
         UpdateUI(CurrentHP);
     }
@@ -76,7 +76,7 @@ public class GardenHealth : MonoBehaviour
 
     public void OnMaxHpStatChanged(Dictionary<string, object> message)
     {
-        SetMaxHealth(Mathf.FloorToInt(GlobalPlayer.GetStatValue(PlayerStatEnum.gardenHealth)) - MaxHP, true);
+        SetMaxHealth(Mathf.FloorToInt((GlobalPlayer.GetStatValue(PlayerStatEnum.gardenHealth))*10) - MaxHP, true);
         UpdateUI(CurrentHP);
     }
 

@@ -5,6 +5,11 @@ using UnityEngine;
 public class BossHealth : EnemyHealth
 {
 
+    private void Awake()
+    {
+        canGetExecuted = false;
+    }
+
     public override void TakeDamage(int damage)
     {
         if (Global.bossHealthBarManager.IsBarLoaded)

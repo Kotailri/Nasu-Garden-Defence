@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: ImmortalHarmony
   m_EditorClassIdentifier: 
   ItemName: Immortal Harmony
-  ItemDescription: Upon taking damage, gain a temporary shield and create an explosion
-    that damages enemies. Gain health equal to number of enemies hit by the explosion.
+  ItemDescription: '[KEYSTONE]
+
+    Upon taking damage, gain a temporary shield and
+    create an explosion that damages enemies. Gain health equal to number of enemies
+    hit by the explosion.'
   ItemIconImage: {fileID: 21300000, guid: 910da11c8a75546aebf4ea7a627e5475, type: 3}
   ItemSpriteColor: {r: 1, g: 0.8352941, b: 0, a: 1}

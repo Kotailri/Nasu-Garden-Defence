@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: ApexStride
   m_EditorClassIdentifier: 
   ItemName: Swift Sprint
-  ItemDescription: Gain a ramping speed boost while moving continuously. At max speed
-    also gain a damage boost. Lose these bonuses upon stopping or taking damage.
+  ItemDescription: '[KEYSTONE]
+
+    Gain a ramping speed boost while moving continuously.
+    At max speed also gain a damage boost. Lose these bonuses upon stopping or taking
+    damage.'
   ItemIconImage: {fileID: 21300000, guid: 45f94fceceaa742b883a6642d606953f, type: 3}
   ItemSpriteColor: {r: 1, g: 0.8352941, b: 0, a: 1}

@@ -38,17 +38,17 @@ public class BananaSlugKing : Boss
 
     private IEnumerator DoAttack()
     {
-        Instantiate(slugSpit, GetSpitLocation(), slugSpit.transform.rotation);
-        yield return new WaitForSeconds(0.2f);
-        Instantiate(slugSpit, GetSpitLocation(), slugSpit.transform.rotation);
+        Instantiate(slugSpit, GetSpitLocation(0.5f), slugSpit.transform.rotation);
+        yield return new WaitForSeconds(0.25f);
+        Instantiate(slugSpit, GetSpitLocation(1f), slugSpit.transform.rotation);
+        yield return new WaitForSeconds(0.25f);
+        Instantiate(slugSpit, GetSpitLocation(1.5f), slugSpit.transform.rotation);
     }
 
-    private Vector2 GetSpitLocation()
+    private Vector2 GetSpitLocation(float variance)
     {
         float playerX = Global.playerTransform.position.x;
         float playerY = Global.playerTransform.position.y;
-
-        float variance = 2f;
 
         float randomX = Mathf.Clamp(Random.Range(playerX - variance, playerX + variance), Global.XRange.min, Global.XRange.max);
         float randomY = Mathf.Clamp(Random.Range(playerY - variance, playerY + variance), Global.YRange.min, Global.YRange.max);
@@ -59,8 +59,8 @@ public class BananaSlugKing : Boss
     private IEnumerator SpawningCoroutine()
     {
         yield return new WaitForSeconds(TimeBetweenSpawning);
-        Instantiate(miniSlug, new Vector3(19f, 5f, 0), Quaternion.identity);
-        Instantiate(miniSlug, new Vector3(19f, -5f, 0), Quaternion.identity);
+        Instantiate(miniSlug, new Vector3(19f, 6f, 0), Quaternion.identity);
+        Instantiate(miniSlug, new Vector3(19f, -6f, 0), Quaternion.identity);
         StartCoroutine(SpawningCoroutine());
     }
 

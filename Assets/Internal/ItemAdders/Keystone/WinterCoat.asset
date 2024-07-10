@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: WinterCoat
   m_EditorClassIdentifier: 
   ItemName: Winter Coat
-  ItemDescription: Enemies around you are slowed significantly.
+  ItemDescription: '[KEYSTONE]
+
+    Enemies around you are slowed significantly.'
   ItemIconImage: {fileID: 21300000, guid: 6bbc6b42efc674f28a31aae142affb6c, type: 3}
   ItemSpriteColor: {r: 1, g: 0.8352941, b: 0, a: 1}

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemScriptableInfo: {fileID: 11400000, guid: 75bcff025b5b2cf49ae665b99019672f, type: 2}
-  MinWaveIndex: 0
+  MinWaveIndex: 4
   statList:
   - stat: 4
     levelup: 1

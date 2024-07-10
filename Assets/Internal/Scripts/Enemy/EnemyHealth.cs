@@ -8,7 +8,8 @@ public class EnemyHealth : MonoBehaviour
     protected int   Health;
     protected float Resistance;
     protected float DodgeChance;
-    protected int   HealthRegen;
+    protected float   HealthRegen;
+    protected bool canGetExecuted = true;
 
     public int CurrentHealth;
 
@@ -20,7 +21,7 @@ public class EnemyHealth : MonoBehaviour
         healthBar = bar;
     }
 
-    public void SetEnemyHealth(int _health, float _resistPercent, float _dodgeChance, int _healthRegenPerSecond)
+    public void SetEnemyHealth(int _health, float _resistPercent, float _dodgeChance, float _healthRegenPerSecond)
     {
         Health = _health;
         Resistance = _resistPercent;
@@ -49,7 +50,7 @@ public class EnemyHealth : MonoBehaviour
             CurrentHealth -= damage - Mathf.FloorToInt(damage * Resistance);
             Global.damageTextSpawner.SpawnText(transform.position, (damage - Mathf.FloorToInt(damage * Resistance)).ToString(), DamageTextType.White, 1f);
 
-            if (CurrentHealth > 0 && Global.itemPassiveManager.GetPassive(ItemPassiveEnum.LowHealthExecute) && (float)CurrentHealth/(float)Health <= Global.itemPassiveManager.LowHealthExecutePercent)
+            if (canGetExecuted && CurrentHealth > 0 && Global.itemPassiveManager.GetPassive(ItemPassiveEnum.LowHealthExecute) && (float)CurrentHealth/(float)Health <= Global.itemPassiveManager.LowHealthExecutePercent)
             {
                 CurrentHealth -= 99999;
                 Global.damageTextSpawner.SpawnText(transform.position, "99999", DamageTextType.White, 1f);

@@ -7,7 +7,6 @@ public class GardenHitbox : MonoBehaviour, IHasTriggerStay
 {
     public void OnTriggerStayEvent(GameObject collisionObject)
     {
-        print(collisionObject.name);
 
         if (collisionObject.TryGetComponent(out EnemyController em))
         {

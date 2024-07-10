@@ -22,7 +22,9 @@ public class PlayerHitbox : MonoBehaviour, IHasTriggerStay
 
         yield return new WaitForSeconds(GlobalPlayer.GetStatValue(PlayerStatEnum.invincDuration) + Global.keystoneItemManager.ImmortalHarmonyShieldTime);
 
-        spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+        if (spriteRenderer)
+            spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+
         canTakeDamage = true;
     }
 

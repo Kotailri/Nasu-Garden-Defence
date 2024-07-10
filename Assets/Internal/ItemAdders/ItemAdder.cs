@@ -78,6 +78,7 @@ public abstract class ItemAdder : MonoBehaviour
     {
         ApplySetStats();
         ApplyRandomStats();
+        EventManager.TriggerEvent(EventStrings.STATS_UPDATED, null);
         Global.playerTransform.gameObject.GetComponent<PlayerAttackManager>().RefreshAttackList();
         if (addsToUI)
         {

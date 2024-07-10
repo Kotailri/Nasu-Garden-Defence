@@ -20,6 +20,8 @@ public class GameOverManager : MonoBehaviour
         GameOverUIFade.alpha = 0f;
         GameOverUIFade.gameObject.SetActive(false);
         GameOverUI.SetActive(false);
+
+        Global.isGameOver = false;
     }
 
     public void DoGameOver(DeathCondition deathCondition)

@@ -231,7 +231,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -356940509
-  m_SortingLayer: -3
+  m_SortingLayer: -1
   m_SortingOrder: 100
   m_Sprite: {fileID: -781155419, guid: b132d3ab2008eb044bfa733bd22c8cb4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -391,9 +391,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232eb1f28ef0e424dba626533a9d44b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  timeBetweenStops: 5
-  stopTime: 3
+  speed: 0.75
+  timeBetweenStops: 2
+  stopTime: 5
   miniSlug: {fileID: 8120188403701684839, guid: 2b629b605cb035446a0e314843fa81ad, type: 3}
-  TimeBetweenSpawning: 5
+  TimeBetweenSpawning: 22
   slugSpit: {fileID: 5495609493476274954, guid: 639c246d9a93a404a81c283ac4130394, type: 3}

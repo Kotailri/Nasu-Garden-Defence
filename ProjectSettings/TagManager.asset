@@ -43,14 +43,14 @@ TagManager:
   - name: bg
     uniqueID: 3498466593
     locked: 0
-  - name: Enemy
-    uniqueID: 3938026787
-    locked: 0
   - name: UnderPlayer
     uniqueID: 2060452369
     locked: 0
   - name: Player
     uniqueID: 1003461187
+    locked: 0
+  - name: Enemy
+    uniqueID: 3938026787
     locked: 0
   - name: Default
     uniqueID: 0

@@ -45,10 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemScriptableInfo: {fileID: 11400000, guid: c7bc973278f04f444ad16d4937fc8e03, type: 2}
-  isExcamptFromPoolRemoval: 0
+  MinWaveIndex: 0
+  statList: []
+  statLevelUps: 
+  isExcemptFromPoolRemoval: 0
+  addsToUI: 1
   PurpleShedPrefab: {fileID: 4708034332075412972, guid: 8626db042bcc62843a69ed984419ab72, type: 3}
-  ShedTimer: 0.5
+  ShedTimer: 0.75
   FurDuration: 3
   ShedSlowAmount: 0.4
   ShedDamageTimer: 1
-  ShedDamage: 10
+  ShedDamage: 3

@@ -22,6 +22,8 @@ public class ItemSelectManager : MonoBehaviour
 
     public void CreateItems(ItemTier tier)
     {
+        if (Global.isGameOver) { return; }
+
         float animTime = 1f;
         float startingHeight = 20f;
 

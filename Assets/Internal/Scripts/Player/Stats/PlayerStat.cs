@@ -51,6 +51,7 @@ public abstract class PlayerStat
         {
             StatLevel = increase;
         }
+        EventManager.TriggerEvent(EventStrings.STATS_UPDATED, null);
     }
 
     protected PlayerStat(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease)

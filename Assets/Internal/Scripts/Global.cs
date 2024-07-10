@@ -39,9 +39,12 @@ public static class Global
     public static void GameOver(DeathCondition deathCondition)
     {
         if (gameOverManager == null) return;
+        Global.isGameOver = true;
         GlobalPlayer.ResetStats();
         gameOverManager.DoGameOver(deathCondition);
     }
+
+    public static bool isGameOver = false;
 
     public static List<GameObject> GetActiveEnemies()
     {
