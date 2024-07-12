@@ -28,9 +28,12 @@ public static class Global
 
     public static BossHealthBarManager bossHealthBarManager;
 
-    public static float EnemySpeedMultiplier = 0.5f;
+    public static float EnemySpeedMultiplier = 1f;
     public static float WaveSpeed = 1f;
-    public static float DamageFlashTimer = 0.2f;
+
+    public static float DamageFlashTimer = 0.1f;
+    public static float DamageFlashAlpha = 0.25f;
+
     public static float MaxX = 16.5f;
 
     public static (float min, float max) XRange = (-14.13f, 18.31f);
@@ -39,12 +42,35 @@ public static class Global
     public static void GameOver(DeathCondition deathCondition)
     {
         if (gameOverManager == null) return;
-        Global.isGameOver = true;
-        GlobalPlayer.ResetStats();
+        isGameOver = true;
+        
         gameOverManager.DoGameOver(deathCondition);
     }
 
     public static bool isGameOver = false;
+
+    public static void ResetGame()
+    {
+        EventManager.TriggerEvent(EventStrings.GAME_RESET, null);
+
+        // Global
+        EnemySpeedMultiplier = 1f;
+        WaveSpeed = 1f;
+        isGameOver = false;
+        gameplayStarted = false;
+
+        // GlobalPlayer
+        GlobalPlayer.CurrentPlayerDamageMultiplier = 1f;
+        GlobalPlayer.ResetStats();
+
+        // Global Keystone
+        GlobalItemToggles.HasWinterCoat = false;
+        GlobalItemToggles.HasApexStride = false;
+        GlobalItemToggles.HasAmplifier = false;
+        GlobalItemToggles.HasBwo = false;
+        GlobalItemToggles.HasPurpleShed = false;
+        GlobalItemToggles.HasImmortalHarmony = false;
+}
 
     public static List<GameObject> GetActiveEnemies()
     {

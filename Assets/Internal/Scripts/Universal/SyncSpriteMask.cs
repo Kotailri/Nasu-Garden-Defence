@@ -14,6 +14,18 @@ public class SyncSpriteMask : MonoBehaviour
         spriteMask.alphaCutoff = 1.0f;
     }
 
+    public void ToggleMask(bool isOn)
+    {
+        if (isOn)
+        {
+            spriteMask.enabled = true;
+        }
+        else
+        {
+            spriteMask.enabled = false;
+        }
+    }
+
     private void Update()
     {
         if (animatedSpriteRenderer != null && spriteMask != null)

@@ -113,6 +113,7 @@ public class WaveManager : MonoBehaviour
 
     public void SpawnNextWave()
     {
+        if (CurrentWaveIndex == 0) { print("Wave 0 speed reduction");  Global.EnemySpeedMultiplier = 0.5f; }
         if (CurrentWaveIndex == 1) { print("Wave 1 speed reduction");  Global.EnemySpeedMultiplier = 0.75f; }
         if (CurrentWaveIndex == 2) { print("speed restored");  Global.EnemySpeedMultiplier = 1f; }
 

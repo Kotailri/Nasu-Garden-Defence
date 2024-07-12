@@ -70,7 +70,7 @@ public class GameOverManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
-            DoGameOver(DeathCondition.PlayerDeath);
+            Global.GameOver(DeathCondition.PlayerDeath);
         }
     }
 }

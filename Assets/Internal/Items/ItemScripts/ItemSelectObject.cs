@@ -11,6 +11,9 @@ public class ItemSelectObject : MonoBehaviour
     public TextMeshProUGUI ItemDescription;
 
     [Space(5f)]
+    public TextMeshProUGUI AcquireItemBox;
+
+    [Space(5f)]
     public GameObject Canvas;
 
     private Vector3 defaultScale;
@@ -22,7 +25,7 @@ public class ItemSelectObject : MonoBehaviour
         defaultScale = transform.localScale;
         Canvas.transform.localScale = Vector3.zero;
         LeanTween.scale(Canvas, defaultScale, 0.5f);
-        //Canvas.transform.localScale = Vector3.zero;
+        AcquireItemBox.text = "";
     }
 
     public void SetItem(ItemAdder _itemAdder)
@@ -33,13 +36,15 @@ public class ItemSelectObject : MonoBehaviour
         ItemDescription.text = itemAdder.GetInfo().ItemDescription;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             Canvas.transform.localScale = defaultScale + new Vector3(0.1f,0.1f,0.1f);
             Global.itemSelectManager.SetItemSelected(gameObject);
             isItemActive = true;
+
+            AcquireItemBox.text = "Acquire Item [Space]";
         }
     }
 
@@ -49,6 +54,8 @@ public class ItemSelectObject : MonoBehaviour
         {
             Canvas.transform.localScale = defaultScale;
             isItemActive = false;
+
+            AcquireItemBox.text = "";
         }
     }
 

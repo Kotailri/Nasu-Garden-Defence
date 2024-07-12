@@ -17,8 +17,6 @@ public class BananaSlugKing : Boss
     [Space(5f)]
     public GameObject slugSpit;
 
-    private float currentTimeBetweenStop = 0f;
-
     private void Start()
     {
         StartMoving();

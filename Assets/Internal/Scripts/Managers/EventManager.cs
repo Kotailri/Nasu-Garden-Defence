@@ -11,6 +11,8 @@ public static class EventStrings
     public static readonly string PLAYER_TAKE_DAMAGE = "PLAYER_TAKE_DAMAGE";
     public static readonly string GAME_OVER_KILL_ALL = "GAME_OVER_EVENT";
     public static readonly string WAVE_END = "WaVE_ENDED";
+
+    public static readonly string GAME_RESET = "GAME_RESET";
 }
 
 public static class EventManager
