@@ -134,8 +134,8 @@ MonoBehaviour:
   DestroyOnContact: 0
   AttackType: 0
   StartDelay: 0.25
-  SwingSpeed: 1
-  DestroyDelay: 0.1
+  SwingDuration: 0.5
+  DestroyDelay: 0.25
   ReverseSwing: 1
 --- !u!61 &2384641242547824215
 BoxCollider2D:

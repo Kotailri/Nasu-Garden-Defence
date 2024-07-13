@@ -6,7 +6,7 @@ public class NasuSwordSwing : PlayerAttackPrefab
 {
     [Header("Sword Swing")]
     public float StartDelay;
-    public float SwingSpeed;
+    public float SwingDuration;
     public float DestroyDelay;
 
     [Space(5f)]
@@ -26,14 +26,18 @@ public class NasuSwordSwing : PlayerAttackPrefab
         yield return new WaitForSeconds(StartDelay);
         GetComponent<BoxCollider2D>().enabled = true;
         if (ReverseSwing)
-            LeanTween.rotateZ(gameObject, 0f, SwingSpeed).setEaseInOutCubic().setOnComplete(() => {
-                GetComponent<BoxCollider2D>().enabled = false;
-                Destroy(gameObject, DestroyDelay); 
+            LeanTween.rotateZ(gameObject, 0f, SwingDuration).setEaseInCubic().setOnComplete(() => {
+                EndingEvents();
             });
         else
-            LeanTween.rotateZ(gameObject, 180f, SwingSpeed).setEaseInOutCubic().setOnComplete(() => {
-                GetComponent<BoxCollider2D>().enabled = false;
-                Destroy(gameObject, DestroyDelay); 
+            LeanTween.rotateZ(gameObject, 180f, SwingDuration).setEaseInCubic().setOnComplete(() => {
+                EndingEvents();
             });
+    }
+
+    private void EndingEvents()
+    {
+        GetComponent<BoxCollider2D>().enabled = false;
+        LeanTween.alpha(gameObject, 0f, DestroyDelay).setOnComplete(() => { Destroy(gameObject); });
     }
 }

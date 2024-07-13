@@ -20,7 +20,7 @@ public class ItemSelectManager : MonoBehaviour
         Global.itemSelectManager = this;
     }
 
-    public void CreateItems(ItemTier tier)
+    public void CreateItems(ItemTypeEnum itemType)
     {
         if (Global.isGameOver) { return; }
 
@@ -33,7 +33,7 @@ public class ItemSelectManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
 
-            List<ItemAdder> randomItems = Global.itemInventoryManager.GetRandomFromPool(3, tier, Global.waveManager.CurrentWaveIndex);
+            List<ItemAdder> randomItems = Global.itemInventoryManager.GetRandomFromPool(3, itemType, Global.waveManager.CurrentWaveIndex);
 
             if (randomItems.Count == 0)
             {

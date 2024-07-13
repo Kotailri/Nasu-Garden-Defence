@@ -24,6 +24,12 @@ public class BossHealthBarManager : MonoBehaviour
         transform.localPosition = inactivePosition;
     }
 
+    private bool isActive = false;
+    public bool IsBossHealthActive()
+    {
+        return isActive;
+    }
+
     public void SetBossName(string _bossName)
     {
         bossNameBox.text = _bossName;
@@ -31,6 +37,7 @@ public class BossHealthBarManager : MonoBehaviour
 
     public void ActivateHealthBar(float _barLoadTime)
     {
+        isActive = true;
         HealthBarLoadTime = _barLoadTime;
         IsBarLoaded = false;
         LeanTween.moveLocal(gameObject, activePosition, 1.5f);
@@ -48,6 +55,7 @@ public class BossHealthBarManager : MonoBehaviour
     public void DeactivateHealthBar()
     {
         if (gameObject == null) return;
+        isActive = false;
         LeanTween.moveLocal(gameObject, inactivePosition, 1.5f);
         IsBarLoaded = false;
     }

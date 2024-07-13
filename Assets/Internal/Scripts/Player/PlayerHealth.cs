@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
 
     [Space(10f)]
     public ProgressBar bar;
+    public CanvasGroup vignette;
+
     private float currentRegenAmount = 0f;
 
     private void Start()
@@ -17,6 +20,21 @@ public class PlayerHealth : MonoBehaviour
         MaxHP = (int)GlobalPlayer.GetStatValue(PlayerStatEnum.playerHealth);
         CurrentHP = MaxHP;
         UpdateUI(CurrentHP);
+
+        vignette.alpha = 0f;
+    }
+
+    private void FlashVignette()
+    {
+        if (vignette == null) return;
+
+        LeanTween.cancel(vignette.gameObject);
+
+        vignette.alpha = 0f;
+        LeanTween.alphaCanvas(vignette, 1f, 0.1f).setEaseInExpo().setOnComplete(() => 
+        {
+            LeanTween.alphaCanvas(vignette, 0f, 0.75f);
+        });
     }
 
     private void Update()
@@ -67,6 +85,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 int damage = _hp;
                 CurrentHP += damage;
+                FlashVignette();
                     
                 Global.damageTextSpawner.SpawnText(transform.position, "-" + Mathf.FloorToInt(Mathf.Abs(damage)).ToString(), DamageTextType.Red, 1f);
             }

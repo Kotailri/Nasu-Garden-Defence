@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7709545372817488159
+--- !u!1 &4210725590578107468
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8315777333963794021}
-  - component: {fileID: -6378473530720004852}
+  - component: {fileID: 6955423107805690170}
+  - component: {fileID: -5874812564439802505}
   m_Layer: 0
-  m_Name: NasuTornadoLauncher
+  m_Name: NasuTornadoAdder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8315777333963794021
+--- !u!4 &6955423107805690170
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7709545372817488159}
+  m_GameObject: {fileID: 4210725590578107468}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,28 +32,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6378473530720004852
+--- !u!114 &-5874812564439802505
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7709545372817488159}
+  m_GameObject: {fileID: 4210725590578107468}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bec6e45012e2f194186994a2f19af72f, type: 3}
+  m_Script: {fileID: 11500000, guid: d7ac3e8db8e16ee4f8668121dc7e8ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackPrefab: {fileID: 572804994532909578, guid: bd485a95eaf0f944ea4352bdddad3310, type: 3}
-  IsPetFacingRequired: 0
-  IsAttached: 0
-  AttackColor: {r: 1, g: 1, b: 1, a: 1}
-  BaseDamage: 0
-  KnockbackAmount: 12
-  DamageMultiplier: 0
-  AttackLevel: 1
-  IsOnAttackTimer: 1
-  AttackCount: 2
-  OnOffset: 0
-  speed: 6
-  distance: 12
+  ItemScriptableInfo: {fileID: 11400000, guid: e3feaa9e8b0e5cd419673117b74bd221, type: 2}
+  MinWaveIndex: 2
+  statList: []
+  statLevelUps: 
+  isExcemptFromPoolRemoval: 0
+  addsToUI: 1
+  prefab: {fileID: 7709545372817488159, guid: 85f32425f9f3ff74d8bf6bdf90c0721e, type: 3}

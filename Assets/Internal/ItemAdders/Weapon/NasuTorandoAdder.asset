@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NasuTorandoAdder
   m_EditorClassIdentifier: 
   ItemName: Nasu Tornado
-  ItemDescription: "Create a tornado in a random forwards direction that knocks enemies
-    back but does no damage  \n"
+  ItemDescription: "Every 2 attacks, create a tornado in a random forwards direction
+    that pushes enemies back but does no damage  \n"
   ItemIconImage: {fileID: 21300000, guid: c47d3008f5b134fdd93eb9b6b2a7d553, type: 3}
   ItemSpriteColor: {r: 1, g: 1, b: 1, a: 1}

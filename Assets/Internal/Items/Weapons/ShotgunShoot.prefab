@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4701852612666791299
+--- !u!1 &6886489726890889435
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 913511811118797198}
-  - component: {fileID: -4960585179473724930}
+  - component: {fileID: 9128226296587552386}
+  - component: {fileID: 7206170016552923650}
   m_Layer: 0
-  m_Name: ExecutePassiveAdder
+  m_Name: ShotgunShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &913511811118797198
+--- !u!4 &9128226296587552386
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4701852612666791299}
+  m_GameObject: {fileID: 6886489726890889435}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,21 +32,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4960585179473724930
+--- !u!114 &7206170016552923650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4701852612666791299}
+  m_GameObject: {fileID: 6886489726890889435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b30ba4059d733984490087ec0debb23a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ab8f6ae19275884ea4d7e9a655b387f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemScriptableInfo: {fileID: 11400000, guid: 2f88800fcba7eb74ea97703522536910, type: 2}
-  MinWaveIndex: 4
-  statList: []
-  statLevelUps: 
-  isExcemptFromPoolRemoval: 0
-  Passive: 0
+  AttackPrefab: {fileID: 4122397060010652790, guid: a7dbd6cddebc5974f95c43570761258f, type: 3}
+  IsPetFacingRequired: 1
+  IsAttached: 0
+  AttackColor: {r: 1, g: 1, b: 1, a: 1}
+  BaseDamage: 2
+  KnockbackAmount: 5
+  DamageMultiplier: 1
+  AttackLevel: 1
+  IsOnAttackTimer: 1
+  AttackCount: 2
+  OnOffset: 0
+  ProjectileSpeed: 20
+  numberOfProjectiles: 7
+  coneAngle: 30

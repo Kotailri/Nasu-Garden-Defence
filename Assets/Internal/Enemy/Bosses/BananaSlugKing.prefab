@@ -366,6 +366,7 @@ MonoBehaviour:
   GardenContactDamage: 0
   _contactDamageComponent: {fileID: 0}
   _healthComponent: {fileID: 0}
+  BossActivePosition: 20
 --- !u!114 &3028620457782268845
 MonoBehaviour:
   m_ObjectHideFlags: 0

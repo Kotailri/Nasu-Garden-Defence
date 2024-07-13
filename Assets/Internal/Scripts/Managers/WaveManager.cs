@@ -6,12 +6,25 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
+[System.Serializable]
+public class WaveWithReward
+{
+    public GameObject Wave;
+    public ItemTypeEnum ItemType;
+
+    public WaveWithReward(GameObject _wave, ItemTypeEnum _itemType)
+    {
+        Wave = _wave;
+        ItemType = _itemType;
+    }
+}
+
 public class WaveManager : MonoBehaviour
 {
-    public List<GameObject> waves = new();
+    public List<WaveWithReward> waves = new();
 
     public string WavesLocation;
-    public int CurrentWaveIndex = 0;
+    public int CurrentWaveIndex = -1;
 
     private GameObject currentWave;
     public TextMeshProUGUI waveNameUI;
@@ -65,19 +78,7 @@ public class WaveManager : MonoBehaviour
             isWaveOngoing = false;
             Destroy(currentWave);
 
-            if (CurrentWaveIndex == 3)
-            {
-                Global.itemSelectManager.CreateItems(ItemTier.Keystone);
-            }
-
-            else if (CurrentWaveIndex % 2 == 1) 
-            {
-                Global.itemSelectManager.CreateItems(ItemTier.Tier1);
-            }
-            else
-            {
-                Global.itemSelectManager.CreateItems(ItemTier.Tier2);
-            }
+            Global.itemSelectManager.CreateItems(waves[CurrentWaveIndex-1].ItemType);
 
             EventManager.TriggerEvent(EventStrings.WAVE_END, null);
         }
@@ -133,7 +134,8 @@ public class WaveManager : MonoBehaviour
         IEnumerator DelayNextWave(float delay)
         {
             yield return new WaitForSeconds(delay);
-            currentWave = Instantiate(waves[CurrentWaveIndex], new Vector3(Global.MaxX, 0, transform.position.z), Quaternion.identity);
+            currentWave = Instantiate(waves[CurrentWaveIndex].Wave, new Vector3(Global.MaxX, 0, transform.position.z), Quaternion.identity);
+            
             CurrentWaveIndex++;
 
             if (CurrentWaveIndex >= waves.Count)
@@ -161,7 +163,7 @@ public class WaveManager : MonoBehaviour
     }
 
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
     [ContextMenu("Refresh Waves")]
     public void RefreshWaves()
     {
@@ -177,10 +179,10 @@ public class WaveManager : MonoBehaviour
                 GameObject asset = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
                 if (asset != null)
                 {
-                    waves.Add(asset);
+                    waves.Add(new WaveWithReward(asset, ItemTypeEnum.Weapon));
                 }
             }
         }
     }
-#endif
+#endif*/
 }

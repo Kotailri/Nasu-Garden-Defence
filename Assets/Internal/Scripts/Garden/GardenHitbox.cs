@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(GardenHealth))]
-public class GardenHitbox : MonoBehaviour, IHasTriggerStay
+public class GardenHitbox : MonoBehaviour, IHasTriggerExit
 {
-    public void OnTriggerStayEvent(GameObject collisionObject)
+    public void OnTriggerExitEvent(GameObject collisionObject)
     {
+        if (collisionObject.transform.position.x > -15f)
+        {
+            return;
+        }
 
         if (collisionObject.TryGetComponent(out EnemyController em))
         {

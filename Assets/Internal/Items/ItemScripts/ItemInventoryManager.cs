@@ -5,10 +5,11 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-public enum ItemTier
+public enum ItemTypeEnum
 {
-    Tier1,
-    Tier2,
+    Weapon,
+    StatUp,
+    Passive,
     Keystone
 }
 
@@ -17,8 +18,9 @@ public class ItemInventoryManager : MonoBehaviour
     public List<ItemAdder> debugInventory = new();
 
     [Space(10f)]
-    public List<ItemAdder> ItemPool_T1 = new();
-    public List<ItemAdder> ItemPool_T2 = new();
+    public List<ItemAdder> ItemPool_Weapon = new();
+    public List<ItemAdder> ItemPool_StatUp = new();
+    public List<ItemAdder> ItemPool_Passive = new();
     public List<ItemAdder> ItemPool_Keystone = new();
 
     [Space(10f)]
@@ -26,8 +28,9 @@ public class ItemInventoryManager : MonoBehaviour
 
     [Space(5f)]
     [Header("Item Paths")]
-    public string Tier1ItemPath;
-    public string Tier2ItemPath;
+    public string WeaponPoolPath;
+    public string StatUpPoolPath;
+    public string PassivePoolPath;
     public string KeystoneItemPath;
 
     private void Awake()
@@ -43,11 +46,15 @@ public class ItemInventoryManager : MonoBehaviour
         }
 
         // debug check item info
-        foreach (ItemAdder item in ItemPool_T1)
+        foreach (ItemAdder item in ItemPool_Weapon)
         {
             item.GetInfo();
         }
-        foreach (ItemAdder item in ItemPool_T2)
+        foreach (ItemAdder item in ItemPool_StatUp)
+        {
+            item.GetInfo();
+        }
+        foreach (ItemAdder item in ItemPool_Passive)
         {
             item.GetInfo();
         }
@@ -57,19 +64,22 @@ public class ItemInventoryManager : MonoBehaviour
         }
     }
 
-    public List<ItemAdder> GetRandomFromPool(int num, ItemTier tier, int waveRequirement=0)
+    public List<ItemAdder> GetRandomFromPool(int num, ItemTypeEnum tier, int waveRequirement=0)
     {
         List<ItemAdder> selectedPool = new();
 
         switch(tier)
         {
-            case ItemTier.Tier1:
-                selectedPool = new List<ItemAdder>(ItemPool_T1);
+            case ItemTypeEnum.Weapon:
+                selectedPool = new List<ItemAdder>(ItemPool_Weapon);
                 break;
-            case ItemTier.Tier2:
-                selectedPool = new List<ItemAdder>(ItemPool_T2);
+            case ItemTypeEnum.StatUp:
+                selectedPool = new List<ItemAdder>(ItemPool_StatUp);
                 break;
-            case ItemTier.Keystone:
+            case ItemTypeEnum.Passive:
+                selectedPool = new List<ItemAdder>(ItemPool_Passive);
+                break;
+            case ItemTypeEnum.Keystone:
                 selectedPool = new List<ItemAdder>(ItemPool_Keystone);
                 break;
         }
@@ -89,14 +99,21 @@ public class ItemInventoryManager : MonoBehaviour
         ItemInventory.Add(item);
         if (item.IsExcemptFromPoolRemoval() == false)
         {
-            if (ItemPool_T1.Contains(item))
+            if (ItemPool_Weapon.Contains(item))
             {
-                ItemPool_T1.Remove(item);
+                ItemPool_Weapon.Remove(item);
             }
+
             else
-            if (ItemPool_T2.Contains(item))
+            if (ItemPool_StatUp.Contains(item))
             {
-                ItemPool_T2.Remove(item);
+                ItemPool_StatUp.Remove(item);
+            }
+
+            else
+            if (ItemPool_Passive.Contains(item))
+            {
+                ItemPool_Passive.Remove(item);
             }
 
             else
@@ -109,37 +126,45 @@ public class ItemInventoryManager : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    [ContextMenu("Load Tier 1s")]
-    public void LoadTier1()
+    [ContextMenu("Load Weapon Pool")]
+    public void LoadWeaponPool()
     {
-        ItemPool_T1.Clear();
-        LoadItemPool(Tier1ItemPath, ItemTier.Tier1);
+        ItemPool_Weapon.Clear();
+        LoadItemPool(WeaponPoolPath, ItemTypeEnum.Weapon);
     }
 
-    [ContextMenu("Load Tier 2s")]
-    public void LoadTier2()
+    [ContextMenu("Load StatUp Pool")]
+    public void LoadStatUpPool()
     {
-        ItemPool_T2.Clear();
-        LoadItemPool(Tier2ItemPath, ItemTier.Tier2);
+        ItemPool_StatUp.Clear();
+        LoadItemPool(StatUpPoolPath, ItemTypeEnum.StatUp);
     }
 
-    [ContextMenu("Load Keystones")]
+    [ContextMenu("Load Passive Pool")]
+    public void LoadPassivePool()
+    {
+        ItemPool_Passive.Clear();
+        LoadItemPool(PassivePoolPath, ItemTypeEnum.Passive);
+    }
+
+    [ContextMenu("Load Keystone Pool")]
     public void LoadKeystone()
     {
         ItemPool_Keystone.Clear();
-        LoadItemPool(KeystoneItemPath, ItemTier.Keystone);
+        LoadItemPool(KeystoneItemPath, ItemTypeEnum.Keystone);
     }
 
     [ContextMenu("Load All")]
     public void LoadAll()
     {
-        LoadTier1();
-        LoadTier2();
+        LoadWeaponPool();
+        LoadStatUpPool();
+        LoadPassivePool();
         LoadKeystone();
     }
 
     
-    public void LoadItemPool(string path, ItemTier tier)
+    public void LoadItemPool(string path, ItemTypeEnum tier)
     {
         string[] guids = AssetDatabase.FindAssets("t:Prefab", new[] { path });
 
@@ -154,15 +179,19 @@ public class ItemInventoryManager : MonoBehaviour
                 {
                     switch(tier)
                     { 
-                        case ItemTier.Tier1:
-                            ItemPool_T1.Add(asset.GetComponent<ItemAdder>());
+                        case ItemTypeEnum.Weapon:
+                            ItemPool_Weapon.Add(asset.GetComponent<ItemAdder>());
                             break;
 
-                        case ItemTier.Tier2:
-                            ItemPool_T2.Add(asset.GetComponent<ItemAdder>());
+                        case ItemTypeEnum.StatUp:
+                            ItemPool_StatUp.Add(asset.GetComponent<ItemAdder>());
                             break;
 
-                        case ItemTier.Keystone:
+                        case ItemTypeEnum.Passive:
+                            ItemPool_Passive.Add(asset.GetComponent<ItemAdder>());
+                            break;
+
+                        case ItemTypeEnum.Keystone:
                             ItemPool_Keystone.Add(asset.GetComponent<ItemAdder>());
                             break;
                     }

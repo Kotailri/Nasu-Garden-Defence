@@ -10,6 +10,9 @@ public class BossController : MonoBehaviour
     public DamagesPlayerOnHit _contactDamageComponent;
     public BossHealth _healthComponent;
 
+    [Space(5f)]
+    public float BossActivePosition;
+
     private void Awake()
     {
         _healthComponent = gameObject.AddComponent<BossHealth>();
@@ -28,7 +31,14 @@ public class BossController : MonoBehaviour
     private void Start()
     {
         Global.bossHealthBarManager.SetBossName(bossScriptable.BossName);
-        Global.bossHealthBarManager.ActivateHealthBar(1.5f);
+    }
+
+    private void Update()
+    {
+        if (!Global.bossHealthBarManager.IsBossHealthActive() && transform.position.x <= BossActivePosition)
+        {
+            Global.bossHealthBarManager.ActivateHealthBar(1.5f);
+        }
     }
 
     private void OnEnable()
