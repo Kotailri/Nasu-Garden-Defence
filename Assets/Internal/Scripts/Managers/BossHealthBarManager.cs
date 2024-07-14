@@ -50,21 +50,30 @@ public class BossHealthBarManager : MonoBehaviour
         {
             bar.UpdateValue(val);
         }
+        else
+        {
+            bar.UpdateValue(0);
+        }
     }
 
     public void DeactivateHealthBar()
     {
         if (gameObject == null) return;
+        IsBarLoaded = false;
         isActive = false;
-        LeanTween.moveLocal(gameObject, inactivePosition, 1.5f).setOnComplete(() => { IsBarLoaded = false; });
+        
+        bar.UpdateValue(0);
+        LeanTween.moveLocal(gameObject, inactivePosition, 1.5f);
         
     }
 
     private void LoadHealthBar()
     {
+        if (!isActive) { return; }
+
         LeanTween.value(gameObject, 0f, 1f, HealthBarLoadTime).setOnUpdate((float val) =>
         {
             bar.UpdateValue(val);
-        }).setEase(LeanTweenType.easeInOutQuad).setOnComplete(() => { IsBarLoaded = true; });
+        }).setOnComplete(() => { IsBarLoaded = true; });
     }
 }

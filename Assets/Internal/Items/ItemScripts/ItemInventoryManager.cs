@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 #if UNITY_EDITOR
@@ -25,6 +26,7 @@ public class ItemInventoryManager : MonoBehaviour
 
     [Space(10f)]
     public List<ItemAdder> ItemInventory = new();
+    public List<ItemAdder> StartingItems = new();
 
     [Space(5f)]
     [Header("Item Paths")]
@@ -41,6 +43,11 @@ public class ItemInventoryManager : MonoBehaviour
     private void Start()
     {
         foreach (ItemAdder item in debugInventory)
+        {
+            item.OnItemGet();
+        }
+
+        foreach (ItemAdder item in StartingItems)
         {
             item.OnItemGet();
         }
@@ -92,6 +99,22 @@ public class ItemInventoryManager : MonoBehaviour
     public List<ItemAdder> GetRandomFromInventory(int num)
     {
         return Global.GetRandomElements(ItemInventory, num);
+    }
+
+    public void AddRandomToInventory(ItemTypeEnum itemType, int waveIndex=int.MaxValue)
+    {
+        List<ItemAdder> randomItems = Global.itemInventoryManager.GetRandomFromPool(3, itemType, waveIndex);
+        if (randomItems.Count == 0)
+        {
+            print("No Items to add to inventory");
+        }
+        else
+        {
+            ItemAdder item = randomItems[UnityEngine.Random.Range(0, randomItems.Count)];
+            item.OnItemGet();
+            PoolToInventory(item);
+        }
+        
     }
 
     public void PoolToInventory(ItemAdder item)

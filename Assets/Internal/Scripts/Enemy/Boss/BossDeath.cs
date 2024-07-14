@@ -14,7 +14,6 @@ public class BossDeath : EnemyDeath
         }
 
         GetComponent<Collider2D>().enabled = false;
-        Global.bossHealthBarManager.DeactivateHealthBar();
         LeanTween.scale(gameObject, Vector3.zero, 0.5f);
         LeanTween.alpha(gameObject, 0, 0.5f).setOnComplete(() => { 
             Instantiate(ExplosionEffect, transform.position, Quaternion.identity);

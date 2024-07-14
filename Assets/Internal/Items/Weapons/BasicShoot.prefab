@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2749389936802607256}
   - component: {fileID: 6610632124409300346}
   m_Layer: 0
-  m_Name: BackwardsBasicShoot
+  m_Name: BasicShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,6 +56,6 @@ MonoBehaviour:
   AttackCount: 1
   OnOffset: 0
   ProjectileSpeed: 3
-  ShootDirection: {x: -1, y: 0}
-  numberOfProjectiles: 2
-  delayBetweenProjectiles: 0.25
+  ShootDirection: {x: 1, y: 0}
+  numberOfProjectiles: 0
+  delayBetweenProjectiles: 0.1

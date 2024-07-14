@@ -20,4 +20,12 @@ public class RestartButton : MonoBehaviour
         }
 
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R)) 
+        {
+            Restart();
+        }
+    }
 }

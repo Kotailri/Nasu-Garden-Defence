@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1575511201513785632
+--- !u!1 &2044843104490144803
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2749389936802607256}
-  - component: {fileID: 6610632124409300346}
+  - component: {fileID: 1019371243325674750}
+  - component: {fileID: -2324429805443389761}
   m_Layer: 0
-  m_Name: BackwardsBasicShoot
+  m_Name: BasicShootAdder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2749389936802607256
+--- !u!4 &1019371243325674750
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575511201513785632}
+  m_GameObject: {fileID: 2044843104490144803}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,30 +32,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6610632124409300346
+--- !u!114 &-2324429805443389761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575511201513785632}
+  m_GameObject: {fileID: 2044843104490144803}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7923b6e690ca394e826929b111dd88a, type: 3}
+  m_Script: {fileID: 11500000, guid: d7ac3e8db8e16ee4f8668121dc7e8ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackPrefab: {fileID: 4122397060010652790, guid: c38ea4342d35ad642b218c40f2146fd3, type: 3}
-  IsPetFacingRequired: 0
-  IsAttached: 0
-  AttackColor: {r: 1, g: 1, b: 1, a: 1}
-  BaseDamage: 8
-  KnockbackAmount: 0
-  DamageMultiplier: 1
-  AttackLevel: 1
-  IsOnAttackTimer: 1
-  AttackCount: 1
-  OnOffset: 0
-  ProjectileSpeed: 3
-  ShootDirection: {x: -1, y: 0}
-  numberOfProjectiles: 2
-  delayBetweenProjectiles: 0.25
+  ItemScriptableInfo: {fileID: 11400000, guid: b083107f330a317448f233949accc90d, type: 2}
+  MinWaveIndex: 0
+  statList: []
+  statLevelUps: 
+  isExcemptFromPoolRemoval: 0
+  addsToUI: 1
+  prefab: {fileID: 1575511201513785632, guid: a64feb01a3755094094d92a25410e51a, type: 3}

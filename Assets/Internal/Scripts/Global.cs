@@ -149,7 +149,7 @@ public static class Global
 
 public static class GlobalAudio
 {
-    public static float MusicVolume = 1f;
+    public static float MusicVolume = 0f;
     public static float SoundVolume = 1f;
 
 }

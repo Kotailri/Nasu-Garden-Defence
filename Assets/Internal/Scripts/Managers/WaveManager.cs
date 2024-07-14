@@ -24,7 +24,7 @@ public class WaveManager : MonoBehaviour
     public List<WaveWithReward> waves = new();
 
     public string WavesLocation;
-    public int CurrentWaveIndex = -1;
+    public int CurrentWaveIndex = 0;
 
     private GameObject currentWave;
     public TextMeshProUGUI waveNameUI;
@@ -48,6 +48,13 @@ public class WaveManager : MonoBehaviour
     {
         waveProgressBar.UpdateValue(0);
         DemoCompleteUI.SetActive(false);
+
+        CurrentWaveIndex--;
+
+        for (int i = 0; i < CurrentWaveIndex; i++)
+        {
+            Global.itemInventoryManager.AddRandomToInventory(waves[i].ItemType, i);
+        }
     }
 
     public bool IsWaveOngoing()
@@ -114,9 +121,18 @@ public class WaveManager : MonoBehaviour
 
     public void SpawnNextWave()
     {
-        if (CurrentWaveIndex == 0) { print("Wave 0 speed reduction");  Global.EnemySpeedMultiplier = 0.5f; }
-        if (CurrentWaveIndex == 1) { print("Wave 1 speed reduction");  Global.EnemySpeedMultiplier = 0.75f; }
-        if (CurrentWaveIndex == 2) { print("speed restored");  Global.EnemySpeedMultiplier = 1f; }
+        if (CurrentWaveIndex == 0) { 
+            //print("Wave 0 speed reduction");  
+            Global.EnemySpeedMultiplier = 0.5f; 
+        }
+        if (CurrentWaveIndex == 1) { 
+            //print("Wave 1 speed reduction");  
+            Global.EnemySpeedMultiplier = 0.75f; 
+        }
+        if (CurrentWaveIndex == 2) { 
+            //print("speed restored");  
+            Global.EnemySpeedMultiplier = 1f; 
+        }
 
         isWaveOngoing = true;
         waveNameUI.text = "Wave " + (CurrentWaveIndex+1);

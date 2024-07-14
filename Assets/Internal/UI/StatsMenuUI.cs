@@ -49,6 +49,7 @@ public class StatsMenuUI : MonoBehaviour
         }
 
         UpdateStatsDisplay();
+        GetComponent<CanvasGroup>().alpha = 0;
     }
 
     private void UpdateStat(int index, PlayerStat stat)
@@ -81,10 +82,12 @@ public class StatsMenuUI : MonoBehaviour
         if (!isOpen)
         { 
             UpdateStatsDisplay();
+            GetComponent<CanvasGroup>().alpha = 1;
             LeanTween.moveX(gameObject, activePosition.x, slideTime).setEaseOutQuad();
         }
         else
         {
+            GetComponent<CanvasGroup>().alpha = 0;
             LeanTween.moveX(gameObject, activePosition.x - leftSlideAmount, slideTime).setEaseOutQuad();
         }
 

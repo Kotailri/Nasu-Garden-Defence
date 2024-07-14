@@ -396,5 +396,5 @@ MonoBehaviour:
   timeBetweenStops: 2
   stopTime: 5
   miniSlug: {fileID: 8120188403701684839, guid: 2b629b605cb035446a0e314843fa81ad, type: 3}
-  TimeBetweenSpawning: 22
+  TimeBetweenSpawning: 20
   slugSpit: {fileID: 5495609493476274954, guid: 639c246d9a93a404a81c283ac4130394, type: 3}
