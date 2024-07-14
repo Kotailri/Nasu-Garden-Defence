@@ -72,6 +72,11 @@ public static class Global
         GlobalItemToggles.HasImmortalHarmony = false;
 }
 
+    public static void ShakeCamera(float shakeDuration=0.5f, float shakeMagnitude = 0.5f, float dampingSpeed=1.0f)
+    {
+        Camera.main.GetComponent<CameraShake>().ShakeCamera(shakeDuration, shakeMagnitude, dampingSpeed);
+    }
+
     public static List<GameObject> GetActiveEnemies()
     {
         List<GameObject> activeEnemies = new();
