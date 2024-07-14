@@ -55,6 +55,7 @@ public class GameOverManager : MonoBehaviour
             }
 
             yield return new WaitForSeconds(1f);
+            AudioManager.instance.PlaySound(AudioEnum.GameOver);
             LeanTween.alphaCanvas(GameOverUIFade, 1f, 1f);
             yield return new WaitForSeconds(3f);
             LeanTween.alphaCanvas(GameOverUIFade, 0f, 1f).setOnComplete(()=> { GameOverUIFade.gameObject.SetActive(false); });

@@ -161,7 +161,11 @@ public enum AudioEnum
     Explosion = 1,
 
     PlayerDamaged = 2,
-    EnemyDamaged = 3
+    EnemyDamaged = 3,
+    ThingPlaced = 4,
+    GardenDamaged = 5,
+
+    GameOver = 6,
 }
 
 

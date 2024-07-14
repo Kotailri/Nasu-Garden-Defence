@@ -17,6 +17,7 @@ public class GardenHitbox : MonoBehaviour, IHasTriggerExit
             if (em.GardenContactDamage > 0)
             {
                 GetComponent<GardenHealth>().SetHealth(-em.GardenContactDamage, true);
+                AudioManager.instance.PlaySound(AudioEnum.GardenDamaged);
                 Destroy(collisionObject);
                 return;
             }
@@ -27,6 +28,7 @@ public class GardenHitbox : MonoBehaviour, IHasTriggerExit
             if (boss.GardenContactDamage > 0)
             {
                 GetComponent<GardenHealth>().SetHealth(-boss.GardenContactDamage, true);
+                AudioManager.instance.PlaySound(AudioEnum.GardenDamaged);
                 Destroy(collisionObject);
                 return;
             }

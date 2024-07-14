@@ -6,7 +6,7 @@ public class BossDeath : EnemyDeath
 {
     public GameObject ExplosionEffect;
 
-    public override void Die()
+    public override void Die(Vector2? location = null)
     {
         foreach (GameObject g in GameObject.FindGameObjectsWithTag("Enemy"))
         {

@@ -13,6 +13,7 @@ public static class EventStrings
     public static readonly string WAVE_END = "WaVE_ENDED";
 
     public static readonly string GAME_RESET = "GAME_RESET";
+    public static readonly string GAME_START = "GAME_START";
 }
 
 public static class EventManager

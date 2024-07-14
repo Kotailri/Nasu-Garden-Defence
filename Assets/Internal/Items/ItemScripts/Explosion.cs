@@ -27,7 +27,7 @@ public class Explosion : ExplosionEffect
         {
             int damage = Mathf.FloorToInt(explosionDamage * GlobalPlayer.CurrentPlayerDamageMultiplier *
                         GlobalPlayer.GetStatValue(PlayerStatEnum.damage) * GlobalPlayer.GetStatValue(PlayerStatEnum.explosionDamage));
-            hit.GetHit(damage);
+            hit.GetHit(damage, transform.position);
         }
     }
 

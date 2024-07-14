@@ -37,36 +37,38 @@ public class EnemyHealth : MonoBehaviour
         CheckHealth();
     }
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage, Vector2 location)
     {
         if (damage == 0)
         {
             return;
         }
 
+        Vector2 textSpawnLocation = (Vector2)transform.position + ((location - (Vector2)transform.position).normalized);
+
         if (Random.Range(0f, 1f) >= DodgeChance)
         {
             CurrentHealth -= damage - Mathf.FloorToInt(damage * Resistance);
-            Global.damageTextSpawner.SpawnText(transform.position, (damage - Mathf.FloorToInt(damage * Resistance)).ToString(), DamageTextType.White, 1f);
+            Global.damageTextSpawner.SpawnText(textSpawnLocation, (damage - Mathf.FloorToInt(damage * Resistance)).ToString(), DamageTextType.White, 1f);
 
             if (canGetExecuted && CurrentHealth > 0 && Global.itemPassiveManager.GetPassive(ItemPassiveEnum.LowHealthExecute) && (float)CurrentHealth/(float)Health <= Global.itemPassiveManager.LowHealthExecutePercent)
             {
                 CurrentHealth -= 99999;
-                Global.damageTextSpawner.SpawnText(transform.position, "99999", DamageTextType.White, 1f);
+                Global.damageTextSpawner.SpawnText(textSpawnLocation, "99999", DamageTextType.White, 1f);
             }
 
             AudioManager.instance.PlaySound(AudioEnum.EnemyDamaged);
         }
         else
         {
-            Global.damageTextSpawner.SpawnText(transform.position, "dodged", DamageTextType.Status, 1f);
+            Global.damageTextSpawner.SpawnText(textSpawnLocation, "dodged", DamageTextType.Status, 1f);
         }
             
 
-        CheckHealth();
+        CheckHealth(location);
     }
 
-    protected virtual void CheckHealth()
+    protected virtual void CheckHealth(Vector2? location=null)
     {
         if (CurrentHealth > Health)
         {
@@ -77,7 +79,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (CurrentHealth <= 0)
         {
-            GetComponent<EnemyDeath>().Die();
+            GetComponent<EnemyDeath>().Die(location);
         }
     }
 

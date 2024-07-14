@@ -57,12 +57,12 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
                         break;
 
                 }
-                hit.GetHit(damage);
+                hit.GetHit(damage, transform.position);
             }
 
             if (collisionObject.TryGetComponent(out EnemyMovement move))
             {
-                move.DoKnockback(Knockback);
+                move.DoKnockback(Knockback, transform.position);
             }
 
             if (DestroyOnContact)

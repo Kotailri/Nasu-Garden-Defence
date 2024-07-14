@@ -17,6 +17,7 @@ public class StartGameObject : MonoBehaviour
         {
             if (!Global.gameplayStarted)
             {
+                EventManager.TriggerEvent(EventStrings.GAME_START, null);
                 moveCam.MoveToGameplay();
                 Global.waveManager.StartGame();
                 Global.gameplayStarted = true;

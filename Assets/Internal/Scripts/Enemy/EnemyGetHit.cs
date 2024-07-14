@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyGetHit : MonoBehaviour
 {
-    public void GetHit(int damage)
+    public void GetHit(int damage, Vector2 location)
     {
         int newDamage = damage;
         if (GlobalItemToggles.HasAmplifier)
@@ -21,6 +21,6 @@ public class EnemyGetHit : MonoBehaviour
         if (TryGetComponent(out DamageFlash flash)) {
             flash.DoDamageFlash();
         }
-        GetComponent<EnemyHealth>().TakeDamage(newDamage);
+        GetComponent<EnemyHealth>().TakeDamage(newDamage, location);
     }
 }

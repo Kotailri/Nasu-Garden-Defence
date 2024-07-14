@@ -63,7 +63,7 @@ public class ItemSelectObject : MonoBehaviour
     {
         isItemActive = false;
         itemAdder.OnItemGet();
-
+        AudioManager.instance.PlaySound(AudioEnum.ThingPlaced);
         Global.itemInventoryManager.PoolToInventory(itemAdder);
     }
 }

@@ -10,15 +10,15 @@ public class BossHealth : EnemyHealth
         canGetExecuted = false;
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage, Vector2 location)
     {
         if (Global.bossHealthBarManager.IsBarLoaded)
         {
-            base.TakeDamage(damage);
+            base.TakeDamage(damage, location);
         }
     }
 
-    protected override void CheckHealth()
+    protected override void CheckHealth(Vector2? location = null)
     {
         if (CurrentHealth > Health)
         {

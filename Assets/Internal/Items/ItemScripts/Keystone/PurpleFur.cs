@@ -60,7 +60,7 @@ public class PurpleFur : MonoBehaviour
 
             if (collider.gameObject.TryGetComponent(out EnemyGetHit hit))
             {
-                hit.GetHit(Damage);
+                hit.GetHit(Damage, transform.position);
             }
         }
     }

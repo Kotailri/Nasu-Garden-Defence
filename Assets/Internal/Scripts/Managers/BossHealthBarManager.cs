@@ -56,8 +56,8 @@ public class BossHealthBarManager : MonoBehaviour
     {
         if (gameObject == null) return;
         isActive = false;
-        LeanTween.moveLocal(gameObject, inactivePosition, 1.5f);
-        IsBarLoaded = false;
+        LeanTween.moveLocal(gameObject, inactivePosition, 1.5f).setOnComplete(() => { IsBarLoaded = false; });
+        
     }
 
     private void LoadHealthBar()
