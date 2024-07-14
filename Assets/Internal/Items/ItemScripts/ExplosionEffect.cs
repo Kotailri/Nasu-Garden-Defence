@@ -17,6 +17,7 @@ public class ExplosionEffect : MonoBehaviour
     protected virtual void Start()
     {
         DoExplosionEffect();
+        AudioManager.instance.PlaySound(AudioEnum.Explosion);
     }
 
     protected virtual void DoExplosionEffect()

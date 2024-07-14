@@ -17,6 +17,7 @@ public class Explosion : ExplosionEffect
 
     protected override void DoExplosionEffect()
     {
+        AudioManager.instance.PlaySound(AudioEnum.Explosion);
         LeanTween.scale(gameObject, scale * GlobalPlayer.GetStatValue(PlayerStatEnum.explosionRadius), explosionDuration).setEaseOutExpo().setOnComplete(() => { Destroy(gameObject); });
     }
 

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -55,6 +54,8 @@ public class EnemyHealth : MonoBehaviour
                 CurrentHealth -= 99999;
                 Global.damageTextSpawner.SpawnText(transform.position, "99999", DamageTextType.White, 1f);
             }
+
+            AudioManager.instance.PlaySound(AudioEnum.EnemyDamaged);
         }
         else
         {

@@ -147,6 +147,24 @@ public static class Global
     }
 }
 
+public static class GlobalAudio
+{
+    public static float MusicVolume = 1f;
+    public static float SoundVolume = 1f;
+
+}
+
+public enum AudioEnum
+{
+    BGM = 0,
+
+    Explosion = 1,
+
+    PlayerDamaged = 2,
+    EnemyDamaged = 3
+}
+
+
 public static class MathHelper
 {
     public static bool IsBetweenFloatsInclusive(float toCheck, float min, float max)

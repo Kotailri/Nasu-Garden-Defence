@@ -3929,6 +3929,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4026,6 +4027,21 @@ MonoBehaviour:
   GameplayPosition: {x: 1.92, y: 1.18}
   MenuPosition: {x: -24, y: 1.18}
   StartsAtMenu: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c79fd859534c0de41a8d1b84e58c1270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 0.25
+  shakeMagnitude: 0.25
+  dampingSpeed: 0.5
 --- !u!1 &541149276
 GameObject:
   m_ObjectHideFlags: 0
@@ -5409,6 +5425,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760337348}
   m_CullTransparentMesh: 1
+--- !u!1 &807976885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 807976887}
+  - component: {fileID: 807976886}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &807976886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807976885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00137f74547f1a469be2b0f4c8b558f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: hurt
+    clip: {fileID: 8300000, guid: 84b80e329d466ab4ea716a15c4f94173, type: 3}
+    volume: 0.2
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0.1
+    loops: 0
+    isMusic: 0
+    playOnAwake: 0
+    muteOnAwake: 0
+  - name: explosion
+    clip: {fileID: 8300000, guid: 781e7ebc6af14e640a0d3b08cdd24a72, type: 3}
+    volume: 0.2
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0.1
+    loops: 0
+    isMusic: 0
+    playOnAwake: 0
+    muteOnAwake: 0
+--- !u!4 &807976887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807976885}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &844188785
 GameObject:
   m_ObjectHideFlags: 0
@@ -14463,6 +14544,7 @@ SceneRoots:
   - {fileID: 4674286}
   - {fileID: 1531515172}
   - {fileID: 1598946436}
+  - {fileID: 807976887}
   - {fileID: 580499923}
   - {fileID: 1523279626}
   - {fileID: 1643973015}
