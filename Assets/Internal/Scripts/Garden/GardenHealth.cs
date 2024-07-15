@@ -11,9 +11,14 @@ public class GardenHealth : MonoBehaviour
 
     private float currentRegenAmount = 0f;
 
+    private void Awake()
+    {
+        Global.gardenHealth = this;
+    }
+
     private void Start()
     {
-        MaxHP = (int)GlobalPlayer.GetStatValue(PlayerStatEnum.gardenHealth) * 10;
+        MaxHP = (int)GlobalPlayer.GetStatValue(PlayerStatEnum.gardenHealth);
         CurrentHP = MaxHP;
         UpdateUI(CurrentHP);
     }
@@ -25,7 +30,7 @@ public class GardenHealth : MonoBehaviour
             return;
         }
 
-        currentRegenAmount += GlobalPlayer.GetStatValue(PlayerStatEnum.gardenRegen) * Time.deltaTime;
+        //currentRegenAmount += GlobalPlayer.GetStatValue(PlayerStatEnum.gardenRegen) * Time.deltaTime;
         if (currentRegenAmount >= 1)
         {
             SetHealth(Mathf.FloorToInt(currentRegenAmount), true);
@@ -53,6 +58,12 @@ public class GardenHealth : MonoBehaviour
         return MaxHP;
     }
 
+    public void FullHeal()
+    {
+        CurrentHP = MaxHP;
+        UpdateUI(CurrentHP);
+    }
+
     public void SetHealth(int _hp, bool isRelative)
     {
         if (isRelative)
@@ -76,7 +87,7 @@ public class GardenHealth : MonoBehaviour
 
     public void OnMaxHpStatChanged(Dictionary<string, object> message)
     {
-        SetMaxHealth(Mathf.FloorToInt((GlobalPlayer.GetStatValue(PlayerStatEnum.gardenHealth))*10) - MaxHP, true);
+        SetMaxHealth((int)GlobalPlayer.GetStatValue(PlayerStatEnum.gardenHealth) - MaxHP, true);
         UpdateUI(CurrentHP);
     }
 

@@ -12,6 +12,7 @@ public abstract class PlayerAttack : MonoBehaviour
     public Color AttackColor = Color.white;
     public int BaseDamage = 1;
     public float KnockbackAmount = 0f;
+    public float KnockbackTime = 0f;
 
     [Tooltip("Damage Multiplier from INTERNAL Sources")]
     public float DamageMultiplier = 1f;

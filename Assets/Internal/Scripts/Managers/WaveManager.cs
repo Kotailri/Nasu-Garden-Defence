@@ -123,11 +123,11 @@ public class WaveManager : MonoBehaviour
     {
         if (CurrentWaveIndex == 0) { 
             //print("Wave 0 speed reduction");  
-            Global.EnemySpeedMultiplier = 0.5f; 
+            Global.EnemySpeedMultiplier = 0.75f; 
         }
         if (CurrentWaveIndex == 1) { 
             //print("Wave 1 speed reduction");  
-            Global.EnemySpeedMultiplier = 0.75f; 
+            Global.EnemySpeedMultiplier = 0.875f; 
         }
         if (CurrentWaveIndex == 2) { 
             //print("speed restored");  
@@ -152,6 +152,16 @@ public class WaveManager : MonoBehaviour
             yield return new WaitForSeconds(delay);
             currentWave = Instantiate(waves[CurrentWaveIndex].Wave, new Vector3(Global.MaxX, 0, transform.position.z), Quaternion.identity);
             
+            if (Random.Range(0,2) == 0)
+            {
+                foreach (GameObject e in GameObject.FindGameObjectsWithTag("Enemy"))
+                {
+                    e.transform.position = new Vector3(e.transform.position.x, -e.transform.position.y, e.transform.position.z);
+                    e.transform.position += new Vector3(0, 0.57f, 0);
+                }
+            }
+            
+
             CurrentWaveIndex++;
 
             if (CurrentWaveIndex >= waves.Count)

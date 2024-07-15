@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class ItemSelectManager : MonoBehaviour
 {
@@ -75,9 +76,17 @@ public class ItemSelectManager : MonoBehaviour
 
     public void OnItemSelected(InputAction.CallbackContext context)
     {
-        if (context.performed && !Global.waveManager.IsWaveOngoing())
+        if (context.performed)
         {
-            if (selectedItem != null && selectedItem.GetComponent<ItemSelectObject>().isItemActive) 
+            ItemSelected();
+        }
+    }
+
+    public void ItemSelected()
+    {
+        if (!Global.waveManager.IsWaveOngoing())
+        {
+            if (selectedItem != null && selectedItem.GetComponent<ItemSelectObject>().isItemActive)
             {
                 selectedItem.GetComponent<ItemSelectObject>().AcquireItem();
                 foreach (GameObject item in currentItems)

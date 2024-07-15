@@ -18,7 +18,7 @@ public class StatsMenuUI : MonoBehaviour
     public Transform StatsAnchorPoint;
     public Button StatsButton;
 
-    private float spacing = 20f;
+    private float spacing = 35f;
 
     [Space(10f)]
     [Tooltip("DO NOT MODIFY")]

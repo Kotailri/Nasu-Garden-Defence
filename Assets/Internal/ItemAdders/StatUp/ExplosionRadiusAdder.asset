@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ExplosionRadiusAdder
   m_EditorClassIdentifier: 
   ItemName: Explosion Radius
-  ItemDescription: Increases the explosion radius stat by 1 level.
+  ItemDescription: Increases the explosion radius stat by 1 level. Each level increases
+    the explosion radius of your explosion attacks by 25%.
   ItemIconImage: {fileID: 21300000, guid: f5c6ba5b326ca4c6894ee524d88dc4ce, type: 3}
   ItemSpriteColor: {r: 1, g: 1, b: 1, a: 1}

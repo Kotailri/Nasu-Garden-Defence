@@ -49,7 +49,8 @@ MonoBehaviour:
   IsAttached: 0
   AttackColor: {r: 1, g: 1, b: 1, a: 1}
   BaseDamage: 0
-  KnockbackAmount: 18
+  KnockbackAmount: 3
+  KnockbackTime: 1.5
   DamageMultiplier: 0
   AttackLevel: 1
   IsOnAttackTimer: 1

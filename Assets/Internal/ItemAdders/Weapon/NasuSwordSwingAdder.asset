@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: NasuSwordSwingAdder
   m_EditorClassIdentifier: 
   ItemName: Nasword Chop
-  ItemDescription: 'Every other attack, swing a sword in an downwards arc at a set
-    distance in front of the player. The sword damages enemies and slightly knocks
-    them back.
+  ItemDescription: '[Melee]
+
+    Every other attack, swing a sword in an downwards
+    arc at a set distance in front of the player. The sword damages enemies and slightly
+    knocks them back.
 
 '
   ItemIconImage: {fileID: 21300000, guid: 0a1b6e831aa5ac4469e1dfd44078c1b3, type: 3}

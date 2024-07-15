@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: DamageAdder
   m_EditorClassIdentifier: 
   ItemName: Damage
-  ItemDescription: Increases the damage stat by 1 level.
+  ItemDescription: Increases the damage stat by 1 level. Each level increases all
+    damage to enemies by 15%.
   ItemIconImage: {fileID: 21300000, guid: c06cfb1e7670b4c5aab444df933905b7, type: 3}
   ItemSpriteColor: {r: 1, g: 1, b: 1, a: 1}

@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: PlayerHealthAdder
   m_EditorClassIdentifier: 
   ItemName: Player Health
-  ItemDescription: Increases the player health stat by 1 level.
+  ItemDescription: 'Increases the player health stat by 1 level. Each level increases
+    the player''s total health by 25% of the base health.
+
+
+    Fully heals the player
+    upon taking this stat bonus.'
   ItemIconImage: {fileID: 21300000, guid: 8ff9dc5efc59b4f3a93da29c2eb317a5, type: 3}
   ItemSpriteColor: {r: 1, g: 1, b: 1, a: 1}

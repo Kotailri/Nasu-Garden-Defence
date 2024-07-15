@@ -48,8 +48,9 @@ MonoBehaviour:
   IsPetFacingRequired: 0
   IsAttached: 0
   AttackColor: {r: 1, g: 1, b: 1, a: 1}
-  BaseDamage: 8
+  BaseDamage: 10
   KnockbackAmount: 1
+  KnockbackTime: 0
   DamageMultiplier: 1
   AttackLevel: 1
   IsOnAttackTimer: 1

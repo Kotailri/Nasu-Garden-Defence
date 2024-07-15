@@ -18,3 +18,4 @@ MonoBehaviour:
   StatBase: 0
   StatGrowth: 0.1
   StatGrowthType: 0
+  ShowsInUI: 1

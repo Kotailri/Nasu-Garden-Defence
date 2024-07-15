@@ -16,5 +16,6 @@ MonoBehaviour:
   StatEnum: 15
   StatDescription: Increases the damage of projectile attacks.
   StatBase: 1
-  StatGrowth: 0.3
+  StatGrowth: 0.25
   StatGrowthType: 0
+  ShowsInUI: 1

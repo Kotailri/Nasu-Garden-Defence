@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ExplosionDamageAdder
   m_EditorClassIdentifier: 
   ItemName: Explosion Damage
-  ItemDescription: Increases the explosion damage stat by 1 level.
+  ItemDescription: Increases the explosion damage stat by 1 level. Each level increases
+    explosion damage by 25%.
   ItemIconImage: {fileID: 21300000, guid: 8c977800c43134e86b394adcc3a3e872, type: 3}
   ItemSpriteColor: {r: 1, g: 1, b: 1, a: 1}

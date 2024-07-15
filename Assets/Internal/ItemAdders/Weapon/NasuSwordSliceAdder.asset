@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: NasuSwordSliceAdder
   m_EditorClassIdentifier: 
   ItemName: Nasword Slice
-  ItemDescription: 'Every other attack, swing a sword in an upwards arc at a set
-    distance in front of the player. The sword damages enemies and slightly knocks
-    them back.
+  ItemDescription: '[Melee]
+
+    Every other attack, swing a sword in an upwards
+    arc at a set distance in front of the player. The sword damages enemies and slightly
+    knocks them back.
 
 '
   ItemIconImage: {fileID: 21300000, guid: feefa4663c0a4854ba000040c63e822e, type: 3}

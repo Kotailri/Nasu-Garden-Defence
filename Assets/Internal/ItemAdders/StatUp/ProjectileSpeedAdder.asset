@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ProjectileSpeedAdder
   m_EditorClassIdentifier: 
   ItemName: Projectile Speed
-  ItemDescription: Increases the projectile speed stat by 1 level.
+  ItemDescription: Increases the projectile speed stat by 1 level. Each level increases
+    the speed of projectiles by 25%.
   ItemIconImage: {fileID: 21300000, guid: 8b5d93941ad9c4e2eaaed3e465764115, type: 3}
   ItemSpriteColor: {r: 1, g: 1, b: 1, a: 1}

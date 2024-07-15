@@ -107,7 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6263276650610690024}
   m_Layer: 0
-  m_Name: 0-3 BANANA SLUG KING
+  m_Name: 1-3 BANANA SLUG KING
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 4476668332697259678}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 79.1578, y: -0.5952, z: 0}
+  m_LocalPosition: {x: 79.1578, y: -0.57, z: 0}
   m_LocalScale: {x: 7.2966056, y: 5.928492, z: 7.296606}
   m_ConstrainProportionsScale: 0
   m_Children: []

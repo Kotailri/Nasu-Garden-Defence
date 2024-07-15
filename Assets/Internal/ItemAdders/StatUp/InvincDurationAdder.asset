@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: InvincDurationAdder
   m_EditorClassIdentifier: 
   ItemName: IFrame Duration
-  ItemDescription: Increases the iframe duration stat by 1 level.
+  ItemDescription: Increases the iframe duration stat by 1 level. Each level increases
+    the invincibility duration upon getting hit by 0.25 seconds.
   ItemIconImage: {fileID: 21300000, guid: 7a97e285a7f1e44938910bd49925c9d8, type: 3}
   ItemSpriteColor: {r: 1, g: 1, b: 1, a: 1}

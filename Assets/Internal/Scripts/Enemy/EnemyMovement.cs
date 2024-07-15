@@ -72,7 +72,7 @@ public abstract class EnemyMovement : MonoBehaviour
         appliedDirection = new Vector2(-1,0);
     }
 
-    public virtual void DoKnockback(float force, Vector2? _direction=null)
+    public virtual void DoKnockback(float force, float knockbackTime=0f,Vector2? _direction=null)
     {
         Vector2 direction = Vector2.right;
         if (_direction != null)
@@ -84,16 +84,19 @@ public abstract class EnemyMovement : MonoBehaviour
 
         if (isMovementStarted && force > 0f && !isBeingKnockedBack)
         {
-            StartCoroutine(KnockbackTime());
+            StartCoroutine(KnockbackTime(knockbackTime==0? (force/25f) : knockbackTime));
             RB.velocity = Vector2.zero;
             RB.AddForce(force * direction, ForceMode2D.Impulse);
         }
 
-        IEnumerator KnockbackTime()
+        IEnumerator KnockbackTime(float knockbackTime)
         {
             isBeingKnockedBack = true;
-            yield return new WaitForSeconds(force/25f);
+            float defaultFriction = RB.drag;
+            RB.drag = 0;
+            yield return new WaitForSeconds(knockbackTime);
             isBeingKnockedBack = false;
+            RB.drag = defaultFriction;
             RB.velocity = Vector2.zero;
         }
     }

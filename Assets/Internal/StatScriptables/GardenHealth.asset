@@ -15,6 +15,7 @@ MonoBehaviour:
   StatName: Garden Health
   StatEnum: 5
   StatDescription: Increases the max health of the garden.
-  StatBase: 1
-  StatGrowth: 0.1
-  StatGrowthType: 1
+  StatBase: 10
+  StatGrowth: 5
+  StatGrowthType: 0
+  ShowsInUI: 1

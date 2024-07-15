@@ -16,5 +16,6 @@ MonoBehaviour:
   StatEnum: 8
   StatDescription: Increases the invincibility duration upon taking damage.
   StatBase: 1
-  StatGrowth: 0.05
+  StatGrowth: 0.25
   StatGrowthType: 0
+  ShowsInUI: 1

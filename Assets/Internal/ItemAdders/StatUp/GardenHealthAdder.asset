@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: GardenHealthAdder
   m_EditorClassIdentifier: 
   ItemName: Garden Health
-  ItemDescription: Increases the garden health stat by 1 level.
+  ItemDescription: 'Increases the garden health stat by 1 level. Each level increases
+    the garden''s total health by 5.
+
+
+    Fully heals the garden upon taking this
+    stat bonus.'
   ItemIconImage: {fileID: 21300000, guid: 8ff9dc5efc59b4f3a93da29c2eb317a5, type: 3}
   ItemSpriteColor: {r: 1, g: 1, b: 1, a: 1}

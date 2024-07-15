@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7640821901455421770}
-  - component: {fileID: 1763687761145646461}
+  - component: {fileID: 6630828762031416846}
   m_Layer: 0
   m_Name: PlayerHealthAdder
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1763687761145646461
+--- !u!114 &6630828762031416846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4304659527821059768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5f88c6de23bf13408908c478bc9f2af, type: 3}
+  m_Script: {fileID: 11500000, guid: 974902b61854d4f48b69259ebe0a510f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ItemScriptableInfo: {fileID: 11400000, guid: adc13257a5fa3084498a5ad3cbb5654a, type: 2}
@@ -50,5 +50,6 @@ MonoBehaviour:
   - stat: 12
     levelup: 1
   statLevelUps: 
-  isExcemptFromPoolRemoval: 1
+  isExcemptFromPoolRemoval: 0
   addsToUI: 0
+  target: 0

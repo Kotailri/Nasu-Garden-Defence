@@ -11,9 +11,13 @@ public class WanderPathing : MonoBehaviour
     public float maxSpeed = 3f;
     public float minWaitTime = 1f;
     public float maxWaitTime = 3f;
+    public float maxDistance = 2f;
 
     private Vector2 targetPosition;
     private float speed;
+
+    public bool directionFlip;
+    public bool defaultFaceRight;
 
     void Start()
     {
@@ -39,12 +43,16 @@ public class WanderPathing : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, wanderAreaCenter.x - wanderAreaSize.x / 2, wanderAreaCenter.x + wanderAreaSize.x / 2),
+                                         Mathf.Clamp(transform.position.y, wanderAreaCenter.y - wanderAreaSize.y / 2, wanderAreaCenter.y + wanderAreaSize.y / 2));
+    }
+
     private void SetNewRandomTarget()
     {
         Vector3 randomPoint;
         float distance;
-
-        float maxDistance = 2f;
 
         do
         {
@@ -62,6 +70,33 @@ public class WanderPathing : MonoBehaviour
     private void MoveTowardsTarget()
     {
         Vector3 direction = (targetPosition - (Vector2)transform.position).normalized;
+        
+        if (directionFlip)
+        {
+            if (defaultFaceRight)
+            {
+                if (direction.x > 0)
+                {
+                    GetComponent<SpriteRenderer>().flipX = false;
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().flipX = true;
+                }
+            }
+            else
+            {
+                if (direction.x < 0)
+                {
+                    GetComponent<SpriteRenderer>().flipX = false;
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().flipX = true;
+                }
+            }
+        }
+        
         transform.position += new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime;
     }
 

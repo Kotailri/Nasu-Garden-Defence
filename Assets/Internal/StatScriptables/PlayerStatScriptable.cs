@@ -14,4 +14,7 @@ public class PlayerStatScriptable : ScriptableObject
     public float StatBase;
     public float StatGrowth;
     public PlayerStatGrowthType StatGrowthType;
+
+    [Space(10f)]
+    public bool ShowsInUI;
 }

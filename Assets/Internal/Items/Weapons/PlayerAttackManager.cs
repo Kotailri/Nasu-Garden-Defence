@@ -29,6 +29,26 @@ public class PlayerAttackManager : MonoBehaviour
         RefreshAttackList();
     }
 
+    private float currentBuffedSpeed = 0f;
+    public void AddTempAttackSpeed(float multiplier, float time)
+    {
+        float newBuffedSpeed = multiplier * AttackTimer;
+
+        if (newBuffedSpeed > currentBuffedSpeed)
+        {
+            StopAllCoroutines();
+            currentBuffedSpeed = multiplier * AttackTimer;
+            StartCoroutine(BuffSpeed(time));
+        }
+        
+    }
+
+    private IEnumerator BuffSpeed(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        currentBuffedSpeed = 0;
+    }
+
     int count = 1;
     private void Attack()
     {
@@ -72,7 +92,7 @@ public class PlayerAttackManager : MonoBehaviour
     {
         if (!Global.gameplayStarted || !Global.waveManager.IsWaveOngoing()) { return; }
 
-        if (currentAttackTimer >= (AttackTimer - (AttackTimer * GlobalPlayer.GetStatValue(PlayerStatEnum.attackspeed))))
+        if (currentAttackTimer >= (AttackTimer - (AttackTimer * GlobalPlayer.GetStatValue(PlayerStatEnum.attackspeed)) - currentBuffedSpeed))
         {
             currentAttackTimer = 0;
             Attack();

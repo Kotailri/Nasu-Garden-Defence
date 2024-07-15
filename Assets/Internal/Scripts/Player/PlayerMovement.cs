@@ -42,6 +42,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private float currentBuffedSpeed = 1f;
+    private int tweenID = int.MaxValue;
+    public void ApplyFadingHaste(float multiplier, float time)
+    {
+
+        if (multiplier > currentBuffedSpeed)
+        {
+            if (tweenID != int.MaxValue)
+                LeanTween.cancel(tweenID);
+
+            currentBuffedSpeed = multiplier;
+            tweenID = LeanTween.value(gameObject, currentBuffedSpeed, 1, time).setOnUpdate((float val) => {
+                currentBuffedSpeed = val;
+            }).id;
+        }
+
+    }
+
     public float GetCurrentSpeedModifier() {  return currentSpeedModifier; }
 
     public void ApplySlow(float amount, float time)
@@ -150,13 +168,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (Global.gameplayStarted && Global.waveManager.IsWaveOngoing())
         {
-            RB.velocity = moveInput.normalized *
-            (GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSpeedModifier * currentSlowMultiplier);
+            RB.velocity = moveInput.normalized * ((GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSpeedModifier * currentSlowMultiplier) * Mathf.Clamp(currentBuffedSpeed, 1, float.MaxValue));
         }
         else
         {
             RB.velocity = moveInput.normalized *
-            (GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSpeedModifier * currentSlowMultiplier * 2);
+            (GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSpeedModifier * currentSlowMultiplier * 2.5f);
         }
         
 

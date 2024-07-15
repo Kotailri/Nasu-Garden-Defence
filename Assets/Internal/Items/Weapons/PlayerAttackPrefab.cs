@@ -14,8 +14,11 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
     public bool DestroyOnContact;
     
     public PlayerAttackType AttackType;
-    private int Damage;
-    private float Knockback;
+
+    [Header("Fields for BASIC attacks only")]
+    public int Damage;
+    public float Knockback;
+    public float KnockbackTime = 0;
 
     private void Awake()
     {
@@ -35,6 +38,11 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
     public void SetKnockback(float knockback)
     {
         Knockback = knockback;
+    }
+
+    public void SetKnockbackTime(float time)
+    {
+        KnockbackTime = time;   
     }
 
     public void OnTriggerEnterEvent(GameObject collisionObject)
@@ -57,12 +65,13 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
                         break;
 
                 }
+                EventManager.TriggerEvent(EventStrings.ENEMY_HIT, null);
                 hit.GetHit(damage, transform.position);
             }
 
             if (collisionObject.TryGetComponent(out EnemyMovement move))
             {
-                move.DoKnockback(Knockback, transform.position);
+                move.DoKnockback(Knockback, KnockbackTime, null);
             }
 
             if (DestroyOnContact)
@@ -74,7 +83,12 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
 
     protected virtual void Update()
     {
-        if (DestroyWhenOutside && transform.position.x >= Global.MaxX)
+        if (DestroyWhenOutside
+            && (transform.position.x > 20f
+            || transform.position.x < -20f
+            || transform.position.y < -20f
+            || transform.position.y > 20f
+            ))
         {
             Destroy(gameObject);
         }

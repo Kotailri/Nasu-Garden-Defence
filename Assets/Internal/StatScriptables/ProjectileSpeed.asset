@@ -16,5 +16,6 @@ MonoBehaviour:
   StatEnum: 16
   StatDescription: Increases the speed of projectiles.
   StatBase: 1
-  StatGrowth: 0.1
+  StatGrowth: 0.25
   StatGrowthType: 0
+  ShowsInUI: 1

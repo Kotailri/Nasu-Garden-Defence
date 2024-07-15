@@ -44,11 +44,11 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
-        currentRegenAmount += GlobalPlayer.GetStatValue(PlayerStatEnum.playerRegen) * Time.deltaTime;
-        if (currentRegenAmount >= 5)
+        currentRegenAmount += GlobalGarden.PlayerRegeneration * Time.deltaTime;
+        if (currentRegenAmount >= 1)
         {
             SetHealth(Mathf.FloorToInt(currentRegenAmount), true);
-            currentRegenAmount %= 5;
+            currentRegenAmount %= 1;
         }
     }
 
@@ -70,6 +70,12 @@ public class PlayerHealth : MonoBehaviour
     public int GetMaxHealth()
     {
         return MaxHP;
+    }
+
+    public void FullHeal()
+    {
+        CurrentHP = MaxHP;
+        UpdateUI(CurrentHP);
     }
 
     public void SetHealth(int _hp, bool isRelative)

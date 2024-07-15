@@ -5,7 +5,6 @@ using UnityEngine;
 /// <summary>
 /// Component that triggers collision events of other objects.
 /// </summary>
-[RequireComponent(typeof(Collider2D))]
 public class CallsTriggerCollisions : MonoBehaviour
 {
     private void Awake()

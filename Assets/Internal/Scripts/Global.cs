@@ -27,6 +27,8 @@ public static class Global
     public static ItemPassiveManager itemPassiveManager;
 
     public static BossHealthBarManager bossHealthBarManager;
+    public static GardenBuffManager gardenBuffManager;
+    public static GardenHealth gardenHealth;
 
     public static float EnemySpeedMultiplier = 1f;
     public static float WaveSpeed = 1f;
@@ -149,8 +151,18 @@ public static class Global
 
 public static class GlobalAudio
 {
-    public static float MusicVolume = 0f;
+    public static float MusicVolume = 1f;
     public static float SoundVolume = 1f;
+
+}
+
+public static class GlobalGarden
+{
+    public static int Coins = 0;
+    public static float CoinDropChance = 0.1f;
+
+    public static float CoinMagnetDistance = 3f;
+    public static float PlayerRegeneration = 0f;
 
 }
 
@@ -193,11 +205,11 @@ public enum PlayerStatEnum
 {
     //attackAmount         = 0,
     attackspeed          = 1,
-    dodge                = 2,
+    //dodge                = 2,
     explosionDamage      = 3,
     explosionRadius      = 4,
     gardenHealth         = 5,
-    gardenRegen          = 6,
+    //gardenRegen          = 6,
     //gardenResist         = 7,
     invincDuration       = 8,
     meleeDamage          = 9,
@@ -205,7 +217,7 @@ public enum PlayerStatEnum
     movespeed = 10,
     damage               = 11,
     playerHealth         = 12,
-    playerRegen          = 13,
+    //playerRegen          = 13,
     //playerResist         = 14,
     projectileDamage     = 15,
     projectileSpeed      = 16,    
@@ -218,6 +230,8 @@ public static class GlobalPlayer
 {
     public static float ContactSlowAmount = 0.5f;
     public static float ContactSlowTime = 1f;
+
+    
 
     public static Dictionary<PlayerStatEnum, PlayerStat> PlayerStatDict = new();
     public static float GetStatValue(PlayerStatEnum stat)

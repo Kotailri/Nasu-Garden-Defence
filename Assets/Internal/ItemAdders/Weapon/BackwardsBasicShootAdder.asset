@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: BackwardsBasicShootAdder
   m_EditorClassIdentifier: 
   ItemName: Backwards Double
-  ItemDescription: Shoot 2 basic projectiles backwards.
+  ItemDescription: '[Projectile]
+
+    Shoot 2 basic projectiles backwards.'
   ItemIconImage: {fileID: 21300000, guid: 9d76c0f37c2eb4be0af6f310d6b02275, type: 3}
   ItemSpriteColor: {r: 1, g: 1, b: 1, a: 1}

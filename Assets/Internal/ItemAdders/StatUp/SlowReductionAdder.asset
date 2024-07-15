@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SlowReductionAdder
   m_EditorClassIdentifier: 
   ItemName: Slow Reduction
-  ItemDescription: Increases the slow reduction stat by 1 level.
+  ItemDescription: Increases the slow reduction stat by 1 level. Each level reduces
+    the effectiveness of slows by 10%.
   ItemIconImage: {fileID: 21300000, guid: 9aea6591218294d08ac7e8dcdf3c0882, type: 3}
   ItemSpriteColor: {r: 1, g: 1, b: 1, a: 1}

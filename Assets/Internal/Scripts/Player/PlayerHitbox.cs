@@ -32,17 +32,10 @@ public class PlayerHitbox : MonoBehaviour, IHasTriggerStay
     {
         if (canTakeDamage && collisionObject.TryGetComponent(out DamagesPlayerOnHit dm))
         {
-            if (Random.Range(0f,1f) > GlobalPlayer.GetStatValue(PlayerStatEnum.dodge))
-            {
-                health.SetHealth(-dm.GetDamage(), true);
-                GetComponent<PlayerMovement>().ApplySlow(GlobalPlayer.ContactSlowAmount, GlobalPlayer.ContactSlowTime);
-                EventManager.TriggerEvent(EventStrings.PLAYER_TAKE_DAMAGE, null);
-            }
-            else
-            {
-                Global.damageTextSpawner.SpawnText(transform.position, "dodged!", DamageTextType.Status, 1f);
-            }
-            
+            health.SetHealth(-dm.GetDamage(), true);
+            GetComponent<PlayerMovement>().ApplySlow(GlobalPlayer.ContactSlowAmount, GlobalPlayer.ContactSlowTime);
+            EventManager.TriggerEvent(EventStrings.PLAYER_TAKE_DAMAGE, null);
+
             StartCoroutine(IFrames());
         }
     }

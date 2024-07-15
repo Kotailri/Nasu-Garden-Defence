@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AttackSpeedAdder
   m_EditorClassIdentifier: 
   ItemName: Attack Speed
-  ItemDescription: Increases the attack speed stat by 1 level.
+  ItemDescription: Increases the attack speed stat by 1 level. Each level increases
+    the rate of attacks by 10%.
   ItemIconImage: {fileID: 21300000, guid: 54dc0b63b285f4aac9103e86d8d8e8bf, type: 3}
   ItemSpriteColor: {r: 1, g: 1, b: 1, a: 1}

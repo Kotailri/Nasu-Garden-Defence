@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StrawBunny
   m_EditorClassIdentifier: 
   EnemyName: StrawBunny
-  Health: 15
+  Health: 12
   Resistance: 0
   DodgeChance: 0
   HealthRegen: 0

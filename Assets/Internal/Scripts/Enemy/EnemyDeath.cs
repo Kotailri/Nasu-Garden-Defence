@@ -6,6 +6,10 @@ public class EnemyDeath : MonoBehaviour
 {
     public virtual void Die(Vector2? location = null) // children of EnemyDeath should call base.Die()
     {
+        EventManager.TriggerEvent(EventStrings.ENEMY_KILLED, new Dictionary<string, object> {
+            { "x", transform.position.x },
+            { "y", transform.position.y }
+        });
         GetComponent<Collider2D>().enabled = false;
         if (TryGetComponent(out EnemyMovement movement))
         {
@@ -13,7 +17,7 @@ public class EnemyDeath : MonoBehaviour
 
             if (location != null)
             {
-                movement.DoKnockback(5, ((Vector2)transform.position - (Vector2)location));
+                movement.DoKnockback(5, 0, ((Vector2)transform.position - (Vector2)location));
             }
             else
             {

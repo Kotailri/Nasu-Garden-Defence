@@ -16,5 +16,6 @@ MonoBehaviour:
   StatEnum: 17
   StatDescription: Reduces the effects of slows.
   StatBase: 0
-  StatGrowth: 0.05
+  StatGrowth: 0.1
   StatGrowthType: 0
+  ShowsInUI: 1

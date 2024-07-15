@@ -26,6 +26,8 @@ public class ItemSelectObject : MonoBehaviour
         Canvas.transform.localScale = Vector3.zero;
         LeanTween.scale(Canvas, defaultScale, 0.5f);
         AcquireItemBox.text = "";
+
+        Canvas.GetComponent<Canvas>().worldCamera = Camera.main;
     }
 
     public void SetItem(ItemAdder _itemAdder)
@@ -57,6 +59,13 @@ public class ItemSelectObject : MonoBehaviour
 
             AcquireItemBox.text = "";
         }
+    }
+
+    public void ItemSelectedClicked()
+    {
+        print("clicked");
+        Global.itemSelectManager.SetItemSelected(gameObject);
+        Global.itemSelectManager.ItemSelected();
     }
 
     public void AcquireItem()
