@@ -158,14 +158,24 @@ public static class GlobalAudio
 
 public static class GlobalGarden
 {
-    public static int Coins = 100000;
+    public static int Coins = 10000;
 
     public static float CoinDropChance = 0f;
-    public static float CoinMagnetDistance = 3f;
+    public static int CoinDropChanceLevel = 0;
+
+    public static float CoinMagnetDistance = 0f;
+    public static int CoinMagnetDistanceLevel = 0;
+
     public static float PlayerRegeneration = 0f;
+    public static int PlayerRegenerationLevel = 0;
+
     public static int GardenHealAfterWave = 0;
-    public static bool PlayerFullHealAfterWave = false;
+    public static int GardenHealAfterWaveLevel = 0;
+
     public static int LevelsToSkip = 0;
+    public static int LevelToSkipLevel = 0;
+
+    public static bool PlayerFullHealAfterWave = false;
 
 }
 

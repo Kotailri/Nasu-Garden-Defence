@@ -16,5 +16,20 @@ public class CoinDropChanceBuff : GardenBuff
     public override void LevelUp()
     {
         GlobalGarden.CoinDropChance = DropChanceAtEachLevel[CurrentLevel-1];
+
+        if (GlobalGarden.CoinDropChanceLevel == MaxLevel)
+        {
+            GlobalGarden.CoinDropChanceLevel = CurrentLevel-1;
+        }
+        else
+        {
+            GlobalGarden.CoinDropChanceLevel = CurrentLevel;
+        }
+        
+    }
+
+    public override void SetStartingLevel()
+    {
+        SetLevel(GlobalGarden.CoinDropChanceLevel);
     }
 }

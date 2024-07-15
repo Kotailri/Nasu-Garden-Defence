@@ -23,8 +23,10 @@ public abstract class GardenBuff : MonoBehaviour
         Global.gardenBuffManager.gardenBuffList.Add(this);
 
         MaxLevel = PriceAtEachLevel.Count;
-        priceText.text = PriceAtEachLevel[CurrentLevel].ToString();
-        levelText.text = CurrentLevel.ToString() + "/" + MaxLevel.ToString();
+        SetStartingLevel();
+
+        //priceText.text = PriceAtEachLevel[CurrentLevel].ToString();
+        //levelText.text = CurrentLevel.ToString() + "/" + MaxLevel.ToString();
 
         Info.SetActive(false);
     }
@@ -76,11 +78,20 @@ public abstract class GardenBuff : MonoBehaviour
 
     public void SetLevel(int level)
     {
-        for (int i = 0; i < level; i++) LevelUp();
+        for (int i = 0; i < level; i++)
+        {
+            if (CanLevelUp())
+            {
+                CurrentLevel++;
 
-        CurrentLevel = level;
-        CheckLevel();
+                LevelUp();
+            }
+        }
+
+        UpdateLevel();
     }
+
+    public abstract void SetStartingLevel();
 
     private void UpdateLevel()
     {
