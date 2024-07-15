@@ -25,6 +25,7 @@ public class ClefCoin : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            AudioManager.instance.PlaySound(AudioEnum.Ding);
             Global.gardenBuffManager.AddCoins(1);
             Destroy(gameObject);
         }

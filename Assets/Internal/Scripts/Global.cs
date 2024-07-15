@@ -191,6 +191,7 @@ public enum AudioEnum
     GardenDamaged = 5,
 
     GameOver = 6,
+    Ding = 7,
 }
 
 
@@ -219,6 +220,7 @@ public enum PlayerStatEnum
     //attackAmount         = 0,
     attackspeed          = 1,
     //dodge                = 2,
+    critchance = 21,
     explosionDamage      = 3,
     explosionRadius      = 4,
     gardenHealth         = 5,

@@ -84,7 +84,7 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
     protected virtual void Update()
     {
         if (DestroyWhenOutside
-            && (transform.position.x > 20f
+            && (transform.position.x > 17.5f
             || transform.position.x < -20f
             || transform.position.y < -20f
             || transform.position.y > 20f

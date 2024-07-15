@@ -10,6 +10,7 @@ public enum DamageTextType
     White,
     Status,
     Green,
+    Crit
 }
 
 [Serializable]

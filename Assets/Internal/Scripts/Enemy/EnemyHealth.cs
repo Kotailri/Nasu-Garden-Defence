@@ -48,8 +48,18 @@ public class EnemyHealth : MonoBehaviour
 
         if (Random.Range(0f, 1f) >= DodgeChance)
         {
-            CurrentHealth -= damage - Mathf.FloorToInt(damage * Resistance);
-            Global.damageTextSpawner.SpawnText(textSpawnLocation, (damage - Mathf.FloorToInt(damage * Resistance)).ToString(), DamageTextType.White, 1f);
+            if (Random.Range(0f,1f) < GlobalPlayer.GetStatValue(PlayerStatEnum.critchance))
+            {
+                CurrentHealth -= (damage - Mathf.FloorToInt(damage * Resistance))*2;
+                Global.damageTextSpawner.SpawnText(textSpawnLocation, ((damage - Mathf.FloorToInt(damage * Resistance)) * 2).ToString(), DamageTextType.Crit, 1f);
+            }
+            else
+            {
+                CurrentHealth -= damage - Mathf.FloorToInt(damage * Resistance);
+                Global.damageTextSpawner.SpawnText(textSpawnLocation, (damage - Mathf.FloorToInt(damage * Resistance)).ToString(), DamageTextType.White, 1f);
+            }
+
+            
 
             if (canGetExecuted && CurrentHealth > 0 && Global.itemPassiveManager.GetPassive(ItemPassiveEnum.LowHealthExecute) && (float)CurrentHealth/(float)Health <= Global.itemPassiveManager.LowHealthExecutePercent)
             {
@@ -79,6 +89,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (CurrentHealth <= 0)
         {
+            GetComponent<Collider2D>().enabled = false;
             GetComponent<EnemyDeath>().Die(location);
         }
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,10 +25,16 @@ public class ItemSelectObject : MonoBehaviour
     {
         defaultScale = transform.localScale;
         Canvas.transform.localScale = Vector3.zero;
-        LeanTween.scale(Canvas, defaultScale, 0.5f);
         AcquireItemBox.text = "";
+        
+        StartCoroutine(ColliderDelay());
 
-        Canvas.GetComponent<Canvas>().worldCamera = Camera.main;
+        IEnumerator ColliderDelay()
+        {
+            GetComponent<Collider2D>().enabled = false;
+            yield return new WaitForSeconds(1);
+            GetComponent<Collider2D>().enabled = true;
+        }
     }
 
     public void SetItem(ItemAdder _itemAdder)
@@ -38,9 +45,18 @@ public class ItemSelectObject : MonoBehaviour
         ItemDescription.text = itemAdder.GetInfo().ItemDescription;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
+        {
+            LeanTween.scale(Canvas, defaultScale, 0.5f);
+        }
+        
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && !LeanTween.isTweening(gameObject))
         {
             Canvas.transform.localScale = defaultScale + new Vector3(0.1f,0.1f,0.1f);
             Global.itemSelectManager.SetItemSelected(gameObject);
@@ -52,7 +68,7 @@ public class ItemSelectObject : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !LeanTween.isTweening(gameObject))
         {
             Canvas.transform.localScale = defaultScale;
             isItemActive = false;

@@ -3801,7 +3801,6 @@ Transform:
   - {fileID: 1033010571}
   - {fileID: 1817895938}
   - {fileID: 1987087103}
-  - {fileID: 5048027045116643850}
   - {fileID: 1210968707}
   - {fileID: 1305635153}
   - {fileID: 1613594366}
@@ -6281,6 +6280,16 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0
     randomPitch: 0
+    loops: 0
+    isMusic: 0
+    playOnAwake: 0
+    muteOnAwake: 0
+  - name: 7
+    clip: {fileID: 8300000, guid: a9a5b5577d0b338408f780a6a3a3c1cb, type: 3}
+    volume: 0.25
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0.2
     loops: 0
     isMusic: 0
     playOnAwake: 0
@@ -11695,6 +11704,7 @@ MonoBehaviour:
   stats:
   - {fileID: 11400000, guid: dbe3ff4de0e0f374e8e66d0d295fb756, type: 2}
   - {fileID: 11400000, guid: 5e61a29903ea9f1499bdaedf78e48707, type: 2}
+  - {fileID: 11400000, guid: 5bf402292edb9d846a48dbfeabd194c7, type: 2}
   - {fileID: 11400000, guid: 035b7741cb72cb44396cf19628fa4e45, type: 2}
   - {fileID: 11400000, guid: 817ccef19d5f68e4e8f75172e25c3c42, type: 2}
   - {fileID: 11400000, guid: 03b7d7b1d4a5d0b40ab28c3b6aaac9d4, type: 2}
@@ -12585,6 +12595,7 @@ MonoBehaviour:
   ItemPool_StatUp:
   - {fileID: 1763687761145646461, guid: c6cfba723e72311429f7ce1a6c6276eb, type: 3}
   - {fileID: 1763687761145646461, guid: c60907dea647201499dd1642698790ef, type: 3}
+  - {fileID: 1763687761145646461, guid: 013584faaedae9c4b9b98fc4943cb5f0, type: 3}
   - {fileID: 1763687761145646461, guid: 0e4f3a3211e4bc54a84b9b8d03d809c9, type: 3}
   - {fileID: 1763687761145646461, guid: e894e49aa88b529448109e6b180e04a9, type: 3}
   - {fileID: 1763687761145646461, guid: 30285d1c27cd26e498339bda01b938ea, type: 3}
@@ -14396,6 +14407,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1873026666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1873026667}
+  m_Layer: 0
+  m_Name: ================GARDEN
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1873026667
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873026666}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.5485086, y: 1.8090544, z: -0.06626535}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5048027045116643850}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1881099500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17082,15 +17125,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4919432283512173235}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.63, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -23.08149, y: -1.8090544, z: 0.06626535}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2175901698423353440}
   - {fileID: 127122768544962114}
   - {fileID: 7295146895216718422}
-  m_Father: {fileID: 428127801}
+  m_Father: {fileID: 1873026667}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5120161098819128027
 MonoBehaviour:
@@ -17719,6 +17762,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 976972368}
   - {fileID: 428127801}
+  - {fileID: 1873026667}
   - {fileID: 1187827584}
   - {fileID: 519420032}
   - {fileID: 1297284169}

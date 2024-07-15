@@ -19,21 +19,6 @@ public class GardenBuffManager : MonoBehaviour
         Global.gardenBuffManager = this;
     }
 
-    public void BuffClicked(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            foreach (GardenBuff buff in gardenBuffList)
-            {
-                if (buff.IsSelected)
-                {
-                    buff.BaseLevelUp();
-                    return;
-                }
-            }
-        }
-    }
-
     private void Start()
     {
         Coins = GlobalGarden.Coins;
@@ -53,8 +38,26 @@ public class GardenBuffManager : MonoBehaviour
 
     private void DropCoin(Dictionary<string, object> _)
     {
-        Vector2 dropPosition = new Vector2((float)_["x"], (float)_["y"]);
-        Instantiate(ClefCoin, dropPosition, Quaternion.identity);
+        if (Random.Range(0f,1f) <= GlobalGarden.CoinDropChance)
+        {
+            Vector2 dropPosition = new Vector2((float)_["x"], (float)_["y"]);
+            Instantiate(ClefCoin, dropPosition, Quaternion.identity);
+        }
+    }
+
+    public void BuffClicked(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            foreach (GardenBuff buff in gardenBuffList)
+            {
+                if (buff.IsSelected)
+                {
+                    buff.BaseLevelUp();
+                    return;
+                }
+            }
+        }
     }
 
     private void UpdateCoinUI()

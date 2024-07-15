@@ -10,7 +10,7 @@ public class EnemyDeath : MonoBehaviour
             { "x", transform.position.x },
             { "y", transform.position.y }
         });
-        GetComponent<Collider2D>().enabled = false;
+        
         if (TryGetComponent(out EnemyMovement movement))
         {
             movement.DisableMovement();
