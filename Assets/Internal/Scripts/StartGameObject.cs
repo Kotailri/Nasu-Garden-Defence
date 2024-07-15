@@ -23,6 +23,8 @@ public class StartGameObject : MonoBehaviour
                 Global.gameplayStarted = true;
             }
 
+            collision.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+
             Destroy(gameObject);
         }
     }

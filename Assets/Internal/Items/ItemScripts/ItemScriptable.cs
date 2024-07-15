@@ -11,4 +11,10 @@ public class ItemScriptable : ScriptableObject
     public string ItemDescription;
     public Sprite ItemIconImage;
     public Color ItemSpriteColor;
+
+    public bool IsEqual(ItemScriptable other)
+    {
+        if (other == null) return false;
+        return other.ItemName == ItemName && other.ItemIconImage == ItemIconImage && other.ItemSpriteColor == ItemSpriteColor;
+    }
 }

@@ -20,6 +20,7 @@ public class ItemSelectObject : MonoBehaviour
     private Vector3 defaultScale;
     private ItemAdder itemAdder;
     public bool isItemActive = false;
+    private bool isOpened = false;
 
     private void Start()
     {
@@ -47,9 +48,10 @@ public class ItemSelectObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !isOpened)
         {
             LeanTween.scale(Canvas, defaultScale, 0.5f);
+            isOpened = true;
         }
         
     }

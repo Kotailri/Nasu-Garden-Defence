@@ -28,6 +28,22 @@ public class ItemUI : MonoBehaviour
         RightArrow.SetActive(false);
     }
 
+    public void ReplaceItemInUI(ItemScriptable _old, ItemScriptable _new, List<KeyValuePair<string, string>> descriptionReplacements = null)
+    {
+        foreach (GameObject _item in ItemInventory)
+        {
+            if (_item.TryGetComponent(out UIItem uIItem))
+            {
+                if (uIItem.itemScriptable.IsEqual(_new))
+                {
+                    uIItem.SetItem(_new, descriptionReplacements);
+                    return;
+                }
+            }
+        }
+        print("Could not replace" + _old.ItemName + " with " + _new.ItemName + "in UI");
+    }
+
     public void AddItemToUI(ItemScriptable item, List<KeyValuePair<string, string>> descriptionReplacements = null)
     {
         GameObject newItem = Instantiate(UIItemPrefab.gameObject, Vector2.zero, Quaternion.identity);

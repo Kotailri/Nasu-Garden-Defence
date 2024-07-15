@@ -11,6 +11,8 @@ public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public TextMeshProUGUI descriptionText;
     public Image itemImage;
     public Image box;
+    [HideInInspector]
+    public ItemScriptable itemScriptable;
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void SetItem(ItemScriptable item, List<KeyValuePair<string, string>> replacements)
     {
+        itemScriptable = item;
         nameText.text = item.ItemName;
 
         string desc = item.ItemDescription;

@@ -54,6 +54,7 @@ public static class Global
     public static void ResetGame()
     {
         EventManager.TriggerEvent(EventStrings.GAME_RESET, null);
+        gardenBuffManager.saver.SaveBuffs();
 
         // Global
         EnemySpeedMultiplier = 1f;
@@ -158,7 +159,7 @@ public static class GlobalAudio
 
 public static class GlobalGarden
 {
-    public static int Coins = 10000;
+    public static int Coins = 100;
 
     public static float CoinDropChance = 0f;
     public static int CoinDropChanceLevel = 0;
@@ -175,7 +176,8 @@ public static class GlobalGarden
     public static int LevelsToSkip = 0;
     public static int LevelToSkipLevel = 0;
 
-    public static bool PlayerFullHealAfterWave = false;
+    public static float PlayerPercentHealAfterWave = 0f;
+    public static int PlayerPercentHealAfterWaveLevel = 0;
 
 }
 
@@ -192,6 +194,8 @@ public enum AudioEnum
 
     GameOver = 6,
     Ding = 7,
+    LevelUp = 8,
+    Error = 9,
 }
 
 

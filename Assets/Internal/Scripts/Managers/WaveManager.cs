@@ -88,11 +88,7 @@ public class WaveManager : MonoBehaviour
 
             Global.itemSelectManager.CreateItems(waves[CurrentWaveIndex-1].ItemType);
             Global.gardenHealth.SetHealth(GlobalGarden.GardenHealAfterWave, true);
-            
-            if (GlobalGarden.PlayerFullHealAfterWave)
-            {
-                Global.playerTransform.gameObject.GetComponent<PlayerHealth>().FullHeal();
-            }
+            Global.playerTransform.gameObject.GetComponent<PlayerHealth>().HealPercent(GlobalGarden.PlayerPercentHealAfterWave);
 
             EventManager.TriggerEvent(EventStrings.WAVE_END, null);
         }
@@ -130,11 +126,11 @@ public class WaveManager : MonoBehaviour
     {
         if (CurrentWaveIndex == 0) { 
             //print("Wave 0 speed reduction");  
-            Global.EnemySpeedMultiplier = 0.75f; 
+            Global.EnemySpeedMultiplier = 0.6f; 
         }
         if (CurrentWaveIndex == 1) { 
             //print("Wave 1 speed reduction");  
-            Global.EnemySpeedMultiplier = 0.875f; 
+            Global.EnemySpeedMultiplier = 0.8f; 
         }
         if (CurrentWaveIndex == 2) { 
             //print("speed restored");  

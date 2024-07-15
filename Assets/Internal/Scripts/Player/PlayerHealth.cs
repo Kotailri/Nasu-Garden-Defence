@@ -78,6 +78,11 @@ public class PlayerHealth : MonoBehaviour
         UpdateUI(CurrentHP);
     }
 
+    public void HealPercent(float percent)
+    {
+        SetHealth(Mathf.CeilToInt(percent * MaxHP), true);
+    }
+
     public void SetHealth(int _hp, bool isRelative)
     {
         if (isRelative)
@@ -87,7 +92,7 @@ public class PlayerHealth : MonoBehaviour
                 CurrentHP += _hp;
                 Global.damageTextSpawner.SpawnText(transform.position, _hp.ToString(), DamageTextType.Green, 1f);
             }
-            else
+            else if (_hp < 0)
             {
                 int damage = _hp;
                 CurrentHP += damage;

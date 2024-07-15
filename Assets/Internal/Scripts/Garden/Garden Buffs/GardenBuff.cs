@@ -22,7 +22,7 @@ public abstract class GardenBuff : MonoBehaviour
     {
         Global.gardenBuffManager.gardenBuffList.Add(this);
 
-        MaxLevel = PriceAtEachLevel.Count;
+        MaxLevel = PriceAtEachLevel.Count-1;
         SetStartingLevel();
 
         //priceText.text = PriceAtEachLevel[CurrentLevel].ToString();
@@ -54,7 +54,7 @@ public abstract class GardenBuff : MonoBehaviour
     public virtual bool CanLevelUp()
     {
         if (CurrentLevel == MaxLevel) return false;
-        return Global.gardenBuffManager.GetCoins() >= PriceAtEachLevel[CurrentLevel];
+        return Global.gardenBuffManager.GetCoins() >= PriceAtEachLevel[CurrentLevel+1];
     }
 
     public void BaseLevelUp()
@@ -65,13 +65,15 @@ public abstract class GardenBuff : MonoBehaviour
 
             LevelUp();
             UpdateLevel();
-            Global.gardenBuffManager.RemoveCoins(PriceAtEachLevel[CurrentLevel-1]);
-            // play "unlocked" sound
+            Global.gardenBuffManager.saver.SaveBuffs();
+            Global.gardenBuffManager.RemoveCoins(PriceAtEachLevel[CurrentLevel]);
+            AudioManager.instance.PlaySound(AudioEnum.LevelUp);
         }
         else
         {
-            // play "cant buy" sound
+            AudioManager.instance.PlaySound(AudioEnum.Error);
         }
+
     }
 
     public abstract void LevelUp();
@@ -93,13 +95,13 @@ public abstract class GardenBuff : MonoBehaviour
 
     public abstract void SetStartingLevel();
 
-    private void UpdateLevel()
+    public virtual void UpdateLevel()
     {
         levelText.text = CurrentLevel.ToString() + "/" + MaxLevel.ToString();
         CheckLevel();
     }
 
-    private void CheckLevel()
+    protected void CheckLevel()
     {
         if (CurrentLevel >= MaxLevel)
         {
@@ -107,7 +109,7 @@ public abstract class GardenBuff : MonoBehaviour
         }
         else
         {
-            priceText.text = PriceAtEachLevel[CurrentLevel].ToString();
+            priceText.text = PriceAtEachLevel[CurrentLevel+1].ToString();
         }
     }
 }

@@ -9,10 +9,11 @@ public class GardenBuffManager : MonoBehaviour
     public GameObject ClefCoin;
     public TextMeshProUGUI coinText;
 
+    [Space(5f)]
+    public GardenBuffSaver saver;
+
     [Header("Buffs")]
     public List<GardenBuff> gardenBuffList = new();
-
-    private int Coins = 0;
 
     private void Awake()
     {
@@ -21,7 +22,8 @@ public class GardenBuffManager : MonoBehaviour
 
     private void Start()
     {
-        Coins = GlobalGarden.Coins;
+        saver.LoadBuffs();
+        GlobalGarden.Coins = int.MaxValue/2;
         UpdateCoinUI();
     }
 
@@ -32,13 +34,13 @@ public class GardenBuffManager : MonoBehaviour
 
     private void OnDisable()
     {
-        GlobalGarden.Coins = Coins;
         EventManager.StopListening(EventStrings.ENEMY_KILLED, DropCoin);
     }
 
     private void DropCoin(Dictionary<string, object> _)
     {
-        if (Random.Range(0f,1f) <= GlobalGarden.CoinDropChance)
+        float rand = Random.Range(0f, 1f);
+        if (rand <= GlobalGarden.CoinDropChance)
         {
             Vector2 dropPosition = new Vector2((float)_["x"], (float)_["y"]);
             Instantiate(ClefCoin, dropPosition, Quaternion.identity);
@@ -62,35 +64,37 @@ public class GardenBuffManager : MonoBehaviour
 
     private void UpdateCoinUI()
     {
-        coinText.text = Coins.ToString();
+        coinText.text = GlobalGarden.Coins.ToString();
     }
 
     public void AddCoins(int _coins)
     {
-        Coins += _coins;
+        GlobalGarden.Coins += _coins;
         UpdateCoinUI();
+        Global.gardenBuffManager.saver.SaveBuffs();
     }
 
 
     private bool isRemoving = false;
     public void RemoveCoins(int _coins)
     {
-        if (isRemoving)
-        {
-            Coins -= _coins;
-        }
-        else
+        int startingCoins = GlobalGarden.Coins;
+        GlobalGarden.Coins -= _coins;
+
+        if (!isRemoving)
         {
             StartCoroutine(RemoveCoinAnim());
+            
         }
+
+        Global.gardenBuffManager.saver.SaveBuffs();
 
         IEnumerator RemoveCoinAnim()
         {
             isRemoving = true;
-            for (int i = 0; i < _coins; i++)
+            for (int i = 1; i <= _coins; i++)
             {
-                Coins -= 1;
-                UpdateCoinUI();
+                coinText.text = (startingCoins - i).ToString();
                 yield return new WaitForSeconds(0.01f);
             }
             isRemoving = false;
@@ -99,7 +103,7 @@ public class GardenBuffManager : MonoBehaviour
     
     public int GetCoins() 
     {
-        return Coins;
+        return GlobalGarden.Coins;
     }
 
 }
