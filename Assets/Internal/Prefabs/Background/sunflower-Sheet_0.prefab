@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 3210030481544842691}
   - component: {fileID: 3746705198174872960}
   - component: {fileID: 1269265453393479633}
-  - component: {fileID: 22992783904071887}
+  - component: {fileID: 4860126372778193821}
+  - component: {fileID: 7504166988499043170}
   m_Layer: 8
   m_Name: sunflower-Sheet_0
   m_TagString: Untagged
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1003461187
-  m_SortingLayer: -2
+  m_SortingLayerID: -796500703
+  m_SortingLayer: -4
   m_SortingOrder: 11
   m_Sprite: {fileID: -2132069041, guid: 950f643cf57cb1148b77b9396205bda9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -164,7 +165,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!70 &22992783904071887
+--- !u!70 &4860126372778193821
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,9 +194,23 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.040864, y: -0.09984707}
-  m_Size: {x: 0.29156324, y: 0.84971625}
-  m_Direction: 0
+  m_Offset: {x: 0.000000016164616, y: 0.13559864}
+  m_Size: {x: 0.9157099, y: 0.43136507}
+  m_Direction: 1
+--- !u!114 &7504166988499043170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6684449654414667849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cb60436189e2c46a241f822a82a5b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BehindPlayerLayer: bg
+  InFrontOfPlayerLayer: Player

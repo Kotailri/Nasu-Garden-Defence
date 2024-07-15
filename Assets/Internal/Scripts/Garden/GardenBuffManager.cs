@@ -2,17 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GardenBuffManager : MonoBehaviour
 {
     public GameObject ClefCoin;
     public TextMeshProUGUI coinText;
 
+    [Header("Buffs")]
+    public List<GardenBuff> gardenBuffList = new();
+
     private int Coins = 0;
 
     private void Awake()
     {
         Global.gardenBuffManager = this;
+    }
+
+    public void BuffClicked(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            foreach (GardenBuff buff in gardenBuffList)
+            {
+                if (buff.IsSelected)
+                {
+                    buff.BaseLevelUp();
+                    return;
+                }
+            }
+        }
     }
 
     private void Start()
@@ -49,10 +68,30 @@ public class GardenBuffManager : MonoBehaviour
         UpdateCoinUI();
     }
 
+
+    private bool isRemoving = false;
     public void RemoveCoins(int _coins)
     {
-        Coins -= _coins;
-        UpdateCoinUI();
+        if (isRemoving)
+        {
+            Coins -= _coins;
+        }
+        else
+        {
+            StartCoroutine(RemoveCoinAnim());
+        }
+
+        IEnumerator RemoveCoinAnim()
+        {
+            isRemoving = true;
+            for (int i = 0; i < _coins; i++)
+            {
+                Coins -= 1;
+                UpdateCoinUI();
+                yield return new WaitForSeconds(0.01f);
+            }
+            isRemoving = false;
+        }
     }
     
     public int GetCoins() 

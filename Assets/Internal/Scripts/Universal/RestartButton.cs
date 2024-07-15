@@ -14,7 +14,7 @@ public class RestartButton : MonoBehaviour
 
     public void OnRestartButtonPressed(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (isActiveAndEnabled && context.performed)
         {
             Restart();
         }

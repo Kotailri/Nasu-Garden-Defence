@@ -50,6 +50,7 @@ public class WaveManager : MonoBehaviour
         DemoCompleteUI.SetActive(false);
 
         CurrentWaveIndex--;
+        CurrentWaveIndex += GlobalGarden.LevelsToSkip;
 
         for (int i = 0; i < CurrentWaveIndex; i++)
         {
@@ -86,6 +87,12 @@ public class WaveManager : MonoBehaviour
             Destroy(currentWave);
 
             Global.itemSelectManager.CreateItems(waves[CurrentWaveIndex-1].ItemType);
+            Global.gardenHealth.SetHealth(GlobalGarden.GardenHealAfterWave, true);
+            
+            if (GlobalGarden.PlayerFullHealAfterWave)
+            {
+                Global.playerTransform.gameObject.GetComponent<PlayerHealth>().FullHeal();
+            }
 
             EventManager.TriggerEvent(EventStrings.WAVE_END, null);
         }
