@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Enemy
   - Bwo
+  - Garden
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Garden
   - Water
   - UI
   - Enemy

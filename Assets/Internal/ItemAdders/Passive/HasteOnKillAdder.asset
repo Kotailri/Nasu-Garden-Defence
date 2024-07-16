@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: HasteOnKillAdder
   m_EditorClassIdentifier: 
   ItemName: Haste on Kill
-  ItemDescription: Gain a fading 2.5x speed multiplier on killing an enemy.
+  ItemDescription: Increase player movement speed by 2x on enemy kill. This effect
+    fades over 2 seconds.
   ItemIconImage: {fileID: 21300000, guid: fc9515649cb3e40f7bae63564fce1fb2, type: 3}
   ItemSpriteColor: {r: 1, g: 1, b: 1, a: 1}

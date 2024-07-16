@@ -156,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (moveInput.x < 0 && transform.position.x <= -40f)
+            if (moveInput.x < 0 && transform.position.x <= -43.5f)
             {
                 moveInput.x = 0;
             }

@@ -35,12 +35,12 @@ public class VolumeController : MonoBehaviour
 
     public void HoverIncrement(bool hovered)
     {
-        incrementIcon.color = hovered ? Color.blue : Color.white;
+        incrementIcon.color = hovered ? new Color(1, 0, 1, 1) : Color.white;
     }
 
     public void HoverDecrement(bool hovered)
     {
-        decrementIcon.color = hovered ? Color.blue : Color.white;
+        decrementIcon.color = hovered ? new Color(1, 0, 1, 1) : Color.white;
     }
 
     public void IncrementVolume()

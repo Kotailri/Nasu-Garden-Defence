@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: PepperSparrow
   m_EditorClassIdentifier: 
   EnemyName: PepperSparrow
-  Health: 12
+  Health: 11
   Resistance: 0
   DodgeChance: 0
   HealthRegen: 0
-  MovementSpeedMin: 5
-  MovementSpeedMax: 5
+  MovementSpeedMin: 6
+  MovementSpeedMax: 6
   MovementTargetType: 0
-  ContactDamage: 15
+  ContactDamage: 3
   GardenContactDamage: 3

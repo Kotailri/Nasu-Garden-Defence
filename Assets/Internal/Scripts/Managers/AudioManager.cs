@@ -2,6 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AudioEnum
+{
+    BGM = 0,
+
+    Explosion = 1,
+
+    PlayerDamaged = 2,
+    EnemyDamaged = 3,
+    ThingPlaced = 4,
+    GardenDamaged = 5,
+
+    GameOver = 6,
+    Ding = 7,
+    LevelUp = 8,
+    Error = 9,
+    BirdCry = 10,
+}
+
 // Brackey's Audio Manager
 [System.Serializable]
 public class Sound

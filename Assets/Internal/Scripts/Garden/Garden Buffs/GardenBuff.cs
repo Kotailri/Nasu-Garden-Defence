@@ -34,7 +34,7 @@ public abstract class GardenBuff : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             IsSelected = true;
-            GemGraphic.color = Color.blue;
+            GemGraphic.color = new Color(1,0,1,1);
             Info.SetActive(true);
         }
     }

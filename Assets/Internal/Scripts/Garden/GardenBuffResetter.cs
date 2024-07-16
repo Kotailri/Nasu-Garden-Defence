@@ -15,11 +15,12 @@ public class GardenBuffResetter : MonoBehaviour
     public void ToggleShow(bool show)
     {
         HideObject.SetActive(show);
-        IconGraphic.color = show ? Color.blue : Color.white;
+        IconGraphic.color = show ? new Color(1, 0, 1, 1) : Color.white;
     }
 
     public void ResetGarden()
     {
+        AudioManager.instance.PlaySound(AudioEnum.ThingPlaced);
         foreach (GardenBuff buff in Global.gardenBuffManager.gardenBuffList)
         {
             buff.Refund();

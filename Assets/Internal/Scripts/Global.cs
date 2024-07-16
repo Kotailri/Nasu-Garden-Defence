@@ -30,6 +30,8 @@ public static class Global
     public static GardenBuffManager gardenBuffManager;
     public static GardenHealth gardenHealth;
 
+    public static AlertManager alertManager;
+
     public static bool IsInEditorMode = false;
 
     public static float EnemySpeedMultiplier = 1f;
@@ -182,25 +184,6 @@ public static class GlobalGarden
     public static int PlayerPercentHealAfterWaveLevel = 0;
 
 }
-
-public enum AudioEnum
-{
-    BGM = 0,
-
-    Explosion = 1,
-
-    PlayerDamaged = 2,
-    EnemyDamaged = 3,
-    ThingPlaced = 4,
-    GardenDamaged = 5,
-
-    GameOver = 6,
-    Ding = 7,
-    LevelUp = 8,
-    Error = 9,
-}
-
-
 public static class MathHelper
 {
     public static bool IsBetweenFloatsInclusive(float toCheck, float min, float max)
