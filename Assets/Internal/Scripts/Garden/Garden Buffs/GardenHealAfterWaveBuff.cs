@@ -14,6 +14,13 @@ public class GardenHealAfterWaveBuff : GardenBuff
 
     }
 
+    public override void Refund()
+    {
+        base.Refund();
+        GlobalGarden.GardenHealAfterWaveLevel = 0;
+        GlobalGarden.GardenHealAfterWave = HealAmountAtEachLevel[0];
+    }
+
     public override void UpdateLevel()
     {
         if (CurrentLevel < MaxLevel)

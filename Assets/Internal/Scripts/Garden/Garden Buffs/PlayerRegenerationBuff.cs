@@ -14,6 +14,13 @@ public class PlayerRegenerationBuff : GardenBuff
 
     }
 
+    public override void Refund()
+    {
+        base.Refund();
+        GlobalGarden.PlayerRegenerationLevel = 0;
+        GlobalGarden.PlayerRegeneration = RegenAtEachLevel[0];
+    }
+
     public override void UpdateLevel()
     {
         if (CurrentLevel < MaxLevel)

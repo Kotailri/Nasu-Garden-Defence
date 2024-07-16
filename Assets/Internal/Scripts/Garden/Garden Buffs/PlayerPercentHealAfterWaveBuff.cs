@@ -13,6 +13,13 @@ public class PlayerPercentHealAfterWaveBuff : GardenBuff
         GlobalGarden.PlayerPercentHealAfterWaveLevel = CurrentLevel;
     }
 
+    public override void Refund()
+    {
+        base.Refund();
+        GlobalGarden.PlayerPercentHealAfterWaveLevel = 0;
+        GlobalGarden.PlayerPercentHealAfterWave = PercentHealPerLevel[0];
+    }
+
     public override void UpdateLevel()
     {
         if (CurrentLevel < MaxLevel)

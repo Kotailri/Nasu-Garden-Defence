@@ -15,6 +15,13 @@ public class CoinDropChanceBuff : GardenBuff
 
     }
 
+    public override void Refund()
+    {
+        base.Refund();
+        GlobalGarden.CoinDropChanceLevel = 0;
+        GlobalGarden.CoinDropChance = DropChanceAtEachLevel[0];
+    }
+
     public override void UpdateLevel()
     {
         if (CurrentLevel < MaxLevel)

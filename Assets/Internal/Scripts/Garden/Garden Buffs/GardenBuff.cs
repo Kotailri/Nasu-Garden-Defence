@@ -51,22 +51,42 @@ public abstract class GardenBuff : MonoBehaviour
 
     public virtual bool CanLevelUp()
     {
+        if (Global.IsInEditorMode) { return true; }
+
         if (CurrentLevel == MaxLevel) 
             return false;
         return Global.gardenBuffManager.GetCoins() >= PriceAtEachLevel[CurrentLevel + 1];
 
     }
 
+    public virtual void Refund()
+    {
+        int total = 0;
+        for (int i = 0; i <= CurrentLevel; i++)
+        {
+            total += PriceAtEachLevel[i];
+        }
+        Global.gardenBuffManager.AddCoins(total);
+        CurrentLevel = 0;
+        CheckLevel();
+    }
+
     public void BaseLevelUp()
     {
         if (CanLevelUp())
         {
-
             CurrentLevel++;
 
             LevelUp();
             UpdateLevel();
-            Global.gardenBuffManager.RemoveCoins(PriceAtEachLevel[CurrentLevel]);
+            if (!Global.IsInEditorMode) 
+            {
+                Global.gardenBuffManager.RemoveCoins(PriceAtEachLevel[CurrentLevel]);
+            }
+            else
+            {
+                Global.gardenBuffManager.saver.SaveBuffs();
+            }
             AudioManager.instance.PlaySound(AudioEnum.LevelUp);
         }
         else

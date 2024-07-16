@@ -30,6 +30,8 @@ public static class Global
     public static GardenBuffManager gardenBuffManager;
     public static GardenHealth gardenHealth;
 
+    public static bool IsInEditorMode = false;
+
     public static float EnemySpeedMultiplier = 1f;
     public static float WaveSpeed = 1f;
 
@@ -152,7 +154,7 @@ public static class Global
 
 public static class GlobalAudio
 {
-    public static float MusicVolume = 0f;
+    public static float MusicVolume = 1f;
     public static float SoundVolume = 1f;
 
 }

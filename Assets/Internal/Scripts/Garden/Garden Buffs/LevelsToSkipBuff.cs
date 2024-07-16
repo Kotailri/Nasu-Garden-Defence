@@ -14,6 +14,13 @@ public class LevelsToSkipBuff : GardenBuff
 
     }
 
+    public override void Refund()
+    {
+        base.Refund();
+        GlobalGarden.LevelsToSkipLevel = 0;
+        GlobalGarden.LevelsToSkip = NumberOfLevelsSkipped[0];
+    }
+
     public override void UpdateLevel()
     {
         if (CurrentLevel < MaxLevel)

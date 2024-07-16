@@ -14,6 +14,13 @@ public class CoinMagnetDistanceBuff : GardenBuff
 
     }
 
+    public override void Refund()
+    {
+        base.Refund();
+        GlobalGarden.CoinMagnetDistanceLevel = 0;
+        GlobalGarden.CoinDropChance = DistancesAtEachLevel[0];
+    }
+
     public override void UpdateLevel()
     {
         if (CurrentLevel < MaxLevel)
