@@ -69,6 +69,7 @@ public abstract class GardenBuff : MonoBehaviour
         Global.gardenBuffManager.AddCoins(total);
         CurrentLevel = 0;
         CheckLevel();
+        UpdateLevel();
     }
 
     public void BaseLevelUp()

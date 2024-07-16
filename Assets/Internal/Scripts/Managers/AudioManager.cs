@@ -86,6 +86,18 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     List<Sound> sounds = new List<Sound>();
 
+    public void AdjustMusicVolume(float vol)
+    {
+        for (int i = 0; i < sounds.Count; i++)
+        {
+            if (sounds[i].isMusic)
+            {
+                sounds[i].ChangeVolume(vol);
+                return;
+            }
+        }
+    }
+
     private void Start()
     {
         for (int i = 0; i < sounds.Count; i++)

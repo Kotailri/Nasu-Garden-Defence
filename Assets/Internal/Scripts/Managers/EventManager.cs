@@ -15,6 +15,9 @@ public static class EventStrings
 
     public static readonly string GAME_RESET = "GAME_RESET";
     public static readonly string GAME_START = "GAME_START";
+
+    // Controls
+    public static readonly string INTERACT_PRESSED = "INTERACT_BUTTON_PRESSED";
 }
 
 public static class EventManager

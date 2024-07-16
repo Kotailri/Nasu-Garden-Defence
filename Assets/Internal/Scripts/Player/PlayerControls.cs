@@ -48,8 +48,7 @@ public class PlayerControls : MonoBehaviour
         if (context.phase != InputActionPhase.Performed) 
             return;
 
-        // interact functionality
-        print("interact pressed");
+        EventManager.TriggerEvent(EventStrings.INTERACT_PRESSED, null);
     }
 
     public void ShootButtonPressed(InputAction.CallbackContext context)
