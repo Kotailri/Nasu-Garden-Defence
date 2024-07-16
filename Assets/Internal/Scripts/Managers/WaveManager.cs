@@ -50,12 +50,6 @@ public class WaveManager : MonoBehaviour
         DemoCompleteUI.SetActive(false);
 
         CurrentWaveIndex--;
-        CurrentWaveIndex += GlobalGarden.LevelsToSkip;
-
-        for (int i = 0; i < CurrentWaveIndex; i++)
-        {
-            Global.itemInventoryManager.AddRandomToInventory(waves[i].ItemType, i);
-        }
     }
 
     public bool IsWaveOngoing()
@@ -66,6 +60,12 @@ public class WaveManager : MonoBehaviour
 
     public void StartGame()
     {
+        CurrentWaveIndex += GlobalGarden.LevelsToSkip;
+        for (int i = 0; i < CurrentWaveIndex; i++)
+        {
+            Global.itemInventoryManager.AddRandomToInventory(waves[i].ItemType, i);
+        }
+
         SpawnNextWave();
     }
 
@@ -132,7 +132,7 @@ public class WaveManager : MonoBehaviour
             //print("Wave 1 speed reduction");  
             Global.EnemySpeedMultiplier = 0.8f; 
         }
-        if (CurrentWaveIndex == 2) { 
+        if (CurrentWaveIndex >= 2) { 
             //print("speed restored");  
             Global.EnemySpeedMultiplier = 1f; 
         }

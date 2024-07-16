@@ -152,7 +152,7 @@ public static class Global
 
 public static class GlobalAudio
 {
-    public static float MusicVolume = 1f;
+    public static float MusicVolume = 0f;
     public static float SoundVolume = 1f;
 
 }
@@ -174,7 +174,7 @@ public static class GlobalGarden
     public static int GardenHealAfterWaveLevel = 0;
 
     public static int LevelsToSkip = 0;
-    public static int LevelToSkipLevel = 0;
+    public static int LevelsToSkipLevel = 0;
 
     public static float PlayerPercentHealAfterWave = 0f;
     public static int PlayerPercentHealAfterWaveLevel = 0;

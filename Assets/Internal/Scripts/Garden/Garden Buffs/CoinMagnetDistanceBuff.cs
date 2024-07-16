@@ -10,15 +10,7 @@ public class CoinMagnetDistanceBuff : GardenBuff
     public override void LevelUp()
     {
         GlobalGarden.CoinMagnetDistance = DistancesAtEachLevel[CurrentLevel - 1];
-
-        if (GlobalGarden.CoinMagnetDistanceLevel == MaxLevel)
-        {
-            GlobalGarden.CoinMagnetDistanceLevel = CurrentLevel - 1;
-        }
-        else
-        {
-            GlobalGarden.CoinMagnetDistanceLevel = CurrentLevel;
-        }
+        GlobalGarden.CoinMagnetDistanceLevel = CurrentLevel;
 
     }
 

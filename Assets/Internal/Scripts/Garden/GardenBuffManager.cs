@@ -18,12 +18,11 @@ public class GardenBuffManager : MonoBehaviour
     private void Awake()
     {
         Global.gardenBuffManager = this;
+        saver.LoadBuffs();
     }
 
     private void Start()
     {
-        saver.LoadBuffs();
-        GlobalGarden.Coins = int.MaxValue/2;
         UpdateCoinUI();
     }
 
@@ -71,7 +70,6 @@ public class GardenBuffManager : MonoBehaviour
     {
         GlobalGarden.Coins += _coins;
         UpdateCoinUI();
-        Global.gardenBuffManager.saver.SaveBuffs();
     }
 
 
@@ -80,14 +78,13 @@ public class GardenBuffManager : MonoBehaviour
     {
         int startingCoins = GlobalGarden.Coins;
         GlobalGarden.Coins -= _coins;
+        Global.gardenBuffManager.saver.SaveBuffs();
 
         if (!isRemoving)
         {
             StartCoroutine(RemoveCoinAnim());
             
         }
-
-        Global.gardenBuffManager.saver.SaveBuffs();
 
         IEnumerator RemoveCoinAnim()
         {

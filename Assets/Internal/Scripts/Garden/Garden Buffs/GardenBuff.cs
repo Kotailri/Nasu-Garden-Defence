@@ -20,8 +20,6 @@ public abstract class GardenBuff : MonoBehaviour
 
     private void Start()
     {
-        Global.gardenBuffManager.gardenBuffList.Add(this);
-
         MaxLevel = PriceAtEachLevel.Count-1;
         SetStartingLevel();
 
@@ -53,19 +51,21 @@ public abstract class GardenBuff : MonoBehaviour
 
     public virtual bool CanLevelUp()
     {
-        if (CurrentLevel == MaxLevel) return false;
-        return Global.gardenBuffManager.GetCoins() >= PriceAtEachLevel[CurrentLevel+1];
+        if (CurrentLevel == MaxLevel) 
+            return false;
+        return Global.gardenBuffManager.GetCoins() >= PriceAtEachLevel[CurrentLevel + 1];
+
     }
 
     public void BaseLevelUp()
     {
         if (CanLevelUp())
         {
+
             CurrentLevel++;
 
             LevelUp();
             UpdateLevel();
-            Global.gardenBuffManager.saver.SaveBuffs();
             Global.gardenBuffManager.RemoveCoins(PriceAtEachLevel[CurrentLevel]);
             AudioManager.instance.PlaySound(AudioEnum.LevelUp);
         }
@@ -82,12 +82,8 @@ public abstract class GardenBuff : MonoBehaviour
     {
         for (int i = 0; i < level; i++)
         {
-            if (CanLevelUp())
-            {
-                CurrentLevel++;
-
-                LevelUp();
-            }
+            CurrentLevel++;
+            LevelUp();
         }
 
         UpdateLevel();
