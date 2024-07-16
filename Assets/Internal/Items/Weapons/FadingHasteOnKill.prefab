@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EventString: ENEMY_KILLED
-  fadingHasteAmount: 2.5
+  fadingHasteAmount: 2
   fadingHasteTime: 2

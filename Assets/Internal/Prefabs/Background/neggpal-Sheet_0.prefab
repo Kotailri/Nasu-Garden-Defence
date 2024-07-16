@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fedb81dc38fd24ab498bf38dbc6a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wanderAreaCenter: {x: 29.8, y: -0.37}
+  wanderAreaCenter: {x: -29.8, y: -0.37}
   wanderAreaSize: {x: 28.2, y: 14}
   minSpeed: 1
   maxSpeed: 2

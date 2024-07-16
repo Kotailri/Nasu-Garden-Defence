@@ -5474,7 +5474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentLevel: 0
-  PriceAtEachLevel: 000000003200000064000000c8000000
+  PriceAtEachLevel: 00000000320000006400000096000000
   Info: {fileID: 1721836921}
   GemGraphic: {fileID: 2001447095}
   levelText: {fileID: 1097392653}
@@ -12081,7 +12081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentLevel: 0
-  PriceAtEachLevel: 000000000a00000019000000280000003700000096000000
+  PriceAtEachLevel: 000000000f0000001e0000003c0000005a00000078000000
   Info: {fileID: 1360212007}
   GemGraphic: {fileID: 1928436528}
   levelText: {fileID: 596567754}
@@ -14982,7 +14982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentLevel: 0
-  PriceAtEachLevel: 0000000019000000320000004b000000640000007d000000
+  PriceAtEachLevel: 000000000f0000001e000000320000004b000000640000007d00000096000000af000000c8000000
   Info: {fileID: 773249697}
   GemGraphic: {fileID: 1386595966}
   levelText: {fileID: 1532997659}
@@ -14991,11 +14991,15 @@ MonoBehaviour:
   IsSelected: 0
   PercentHealPerLevel:
   - 0
-  - 0.1
   - 0.2
   - 0.3
   - 0.4
   - 0.5
+  - 0.6
+  - 0.7
+  - 0.8
+  - 0.9
+  - 1
 --- !u!58 &1249828191
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -23140,7 +23144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentLevel: 0
-  PriceAtEachLevel: 0000000064000000c80000002c010000
+  PriceAtEachLevel: 00000000320000006400000096000000c8000000fa000000
   Info: {fileID: 638342582}
   GemGraphic: {fileID: 677864739}
   levelText: {fileID: 829356779}
@@ -23152,6 +23156,8 @@ MonoBehaviour:
   - 0.1
   - 0.2
   - 0.3
+  - 0.4
+  - 0.5
 --- !u!58 &1820468354
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -27011,6 +27017,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: neggpal-Sheet_0
       objectReference: {fileID: 0}
+    - target: {fileID: 7218974248181889393, guid: c22cdeb3ca4ccee4c8a9500b566682d2, type: 3}
+      propertyPath: wanderAreaCenter.x
+      value: -29.8
+      objectReference: {fileID: 0}
     - target: {fileID: 8699014319379919184, guid: c22cdeb3ca4ccee4c8a9500b566682d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.81
@@ -27865,7 +27875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentLevel: 0
-  PriceAtEachLevel: 000000001900000064000000fa000000e8030000
+  PriceAtEachLevel: 00000000320000004b000000640000007d00000096000000af000000c8000000fa000000
   Info: {fileID: 1272639321}
   GemGraphic: {fileID: 1941835870497045288}
   levelText: {fileID: 1392707833}
@@ -27877,6 +27887,10 @@ MonoBehaviour:
   - 0.3
   - 0.4
   - 0.5
+  - 0.6
+  - 0.7
+  - 0.8
+  - 0.9
   - 1
 --- !u!223 &6133707516461831788
 Canvas:
