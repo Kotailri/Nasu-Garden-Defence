@@ -19,7 +19,18 @@ public class VolumeController : MonoBehaviour
 
     private void Awake()
     {
-        volumeText.text = "50%";
+        GlobalAudio.MusicVolume = PlayerPrefs.GetFloat("Kotailri_NaGaDe_Music_Volume", 0.5f);
+        GlobalAudio.SoundVolume = PlayerPrefs.GetFloat("Kotailri_NaGaDe_Sound_Volume", 0.5f);
+
+        if (volumeType == VolumeType.Music)
+        {
+            volumeText.text = Mathf.RoundToInt(GlobalAudio.MusicVolume * 100) + "%";
+        }
+
+        if (volumeType == VolumeType.Effect)
+        {
+            volumeText.text = Mathf.RoundToInt(GlobalAudio.SoundVolume * 100) + "%";
+        }
     }
 
     public void HoverIncrement(bool hovered)
@@ -42,6 +53,7 @@ public class VolumeController : MonoBehaviour
                 AudioManager.instance.AdjustMusicVolume(GlobalAudio.MusicVolume);
             }
             volumeText.text = Mathf.RoundToInt(GlobalAudio.MusicVolume * 100f).ToString() + "%";
+            PlayerPrefs.SetFloat("Kotailri_NaGaDe_Music_Volume", GlobalAudio.MusicVolume);
         }
 
         if (volumeType == VolumeType.Effect)
@@ -52,6 +64,7 @@ public class VolumeController : MonoBehaviour
                 AudioManager.instance.PlaySound(AudioEnum.EnemyDamaged);
             }
             volumeText.text = Mathf.RoundToInt(GlobalAudio.SoundVolume * 100f).ToString() + "%";
+            PlayerPrefs.SetFloat("Kotailri_NaGaDe_Sound_Volume", GlobalAudio.SoundVolume);
         }
     }
 
@@ -65,6 +78,7 @@ public class VolumeController : MonoBehaviour
                 AudioManager.instance.AdjustMusicVolume(GlobalAudio.MusicVolume);
             }
             volumeText.text = Mathf.RoundToInt(GlobalAudio.MusicVolume * 100f).ToString() + "%";
+            PlayerPrefs.SetFloat("Kotailri_NaGaDe_Music_Volume", GlobalAudio.MusicVolume);
         }
 
         if (volumeType == VolumeType.Effect)
@@ -75,6 +89,7 @@ public class VolumeController : MonoBehaviour
                 AudioManager.instance.PlaySound(AudioEnum.EnemyDamaged);
             }
             volumeText.text = Mathf.RoundToInt(GlobalAudio.SoundVolume * 100f).ToString() + "%";
+            PlayerPrefs.SetFloat("Kotailri_NaGaDe_Sound_Volume", GlobalAudio.SoundVolume);
         }
     }
 }

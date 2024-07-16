@@ -23,5 +23,7 @@ public class ItemAdderWithHeal : ItemAdder
         {
             Global.gardenHealth.FullHeal();
         }
+
+        AddItemToUI();
     }
 }
