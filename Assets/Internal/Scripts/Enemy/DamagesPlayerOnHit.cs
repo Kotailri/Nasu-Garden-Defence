@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamagesPlayerOnHit : MonoBehaviour
 {
     public int Damage;
+    public bool DestroysSelfOnHit = false;
 
     public void SetDamage(int _damage)
     {

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966c88dd126f8bf418a7f9b2fda060b2, type: 3}
+  m_Name: StrawBunnyCannon
+  m_EditorClassIdentifier: 
+  EnemyName: StrawBunny with Cannon
+  Health: 50
+  Resistance: 0
+  DodgeChance: 0
+  HealthRegen: 0
+  MovementSpeedMin: 2
+  MovementSpeedMax: 2
+  MovementTargetType: 0
+  ContactDamage: 4
+  GardenContactDamage: 1

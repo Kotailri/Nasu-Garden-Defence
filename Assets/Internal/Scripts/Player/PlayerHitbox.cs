@@ -36,6 +36,11 @@ public class PlayerHitbox : MonoBehaviour, IHasTriggerStay
             GetComponent<PlayerMovement>().ApplySlow(GlobalPlayer.ContactSlowAmount, GlobalPlayer.ContactSlowTime);
             EventManager.TriggerEvent(EventStrings.PLAYER_TAKE_DAMAGE, null);
 
+            if (dm.DestroysSelfOnHit)
+            {
+                Destroy(dm.gameObject);
+            }
+
             StartCoroutine(IFrames());
         }
     }

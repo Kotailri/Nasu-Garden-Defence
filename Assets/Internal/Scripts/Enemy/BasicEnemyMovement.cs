@@ -7,7 +7,7 @@ public class BasicEnemyMovement : EnemyMovement
 
     protected override void Update()
     {
-        if (currentTargetType == EnemyMovementType.TargetPlayer)
+        if (currentTargetType == BasicEnemyMovementType.TargetPlayer)
         {
             UpdateAppliedMovementDirection();
         }
@@ -19,11 +19,11 @@ public class BasicEnemyMovement : EnemyMovement
     {
         switch (currentTargetType)
         {
-            case EnemyMovementType.TargetGarden:
+            case BasicEnemyMovementType.TargetGarden:
                 appliedDirection = new Vector3(-1, 0, 0);
                 break;
 
-            case EnemyMovementType.TargetPlayer:
+            case BasicEnemyMovementType.TargetPlayer:
                 appliedDirection = (Global.playerTransform.position - transform.position).normalized;
                 break;
         }

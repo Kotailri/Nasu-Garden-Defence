@@ -42,8 +42,8 @@ public static class Global
 
     public static float MaxX = 16.5f;
 
-    public static (float min, float max) XRange = (-14.13f, 18.31f);
-    public static (float min, float max) YRange = (-7f, 6.95f);
+    public static (float min, float max) XRange = (-14.67f, 17.31f);
+    public static (float min, float max) YRange = (-7.5f, 7f);
 
     public static void GameOver(DeathCondition deathCondition)
     {
@@ -96,6 +96,52 @@ public static class Global
             }
         }
         return activeEnemies;
+    }
+
+    public static int GetCurrentAnimationFrame(Animator animator)
+    {
+        if (animator == null)
+        {
+            Debug.LogWarning("Animator is null.");
+            return -1;
+        }
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo(0);
+
+        if (clipInfo.Length > 0)
+        {
+            AnimationClip currentClip = clipInfo[0].clip;
+            float normalizedTime = stateInfo.normalizedTime % 1;
+            int currentFrame = Mathf.FloorToInt(normalizedTime * currentClip.frameRate * currentClip.length);
+            return currentFrame;
+        }
+        else
+        {
+            Debug.LogWarning("No animation clip found in the base layer.");
+            return -1;
+        }
+    }
+
+    public static bool IsObjectActiveOnField(GameObject obj, bool checkX, bool checkY)
+    {
+        if (checkX && checkY)
+        {
+            return (MathHelper.IsBetweenFloatsInclusive(obj.transform.position.x, XRange.min, XRange.max)
+             && MathHelper.IsBetweenFloatsInclusive(obj.transform.position.y, YRange.min, YRange.max));
+        }
+        else if (checkX)
+        {
+            return MathHelper.IsBetweenFloatsInclusive(obj.transform.position.x, XRange.min, XRange.max);
+        }
+        else if (checkY)
+        {
+            return MathHelper.IsBetweenFloatsInclusive(obj.transform.position.y, YRange.min, YRange.max);
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public static Transform GetNearestEnemy(Vector2 point)
@@ -234,8 +280,6 @@ public static class GlobalPlayer
 {
     public static float ContactSlowAmount = 0.5f;
     public static float ContactSlowTime = 1f;
-
-    
 
     public static Dictionary<PlayerStatEnum, PlayerStat> PlayerStatDict = new();
     public static float GetStatValue(PlayerStatEnum stat)

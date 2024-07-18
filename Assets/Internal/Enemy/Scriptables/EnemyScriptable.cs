@@ -2,11 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyMovementType
-{
-    TargetGarden,
-    TargetPlayer
-}
+
 
 [CreateAssetMenu(menuName = "Enemy/Create Enemy")]
 public class EnemyScriptable : ScriptableObject
@@ -25,7 +21,7 @@ public class EnemyScriptable : ScriptableObject
     public float MovementSpeedMin;
     [Range(0f, 100f)]
     public float MovementSpeedMax;
-    public EnemyMovementType MovementTargetType;
+    public BasicEnemyMovementType MovementTargetType;
 
     [Header("Combat")]
     public int ContactDamage;

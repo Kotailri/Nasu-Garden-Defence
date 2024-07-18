@@ -50,6 +50,11 @@ public class WaveManager : MonoBehaviour
         DemoCompleteUI.SetActive(false);
 
         CurrentWaveIndex--;
+
+        if (CurrentWaveIndex < 0)
+        {
+            CurrentWaveIndex = 0;
+        }
     }
 
     public bool IsWaveOngoing()
@@ -85,6 +90,13 @@ public class WaveManager : MonoBehaviour
         {
             isWaveOngoing = false;
             Destroy(currentWave);
+
+            if (CurrentWaveIndex >= waves.Count)
+            {
+                waveNameUI.text = "End!";
+                DemoCompleteUI.SetActive(true);
+                return;
+            }
 
             Global.itemSelectManager.CreateItems(waves[CurrentWaveIndex-1].ItemType);
             Global.gardenHealth.SetHealth(GlobalGarden.GardenHealAfterWave, true);
@@ -139,13 +151,6 @@ public class WaveManager : MonoBehaviour
 
         isWaveOngoing = true;
         waveNameUI.text = "Wave " + (CurrentWaveIndex+1);
-
-        if (CurrentWaveIndex >= waves.Count)
-        {
-            waveNameUI.text = "Thanks for Playing!";
-            DemoCompleteUI.SetActive(true);
-            return;
-        }
 
         StartCoroutine(DelayNextWave(1f));
         waveProgressBar.UpdateValue(0);

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 966c88dd126f8bf418a7f9b2fda060b2, type: 3}
-  m_Name: PepperSparrow
+  m_Name: PizzaTurtle
   m_EditorClassIdentifier: 
-  EnemyName: PepperSparrow
-  Health: 11
+  EnemyName: Pizza Turtle
+  Health: 100
   Resistance: 0
   DodgeChance: 0
-  HealthRegen: 0
-  MovementSpeedMin: 6
-  MovementSpeedMax: 6
+  HealthRegen: 0.5
+  MovementSpeedMin: 2
+  MovementSpeedMax: 2
   MovementTargetType: 0
-  ContactDamage: 3
-  GardenContactDamage: 3
+  ContactDamage: 4
+  GardenContactDamage: 2

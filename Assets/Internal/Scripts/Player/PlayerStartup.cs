@@ -9,8 +9,8 @@ public class PlayerStartup : MonoBehaviour
         Global.playerTransform = transform;
         Player.playerGameObject = gameObject;
 
-        #if UNITY_EDITOR
+        /*#if UNITY_EDITOR
                 Global.IsInEditorMode = true;
-        #endif
+        #endif*/
     }
 }

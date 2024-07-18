@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BasicEnemyMovementType
+{
+    TargetGarden,
+    TargetPlayer
+}
+
 public abstract class EnemyMovement : MonoBehaviour
 {
     protected Transform Player;
@@ -9,7 +15,7 @@ public abstract class EnemyMovement : MonoBehaviour
 
     protected float movespeed;
     protected float currentSlowAmount = 0f;
-    protected EnemyMovementType currentTargetType;
+    protected BasicEnemyMovementType currentTargetType;
 
     protected bool isMovementStarted = false;
     protected float appliedSpeed = 0;
@@ -37,21 +43,28 @@ public abstract class EnemyMovement : MonoBehaviour
 
             if (TryGetComponent(out Animator animator))
                 animator.speed = 1f;
+
+            StartMovement();
         }
 
         if (isMovementStarted && !isBeingKnockedBack && !_movementDisabled)
         {
-            RB.velocity = (appliedDirection.normalized * appliedSpeed) + appliedPullForce;
-        }
-
-        if (isMovementStarted)
-        {
-            transform.position = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y, Global.YRange.min, Global.YRange.max));
+            ReapplyMovement();
         }
         
     }
 
-    public void SetMovementType(EnemyMovementType movementType)
+    public virtual void ReapplyMovement()
+    {
+        RB.velocity = (appliedDirection.normalized * appliedSpeed) + appliedPullForce;
+    }
+
+    public virtual void StartMovement()
+    {
+        RB.velocity = (appliedDirection.normalized * appliedSpeed) + appliedPullForce;
+    }
+
+    public void SetMovementType(BasicEnemyMovementType movementType)
     {
         currentTargetType = movementType;
     }
@@ -84,6 +97,7 @@ public abstract class EnemyMovement : MonoBehaviour
 
         if (isMovementStarted && force > 0f && !isBeingKnockedBack)
         {
+            DisableMovement();
             StartCoroutine(KnockbackTime(knockbackTime==0? (force/25f) : knockbackTime));
             RB.velocity = Vector2.zero;
             RB.AddForce(force * direction, ForceMode2D.Impulse);
@@ -98,13 +112,21 @@ public abstract class EnemyMovement : MonoBehaviour
             isBeingKnockedBack = false;
             RB.drag = defaultFriction;
             RB.velocity = Vector2.zero;
+
+            EnableMovement();
+            StartMovement();
         }
     }
 
-    private bool _movementDisabled = false;
-    public void DisableMovement()
+    protected bool _movementDisabled = false;
+    public virtual void DisableMovement()
     {
         _movementDisabled = true;
+    }
+
+    public virtual void EnableMovement()
+    {
+        _movementDisabled = false;
     }
 
     public void ApplyMovementPull(Vector2 pullForce)

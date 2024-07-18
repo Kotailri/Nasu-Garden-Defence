@@ -51,8 +51,8 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public bool IsEnemyActive()
+    private void Update()
     {
-        return transform.position.x < 18.5f;
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, Global.YRange.min, Global.YRange.max), transform.position.z);
     }
 }

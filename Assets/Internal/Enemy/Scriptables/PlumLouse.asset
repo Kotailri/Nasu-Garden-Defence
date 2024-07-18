@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966c88dd126f8bf418a7f9b2fda060b2, type: 3}
   m_Name: PlumLouse
   m_EditorClassIdentifier: 
-  EnemyName: TangerineLouse
+  EnemyName: Tangerine Louse
   Health: 25
   Resistance: 0
   DodgeChance: 0
