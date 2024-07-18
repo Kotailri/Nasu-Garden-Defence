@@ -54,7 +54,7 @@ public class PlayerStatInitializer : MonoBehaviour
             {
                 GlobalPlayer.PlayerStatDict.Add(stat.StatEnum, PlayerStatFactory.CreatePlayerStat(stat.StatName, stat.StatEnum, stat.StatDescription,
                                                                                               stat.StatBase, stat.StatGrowth,
-                                                                                              stat.StatGrowthType));
+                                                                                              stat.StatGrowthType, stat.ShowsInUI));
             }
         }
     }

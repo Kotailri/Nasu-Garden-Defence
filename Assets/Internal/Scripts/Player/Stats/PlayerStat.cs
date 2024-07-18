@@ -10,10 +10,16 @@ public abstract class PlayerStat
     private string StatName = "Stat Name";
     private string StatDescription = "Stat Description";
     private PlayerStatEnum StatEnum;
+    private bool ShowsInUI = true;
 
     public int GetLevel()
     {
         return StatLevel;
+    }
+
+    public bool DoesShowInUI()
+    {
+        return ShowsInUI;
     }
 
     public PlayerStatEnum GetStatEnum()
@@ -54,7 +60,7 @@ public abstract class PlayerStat
         EventManager.TriggerEvent(EventStrings.STATS_UPDATED, null);
     }
 
-    protected PlayerStat(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease)
+    protected PlayerStat(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease, bool showsInUI)
     {
         StatLevel = 0;
         StatIncrease = statIncrease;
@@ -62,6 +68,7 @@ public abstract class PlayerStat
         StatBase = statBase;
         StatEnum = statEnum;
         StatDescription = statDescription;
+        ShowsInUI = showsInUI;
     }
 
     public abstract float GetStat();
@@ -76,7 +83,7 @@ public enum PlayerStatGrowthType
 
 public class PlayerStatLinear : PlayerStat
 {
-    public PlayerStatLinear(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease) : base(statName, statEnum, statDescription, statBase, statIncrease)
+    public PlayerStatLinear(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease, bool showsInUI) : base(statName, statEnum, statDescription, statBase, statIncrease, showsInUI)
     {
     }
 
@@ -88,7 +95,7 @@ public class PlayerStatLinear : PlayerStat
 
 public class PlayerStatCompound : PlayerStat
 {
-    public PlayerStatCompound(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease) : base(statName, statEnum, statDescription, statBase, statIncrease)
+    public PlayerStatCompound(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease, bool showsInUI) : base(statName, statEnum, statDescription, statBase, statIncrease, showsInUI)
     {
     }
 
@@ -100,7 +107,7 @@ public class PlayerStatCompound : PlayerStat
 
 public class PlayerStatExponential : PlayerStat
 {
-    public PlayerStatExponential(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease) : base(statName, statEnum, statDescription, statBase, statIncrease)
+    public PlayerStatExponential(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease, bool showsInUI) : base(statName, statEnum, statDescription, statBase, statIncrease, showsInUI)
     {
     }
 
@@ -112,16 +119,16 @@ public class PlayerStatExponential : PlayerStat
 
 public static class PlayerStatFactory
 {
-    public static PlayerStat CreatePlayerStat(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease, PlayerStatGrowthType growthType)
+    public static PlayerStat CreatePlayerStat(string statName, PlayerStatEnum statEnum, string statDescription, float statBase, float statIncrease, PlayerStatGrowthType growthType, bool showsInUI)
     {
         switch (growthType)
         {
             case PlayerStatGrowthType.Compound:
-                return new PlayerStatCompound(statName, statEnum, statDescription, statBase, statIncrease);
+                return new PlayerStatCompound(statName, statEnum, statDescription, statBase, statIncrease, showsInUI);
             case PlayerStatGrowthType.Exponential:
-                return new PlayerStatExponential(statName, statEnum, statDescription, statBase, statIncrease);
+                return new PlayerStatExponential(statName, statEnum, statDescription, statBase, statIncrease, showsInUI);
             case PlayerStatGrowthType.Linear:
-                return new PlayerStatLinear(statName, statEnum, statDescription, statBase, statIncrease);
+                return new PlayerStatLinear(statName, statEnum, statDescription, statBase, statIncrease, showsInUI);
         }
         return null;
     }

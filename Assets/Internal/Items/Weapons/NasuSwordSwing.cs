@@ -12,10 +12,18 @@ public class NasuSwordSwing : PlayerAttackPrefab
     [Space(5f)]
     public bool ReverseSwing;
 
+    [Space(5f)]
+    public GameObject sword;
+
     public override void Start()
     {
         base.Start();
-        GetComponent<BoxCollider2D>().enabled = false;
+
+        sword.GetComponent<PlayerAttackPrefab>().SetDamage(Damage);
+        sword.GetComponent<PlayerAttackPrefab>().SetKnockback(Knockback);
+        sword.GetComponent<PlayerAttackPrefab>().SetKnockbackTime(KnockbackTime);
+
+        sword.GetComponent<BoxCollider2D>().enabled = false;
         if (ReverseSwing)
             transform.rotation = Quaternion.Euler(0f, 0f, 180f);
         StartCoroutine(SwingTiming());
@@ -24,7 +32,7 @@ public class NasuSwordSwing : PlayerAttackPrefab
     private IEnumerator SwingTiming()
     {
         yield return new WaitForSeconds(StartDelay);
-        GetComponent<BoxCollider2D>().enabled = true;
+        sword.GetComponent<BoxCollider2D>().enabled = true;
         if (ReverseSwing)
             LeanTween.rotateZ(gameObject, 0f, SwingDuration).setEaseInCubic().setOnComplete(() => {
                 EndingEvents();
@@ -37,7 +45,7 @@ public class NasuSwordSwing : PlayerAttackPrefab
 
     private void EndingEvents()
     {
-        GetComponent<BoxCollider2D>().enabled = false;
-        LeanTween.alpha(gameObject, 0f, DestroyDelay).setOnComplete(() => { Destroy(gameObject); });
+        sword.GetComponent<BoxCollider2D>().enabled = false;
+        LeanTween.alpha(sword, 0f, DestroyDelay).setOnComplete(() => { Destroy(gameObject); });
     }
 }

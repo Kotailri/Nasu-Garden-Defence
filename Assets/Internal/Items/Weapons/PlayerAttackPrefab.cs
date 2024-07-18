@@ -22,7 +22,10 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
 
     private void Awake()
     {
-        gameObject.AddComponent<CallsTriggerCollisions>();
+        if (gameObject.TryGetComponent(out Collider2D _))
+        {
+            gameObject.AddComponent<CallsTriggerCollisions>();
+        }
     }
 
     public virtual void Start()

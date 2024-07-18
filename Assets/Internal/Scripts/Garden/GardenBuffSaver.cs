@@ -18,8 +18,6 @@ public class GardenBuffSaver : MonoBehaviour
 
     public void LoadBuffs()
     {
-        print("loaded garden buffs");
-
         GlobalGarden.Coins = PlayerPrefs.GetInt(defaultPrefix + prefix + CoinsString, 0);
 
         GlobalGarden.CoinDropChanceLevel = PlayerPrefs.GetInt(defaultPrefix + prefix + CoinDropChanceLevelString, 0);
@@ -32,7 +30,6 @@ public class GardenBuffSaver : MonoBehaviour
 
     public void SaveBuffs()
     {
-        print("saved garden buffs");
 
         PlayerPrefs.SetInt(defaultPrefix + prefix + CoinsString, GlobalGarden.Coins);
 

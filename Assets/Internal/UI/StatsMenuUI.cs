@@ -41,11 +41,14 @@ public class StatsMenuUI : MonoBehaviour
         int index = 0;
         foreach (var item in GlobalPlayer.PlayerStatDict)
         {
-            GameObject g = Instantiate(StatsObject, Vector2.zero, Quaternion.identity);
-            g.transform.SetParent(transform);
-            g.transform.localPosition = StatsAnchorPoint.localPosition + new Vector3(0,-index * spacing,0);
-            statsDisplayList.Add(g);
-            index++;
+            if (item.Value.DoesShowInUI())
+            {
+                GameObject g = Instantiate(StatsObject, Vector2.zero, Quaternion.identity);
+                g.transform.SetParent(transform);
+                g.transform.localPosition = StatsAnchorPoint.localPosition + new Vector3(0, -index * spacing, 0);
+                statsDisplayList.Add(g);
+                index++;
+            }
         }
 
         UpdateStatsDisplay();
@@ -65,8 +68,11 @@ public class StatsMenuUI : MonoBehaviour
         int index = 0;
         foreach (var item in GlobalPlayer.PlayerStatDict)
         {
-            UpdateStat(index, item.Value);
-            index++;
+            if (item.Value.DoesShowInUI())
+            {
+                UpdateStat(index, item.Value);
+                index++;
+            }
         }
     }
 

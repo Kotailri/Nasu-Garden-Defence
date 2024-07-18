@@ -49,6 +49,8 @@ MonoBehaviour:
   statList:
   - stat: 20
     levelup: 1
+  - stat: 16
+    levelup: 1
   statLevelUps: 
   isExcemptFromPoolRemoval: 1
   addsToUI: 0
