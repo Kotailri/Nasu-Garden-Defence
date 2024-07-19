@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PizzaTurtle
   m_EditorClassIdentifier: 
   EnemyName: Pizza Turtle
-  Health: 100
+  Health: 85
   Resistance: 0
   DodgeChance: 0
   HealthRegen: 0.5

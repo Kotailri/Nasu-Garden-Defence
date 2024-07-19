@@ -10,6 +10,7 @@ public class GardenBuffSaver : MonoBehaviour
     private readonly string CoinsString = "Coins_sav";
 
     private readonly string CoinDropChanceLevelString             = "CoinDropChanceLevelString_sav";
+    private readonly string RerollLevelString                     = "ItemRerolllevelString_sav";
     private readonly string CoinMagnetDistanceLevelString         = "CoinMagnetDistanceLevelString_sav";
     private readonly string PlayerRegenerationLevelString         = "PlayerRegenerationLevelString_sav";
     private readonly string GardenHealAfterWaveLevelString        = "GardenHealAfterWaveLevelString_sav";
@@ -19,6 +20,9 @@ public class GardenBuffSaver : MonoBehaviour
     public void LoadBuffs()
     {
         GlobalGarden.Coins = PlayerPrefs.GetInt(defaultPrefix + prefix + CoinsString, 0);
+
+        GlobalGarden.ItemRerollLevel = PlayerPrefs.GetInt(defaultPrefix + prefix + RerollLevelString, 0);
+        Global.RemainingRerolls = GlobalGarden.ItemRerollLevel;
 
         GlobalGarden.CoinDropChanceLevel = PlayerPrefs.GetInt(defaultPrefix + prefix + CoinDropChanceLevelString, 0);
         GlobalGarden.CoinMagnetDistanceLevel = PlayerPrefs.GetInt(defaultPrefix + prefix + CoinMagnetDistanceLevelString, 0);
@@ -33,6 +37,7 @@ public class GardenBuffSaver : MonoBehaviour
 
         PlayerPrefs.SetInt(defaultPrefix + prefix + CoinsString, GlobalGarden.Coins);
 
+        PlayerPrefs.SetInt(defaultPrefix + prefix + RerollLevelString, GlobalGarden.ItemRerollLevel);
         PlayerPrefs.SetInt(defaultPrefix + prefix + CoinDropChanceLevelString, GlobalGarden.CoinDropChanceLevel);
         PlayerPrefs.SetInt(defaultPrefix + prefix + CoinMagnetDistanceLevelString, GlobalGarden.CoinMagnetDistanceLevel);
         PlayerPrefs.SetInt(defaultPrefix + prefix + PlayerRegenerationLevelString, GlobalGarden.PlayerRegenerationLevel);

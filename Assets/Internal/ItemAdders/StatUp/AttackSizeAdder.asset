@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Attack Size
   ItemDescription: Increases the attack size stat by 1 level. Each level increases
-    the size of attacks by 25%.
+    the size of attacks by 25% and increases the speed of projectiles by 25%.
   ItemIconImage: {fileID: 21300000, guid: f5c6ba5b326ca4c6894ee524d88dc4ce, type: 3}
   ItemSpriteColor: {r: 1, g: 1, b: 1, a: 1}

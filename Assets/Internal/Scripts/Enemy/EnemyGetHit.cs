@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyGetHit : MonoBehaviour
 {
-    public void GetHit(int damage, Vector2 location)
+    public virtual void GetHit(int damage, Vector2 location)
     {
         int newDamage = damage;
         if (GlobalItemToggles.HasAmplifier)

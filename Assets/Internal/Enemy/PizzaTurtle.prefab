@@ -169,6 +169,8 @@ GameObject:
   - component: {fileID: 2285599850290857386}
   - component: {fileID: 2850825616312489894}
   - component: {fileID: 43500795932814378}
+  - component: {fileID: 7334008890202036330}
+  - component: {fileID: 2603109757852217257}
   m_Layer: 6
   m_Name: PizzaTurtle
   m_TagString: Enemy
@@ -235,7 +237,7 @@ SpriteRenderer:
   m_SortingLayerID: -356940509
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1940469806, guid: f3874c0673e987f4bae686d0a5f42981, type: 3}
+  m_Sprite: {fileID: 1907906813, guid: f3874c0673e987f4bae686d0a5f42981, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -278,7 +280,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0061510503, y: -0.027958907}
+  m_Offset: {x: 0.004891753, y: -0.0279589}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -289,7 +291,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.93113893, y: 0.4096976}
+  m_Size: {x: 0.9336575, y: 0.4096976}
   m_EdgeRadius: 0
 --- !u!50 &2539888237098828142
 Rigidbody2D:
@@ -392,8 +394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PushFrame: 1
-  PushForce: 10
-  PushTimeLength: 1.5
+  PushForce: 2
+  PushTimeLength: 0.5
 --- !u!114 &43500795932814378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,13 +408,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6122581ab3788df44af36a38565dfb2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 6
+  radius: 8
   EnterActionEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2603109757852217257}
+        m_TargetAssemblyTypeName: PizzaTurtle, Assembly-CSharp
+        m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   ExitActionEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2603109757852217257}
+        m_TargetAssemblyTypeName: PizzaTurtle, Assembly-CSharp
+        m_MethodName: Unhide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7334008890202036330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8120188403701684839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99bb132931e8e92458ad6c20ff14903a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsImmune: 0
+--- !u!114 &2603109757852217257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8120188403701684839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8061bc3a3416e4e8fcb099b55c06a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shellHitbox:
+    offset: {x: 0.013872966, y: -0.086907715}
+    size: {x: 0.61710596, y: 0.2785462}
+  IsInAnimation: 0
 --- !u!1001 &6685969101681152225
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Progress;
 
 public class ItemSelectManager : MonoBehaviour
 {
@@ -11,27 +12,68 @@ public class ItemSelectManager : MonoBehaviour
     public Transform ItemLocation1;
     public Transform ItemLocation2;
     public Transform ItemLocation3;
+    public Transform RerollLocation;
+
+    public GameObject Reroller;
 
     private List<GameObject> currentItems = new();
     private GameObject selectedItem = null;
+    private ItemTypeEnum currentItemType = ItemTypeEnum.StatUp;
 
     private void Awake()
     {
         Global.itemSelectManager = this;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T)) { RerollItems(); }
+    }
+
+    public void RerollItems()
+    {
+        if (Global.RemainingRerolls > 0)
+        {
+            Global.RemainingRerolls--;
+        }
+        else
+        {
+            return;
+        }
+
+        StartCoroutine(ItemRerollCoroutine());
+
+        IEnumerator ItemRerollCoroutine()
+        {
+            foreach (GameObject item in currentItems)
+            {
+                LeanTween.moveY(item, item.transform.position.y + 20f, 1f).setOnComplete(() => { Destroy(item); });
+;               yield return new WaitForSeconds(0.25f);
+            }
+            currentItems.Clear();
+            CreateItems(currentItemType);
+        }
+        
+    }
+
+    float animTime = 1f;
+    float startingHeight = 20f;
+
     public void CreateItems(ItemTypeEnum itemType)
     {
         if (Global.isGameOver) { return; }
 
-        float animTime = 1f;
-        float startingHeight = 20f;
+        currentItemType = itemType;
 
         StartCoroutine(ItemSpawnCoroutine());
 
         IEnumerator ItemSpawnCoroutine()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1);
+            GameObject reroller = Instantiate(Reroller, RerollLocation.position + new Vector3(0, startingHeight, 0), Quaternion.identity);
+            LeanTween.moveY(reroller, RerollLocation.position.y, animTime).setEaseInOutBounce();
+
+            yield return new WaitForSeconds(0.25f);
 
             List<ItemAdder> randomItems = Global.itemInventoryManager.GetRandomFromPool(3, itemType, Global.waveManager.CurrentWaveIndex);
 

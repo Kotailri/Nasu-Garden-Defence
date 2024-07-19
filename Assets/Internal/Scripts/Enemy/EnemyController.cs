@@ -24,8 +24,17 @@ public class EnemyController : MonoBehaviour
 
         GardenContactDamage = enemyScriptable.GardenContactDamage;
 
-        gameObject.AddComponent<EnemyGetHit>();
-        gameObject.AddComponent<CallsTriggerCollisions>();
+        if (!TryGetComponent(out EnemyGetHit _))
+        {
+            gameObject.AddComponent<EnemyGetHit>();
+        }
+
+        if (!TryGetComponent(out CallsTriggerCollisions _))
+        {
+            gameObject.AddComponent<CallsTriggerCollisions>();
+        }
+
+        
 
         if (TryGetComponent(out Animator animator))
             animator.speed = 0f;

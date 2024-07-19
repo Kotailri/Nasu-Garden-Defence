@@ -45,6 +45,8 @@ public static class Global
     public static (float min, float max) XRange = (-14.67f, 17.31f);
     public static (float min, float max) YRange = (-7.5f, 7f);
 
+    public static int RemainingRerolls = 0;
+
     public static void GameOver(DeathCondition deathCondition)
     {
         if (gameOverManager == null) return;
@@ -57,6 +59,8 @@ public static class Global
 
     public static void ResetGame()
     {
+        RemainingRerolls = GlobalGarden.ItemRerolls;
+
         EventManager.TriggerEvent(EventStrings.GAME_RESET, null);
         gardenBuffManager.saver.SaveBuffs();
 
@@ -228,6 +232,9 @@ public static class GlobalGarden
 
     public static float PlayerPercentHealAfterWave = 0f;
     public static int PlayerPercentHealAfterWaveLevel = 0;
+
+    public static int ItemRerolls = 3;
+    public static int ItemRerollLevel = 0;
 
 }
 public static class MathHelper
