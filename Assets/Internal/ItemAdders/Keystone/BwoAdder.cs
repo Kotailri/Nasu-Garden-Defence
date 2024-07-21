@@ -12,7 +12,21 @@ public class BwoAdder : ItemAdderNormal
     {
         Global.keystoneItemManager.BwoMovespeed = BwoMovespeed;
         GlobalItemToggles.HasBwo = true;
-        Instantiate(BwoPrefab, Global.playerTransform.position, Quaternion.identity);
+        GameObject bwo = Instantiate(BwoPrefab, Global.playerTransform.position, Quaternion.identity);
+
+        // refresh attack list
+        foreach (ItemAdder adder in Global.itemInventoryManager.ItemInventory)
+        {
+            if (adder is ItemAdderWithPrefab prefabAdder)
+            {
+                if (prefabAdder.isAttachedToPet)
+                {
+                    prefabAdder.AttachToPet();
+                }
+                
+            }
+        }
+
         base.OnItemGet();
     }
 }

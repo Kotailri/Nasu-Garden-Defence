@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BucketHatSpinnerAdder
   m_EditorClassIdentifier: 
   ItemName: Bucket Hat Spin
-  ItemDescription: Every 3rd attack, create 3 bucket hats around the player that
-    last for 2 seconds and rapidly damage and knock enemies back.
+  ItemDescription: Every 3rd attack, create 3 bucket hats that spin left around the
+    player that last for 2 seconds, damaging and knocking enemies back.
   ItemIconImage: {fileID: 21300000, guid: c47d3008f5b134fdd93eb9b6b2a7d553, type: 3}
   ItemSpriteColor: {r: 1, g: 1, b: 1, a: 1}

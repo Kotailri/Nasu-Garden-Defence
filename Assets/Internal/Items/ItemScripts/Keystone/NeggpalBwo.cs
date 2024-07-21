@@ -48,7 +48,7 @@ public class NeggpalBwo : MonoBehaviour
         }
 
         movespeed = Global.keystoneItemManager.BwoMovespeed;
-        ChangeState(states[0]);
+        ChangeState(states[BwoStateEnum.Follow]);
     }
 
     private bool ChangeState(IBwoState state)
@@ -129,7 +129,15 @@ public class NeggpalBwo : MonoBehaviour
         if (currentStateTime > StateDuration || CurrentState.IsEndStateTriggered()) 
         {
             currentStateTime = 0;
-            ChangeState(GetNewState());
+            if (Global.waveManager.IsWaveOngoing())
+            {
+                ChangeState(GetNewState());
+            }
+            else
+            {
+                ChangeState(states[BwoStateEnum.Follow]);
+            }
+            
         }
     }
 }
@@ -167,7 +175,10 @@ public class BwoChaseState : IBwoState
         currentEnemyTarget = currentEnemy;
     }
 
-    public void OnStateEnd(NeggpalBwo bwo) { }
+    public void OnStateEnd(NeggpalBwo bwo) 
+    {
+        
+    }
 
     public void OnStateUpdate(NeggpalBwo bwo)
     {
@@ -188,13 +199,25 @@ public class BwoChaseState : IBwoState
 
         if (currentEnemyTarget.transform.position.x < bwo.transform.position.x)
         {
-            bwo.GetComponent<SpriteRenderer>().flipX = true;
+            CoroutineManager.instance.StartCoroutine(FlipSprite(bwo, true));
             Global.keystoneItemManager.IsBwoFacingAttackDirection = false;
         }
         else
         {
             Global.keystoneItemManager.IsBwoFacingAttackDirection = true;
-            bwo.GetComponent<SpriteRenderer>().flipX = false;
+            CoroutineManager.instance.StartCoroutine(FlipSprite(bwo, false));
+        }
+    }
+
+    private IEnumerator FlipSprite(NeggpalBwo bwo, bool _flipX)
+    {
+        SpriteRenderer spr = bwo.GetComponent<SpriteRenderer>();
+        if (_flipX == spr.flipX) { yield return null; }
+
+        yield return new WaitForSeconds(0.25f);
+        if (_flipX != spr.flipX)
+        {
+            spr.flipX = _flipX;
         }
     }
 
@@ -215,7 +238,7 @@ public class BwoWanderState : IBwoState
     public float DistanceToTarget = 1.0f;
     private bool stateEndTriggered = false;
 
-    private float xWanderRange = 2f;
+    private float xWanderRange = 5f;
     private float yWanderRange = 10f;
 
     public void OnStateStart(NeggpalBwo bwo)
@@ -268,7 +291,10 @@ public class BwoFollowState : IBwoState
         return false;
     }
 
-    public void OnStateEnd(NeggpalBwo bwo) { }
+    public void OnStateEnd(NeggpalBwo bwo) 
+    {
+        
+    }
 
     public void OnStateStart(NeggpalBwo bwo) 
     {
@@ -281,21 +307,33 @@ public class BwoFollowState : IBwoState
         if (Vector2.Distance(bwo.gameObject.transform.position, Global.playerTransform.position) <= minDistance)
         {
             bwo.RB.velocity = Vector2.zero;
-            bwo.GetComponent<SpriteRenderer>().flipX = false;
+            CoroutineManager.instance.StartCoroutine(FlipSprite(bwo, false));
             Global.keystoneItemManager.IsBwoFacingAttackDirection = true;
         }
         else
         {
             if (bwo.RB.velocity.x < 0)
             {
-                bwo.GetComponent<SpriteRenderer>().flipX = true;
+                CoroutineManager.instance.StartCoroutine(FlipSprite(bwo, true));
                 Global.keystoneItemManager.IsBwoFacingAttackDirection = false;
             }
             else
             {
-                bwo.GetComponent<SpriteRenderer>().flipX = false;
+                CoroutineManager.instance.StartCoroutine(FlipSprite(bwo, false));
                 Global.keystoneItemManager.IsBwoFacingAttackDirection = true;
             }
+        }
+    }
+
+    private IEnumerator FlipSprite(NeggpalBwo bwo, bool _flipX)
+    {
+        SpriteRenderer spr = bwo.GetComponent<SpriteRenderer>();
+        if (_flipX == spr.flipX) { yield return null; }
+
+        yield return new WaitForSeconds(0.25f);
+        if (_flipX != spr.flipX)
+        {
+            spr.flipX = _flipX;
         }
     }
 

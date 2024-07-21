@@ -25,9 +25,6 @@ public class BossController : MonoBehaviour
 
         if (TryGetComponent(out EnemyGetHit _) == false)
             gameObject.AddComponent<EnemyGetHit>();
-
-        if (TryGetComponent(out CallsTriggerCollisions _) == false)
-            gameObject.AddComponent<CallsTriggerCollisions>();
         
     }
 

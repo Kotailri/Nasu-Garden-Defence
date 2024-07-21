@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(GardenHealth))]
-public class GardenHitbox : MonoBehaviour, IHasTriggerExit
+public class GardenHitbox : MonoBehaviour
 {
-    public void OnTriggerExitEvent(GameObject collisionObject)
+    private void OnTriggerExit2D(Collider2D _collisionObject)
     {
+        GameObject collisionObject = _collisionObject.gameObject;
         if (collisionObject.transform.position.x > -15f)
         {
             return;

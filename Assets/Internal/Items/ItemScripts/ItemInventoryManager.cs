@@ -45,11 +45,13 @@ public class ItemInventoryManager : MonoBehaviour
         foreach (ItemAdder item in debugInventory)
         {
             item.OnItemGet();
+            PoolToInventory(item);
         }
 
         foreach (ItemAdder item in StartingItems)
         {
             item.OnItemGet();
+            PoolToInventory(item);
         }
 
         // debug check item info

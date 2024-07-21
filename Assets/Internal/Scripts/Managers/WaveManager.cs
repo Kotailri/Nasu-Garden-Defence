@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 using UnityEngine;
 
 [System.Serializable]
@@ -23,10 +20,12 @@ public class WaveManager : MonoBehaviour
 {
     public List<WaveWithReward> waves = new();
 
-    public string WavesLocation;
     public int CurrentWaveIndex = 0;
+    public bool GivesItems = true;
 
     private GameObject currentWave;
+
+    [Space(10f)]
     public TextMeshProUGUI waveNameUI;
     public ProgressBar waveProgressBar;
 
@@ -78,10 +77,15 @@ public class WaveManager : MonoBehaviour
         }
 
         CurrentWaveIndex += GlobalGarden.LevelsToSkip;
-        for (int i = 0; i < CurrentWaveIndex; i++)
+        if (GivesItems) 
         {
-            Global.itemInventoryManager.AddRandomToInventory(waves[i].ItemType, i);
+            for (int i = 0; i < CurrentWaveIndex; i++)
+            {
+                Global.itemInventoryManager.AddRandomToInventory(waves[i].ItemType, i);
+            }
+
         }
+        
 
         timer.ResetTimer();
         SpawnNextWave();
@@ -217,26 +221,4 @@ public class WaveManager : MonoBehaviour
     }
 
 
-/*#if UNITY_EDITOR
-    [ContextMenu("Refresh Waves")]
-    public void RefreshWaves()
-    {
-        waves.Clear();
-        string[] guids = AssetDatabase.FindAssets("t:Prefab", new[] { WavesLocation });
-
-        foreach (string guid in guids)
-        {
-            string assetPath = AssetDatabase.GUIDToAssetPath(guid);
-            // Check if the asset is in the specified directory and not in a subdirectory
-            if (System.IO.Path.GetDirectoryName(assetPath).Replace('\\', '/').Equals(WavesLocation.Replace('\\', '/')))
-            {
-                GameObject asset = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
-                if (asset != null)
-                {
-                    waves.Add(new WaveWithReward(asset, ItemTypeEnum.Weapon));
-                }
-            }
-        }
-    }
-#endif*/
 }

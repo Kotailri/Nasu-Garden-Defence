@@ -9,10 +9,16 @@ public class PlayerAttackManager : MonoBehaviour
 
     private float currentAttackTimer = 0f;
     public List<PlayerAttack> attackList = new();
+    public List<PlayerAttack> attackListBwo = new();
 
     public void RefreshAttackList()
     {
-        attackList = new(GetComponentsInChildren<PlayerAttack>(false));
+        attackList = new(GetComponentsInChildren<PlayerAttack>(true));
+        if (GameObject.FindGameObjectWithTag("Bwo") != null)
+        {
+            attackListBwo = new(GameObject.FindGameObjectWithTag("Bwo").GetComponentsInChildren<PlayerAttack>(true));
+        }
+        
         /*bool onOffset = false;
         foreach (PlayerAttack attack in attackList)
         {
@@ -61,24 +67,27 @@ public class PlayerAttackManager : MonoBehaviour
 
                 attack.DoAttack(transform.position);
 
+            }
+            
+        }
+
+        foreach (PlayerAttack attack in attackListBwo) 
+        {
+            if (!attack.IsOnAttackTimer
+                || (!attack.OnOffset && count % attack.AttackCount == 0)
+                || (attack.OnOffset && count % attack.AttackCount == 1))
+            { 
+
                 if (GlobalItemToggles.HasBwo)
                 {
                     if (!attack.IsPetFacingRequired || (attack.IsPetFacingRequired && Global.keystoneItemManager.IsBwoFacingAttackDirection))
                     {
-                        if (attack.IsAttached)
-                        {
-                            attack.DoAttack(GameObject.FindGameObjectWithTag("Bwo").transform.position, GameObject.FindGameObjectWithTag("Bwo").transform);
-                        }
-                        else
-                        {
-                            attack.DoAttack(GameObject.FindGameObjectWithTag("Bwo").transform.position);
-                        }
-
+                        attack.DoAttack(GameObject.FindGameObjectWithTag("Bwo").transform.position, GameObject.FindGameObjectWithTag("Bwo").transform);
+                        attack.DoAttack(transform.position);
                     }
                 }
 
             }
-            
         }
 
         count++;

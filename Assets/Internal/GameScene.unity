@@ -883,8 +883,8 @@ MonoBehaviour:
     ItemType: 1
   - Wave: {fileID: 4110626928451635750, guid: 75d7d03515a2e884383afac4696939ee, type: 3}
     ItemType: 0
-  WavesLocation: Assets/Internal/Waves
-  CurrentWaveIndex: 8
+  CurrentWaveIndex: 5
+  GivesItems: 0
   waveNameUI: {fileID: 2040071331}
   waveProgressBar: {fileID: 7695761220067284831}
   timer: {fileID: 1474897457}
@@ -11153,7 +11153,6 @@ GameObject:
   - component: {fileID: 844188790}
   - component: {fileID: 844188794}
   - component: {fileID: 844188796}
-  - component: {fileID: 844188797}
   - component: {fileID: 844188798}
   - component: {fileID: 844188800}
   - component: {fileID: 844188799}
@@ -11453,18 +11452,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1277825885}
---- !u!114 &844188797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844188785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca3d551c9094c114a9a1b790df20dafb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &844188798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11480,6 +11467,7 @@ MonoBehaviour:
   ShootCooldownBar: {fileID: 630717719}
   AttackTimer: 2
   attackList: []
+  attackListBwo: []
 --- !u!70 &844188799
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -20864,6 +20852,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1523279626}
   - component: {fileID: 1523279625}
+  - component: {fileID: 1523279627}
   m_Layer: 0
   m_Name: StatManager
   m_TagString: Untagged
@@ -20914,6 +20903,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1523279627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523279624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63bf00de6fcf7c84abc3f467c01e82b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1527641940
 GameObject:
   m_ObjectHideFlags: 0
@@ -20977,6 +20978,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1531515172}
+  - component: {fileID: 1531515173}
   m_Layer: 0
   m_Name: =================MANAGERS
   m_TagString: Untagged
@@ -20999,6 +21001,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1531515173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531515171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1be4849bf3b7b04296b3d65c06ff464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1532997657
 GameObject:
   m_ObjectHideFlags: 0
@@ -23106,7 +23120,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59518da54228be4781498ce713f0b14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugInventory: []
+  debugInventory:
+  - {fileID: 6260268218188063753, guid: f60d2edb10214d444ad12753189548fd, type: 3}
+  - {fileID: -3585581288498532571, guid: 606a1bcfa97cff64d87ab2451e6a88cf, type: 3}
+  - {fileID: -5580221820512699650, guid: b25b10b9639a90549ad4f8b05240460f, type: 3}
+  - {fileID: -5580221820512699650, guid: 0000ccedb3e9b9e428b06ed2c3ff6737, type: 3}
+  - {fileID: -5580221820512699650, guid: a7593df9ffc656949aaf126d06bf7c53, type: 3}
   ItemPool_Weapon:
   - {fileID: -2324429805443389761, guid: 76ba63e3015f4974085d32a7472c9031, type: 3}
   - {fileID: -3585581288498532571, guid: 606a1bcfa97cff64d87ab2451e6a88cf, type: 3}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerHitbox : MonoBehaviour, IHasTriggerStay
+public class PlayerHitbox : MonoBehaviour
 {
     private PlayerHealth health;
     private bool canTakeDamage = true;
@@ -28,12 +28,11 @@ public class PlayerHitbox : MonoBehaviour, IHasTriggerStay
         canTakeDamage = true;
     }
 
-    public void OnTriggerStayEvent(GameObject collisionObject)
+    public void OnTriggerStay2D(Collider2D _collisionObject)
     {
-        if (canTakeDamage && collisionObject.TryGetComponent(out DamagesPlayerOnHit dm))
+        if (canTakeDamage && _collisionObject.gameObject.TryGetComponent(out DamagesPlayerOnHit dm))
         {
             int dmg = dm.GetDamage();
-            //print("Took " + dmg + " from " + collisionObject.name);
 
             if (dmg > 0) 
             {

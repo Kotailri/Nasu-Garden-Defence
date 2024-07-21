@@ -8,7 +8,7 @@ public enum PlayerAttackType
     Projectile
 }
 
-public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
+public class PlayerAttackPrefab : MonoBehaviour
 {
     public bool DestroyWhenOutside;
     public bool DestroyOnContact;
@@ -19,14 +19,6 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
     public int Damage;
     public float Knockback;
     public float KnockbackTime = 0;
-
-    private void Awake()
-    {
-        if (gameObject.TryGetComponent(out Collider2D _))
-        {
-            gameObject.AddComponent<CallsTriggerCollisions>();
-        }
-    }
 
     public virtual void Start()
     {
@@ -50,51 +42,59 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Explosion") && AttackType == PlayerAttackType.Projectile)
+        if (collision.gameObject.CompareTag("Explosion"))
+        {
+            ProjectilePassThroughExplosion();
+        }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            AttackHitsEnemy(collision.gameObject);
+        }
+    }
+
+    private void AttackHitsEnemy(GameObject enemy)
+    {
+        if (enemy.TryGetComponent(out EnemyGetHit hit))
+        {
+            int damage = 0;
+            switch (AttackType)
+            {
+                case PlayerAttackType.Projectile:
+                    damage = Mathf.FloorToInt(Damage * GlobalPlayer.CurrentPlayerDamageMultiplier *
+                        GlobalPlayer.GetStatValue(PlayerStatEnum.damage) * GlobalPlayer.GetStatValue(PlayerStatEnum.projectileDamage));
+
+                    break;
+
+                case PlayerAttackType.Melee:
+                    damage = Mathf.FloorToInt(Damage * GlobalPlayer.CurrentPlayerDamageMultiplier *
+                        GlobalPlayer.GetStatValue(PlayerStatEnum.damage) * GlobalPlayer.GetStatValue(PlayerStatEnum.meleeDamage));
+                    break;
+
+            }
+            EventManager.TriggerEvent(EventStrings.ENEMY_HIT, null);
+            hit.GetHit(damage, transform.position);
+        }
+
+        if (enemy.TryGetComponent(out EnemyMovement move))
+        {
+            move.DoKnockback(Knockback, KnockbackTime, null);
+        }
+
+        if (DestroyOnContact)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void ProjectilePassThroughExplosion()
+    {
+        if (AttackType == PlayerAttackType.Projectile)
         {
             if (Global.itemPassiveManager.GetPassive(ItemPassiveEnum.ProjectileThroughExplosion))
             {
                 Damage = Mathf.CeilToInt(Damage * Global.itemPassiveManager.ProjectileThroughExplosionMultiplier);
                 GetComponent<SpriteRenderer>().color = Color.red;
-            }
-        }
-    }
-
-    public void OnTriggerEnterEvent(GameObject collisionObject)
-    {
-        
-
-        if (collisionObject.CompareTag("Enemy"))
-        {
-            if (collisionObject.TryGetComponent(out EnemyGetHit hit))
-            {
-                int damage = 0;
-                switch (AttackType)
-                {
-                    case PlayerAttackType.Projectile:
-                        damage = Mathf.FloorToInt(Damage * GlobalPlayer.CurrentPlayerDamageMultiplier * 
-                            GlobalPlayer.GetStatValue(PlayerStatEnum.damage) * GlobalPlayer.GetStatValue(PlayerStatEnum.projectileDamage));
-
-                        break;
-
-                    case PlayerAttackType.Melee:
-                        damage = Mathf.FloorToInt(Damage * GlobalPlayer.CurrentPlayerDamageMultiplier *
-                            GlobalPlayer.GetStatValue(PlayerStatEnum.damage) * GlobalPlayer.GetStatValue(PlayerStatEnum.meleeDamage));
-                        break;
-
-                }
-                EventManager.TriggerEvent(EventStrings.ENEMY_HIT, null);
-                hit.GetHit(damage, transform.position);
-            }
-
-            if (collisionObject.TryGetComponent(out EnemyMovement move))
-            {
-                move.DoKnockback(Knockback, KnockbackTime, null);
-            }
-
-            if (DestroyOnContact)
-            {
-                Destroy(gameObject);
             }
         }
     }

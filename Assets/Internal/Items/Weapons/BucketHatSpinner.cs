@@ -15,7 +15,7 @@ public class BucketHatSpinner : PlayerAttack
     private List<GameObject> BucketHatList = new();
     private bool isSpinning = false;
 
-    private void Start()
+    public void Start()
     {
         // Calculate the angle between each object
         float angleStep = 360f / NumberOfHats;

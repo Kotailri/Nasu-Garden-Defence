@@ -37,13 +37,6 @@ public class EnemyController : MonoBehaviour
             gameObject.AddComponent<EnemyGetHit>();
         }
 
-        if (!TryGetComponent(out CallsTriggerCollisions _))
-        {
-            gameObject.AddComponent<CallsTriggerCollisions>();
-        }
-
-        
-
         if (TryGetComponent(out Animator animator))
             animator.speed = 0f;
     }

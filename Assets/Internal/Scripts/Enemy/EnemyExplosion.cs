@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-[RequireComponent(typeof(CallsTriggerCollisions))]
 public class EnemyExplosion : ExplosionEffect
 {
     protected override void Start()

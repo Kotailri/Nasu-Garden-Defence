@@ -51,3 +51,4 @@ MonoBehaviour:
   isExcemptFromPoolRemoval: 0
   addsToUI: 1
   prefab: {fileID: 6886489726890889435, guid: e7f38cc3fda35294985aecafa84a05ef, type: 3}
+  isAttachedToPet: 1
