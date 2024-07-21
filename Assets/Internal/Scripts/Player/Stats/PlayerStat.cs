@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,53 @@ public abstract class PlayerStat
     private string StatDescription = "Stat Description";
     private PlayerStatEnum StatEnum;
     private bool ShowsInUI = true;
+
+    public Dictionary<int, float> statMultipliers = new();
+    private int uniqueMutliplierID = 0;
+    private float currentStatBoost = 1f;
+
+    public float GetStatMultiplier()
+    {
+        return currentStatBoost;
+    }
+
+    public int AddStatMultiplier(float boost)
+    {
+        int returnId = uniqueMutliplierID;
+        statMultipliers[uniqueMutliplierID] = boost;
+        uniqueMutliplierID++;
+        RecalculateStatMultiplier();
+        return returnId;
+    }
+
+    public void RemoveStatMultiplier(int boostID)
+    {
+        if (statMultipliers.ContainsKey(boostID))
+        {
+            statMultipliers.Remove(boostID);
+            RecalculateStatMultiplier();
+
+            if (statMultipliers.Count == 0)
+                uniqueMutliplierID = 0;
+        }
+    }
+
+    public void RecalculateStatMultiplier()
+    {
+        float newCurrentMultiplier = 1f;
+        foreach (float s in statMultipliers.Values)
+        {
+            if (s > newCurrentMultiplier)
+                newCurrentMultiplier = s;
+        }
+        currentStatBoost = newCurrentMultiplier;
+    }
+
+    public void ResetMultiplier()
+    {
+        statMultipliers.Clear();
+        currentStatBoost = 1;
+    }
 
     public int GetLevel()
     {
@@ -89,7 +137,7 @@ public class PlayerStatLinear : PlayerStat
 
     public override float GetStat()
     {
-        return GetStatBase() + (GetStatIncrease() * GetLevel());
+        return (GetStatBase() + (GetStatIncrease() * GetLevel())) * GetStatMultiplier();
     }
 }
 
@@ -101,7 +149,7 @@ public class PlayerStatCompound : PlayerStat
 
     public override float GetStat()
     {
-        return GetStatBase() * Mathf.Pow(1 + GetStatIncrease(), GetLevel());
+        return (GetStatBase() * Mathf.Pow(1 + GetStatIncrease(), GetLevel())) * GetStatMultiplier();
     }
 }
 
@@ -113,7 +161,7 @@ public class PlayerStatExponential : PlayerStat
 
     public override float GetStat()
     {
-        return Mathf.Pow(GetStatBase(), GetStatIncrease() * GetLevel());
+        return (Mathf.Pow(GetStatBase(), GetStatIncrease() * GetLevel())) * GetStatMultiplier();
     }
 }
 

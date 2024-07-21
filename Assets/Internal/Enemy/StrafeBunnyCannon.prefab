@@ -275,7 +275,7 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 1308508756537036837, guid: 75a26f77c4e76a242a2a5c1feb9cad25, type: 3}
   ShootPosition: {fileID: 697853700426206992}
   ProjectileDirection: {x: -1, y: 0}
-  ProjectileSpeed: 3
+  ProjectileSpeed: 7
   TimerType: 1
   ShootTimer: 3.5
   AnimationFrame: 1
@@ -291,6 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e9a20a4300279409579aee381c6c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanBeKnockedBack: 1
   waveAmplitude: 2
   waveFrequency: 1.5
   startsUp: 0

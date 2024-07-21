@@ -19,7 +19,15 @@ public class EnemyController : MonoBehaviour
         if (healthBar != null )
             _healthComponent.SetHealthBar(healthBar);
 
-        _contactDamageComponent = gameObject.AddComponent<DamagesPlayerOnHit>();
+        if (TryGetComponent(out DamagesPlayerOnHit damagesPlayer))
+        {
+            _contactDamageComponent = damagesPlayer;
+        }
+        else
+        {
+            _contactDamageComponent = gameObject.AddComponent<DamagesPlayerOnHit>();
+        }
+        
         _contactDamageComponent.SetDamage(enemyScriptable.ContactDamage);
 
         GardenContactDamage = enemyScriptable.GardenContactDamage;

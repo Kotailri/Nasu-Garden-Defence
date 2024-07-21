@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -796500703
   m_SortingLayer: -4
-  m_SortingOrder: 10
+  m_SortingOrder: 15
   m_Sprite: {fileID: -516216656, guid: 971c2eb4d0e6f934088e284c42892f2d, type: 3}
   m_Color: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
   m_FlipX: 0
@@ -137,8 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fedb81dc38fd24ab498bf38dbc6a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wanderAreaCenter: {x: -29.8, y: -0.37}
-  wanderAreaSize: {x: 28.2, y: 14}
+  wanderAreaCenter: {x: -28.7, y: -0.59}
+  wanderAreaSize: {x: 31.2, y: 15}
   minSpeed: 1
   maxSpeed: 2
   minWaitTime: 2

@@ -233,7 +233,7 @@ public static class GlobalGarden
     public static float PlayerPercentHealAfterWave = 0f;
     public static int PlayerPercentHealAfterWaveLevel = 0;
 
-    public static int ItemRerolls = 3;
+    public static int ItemRerolls = 0;
     public static int ItemRerollLevel = 0;
 
 }
@@ -301,6 +301,7 @@ public static class GlobalPlayer
             return 0;
         }
     }
+
     public static PlayerStat GetStat(PlayerStatEnum stat)
     {
         if (PlayerStatDict.ContainsKey(stat))
@@ -319,6 +320,7 @@ public static class GlobalPlayer
         foreach (var stat in PlayerStatDict)
         {
             PlayerStatDict[stat.Key].SetLevel(0, false);
+            PlayerStatDict[stat.Key].ResetMultiplier();
         }
     }
 

@@ -32,16 +32,23 @@ public class PlayerHitbox : MonoBehaviour, IHasTriggerStay
     {
         if (canTakeDamage && collisionObject.TryGetComponent(out DamagesPlayerOnHit dm))
         {
-            health.SetHealth(-dm.GetDamage(), true);
-            GetComponent<PlayerMovement>().ApplySlow(GlobalPlayer.ContactSlowAmount, GlobalPlayer.ContactSlowTime);
-            EventManager.TriggerEvent(EventStrings.PLAYER_TAKE_DAMAGE, null);
+            int dmg = dm.GetDamage();
+            //print("Took " + dmg + " from " + collisionObject.name);
+
+            if (dmg > 0) 
+            {
+                health.SetHealth(-dmg, true);
+                GetComponent<PlayerMovement>().ApplySlow(GlobalPlayer.ContactSlowAmount, GlobalPlayer.ContactSlowTime);
+                EventManager.TriggerEvent(EventStrings.PLAYER_TAKE_DAMAGE, null);
+            }
 
             if (dm.DestroysSelfOnHit)
             {
                 Destroy(dm.gameObject);
             }
 
-            StartCoroutine(IFrames());
+            if (dmg > 0)
+                StartCoroutine(IFrames());
         }
     }
 }

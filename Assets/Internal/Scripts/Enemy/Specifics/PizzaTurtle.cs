@@ -12,6 +12,8 @@ public class PizzaTurtle : MonoBehaviour
     public bool IsInAnimation = false;
 
     private Animator anim;
+    private Vector3 lockedPosition;
+    private bool isHiding = false;
 
     private void Awake()
     {
@@ -24,6 +26,14 @@ public class PizzaTurtle : MonoBehaviour
         defaultHitbox = new Hitbox(col.offset, col.size);
     }
 
+    private void Update()
+    {
+        if (isHiding)
+        {
+            transform.position = lockedPosition;
+        }
+    }
+
     public void Hide()
     {
         StartCoroutine(HideCoroutine());
@@ -31,8 +41,13 @@ public class PizzaTurtle : MonoBehaviour
 
         IEnumerator HideCoroutine()
         {
+            yield return new WaitForSeconds(0.5f);
             yield return new WaitUntil(() => IsInAnimation == false);
             GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            GetComponent<EnemyMovement>().CanBeKnockedBack = false;
+            GetComponent<EnemyMovement>().DisableMovement();
+            lockedPosition = transform.position;
+            isHiding = true;
             anim.SetTrigger("hide");
 
             yield return new WaitUntil(() => IsInAnimation == false);
@@ -52,11 +67,13 @@ public class PizzaTurtle : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             yield return new WaitUntil(() => IsInAnimation == false);
+            GetComponent<EnemyMovement>().CanBeKnockedBack = true;
+            GetComponent<EnemyMovement>().EnableMovement();
             anim.SetTrigger("unhide");
 
             yield return new WaitUntil(() => IsInAnimation == false);
             GetComponent<TurtleGetHit>().IsImmune = false;
-
+            isHiding = false;
             col.offset = defaultHitbox.offset;
             col.size = defaultHitbox.size;
         }

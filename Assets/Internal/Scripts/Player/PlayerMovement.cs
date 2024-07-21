@@ -8,8 +8,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D RB;
 
     private bool MovementLocked = false;
-
-    private float currentSpeedModifier = 1f;
     private float currentSlowMultiplier = 1f;
 
     // Clamp
@@ -29,38 +27,6 @@ public class PlayerMovement : MonoBehaviour
         minY = BotRight.position.y;
         maxY = TopLeft.position.y;
     }
-
-    public void SetCurrentSpeedModifier(float speed, bool isRelative)
-    {
-        if (isRelative)
-        {
-            currentSpeedModifier += speed;
-        }
-        else
-        {
-            currentSpeedModifier = speed;
-        }
-    }
-
-    private float currentBuffedSpeed = 1f;
-    private int tweenID = int.MaxValue;
-    public void ApplyFadingHaste(float multiplier, float time)
-    {
-
-        if (multiplier > currentBuffedSpeed)
-        {
-            if (tweenID != int.MaxValue)
-                LeanTween.cancel(tweenID);
-
-            currentBuffedSpeed = multiplier;
-            tweenID = LeanTween.value(gameObject, currentBuffedSpeed, 1, time).setOnUpdate((float val) => {
-                currentBuffedSpeed = val;
-            }).id;
-        }
-
-    }
-
-    public float GetCurrentSpeedModifier() {  return currentSpeedModifier; }
 
     public void ApplySlow(float amount, float time)
     {
@@ -166,14 +132,16 @@ public class PlayerMovement : MonoBehaviour
         if (MovementLocked)
             moveInput = Vector2.zero;
 
+        //print(GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed));
+
         if (Global.gameplayStarted && Global.waveManager.IsWaveOngoing())
         {
-            RB.velocity = moveInput.normalized * ((GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSpeedModifier * currentSlowMultiplier) * Mathf.Clamp(currentBuffedSpeed, 1, float.MaxValue));
+            RB.velocity = moveInput.normalized * GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed);
         }
         else
         {
             RB.velocity = moveInput.normalized *
-            (GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSpeedModifier * currentSlowMultiplier * 2.5f);
+            (GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSlowMultiplier * 2.5f);
         }
         
 

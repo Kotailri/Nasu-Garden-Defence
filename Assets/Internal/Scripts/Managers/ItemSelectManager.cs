@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Progress;
 
 public class ItemSelectManager : MonoBehaviour
 {
@@ -16,9 +15,13 @@ public class ItemSelectManager : MonoBehaviour
 
     public GameObject Reroller;
 
+    private GameObject currentReroller;
     private List<GameObject> currentItems = new();
+    private List<ItemAdder> currentAdderPool = new();
     private GameObject selectedItem = null;
     private ItemTypeEnum currentItemType = ItemTypeEnum.StatUp;
+
+
 
     private void Awake()
     {
@@ -41,17 +44,21 @@ public class ItemSelectManager : MonoBehaviour
             return;
         }
 
+        foreach (GameObject item in currentItems)
+            currentAdderPool.Remove(item.GetComponent<ItemSelectObject>().GetItemAdder());
+
         StartCoroutine(ItemRerollCoroutine());
 
         IEnumerator ItemRerollCoroutine()
         {
             foreach (GameObject item in currentItems)
             {
+                currentAdderPool.Remove(item.GetComponent<ItemSelectObject>().GetItemAdder());
                 LeanTween.moveY(item, item.transform.position.y + 20f, 1f).setOnComplete(() => { Destroy(item); });
 ;               yield return new WaitForSeconds(0.25f);
             }
             currentItems.Clear();
-            CreateItems(currentItemType);
+            CreateItems(currentItemType, isReroll:true);
         }
         
     }
@@ -59,9 +66,14 @@ public class ItemSelectManager : MonoBehaviour
     float animTime = 1f;
     float startingHeight = 20f;
 
-    public void CreateItems(ItemTypeEnum itemType)
+    public void CreateItems(ItemTypeEnum itemType, bool isReroll=false)
     {
         if (Global.isGameOver) { return; }
+
+        if (!isReroll)
+        {
+            currentAdderPool = Global.itemInventoryManager.GetFullPool(itemType, Global.waveManager.CurrentWaveIndex);
+        }
 
         currentItemType = itemType;
 
@@ -69,15 +81,21 @@ public class ItemSelectManager : MonoBehaviour
 
         IEnumerator ItemSpawnCoroutine()
         {
-            yield return new WaitForSeconds(1);
-            GameObject reroller = Instantiate(Reroller, RerollLocation.position + new Vector3(0, startingHeight, 0), Quaternion.identity);
-            LeanTween.moveY(reroller, RerollLocation.position.y, animTime).setEaseInOutBounce();
+            List<ItemAdder> selectPool = Global.GetRandomElements(currentAdderPool, 3);
+
+            if (!isReroll && currentAdderPool.Count <= 3)
+            {
+                yield return new WaitForSeconds(1);
+                currentReroller = Instantiate(Reroller, RerollLocation.position + new Vector3(0, startingHeight, 0), Quaternion.identity);
+                LeanTween.moveY(currentReroller, RerollLocation.position.y, animTime).setEaseInOutBounce();
+            }
+
+            if (isReroll && currentAdderPool.Count <= 3) { Destroy(currentReroller); }
 
             yield return new WaitForSeconds(0.25f);
+            
 
-            List<ItemAdder> randomItems = Global.itemInventoryManager.GetRandomFromPool(3, itemType, Global.waveManager.CurrentWaveIndex);
-
-            if (randomItems.Count == 0)
+            if (selectPool.Count == 0)
             {
                 Global.waveManager.SpawnNextWave();
                 yield break;
@@ -85,27 +103,31 @@ public class ItemSelectManager : MonoBehaviour
 
             GameObject item1 = Instantiate(SelectObject, ItemLocation1.position + new Vector3(0, startingHeight, 0), Quaternion.identity);
             LeanTween.moveY(item1, ItemLocation1.position.y, animTime).setEaseInOutBounce();
-            item1.GetComponent<ItemSelectObject>().SetItem(randomItems[0]);
+            item1.GetComponent<ItemSelectObject>().SetItemAdder(selectPool[0]);
             currentItems.Add(item1);
 
-            if (randomItems.Count == 1)
+            if (selectPool.Count == 1)
+            {
                 yield break;
+            }
 
             yield return new WaitForSeconds(0.25f);
 
             GameObject item2 = Instantiate(SelectObject, ItemLocation2.position + new Vector3(0, startingHeight, 0), Quaternion.identity);
             LeanTween.moveY(item2, ItemLocation2.position.y, animTime).setEaseInOutBounce();
-            item2.GetComponent<ItemSelectObject>().SetItem(randomItems[1]);
+            item2.GetComponent<ItemSelectObject>().SetItemAdder(selectPool[1]);
             currentItems.Add(item2);
 
-            if (randomItems.Count == 2) 
+            if (selectPool.Count == 2)
+            {
                 yield break;
+            }
 
             yield return new WaitForSeconds(0.25f);
 
             GameObject item3 = Instantiate(SelectObject, ItemLocation3.position + new Vector3(0, startingHeight, 0), Quaternion.identity);
             LeanTween.moveY(item3, ItemLocation3.position.y, animTime).setEaseInOutBounce();
-            item3.GetComponent<ItemSelectObject>().SetItem(randomItems[2]);
+            item3.GetComponent<ItemSelectObject>().SetItemAdder(selectPool[2]);
             currentItems.Add(item3);
         }
     }
@@ -134,6 +156,8 @@ public class ItemSelectManager : MonoBehaviour
                 {
                     Destroy(item);
                 }
+                Destroy(currentReroller);
+                currentAdderPool.Clear();
                 StartCoroutine(SpawnNextWaveDelay());
             }
         }

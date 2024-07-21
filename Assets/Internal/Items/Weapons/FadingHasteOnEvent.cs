@@ -10,13 +10,6 @@ public class FadingHasteOnEvent : MonoBehaviour
     public float fadingHasteAmount;
     public float fadingHasteTime;
 
-    private PlayerMovement pm;
-
-    private void Start()
-    {
-        pm = transform.parent.GetComponent<PlayerMovement>();
-    }
-
     private void OnEnable()
     {
         EventManager.StartListening(EventString, ApplyHaste);
@@ -29,6 +22,6 @@ public class FadingHasteOnEvent : MonoBehaviour
 
     private void ApplyHaste(Dictionary<string, object> _)
     {
-        pm.ApplyFadingHaste(fadingHasteAmount, fadingHasteTime);
+        Global.statManager.AddFadingStat(gameObject, PlayerStatEnum.movespeed, fadingHasteAmount, fadingHasteTime);
     }
 }

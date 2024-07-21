@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966c88dd126f8bf418a7f9b2fda060b2, type: 3}
   m_Name: StrafeBunny
   m_EditorClassIdentifier: 
-  EnemyName: StrawBunny
-  Health: 50
+  EnemyName: Strafebunny
+  Health: 62
   Resistance: 0
   DodgeChance: 0
   HealthRegen: 0

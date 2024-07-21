@@ -38,12 +38,17 @@ public class ItemSelectObject : MonoBehaviour
         }
     }
 
-    public void SetItem(ItemAdder _itemAdder)
+    public void SetItemAdder(ItemAdder _itemAdder)
     {
         itemAdder = _itemAdder;
         ItemImage.sprite = itemAdder.GetInfo().ItemIconImage;
         ItemName.text = itemAdder.GetInfo().ItemName;
         ItemDescription.text = itemAdder.GetInfo().ItemDescription;
+    }
+
+    public ItemAdder GetItemAdder()
+    {
+        return itemAdder;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

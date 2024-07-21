@@ -14,6 +14,11 @@ public class ItemRerollBuff : GardenBuff
 
     }
 
+    private void Start()
+    {
+        Global.RemainingRerolls = RerollsAtEachLevel[CurrentLevel];
+    }
+
     public override void Refund()
     {
         base.Refund();

@@ -22,7 +22,6 @@ public class GardenBuffSaver : MonoBehaviour
         GlobalGarden.Coins = PlayerPrefs.GetInt(defaultPrefix + prefix + CoinsString, 0);
 
         GlobalGarden.ItemRerollLevel = PlayerPrefs.GetInt(defaultPrefix + prefix + RerollLevelString, 0);
-        Global.RemainingRerolls = GlobalGarden.ItemRerollLevel;
 
         GlobalGarden.CoinDropChanceLevel = PlayerPrefs.GetInt(defaultPrefix + prefix + CoinDropChanceLevelString, 0);
         GlobalGarden.CoinMagnetDistanceLevel = PlayerPrefs.GetInt(defaultPrefix + prefix + CoinMagnetDistanceLevelString, 0);

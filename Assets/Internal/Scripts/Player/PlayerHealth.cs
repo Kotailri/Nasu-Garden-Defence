@@ -100,6 +100,10 @@ public class PlayerHealth : MonoBehaviour
                 AudioManager.instance.PlaySound(AudioEnum.PlayerDamaged);
                 Global.damageTextSpawner.SpawnText(transform.position, "-" + Mathf.FloorToInt(Mathf.Abs(damage)).ToString(), DamageTextType.Red, 1f);
             }
+            else
+            {
+                return;
+            }
 
         }
         else

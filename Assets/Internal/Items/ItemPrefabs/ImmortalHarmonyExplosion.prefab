@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6624949670255233272}
   m_Layer: 0
   m_Name: ImmortalHarmonyExplosion
-  m_TagString: Untagged
+  m_TagString: Explosion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2060452369
-  m_SortingLayer: -2
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 1964511535, guid: 92ddf3abeec372f4a9811f16b9375ab2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -134,6 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702e124c5313be041b73662fc960038b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionDuration: 0.5
+  explosionDamage: 0
 --- !u!95 &6624949670255233272
 Animator:
   serializedVersion: 5

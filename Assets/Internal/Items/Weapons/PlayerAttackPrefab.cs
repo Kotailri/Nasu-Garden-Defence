@@ -48,8 +48,22 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
         KnockbackTime = time;   
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Explosion") && AttackType == PlayerAttackType.Projectile)
+        {
+            if (Global.itemPassiveManager.GetPassive(ItemPassiveEnum.ProjectileThroughExplosion))
+            {
+                Damage = Mathf.CeilToInt(Damage * Global.itemPassiveManager.ProjectileThroughExplosionMultiplier);
+                GetComponent<SpriteRenderer>().color = Color.red;
+            }
+        }
+    }
+
     public void OnTriggerEnterEvent(GameObject collisionObject)
     {
+        
+
         if (collisionObject.CompareTag("Enemy"))
         {
             if (collisionObject.TryGetComponent(out EnemyGetHit hit))
@@ -60,6 +74,7 @@ public class PlayerAttackPrefab : MonoBehaviour, IHasTriggerEnter
                     case PlayerAttackType.Projectile:
                         damage = Mathf.FloorToInt(Damage * GlobalPlayer.CurrentPlayerDamageMultiplier * 
                             GlobalPlayer.GetStatValue(PlayerStatEnum.damage) * GlobalPlayer.GetStatValue(PlayerStatEnum.projectileDamage));
+
                         break;
 
                     case PlayerAttackType.Melee:

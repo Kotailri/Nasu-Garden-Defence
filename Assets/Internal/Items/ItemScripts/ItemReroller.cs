@@ -40,6 +40,7 @@ public class ItemReroller : MonoBehaviour
         IconGraphic.GetComponent<SpriteRenderer>().color = Color.gray;
         yield return new WaitForSeconds(4);
         canReroll = true;
+        IconGraphic.GetComponent<SpriteRenderer>().color = Color.white;
         GetComponent<Collider2D>().enabled = true;
     }
 

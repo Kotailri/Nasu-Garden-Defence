@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NasuSwordSwingSpawner : PlayerAttack
+public class BasicAttackSpawner : PlayerAttack
 {
+
     public override void DoAttack(Vector2 attackPosition, Transform attachObject = null)
     {
         GameObject g = Instantiate(AttackPrefab, transform.position, Quaternion.identity);
@@ -16,7 +17,6 @@ public class NasuSwordSwingSpawner : PlayerAttack
             g.transform.SetParent(Global.playerTransform);
         }
 
-        //g.transform.localScale *= GlobalPlayer.GetStatValue(PlayerStatEnum.attackSize);
         g.GetComponent<PlayerAttackPrefab>().SetDamage(BaseDamage);
         g.GetComponent<PlayerAttackPrefab>().SetKnockback(KnockbackAmount);
        

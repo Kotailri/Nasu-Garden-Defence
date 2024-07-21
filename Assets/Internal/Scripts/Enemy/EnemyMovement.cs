@@ -5,7 +5,9 @@ using UnityEngine;
 public enum BasicEnemyMovementType
 {
     TargetGarden,
-    TargetPlayer
+    TargetPlayer,
+    TargetPlayerForwards,
+    TargetGardenAvoidPlayer
 }
 
 public abstract class EnemyMovement : MonoBehaviour
@@ -22,6 +24,7 @@ public abstract class EnemyMovement : MonoBehaviour
     protected bool isBeingKnockedBack = false;
     protected Vector2 appliedDirection = Vector2.zero;
     protected Vector2 appliedPullForce = Vector2.zero;
+    public bool CanBeKnockedBack = true;
 
     private void Awake()
     {
@@ -52,6 +55,10 @@ public abstract class EnemyMovement : MonoBehaviour
             ReapplyMovement();
         }
         
+        if (isMovementStarted && transform.position.x > 17.5f)
+        {
+            transform.position = new Vector3(17.5f, transform.position.y, transform.position.z);
+        }
     }
 
     public virtual void ReapplyMovement()
@@ -87,6 +94,9 @@ public abstract class EnemyMovement : MonoBehaviour
 
     public virtual void DoKnockback(float force, float knockbackTime=0f,Vector2? _direction=null)
     {
+        if (!CanBeKnockedBack)
+            return;
+
         Vector2 direction = Vector2.right;
         if (_direction != null)
         {

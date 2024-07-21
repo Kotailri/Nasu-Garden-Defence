@@ -10,6 +10,11 @@ public class EnemyDeath : MonoBehaviour
             { "x", transform.position.x },
             { "y", transform.position.y }
         });
+
+        if (TryGetComponent(out DamagesPlayerOnHit _damagesPlayerOnHit))
+        {
+            _damagesPlayerOnHit.SetDamage(0);
+        }
         
         if (TryGetComponent(out EnemyMovement movement))
         {

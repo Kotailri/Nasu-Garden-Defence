@@ -71,6 +71,30 @@ public class ItemInventoryManager : MonoBehaviour
         }
     }
 
+    public List<ItemAdder> GetFullPool(ItemTypeEnum tier, int waveRequirement = 0)
+    {
+        List<ItemAdder> selectedPool = new();
+
+        switch (tier)
+        {
+            case ItemTypeEnum.Weapon:
+                selectedPool = new List<ItemAdder>(ItemPool_Weapon);
+                break;
+            case ItemTypeEnum.StatUp:
+                selectedPool = new List<ItemAdder>(ItemPool_StatUp);
+                break;
+            case ItemTypeEnum.Passive:
+                selectedPool = new List<ItemAdder>(ItemPool_Passive);
+                break;
+            case ItemTypeEnum.Keystone:
+                selectedPool = new List<ItemAdder>(ItemPool_Keystone);
+                break;
+        }
+
+        selectedPool.RemoveAll(adder => adder.MinWaveIndex > waveRequirement);
+        return selectedPool;
+    }
+
     public List<ItemAdder> GetRandomFromPool(int num, ItemTypeEnum tier, int waveRequirement=0)
     {
         List<ItemAdder> selectedPool = new();

@@ -52,6 +52,7 @@ public class VolumeController : MonoBehaviour
                 GlobalAudio.MusicVolume += _volumeIncrement;
                 AudioManager.instance.AdjustMusicVolume(GlobalAudio.MusicVolume);
             }
+            GlobalAudio.MusicVolume = Mathf.Clamp01(GlobalAudio.MusicVolume);
             volumeText.text = Mathf.RoundToInt(GlobalAudio.MusicVolume * 100f).ToString() + "%";
             PlayerPrefs.SetFloat("Kotailri_NaGaDe_Music_Volume", GlobalAudio.MusicVolume);
         }
@@ -61,8 +62,9 @@ public class VolumeController : MonoBehaviour
             if (GlobalAudio.SoundVolume < 1f)
             {
                 GlobalAudio.SoundVolume += _volumeIncrement;
-                AudioManager.instance.PlaySound(AudioEnum.EnemyDamaged);
             }
+            AudioManager.instance.PlaySound(AudioEnum.EnemyDamaged);
+            GlobalAudio.SoundVolume = Mathf.Clamp01(GlobalAudio.SoundVolume);
             volumeText.text = Mathf.RoundToInt(GlobalAudio.SoundVolume * 100f).ToString() + "%";
             PlayerPrefs.SetFloat("Kotailri_NaGaDe_Sound_Volume", GlobalAudio.SoundVolume);
         }
@@ -77,6 +79,7 @@ public class VolumeController : MonoBehaviour
                 GlobalAudio.MusicVolume -= _volumeIncrement;
                 AudioManager.instance.AdjustMusicVolume(GlobalAudio.MusicVolume);
             }
+            GlobalAudio.MusicVolume = Mathf.Clamp01(GlobalAudio.MusicVolume);
             volumeText.text = Mathf.RoundToInt(GlobalAudio.MusicVolume * 100f).ToString() + "%";
             PlayerPrefs.SetFloat("Kotailri_NaGaDe_Music_Volume", GlobalAudio.MusicVolume);
         }
@@ -86,8 +89,9 @@ public class VolumeController : MonoBehaviour
             if (GlobalAudio.SoundVolume > 0f)
             {
                 GlobalAudio.SoundVolume -= _volumeIncrement;
-                AudioManager.instance.PlaySound(AudioEnum.EnemyDamaged);
             }
+            GlobalAudio.SoundVolume = Mathf.Clamp01(GlobalAudio.SoundVolume);
+            AudioManager.instance.PlaySound(AudioEnum.EnemyDamaged);
             volumeText.text = Mathf.RoundToInt(GlobalAudio.SoundVolume * 100f).ToString() + "%";
             PlayerPrefs.SetFloat("Kotailri_NaGaDe_Sound_Volume", GlobalAudio.SoundVolume);
         }

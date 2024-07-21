@@ -23,8 +23,11 @@ public class BossController : MonoBehaviour
 
         GardenContactDamage = bossScriptable.GardenContactDamage;
 
-        gameObject.AddComponent<EnemyGetHit>();
-        gameObject.AddComponent<CallsTriggerCollisions>();
+        if (TryGetComponent(out EnemyGetHit _) == false)
+            gameObject.AddComponent<EnemyGetHit>();
+
+        if (TryGetComponent(out CallsTriggerCollisions _) == false)
+            gameObject.AddComponent<CallsTriggerCollisions>();
         
     }
 

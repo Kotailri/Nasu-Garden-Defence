@@ -35,8 +35,13 @@ public class WaveManager : MonoBehaviour
     private GameObject lastEnemy = null;
     private float lastEnemyStartingX = 0f;
 
+    public StopwatchTimer timer;
+
     [Space(5f)]
     public GameObject DemoCompleteUI;
+
+    [Space(15f)]
+    public bool EnableEverything = true;
 
     private void Awake()
     {
@@ -65,12 +70,20 @@ public class WaveManager : MonoBehaviour
 
     public void StartGame()
     {
+        Global.playerTransform.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+
+        if (!EnableEverything) { 
+            isWaveOngoing=true;
+            return; 
+        }
+
         CurrentWaveIndex += GlobalGarden.LevelsToSkip;
         for (int i = 0; i < CurrentWaveIndex; i++)
         {
             Global.itemInventoryManager.AddRandomToInventory(waves[i].ItemType, i);
         }
 
+        timer.ResetTimer();
         SpawnNextWave();
     }
 
@@ -86,10 +99,15 @@ public class WaveManager : MonoBehaviour
 
     private void CheckWaveEnd(Dictionary<string, object> message)
     {
-        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && isWaveOngoing)
+        if (!EnableEverything)
+            return;
+
+            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && isWaveOngoing)
         {
             isWaveOngoing = false;
             Destroy(currentWave);
+
+            timer.PauseTimer();
 
             if (CurrentWaveIndex >= waves.Count)
             {
@@ -149,6 +167,8 @@ public class WaveManager : MonoBehaviour
             Global.EnemySpeedMultiplier = 1f; 
         }
 
+        timer.StartTimer();
+
         isWaveOngoing = true;
         waveNameUI.text = "Wave " + (CurrentWaveIndex+1);
 
@@ -158,14 +178,14 @@ public class WaveManager : MonoBehaviour
         IEnumerator DelayNextWave(float delay)
         {
             yield return new WaitForSeconds(delay);
-            currentWave = Instantiate(waves[CurrentWaveIndex].Wave, new Vector3(Global.MaxX, 0, transform.position.z), Quaternion.identity);
+            currentWave = Instantiate(waves[CurrentWaveIndex].Wave, new Vector3(Global.MaxX, -0.5f, transform.position.z), Quaternion.identity);
             
             if (Random.Range(0,2) == 0)
             {
                 foreach (GameObject e in GameObject.FindGameObjectsWithTag("Enemy"))
                 {
-                    e.transform.position = new Vector3(e.transform.position.x, -e.transform.position.y, e.transform.position.z);
-                    e.transform.position += new Vector3(0, 0.57f, 0);
+                    e.transform.localPosition = new Vector3(e.transform.localPosition.x, -e.transform.localPosition.y, e.transform.localPosition.z);
+                    //e.transform.localPosition += new Vector3(0, 0.57f, 0);
                 }
             }
             
