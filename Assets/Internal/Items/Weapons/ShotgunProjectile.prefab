@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2060452369
-  m_SortingLayer: -2
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8ef28e47353964e7c935c9b57df0c7ab, type: 3}
   m_Color: {r: 0.90193355, g: 0.6650944, b: 1, a: 1}
@@ -175,6 +175,10 @@ MonoBehaviour:
   DestroyWhenOutside: 1
   DestroyOnContact: 1
   AttackType: 1
+  AttackHitSound: 13
+  Damage: 0
+  Knockback: 0
+  KnockbackTime: 0
   TimeAlive: 0.3
 --- !u!96 &8430448429851551478
 TrailRenderer:

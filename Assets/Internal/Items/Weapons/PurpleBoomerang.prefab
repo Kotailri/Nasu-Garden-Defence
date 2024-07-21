@@ -102,6 +102,9 @@ MonoBehaviour:
   DestroyWhenOutside: 0
   DestroyOnContact: 0
   AttackType: 1
+  Damage: 0
+  Knockback: 0
+  KnockbackTime: 0
   rotationDuration: 1
 --- !u!50 &5860607959278139113
 Rigidbody2D:

@@ -38,6 +38,7 @@ public class PlayerBasicShoot : PlayerAttack
         projectile.GetComponent<Rigidbody2D>().velocity = (ProjectileSpeed * GlobalPlayer.GetStatValue(PlayerStatEnum.projectileSpeed) + GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed)) * ShootDirection.normalized;
         projectile.GetComponent<PlayerAttackPrefab>().SetDamage(BaseDamage);
         projectile.GetComponent<PlayerAttackPrefab>().SetKnockback(KnockbackAmount);
+        AudioManager.instance.PlaySound(AttackSound);
     }
 
     private IEnumerator ShootTimer()

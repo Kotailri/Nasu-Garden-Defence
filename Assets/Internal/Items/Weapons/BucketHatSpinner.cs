@@ -67,6 +67,7 @@ public class BucketHatSpinner : PlayerAttack
     {
         if (isSpinning)
         {
+            transform.localPosition = Vector3.zero;
             transform.Rotate(new Vector3(0, 0, SpinSpeed * Time.deltaTime));
             foreach (GameObject hat in BucketHatList)
             {

@@ -136,12 +136,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (Global.gameplayStarted && Global.waveManager.IsWaveOngoing())
         {
-            RB.velocity = moveInput.normalized * GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed);
+            RB.velocity = moveInput.normalized * GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSlowMultiplier;
         }
         else
         {
-            RB.velocity = moveInput.normalized *
-            (GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSlowMultiplier * 2.5f);
+            RB.velocity = moveInput.normalized * 12f;
         }
         
 

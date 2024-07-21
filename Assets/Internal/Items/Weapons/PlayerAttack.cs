@@ -28,6 +28,9 @@ public abstract class PlayerAttack : MonoBehaviour
     public int  AttackCount;
     public bool OnOffset = false;
 
+    [Space(10f)]
+    public AudioEnum AttackSound = AudioEnum.None;
+
     private void OnValidate()
     {
         if (AttackCount <= 0)

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7178427839645970131}
   - component: {fileID: 168561113999422253}
   - component: {fileID: 4493429355642001119}
-  - component: {fileID: 2482416042562316037}
-  m_Layer: 7
+  - component: {fileID: 3226914486994895093}
+  m_Layer: 0
   m_Name: NeggpalBwo
   m_TagString: Bwo
   m_Icon: {fileID: 0}
@@ -74,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 2060452369
+  m_SortingLayer: -3
+  m_SortingOrder: 999
   m_Sprite: {fileID: -240757057, guid: 35d40f1adafcdf84eb11e8ad0097e28d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -152,8 +152,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &2482416042562316037
-CapsuleCollider2D:
+--- !u!58 &3226914486994895093
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -181,9 +181,9 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.11216738, y: 0.017872032}
-  m_Size: {x: 0.85399604, y: 0.5802382}
-  m_Direction: 1
+  m_Offset: {x: -0.038584888, y: -0.03862266}
+  serializedVersion: 2
+  m_Radius: 0.27188697

@@ -33,7 +33,7 @@ public abstract class EnemyMovement : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!isMovementStarted && transform.position.x > 18.5f)
+        if (!isMovementStarted && transform.position.x > 20f)
         {
             transform.position += new Vector3(-Time.deltaTime * Global.WaveSpeed, 0, 0);
             return;
@@ -55,9 +55,9 @@ public abstract class EnemyMovement : MonoBehaviour
             ReapplyMovement();
         }
         
-        if (isMovementStarted && transform.position.x > 17.5f)
+        if (isMovementStarted && transform.position.x > 18.5f)
         {
-            transform.position = new Vector3(17.5f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(18.5f, transform.position.y, transform.position.z);
         }
     }
 

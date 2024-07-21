@@ -14,6 +14,7 @@ public class PlayerAttackPrefab : MonoBehaviour
     public bool DestroyOnContact;
     
     public PlayerAttackType AttackType;
+    public AudioEnum AttackHitSound = AudioEnum.EnemyDamaged;
 
     [Header("Fields for BASIC attacks only")]
     public int Damage;
@@ -40,7 +41,7 @@ public class PlayerAttackPrefab : MonoBehaviour
         KnockbackTime = time;   
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Explosion"))
         {
@@ -49,6 +50,13 @@ public class PlayerAttackPrefab : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            if (AttackType == PlayerAttackType.Projectile && Global.itemPassiveManager.GetPassive(ItemPassiveEnum.ProjectileMightExplode) 
+                && Random.Range(0f,1f) < Global.itemPassiveManager.ProjectileExplosionChance)
+            {
+                GameObject g = Global.prefabManager.InstantiatePrefab(PrefabEnum.PurpleExplosion, transform.position, Quaternion.identity);
+                g.GetComponent<Explosion>().Initialize(Global.itemPassiveManager.ProjectileExplosionDamage);
+            }
+            AudioManager.instance.PlaySound(AttackHitSound);
             AttackHitsEnemy(collision.gameObject);
         }
     }
@@ -93,7 +101,7 @@ public class PlayerAttackPrefab : MonoBehaviour
         {
             if (Global.itemPassiveManager.GetPassive(ItemPassiveEnum.ProjectileThroughExplosion))
             {
-                Damage = Mathf.CeilToInt(Damage * Global.itemPassiveManager.ProjectileThroughExplosionMultiplier);
+                Damage = Mathf.CeilToInt(Damage * Global.itemPassiveManager.ProjectileThruExplosionDmg);
                 GetComponent<SpriteRenderer>().color = Color.red;
             }
         }

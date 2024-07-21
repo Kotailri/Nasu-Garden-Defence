@@ -65,7 +65,7 @@ public class PlayerAttackManager : MonoBehaviour
                 || (attack.OnOffset && count % attack.AttackCount == 1))
             {
 
-                attack.DoAttack(transform.position);
+                attack.DoAttack(transform.position, transform);
 
             }
             
@@ -74,17 +74,13 @@ public class PlayerAttackManager : MonoBehaviour
         foreach (PlayerAttack attack in attackListBwo) 
         {
             if (!attack.IsOnAttackTimer
-                || (!attack.OnOffset && count % attack.AttackCount == 0)
-                || (attack.OnOffset && count % attack.AttackCount == 1))
+                || (!attack.OnOffset && (count+1) % attack.AttackCount == 0)
+                || (attack.OnOffset && (count+1) % attack.AttackCount == 1))
             { 
 
                 if (GlobalItemToggles.HasBwo)
                 {
-                    if (!attack.IsPetFacingRequired || (attack.IsPetFacingRequired && Global.keystoneItemManager.IsBwoFacingAttackDirection))
-                    {
-                        attack.DoAttack(GameObject.FindGameObjectWithTag("Bwo").transform.position, GameObject.FindGameObjectWithTag("Bwo").transform);
-                        attack.DoAttack(transform.position);
-                    }
+                    attack.DoAttack(GameObject.FindGameObjectWithTag("Bwo").transform.position, GameObject.FindGameObjectWithTag("Bwo").transform);
                 }
 
             }

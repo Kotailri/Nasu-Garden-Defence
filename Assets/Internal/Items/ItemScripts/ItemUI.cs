@@ -18,11 +18,7 @@ public class ItemUI : MonoBehaviour
 
     private void Awake()
     {
-        Global.itemUI = this;
-    }
-
-    private void Start()
-    {
+        Global.itemUI = this; 
         LeftArrow.SetActive(false);
         RightArrow.SetActive(false);
     }
@@ -55,7 +51,9 @@ public class ItemUI : MonoBehaviour
 
         LeftMargin += 80f;
 
-        if (CurrentPage == (ItemInventory.Count / NumSlots) - 1 && ItemInventory.Count % NumSlots == 1)
+        print(CurrentPage == (ItemInventory.Count / NumSlots) - 1);
+        print(ItemInventory.Count % NumSlots == 1);
+        if (CurrentPage == (ItemInventory.Count / NumSlots) -1 && ItemInventory.Count % NumSlots == 1)
         {
             RightArrow.SetActive(true);
         }

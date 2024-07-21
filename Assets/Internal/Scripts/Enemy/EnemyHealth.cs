@@ -22,12 +22,12 @@ public class EnemyHealth : MonoBehaviour
 
     public void SetEnemyHealth(int _health, float _resistPercent, float _dodgeChance, float _healthRegenPerSecond)
     {
-        Health = _health;
+        Health = Mathf.CeilToInt(_health * Global.EnemyHealthMultiplier);
         Resistance = _resistPercent;
         DodgeChance = _dodgeChance;
         HealthRegen = _healthRegenPerSecond;
 
-        CurrentHealth = _health;
+        CurrentHealth = Health;
     }
 
     public void Heal(int heal)
@@ -59,15 +59,11 @@ public class EnemyHealth : MonoBehaviour
                 Global.damageTextSpawner.SpawnText(textSpawnLocation, (damage - Mathf.FloorToInt(damage * Resistance)).ToString(), DamageTextType.White, 1f);
             }
 
-            
-
             if (canGetExecuted && CurrentHealth > 0 && Global.itemPassiveManager.GetPassive(ItemPassiveEnum.LowHealthExecute) && (float)CurrentHealth/(float)Health <= Global.itemPassiveManager.LowHealthExecutePercent)
             {
                 CurrentHealth -= 99999;
                 Global.damageTextSpawner.SpawnText(textSpawnLocation, "99999", DamageTextType.White, 1f);
             }
-
-            AudioManager.instance.PlaySound(AudioEnum.EnemyDamaged);
         }
         else
         {

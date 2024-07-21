@@ -83,7 +83,7 @@ public class ItemSelectManager : MonoBehaviour
         {
             List<ItemAdder> selectPool = Global.GetRandomElements(currentAdderPool, 3);
 
-            if (!isReroll && currentAdderPool.Count <= 3)
+            if (!isReroll && currentAdderPool.Count >= 6)
             {
                 yield return new WaitForSeconds(1);
                 currentReroller = Instantiate(Reroller, RerollLocation.position + new Vector3(0, startingHeight, 0), Quaternion.identity);

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1575511201513785632
+--- !u!1 &1036671913444320125
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2749389936802607256}
-  - component: {fileID: 6610632124409300346}
+  - component: {fileID: 2505096489545768039}
+  - component: {fileID: -7502679531383357119}
   m_Layer: 0
-  m_Name: BackwardsBasicShoot
+  m_Name: ProjectileExplosionAdder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2749389936802607256
+--- !u!4 &2505096489545768039
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575511201513785632}
+  m_GameObject: {fileID: 1036671913444320125}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,32 +32,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6610632124409300346
+--- !u!114 &-7502679531383357119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575511201513785632}
+  m_GameObject: {fileID: 1036671913444320125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7923b6e690ca394e826929b111dd88a, type: 3}
+  m_Script: {fileID: 11500000, guid: b30ba4059d733984490087ec0debb23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackPrefab: {fileID: 4122397060010652790, guid: c38ea4342d35ad642b218c40f2146fd3, type: 3}
-  IsPetFacingRequired: 0
-  IsAttached: 0
-  AttackColor: {r: 1, g: 1, b: 1, a: 1}
-  BaseDamage: 8
-  KnockbackAmount: 0
-  KnockbackTime: 0
-  DamageMultiplier: 1
-  AttackLevel: 1
-  IsOnAttackTimer: 1
-  AttackCount: 1
-  OnOffset: 0
-  AttackSound: 14
-  ProjectileSpeed: 3
-  ShootDirection: {x: -1, y: 0}
-  numberOfProjectiles: 2
-  delayBetweenProjectiles: 0.25
+  ItemScriptableInfo: {fileID: 11400000, guid: 03336daccfe7ab044a7648af7f5ab8c2, type: 2}
+  MinWaveIndex: 0
+  statList: []
+  statLevelUps: 
+  isExcemptFromPoolRemoval: 0
+  addsToUI: 1
+  Passive: 2

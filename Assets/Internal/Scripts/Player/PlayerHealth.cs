@@ -98,6 +98,7 @@ public class PlayerHealth : MonoBehaviour
                 CurrentHP += damage;
                 FlashVignette();
                 AudioManager.instance.PlaySound(AudioEnum.PlayerDamaged);
+                AudioManager.instance.PlaySound(AudioEnum.UhOh);
                 Global.damageTextSpawner.SpawnText(transform.position, "-" + Mathf.FloorToInt(Mathf.Abs(damage)).ToString(), DamageTextType.Red, 1f);
             }
             else

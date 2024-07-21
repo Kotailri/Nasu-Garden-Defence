@@ -36,6 +36,7 @@ public class GameOverManager : MonoBehaviour
             EventManager.TriggerEvent(EventStrings.GAME_OVER_KILL_ALL, null);
         }
 
+        Destroy(GameObject.FindGameObjectWithTag("Bwo"));
         Global.playerTransform.gameObject.GetComponent<PlayerHitbox>().enabled = false;
         Global.playerTransform.gameObject.GetComponent<PlayerMovement>().enabled = false;
         Global.playerTransform.gameObject.GetComponent<PlayerAttackManager>().enabled = false;

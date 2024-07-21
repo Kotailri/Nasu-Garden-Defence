@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,12 @@ public enum AudioEnum
     LevelUp = 8,
     Error = 9,
     BirdCry = 10,
+    UhOh = 11,
+    EnemyDamagedQuiet = 13,
+    ShotgunShoot = 14,
+
+    None = 12,
+    EmptyBG = 15,
 }
 
 // Brackey's Audio Manager
@@ -40,45 +47,63 @@ public class Sound
     [Range(0f, 0.5f)]
     public float randomPitch = 0.1f;
 
-    private AudioSource source;
+    private List<AudioSource> sources = new();
+    public int SourceCount = 1;
+    [Space(10f)]
     public bool loops = false;
     public bool isMusic = false;
     public bool playOnAwake = false;
     public bool muteOnAwake = false;
     public void SetSource(AudioSource _source)
     {
-        source = _source;
-        source.clip = clip;
+        sources.Add(_source);
+        sources[sources.Count - 1].clip = clip;
     }
 
     public void ChangeVolume(float vol)
     {
-        if (source != null)
-            source.volume = vol * volume;
+        foreach (AudioSource source in sources)
+        {
+            if (source != null)
+                source.volume = vol * volume;
+        }
     }
 
     public void Play()
     {
-        if (isMusic)
+        for (int i = 0; i < sources.Count; i++)
         {
-            source.volume = GlobalAudio.MusicVolume * volume;
-        } 
-        else
-        {
-            source.volume = GlobalAudio.SoundVolume * volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f));
+            if (sources[i].isPlaying && i != sources.Count-1)
+                continue;
+
+            if (isMusic)
+            {
+                sources[i].volume = GlobalAudio.MusicVolume * volume;
+            }
+            else
+            {
+                sources[i].volume = GlobalAudio.SoundVolume * volume * (1 + UnityEngine.Random.Range(-randomVolume / 2f, randomVolume / 2f));
+            }
+            sources[i].pitch = pitch * (1 + UnityEngine.Random.Range(-randomPitch / 2f, randomPitch / 2f));
+            sources[i].loop = loops;
+
+            sources[i].PlayOneShot(sources[i].clip);
+            return;
         }
 
-        source.pitch = pitch * (1 + Random.Range(-randomPitch / 2f, randomPitch / 2f));
-        source.loop = loops;
-        source.Play();
+        Debug.LogWarning(name.ToString() + " ran out of audio sources");
     }
 
     public void Stop()
     {
-        if (source.isPlaying)
+        foreach (AudioSource source in sources)
         {
-            source.Stop();
+            if (source.isPlaying)
+            {
+                source.Stop();
+            }
         }
+        
     }
 }
 
@@ -118,23 +143,30 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < sounds.Count; i++)
+        int index = 0;
+        foreach (Sound sound in sounds)
         {
-            GameObject _go = new GameObject("Sound_" + i + "_" + sounds[i].name);
-            sounds[i].SetSource(_go.AddComponent<AudioSource>());
-            if (sounds[i].isMusic) 
-            { 
-                CurrentMusic = sounds[i];
-            }
-
-            if (sounds[i].playOnAwake)
+            for(int i = 0; i < sound.SourceCount; i++)
             {
-                sounds[i].Play();
-                if (sounds[i].muteOnAwake)
+                GameObject _go = new GameObject("Sound_" + index + "_" + sound.name);
+                _go.transform.SetParent(transform, false);
+                sound.SetSource(_go.AddComponent<AudioSource>());
+                if (sound.isMusic)
                 {
-                    sounds[i].ChangeVolume(0);
+                    CurrentMusic = sound;
                 }
+
+                if (sound.playOnAwake)
+                {
+                    sound.Play();
+                    if (sound.muteOnAwake)
+                    {
+                        sound.ChangeVolume(0);
+                    }
+                }
+                index++;
             }
+            
         }
         
         StartCoroutine(WaitMusic());
@@ -174,6 +206,8 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySound(AudioEnum _name)
     {
+        if (_name == AudioEnum.None) { return; }
+
         for (int i = 0; i < sounds.Count; i++)
         {
             if (sounds[i].name == _name)

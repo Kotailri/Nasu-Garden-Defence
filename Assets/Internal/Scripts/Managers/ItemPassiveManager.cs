@@ -5,7 +5,8 @@ using UnityEngine;
 public enum ItemPassiveEnum
 {
     LowHealthExecute,
-    ProjectileThroughExplosion
+    ProjectileThroughExplosion,
+    ProjectileMightExplode
 }
 
 public class ItemPassiveManager : MonoBehaviour
@@ -15,7 +16,8 @@ public class ItemPassiveManager : MonoBehaviour
     [Space(5f)]
     [Header("Passives")]
     public float LowHealthExecutePercent;
-    public float ProjectileThroughExplosionMultiplier;
+    [Space(5f)] public float ProjectileThruExplosionDmg;
+    [Space(5f)] public float ProjectileExplosionChance; public float ProjectileExplosionDamage;
 
     private void Awake()
     {

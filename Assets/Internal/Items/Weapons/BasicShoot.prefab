@@ -56,6 +56,7 @@ MonoBehaviour:
   IsOnAttackTimer: 1
   AttackCount: 1
   OnOffset: 0
+  AttackSound: 14
   ProjectileSpeed: 3
   ShootDirection: {x: 1, y: 0}
   numberOfProjectiles: 0

@@ -23,7 +23,7 @@ public class ClefCoin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Bwo"))
         {
             AudioManager.instance.PlaySound(AudioEnum.Ding);
             Global.gardenBuffManager.AddCoins(1);

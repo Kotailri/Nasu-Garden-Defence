@@ -50,11 +50,13 @@ MonoBehaviour:
   AttackColor: {r: 1, g: 1, b: 1, a: 1}
   BaseDamage: 2
   KnockbackAmount: 5
+  KnockbackTime: 0
   DamageMultiplier: 1
   AttackLevel: 1
   IsOnAttackTimer: 1
   AttackCount: 2
   OnOffset: 0
+  AttackSound: 14
   ProjectileSpeed: 20
   numberOfProjectiles: 7
   coneAngle: 30
