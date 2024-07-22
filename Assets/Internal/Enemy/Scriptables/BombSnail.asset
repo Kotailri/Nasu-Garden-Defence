@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: BombSnail
   m_EditorClassIdentifier: 
   EnemyName: Coconut Bomb Snail
-  Health: 88
+  Health: 75
   Resistance: 0
   DodgeChance: 0
   HealthRegen: 0
-  MovementSpeedMin: 3
-  MovementSpeedMax: 3
+  MovementSpeedMin: 2
+  MovementSpeedMax: 2
   MovementTargetType: 2
   ContactDamage: 0
   GardenContactDamage: 1

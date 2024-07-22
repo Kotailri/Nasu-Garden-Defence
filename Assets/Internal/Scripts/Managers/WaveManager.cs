@@ -113,7 +113,7 @@ public class WaveManager : MonoBehaviour
 
             timer.PauseTimer();
 
-            if (CurrentWaveIndex >= waves.Count)
+            if (CurrentWaveIndex >= waves.Count && !Global.isGameOver)
             {
                 waveNameUI.text = "End!";
                 DemoCompleteUI.SetActive(true);

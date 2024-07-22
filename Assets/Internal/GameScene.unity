@@ -176,7 +176,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.7567368, y: -0.08422822}
+  m_Offset: {x: 1.9277761, y: -0.08422822}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -187,7 +187,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.8204217, y: 1.4435695}
+  m_Size: {x: 4.162502, y: 1.4435695}
   m_EdgeRadius: 0
 --- !u!212 &4674285
 SpriteRenderer:
@@ -17201,7 +17201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AlertObject: {fileID: 1645506363502422857, guid: df4e47e3a552efc4598f01a7451a6f51, type: 3}
-  AlertTime: 2.5
+  AlertTime: 3
 --- !u!4 &1263460620
 Transform:
   m_ObjectHideFlags: 0
@@ -23082,6 +23082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugInventory:
   - {fileID: 6260268218188063753, guid: f60d2edb10214d444ad12753189548fd, type: 3}
+  - {fileID: -3585581288498532571, guid: 606a1bcfa97cff64d87ab2451e6a88cf, type: 3}
   ItemPool_Weapon:
   - {fileID: -2324429805443389761, guid: 76ba63e3015f4974085d32a7472c9031, type: 3}
   - {fileID: -3585581288498532571, guid: 606a1bcfa97cff64d87ab2451e6a88cf, type: 3}

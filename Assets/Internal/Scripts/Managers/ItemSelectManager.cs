@@ -157,6 +157,7 @@ public class ItemSelectManager : MonoBehaviour
                     Destroy(item);
                 }
                 Destroy(currentReroller);
+                currentItems.Clear();
                 currentAdderPool.Clear();
                 StartCoroutine(SpawnNextWaveDelay());
             }

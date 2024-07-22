@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7547534747620200755}
   - component: {fileID: -2154562329466945135}
   - component: {fileID: 6514776859908280809}
-  - component: {fileID: 8944422623806774918}
   - component: {fileID: 180266891321517858}
   m_Layer: 0
   m_Name: BasicEnemyProjectile
@@ -192,18 +191,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8944422623806774918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308508756537036837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca3d551c9094c114a9a1b790df20dafb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &180266891321517858
 MonoBehaviour:
   m_ObjectHideFlags: 0

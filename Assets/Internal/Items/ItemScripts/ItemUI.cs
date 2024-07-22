@@ -51,8 +51,6 @@ public class ItemUI : MonoBehaviour
 
         LeftMargin += 80f;
 
-        print(CurrentPage == (ItemInventory.Count / NumSlots) - 1);
-        print(ItemInventory.Count % NumSlots == 1);
         if (CurrentPage == (ItemInventory.Count / NumSlots) -1 && ItemInventory.Count % NumSlots == 1)
         {
             RightArrow.SetActive(true);

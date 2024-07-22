@@ -29,11 +29,11 @@ public class BucketHatSpinner : PlayerAttack
             float angleInRadians = angle * Mathf.Deg2Rad;
 
             // Calculate the position
-            float x = Global.playerTransform.position.x + Mathf.Cos(angleInRadians) * SpinRadius;
-            float y = Global.playerTransform.position.y + Mathf.Sin(angleInRadians) * SpinRadius;
+            float x = transform.parent.position.x + Mathf.Cos(angleInRadians) * SpinRadius;
+            float y = transform.parent.position.y + Mathf.Sin(angleInRadians) * SpinRadius;
 
             // Create the object at the calculated position
-            Vector3 objectPosition = new Vector3(x, y, Global.playerTransform.position.z);
+            Vector3 objectPosition = new Vector3(x, y, transform.parent.position.z);
             GameObject g = Instantiate(AttackPrefab, objectPosition, Quaternion.identity);
 
             g.GetComponent<PlayerAttackPrefab>().SetDamage(BaseDamage);

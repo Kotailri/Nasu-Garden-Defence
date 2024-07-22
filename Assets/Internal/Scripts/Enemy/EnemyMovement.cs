@@ -59,6 +59,8 @@ public abstract class EnemyMovement : MonoBehaviour
         {
             transform.position = new Vector3(18.5f, transform.position.y, transform.position.z);
         }
+
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, Global.YRange.min, Global.YRange.max), transform.position.z);
     }
 
     public virtual void ReapplyMovement()
