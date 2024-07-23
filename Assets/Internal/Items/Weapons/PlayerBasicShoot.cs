@@ -32,7 +32,7 @@ public class PlayerBasicShoot : PlayerAttack
         }
     }
 
-    private void Shoot()
+    protected virtual void Shoot()
     {
         GameObject projectile = Instantiate(AttackPrefab, _attackPosition + new Vector2(0.25f, -0.25f), Quaternion.Euler(0, 0, Random.Range(0f, 360f)));
         projectile.GetComponent<Rigidbody2D>().velocity = (ProjectileSpeed * GlobalPlayer.GetStatValue(PlayerStatEnum.projectileSpeed) + GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed)) * ShootDirection.normalized;

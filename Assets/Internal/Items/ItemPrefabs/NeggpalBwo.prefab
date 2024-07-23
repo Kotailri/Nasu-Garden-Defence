@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d9422452ec6a24e88bf80bb7ca4222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentBwoStateEnum: 0
+  CurrentBwoStateEnum: 2
   StateDuration: 3
   RB: {fileID: 0}
   movespeed: 3

@@ -73,6 +73,18 @@ public class ItemInventoryManager : MonoBehaviour
         }
     }
 
+    public ItemAdder GetItemFromInventory(ItemAdder _item)
+    {
+        foreach (ItemAdder item in ItemInventory)
+        {
+            if (item == _item)
+            {
+                return item;
+            }
+        }
+        return null;
+    }
+
     public List<ItemAdder> GetFullPool(ItemTypeEnum tier, int waveRequirement = 0)
     {
         List<ItemAdder> selectedPool = new();
@@ -141,6 +153,11 @@ public class ItemInventoryManager : MonoBehaviour
             PoolToInventory(item);
         }
         
+    }
+
+    public void RemoveItemFromInventory(ItemAdder item)
+    {
+        ItemInventory.Remove(item);
     }
 
     public void PoolToInventory(ItemAdder item)

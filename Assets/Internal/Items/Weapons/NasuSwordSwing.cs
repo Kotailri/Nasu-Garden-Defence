@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NasuSwordSwing : PlayerAttackPrefab
+public class NasuSwordSwing : PlayerAttackPrefab, ISwordAttack
 {
     [Header("Sword Swing")]
     public float StartDelay;

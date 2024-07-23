@@ -10,7 +10,7 @@ public class ItemScriptable : ScriptableObject
     [TextArea(5,15)]
     public string ItemDescription;
     public Sprite ItemIconImage;
-    public Color ItemSpriteColor;
+    public Color ItemSpriteColor = new Color(1,1,1,1);
 
     public bool IsEqual(ItemScriptable other)
     {

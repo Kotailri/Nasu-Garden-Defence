@@ -72,6 +72,11 @@ public class PlayerHealth : MonoBehaviour
         return MaxHP;
     }
 
+    public float GetHealthPercent()
+    {
+        return (float)CurrentHP / (float)MaxHP;
+    }
+
     public void FullHeal()
     {
         CurrentHP = MaxHP;
@@ -124,7 +129,6 @@ public class PlayerHealth : MonoBehaviour
     public void OnMaxHpStatChanged(Dictionary<string, object> message)
     {
         SetMaxHealth(Mathf.FloorToInt(GlobalPlayer.GetStatValue(PlayerStatEnum.playerHealth)) - MaxHP, true);
-        UpdateUI(CurrentHP);
     }
 
     public void SetMaxHealth(int _hp, bool isRelative)
@@ -145,6 +149,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void UpdateUI(int CurrentHP)
     {
+        EventManager.TriggerEvent(EventStrings.PLAYER_HEALTH_UPDATED, null);
         bar.UpdateValue((float)CurrentHP / (float)MaxHP);
     }
 

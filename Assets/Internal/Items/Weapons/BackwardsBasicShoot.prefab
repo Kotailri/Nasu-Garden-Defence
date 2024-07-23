@@ -57,7 +57,7 @@ MonoBehaviour:
   AttackCount: 1
   OnOffset: 0
   AttackSound: 14
-  ProjectileSpeed: 3
+  ProjectileSpeed: 5
   ShootDirection: {x: -1, y: 0}
-  numberOfProjectiles: 2
+  numberOfProjectiles: 3
   delayBetweenProjectiles: 0.25

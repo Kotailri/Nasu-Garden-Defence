@@ -46,7 +46,7 @@ public class NeggpalBwo : MonoBehaviour
         }
 
         movespeed = Global.keystoneItemManager.BwoMovespeed;
-        ChangeState(states[BwoStateEnum.Wander]);
+        ChangeState(states[BwoStateEnum.Follow]);
     }
 
     private void OnDisable()
@@ -272,7 +272,15 @@ public class BwoFollowState : IBwoState
 
     public void OnStateUpdate(NeggpalBwo bwo)
     {
-        bwo.RB.velocity = ((Vector2)Global.playerTransform.position - (Vector2)bwo.transform.position).normalized * bwo.movespeed;
+        if (Global.waveManager.IsWaveOngoing())
+        {
+            bwo.RB.velocity = ((Vector2)Global.playerTransform.position - (Vector2)bwo.transform.position).normalized * bwo.movespeed;
+        }
+        else
+        {
+            bwo.RB.velocity = ((Vector2)Global.playerTransform.position - (Vector2)bwo.transform.position).normalized * bwo.movespeed * 2;
+        }
+        
         if (Vector2.Distance(bwo.gameObject.transform.position, Global.playerTransform.position) <= minDistance)
         {
             bwo.RB.velocity = Vector2.zero;

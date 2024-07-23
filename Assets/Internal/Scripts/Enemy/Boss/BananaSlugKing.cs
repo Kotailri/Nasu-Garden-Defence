@@ -22,6 +22,8 @@ public class BananaSlugKing : Boss
         StartMoving();
         StartCoroutine(SpawningCoroutine());
         StartCoroutine(DoAttackCoroutine());
+
+        TimeBetweenSpawning /= Global.WaveSpeed;
     }
 
     private void StartMoving()

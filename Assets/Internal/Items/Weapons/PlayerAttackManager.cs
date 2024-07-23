@@ -107,6 +107,6 @@ public class PlayerAttackManager : MonoBehaviour
             currentAttackTimer += Time.deltaTime;
         }
 
-        ShootCooldownBar.UpdateValue(Mathf.Clamp01(currentAttackTimer/AttackTimer));
+        ShootCooldownBar.UpdateValue(Mathf.Clamp01(currentAttackTimer/ (AttackTimer - (AttackTimer * GlobalPlayer.GetStatValue(PlayerStatEnum.attackspeed)) - currentBuffedSpeed)));
     }
 }

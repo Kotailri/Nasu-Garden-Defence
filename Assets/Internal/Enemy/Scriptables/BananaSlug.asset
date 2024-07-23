@@ -19,6 +19,7 @@ MonoBehaviour:
   HealthRegen: 0
   MovementSpeedMin: 1
   MovementSpeedMax: 1
+  MovementSpeed: 1
   MovementTargetType: 0
   ContactDamage: 4
   GardenContactDamage: 2

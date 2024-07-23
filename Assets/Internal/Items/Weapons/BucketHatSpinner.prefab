@@ -48,7 +48,7 @@ MonoBehaviour:
   IsPetFacingRequired: 0
   IsAttached: 1
   AttackColor: {r: 1, g: 1, b: 1, a: 1}
-  BaseDamage: 4
+  BaseDamage: 5
   KnockbackAmount: 3
   KnockbackTime: 0.2
   DamageMultiplier: 1
@@ -56,7 +56,8 @@ MonoBehaviour:
   IsOnAttackTimer: 1
   AttackCount: 3
   OnOffset: 0
+  AttackSound: 12
   NumberOfHats: 3
   SpinDuration: 2
-  SpinSpeed: 150
+  SpinSpeed: 200
   SpinRadius: 2

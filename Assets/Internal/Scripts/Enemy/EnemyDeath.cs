@@ -18,6 +18,7 @@ public class EnemyDeath : MonoBehaviour
         
         if (TryGetComponent(out EnemyMovement movement))
         {
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             movement.DisableMovement();
 
             if (location != null)

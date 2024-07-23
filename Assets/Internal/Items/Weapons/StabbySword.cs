@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class StabbySword : PlayerAttackPrefab
+public class StabbySword : PlayerAttackPrefab, ISwordAttack
 {
     [Header("Sword Stab")]
     public float StartDelay;
@@ -25,7 +24,7 @@ public class StabbySword : PlayerAttackPrefab
 
         LeanTween.alpha(sword, 1, StartDelay).setOnComplete(()=>
         {
-            StartCoroutine(DelsyHitboxEnable());
+            StartCoroutine(DelayHitboxReEnable());
             LeanTween.alpha(sword, 0, StabDuration);
             LeanTween.moveLocalX(sword, StabDistance, StabDuration).setOnComplete(() => {
                 sword.GetComponent<BoxCollider2D>().enabled = false;
@@ -33,7 +32,7 @@ public class StabbySword : PlayerAttackPrefab
             });
         });
 
-        IEnumerator DelsyHitboxEnable()
+        IEnumerator DelayHitboxReEnable()
         {
             yield return new WaitForSeconds(StabDuration / 2f);
             sword.GetComponent<BoxCollider2D>().enabled = true;

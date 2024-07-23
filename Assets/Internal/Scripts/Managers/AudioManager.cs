@@ -87,7 +87,7 @@ public class Sound
             sources[i].pitch = pitch * (1 + UnityEngine.Random.Range(-randomPitch / 2f, randomPitch / 2f));
             sources[i].loop = loops;
 
-            sources[i].PlayOneShot(sources[i].clip);
+            sources[i].Play();
             return;
         }
 

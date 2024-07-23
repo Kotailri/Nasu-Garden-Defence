@@ -14,12 +14,69 @@ public abstract class PlayerStat
     private bool ShowsInUI = true;
 
     public Dictionary<int, float> statMultipliers = new();
-    private int uniqueMutliplierID = 0;
-    private float currentStatBoost = 1f;
+    private int uniqueMutliplierID = 1;
+    private float currentStatBoostMultiplicative = 1f;
+    private float currentStatBoostAdditive = 0f;
 
     public float GetStatMultiplier()
     {
-        return currentStatBoost;
+        return currentStatBoostMultiplicative;
+    }
+
+    public float GetStatAdditive()
+    {
+        return currentStatBoostAdditive;
+    }
+
+    public void AddStatAdditive(float boost)
+    {
+        currentStatBoostAdditive += boost;
+    }
+
+    public void RemoveStatAdditive(float boost)
+    {
+        currentStatBoostAdditive -= boost;
+    }
+
+    public void AddSharedStatMultiplier(float boost)
+    {
+        if (statMultipliers.ContainsKey(0))
+        {
+            statMultipliers[0] += boost;
+        }
+        else
+        {
+            statMultipliers[0] = boost;
+        }
+            
+        RecalculateStatMultiplier();
+    }
+
+    public void RemoveSharedStatMultiplier(float boost)
+    {
+        if (statMultipliers.ContainsKey(0))
+        {
+            statMultipliers[0] -= boost;
+            RecalculateStatMultiplier();
+        }
+    }
+
+    public float GetUniqueStatMultiplier(int id)
+    {
+        if (statMultipliers.ContainsKey(id))
+        {
+            return statMultipliers[id];
+        }
+
+        return 1;
+    }
+
+    public void SetUniqueStatMultiplier(float boost, int id)
+    {
+        if (statMultipliers.ContainsKey(id))
+        {
+            statMultipliers[id] = boost;
+        }
     }
 
     public int AddStatMultiplier(float boost)
@@ -39,7 +96,7 @@ public abstract class PlayerStat
             RecalculateStatMultiplier();
 
             if (statMultipliers.Count == 0)
-                uniqueMutliplierID = 0;
+                uniqueMutliplierID = 1;
         }
     }
 
@@ -48,16 +105,20 @@ public abstract class PlayerStat
         float newCurrentMultiplier = 1f;
         foreach (float s in statMultipliers.Values)
         {
+            Debug.LogWarning(s.ToString());
             if (s > newCurrentMultiplier)
+            {
                 newCurrentMultiplier = s;
+            }
+                
         }
-        currentStatBoost = newCurrentMultiplier;
+        currentStatBoostMultiplicative = newCurrentMultiplier;
     }
 
     public void ResetMultiplier()
     {
         statMultipliers.Clear();
-        currentStatBoost = 1;
+        currentStatBoostMultiplicative = 1;
     }
 
     public int GetLevel()
@@ -137,7 +198,7 @@ public class PlayerStatLinear : PlayerStat
 
     public override float GetStat()
     {
-        return (GetStatBase() + (GetStatIncrease() * GetLevel())) * GetStatMultiplier();
+        return ((GetStatBase() + (GetStatIncrease() * GetLevel())) * GetStatMultiplier()) + GetStatAdditive();
     }
 }
 
@@ -149,7 +210,7 @@ public class PlayerStatCompound : PlayerStat
 
     public override float GetStat()
     {
-        return (GetStatBase() * Mathf.Pow(1 + GetStatIncrease(), GetLevel())) * GetStatMultiplier();
+        return ((GetStatBase() * Mathf.Pow(1 + GetStatIncrease(), GetLevel())) * GetStatMultiplier()) + GetStatAdditive();
     }
 }
 
@@ -161,7 +222,7 @@ public class PlayerStatExponential : PlayerStat
 
     public override float GetStat()
     {
-        return (Mathf.Pow(GetStatBase(), GetStatIncrease() * GetLevel())) * GetStatMultiplier();
+        return ((Mathf.Pow(GetStatBase(), GetStatIncrease() * GetLevel())) * GetStatMultiplier()) + GetStatAdditive();
     }
 }
 
