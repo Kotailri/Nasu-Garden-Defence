@@ -47,7 +47,6 @@ public class ApexStride : MonoBehaviour
         damageMultiplier = damageMult;
     }
 
-    private int boostID = -1;
     public void SetRampingLevel(int level)
     {
         if (level == rampingLevel)
@@ -57,7 +56,7 @@ public class ApexStride : MonoBehaviour
 
         Global.keystoneItemManager.ApexStrideLevel = level;
         GlobalPlayer.CurrentPlayerDamageMultiplier -= currentDamageMultiplier;
-        GlobalPlayer.GetStat(PlayerStatEnum.movespeed).RemoveStatMultiplier(boostID);
+        GlobalPlayer.GetStat(PlayerStatEnum.movespeed).RemoveSharedStatMultiplier(currentSpeedMultiplier);
 
         Destroy(currentParticles);
         switch (level)
@@ -81,7 +80,7 @@ public class ApexStride : MonoBehaviour
                 break;
         }
         GlobalPlayer.CurrentPlayerDamageMultiplier += currentDamageMultiplier;
-        boostID = GlobalPlayer.GetStat(PlayerStatEnum.movespeed).AddStatMultiplier(currentSpeedMultiplier);
+        GlobalPlayer.GetStat(PlayerStatEnum.movespeed).AddSharedStatMultiplier(currentSpeedMultiplier);
         rampingLevel = level;
     }
 

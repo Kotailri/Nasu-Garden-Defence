@@ -109,9 +109,10 @@ public class Sound
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
-    
+    public bool DebugMuteMusic = false;
+    private bool _debugMuteMusic;
 
+    public static AudioManager instance;
     public static Sound CurrentMusic;
 
     private void Awake()
@@ -124,6 +125,11 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
         }
+
+        _debugMuteMusic = false;
+    #if UNITY_EDITOR
+        _debugMuteMusic = DebugMuteMusic;
+    #endif
     }
 
     [SerializeField]
@@ -168,8 +174,12 @@ public class AudioManager : MonoBehaviour
             }
             
         }
+
+        if (!_debugMuteMusic)
+        {
+            StartCoroutine(WaitMusic());
+        }
         
-        StartCoroutine(WaitMusic());
     }
 
     private IEnumerator WaitMusic()

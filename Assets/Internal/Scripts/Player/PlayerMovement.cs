@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float CurrentMovespeed = 0;
+
     private Vector2 moveInput = Vector2.zero;
     private Rigidbody2D RB;
 
@@ -132,8 +134,6 @@ public class PlayerMovement : MonoBehaviour
         if (MovementLocked)
             moveInput = Vector2.zero;
 
-        //print(GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed));
-
         if (Global.gameplayStarted && Global.waveManager.IsWaveOngoing())
         {
             RB.velocity = moveInput.normalized * GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSlowMultiplier;
@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         {
             RB.velocity = moveInput.normalized * 12f;
         }
-        
 
+        CurrentMovespeed = GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSlowMultiplier;
     }
 }

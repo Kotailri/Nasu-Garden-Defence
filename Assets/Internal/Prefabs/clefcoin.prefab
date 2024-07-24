@@ -143,5 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da788a99d6f27c4cbf2ecc63f882869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CoinValue: 1
   ApproachSpeed: 5
-  ExpirationTime: 15
+  ExpirationTime: 10

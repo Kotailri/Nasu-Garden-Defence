@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ClefCoin : MonoBehaviour
 {
+    public int CoinValue;
+
+    [Space(5f)]
     public float ApproachSpeed;
     public float ExpirationTime;
 
@@ -26,7 +29,7 @@ public class ClefCoin : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Bwo"))
         {
             AudioManager.instance.PlaySound(AudioEnum.Ding);
-            Global.gardenBuffManager.AddCoins(1);
+            Global.gardenBuffManager.AddCoins(Mathf.RoundToInt(CoinValue * Global.CoinValueMultiplier));
             Destroy(gameObject);
         }
     }

@@ -34,7 +34,7 @@ public class StabbySword : PlayerAttackPrefab, ISwordAttack
 
         IEnumerator DelayHitboxReEnable()
         {
-            yield return new WaitForSeconds(StabDuration / 2f);
+            yield return new WaitForSeconds(StabDuration / 3f);
             sword.GetComponent<BoxCollider2D>().enabled = true;
         }
         

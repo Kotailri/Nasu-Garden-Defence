@@ -13,7 +13,7 @@ public abstract class PlayerStat
     private PlayerStatEnum StatEnum;
     private bool ShowsInUI = true;
 
-    public Dictionary<int, float> statMultipliers = new();
+    public Dictionary<int, float> statMultipliers = new() { { 0, 1f } };
     private int uniqueMutliplierID = 1;
     private float currentStatBoostMultiplicative = 1f;
     private float currentStatBoostAdditive = 0f;
@@ -76,6 +76,7 @@ public abstract class PlayerStat
         if (statMultipliers.ContainsKey(id))
         {
             statMultipliers[id] = boost;
+            RecalculateStatMultiplier();
         }
     }
 
@@ -103,21 +104,27 @@ public abstract class PlayerStat
     public void RecalculateStatMultiplier()
     {
         float newCurrentMultiplier = 1f;
-        foreach (float s in statMultipliers.Values)
+
+        foreach (var s in statMultipliers)
         {
-            Debug.LogWarning(s.ToString());
-            if (s > newCurrentMultiplier)
+            if (s.Key == 0)
             {
-                newCurrentMultiplier = s;
+                continue;
             }
-                
+
+            else if (s.Value > newCurrentMultiplier)
+            {
+                newCurrentMultiplier = s.Value;
+            }
         }
-        currentStatBoostMultiplicative = newCurrentMultiplier;
+
+        currentStatBoostMultiplicative = newCurrentMultiplier * statMultipliers[0];
     }
 
     public void ResetMultiplier()
     {
         statMultipliers.Clear();
+        statMultipliers.Add(0,1f);
         currentStatBoostMultiplicative = 1;
     }
 

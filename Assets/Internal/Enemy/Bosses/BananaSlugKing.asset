@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BananaSlugKing
   m_EditorClassIdentifier: 
   BossName: Banana Slug King
-  Health: 360
+  Health: 375
   Resistance: 0
   DodgeChance: 0
-  HealthRegen: 0.5
+  HealthRegen: 0.2
   MovementSpeed: 1
   ContactDamage: 4
   GardenContactDamage: 12

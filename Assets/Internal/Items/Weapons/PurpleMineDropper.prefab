@@ -47,7 +47,7 @@ MonoBehaviour:
   AttackPrefab: {fileID: 2288386618547799644, guid: 6b55af1fd7b0ddf47a0025400717334a, type: 3}
   IsAttached: 0
   AttackColor: {r: 1, g: 1, b: 1, a: 1}
-  BaseDamage: 8
+  BaseDamage: 10
   KnockbackAmount: 0
   KnockbackTime: 0
   DamageMultiplier: 1

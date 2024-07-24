@@ -17,5 +17,5 @@ MonoBehaviour:
   StatDescription: Increases the max health of the player.
   StatBase: 100
   StatGrowth: 25
-  StatGrowthType: 1
+  StatGrowthType: 0
   ShowsInUI: 1

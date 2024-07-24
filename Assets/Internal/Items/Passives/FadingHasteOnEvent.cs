@@ -22,6 +22,28 @@ public class FadingHasteOnEvent : MonoBehaviour
 
     private void ApplyHaste(Dictionary<string, object> _)
     {
-        Global.statManager.AddFadingStat(gameObject, PlayerStatEnum.movespeed, fadingHasteAmount, fadingHasteTime);
+        AddFadingHaste(fadingHasteAmount, fadingHasteTime);
+    }
+
+    private int FadingHasteID = -1;
+    public void AddFadingHaste(float _boost, float _fadeTime)
+    {
+        PlayerStat stat = GlobalPlayer.GetStat(PlayerStatEnum.movespeed);
+
+        if (LeanTween.isTweening(gameObject))
+        {
+            LeanTween.cancel(gameObject);
+            stat.RemoveStatMultiplier(FadingHasteID);
+        }
+        
+        FadingHasteID = stat.AddStatMultiplier(_boost);
+
+        LeanTween.value(gameObject, _boost, 1, _fadeTime).setOnUpdate((float val) =>
+        {
+            stat.SetUniqueStatMultiplier(val, FadingHasteID);
+        }).setOnComplete(() =>
+        {
+            stat.RemoveStatMultiplier(FadingHasteID);
+        });
     }
 }
