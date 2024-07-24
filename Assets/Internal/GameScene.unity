@@ -7223,7 +7223,7 @@ MonoBehaviour:
   cam: {fileID: 519420031}
   GameplayPosition: {x: 1.92, y: 0.4}
   MenuPosition: {x: -27.75, y: 0.4}
-  StartsAtMenu: 1
+  StartsAtMenu: 0
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23088,6 +23088,7 @@ MonoBehaviour:
   - {fileID: -5580221820512699650, guid: a7593df9ffc656949aaf126d06bf7c53, type: 3}
   - {fileID: -5874812564439802505, guid: f9ad0f2798518b143a4c1aaab8a4316d, type: 3}
   - {fileID: -5874812564439802505, guid: fc34b17e2d0b1e541a6c567b5cc21ca6, type: 3}
+  - {fileID: -1701182894904258376, guid: 73bb5fd77bb7519429fa96053b310e4f, type: 3}
   - {fileID: -2324429805443389761, guid: 16e1800106b5b5e49a3e334acc6cd58e, type: 3}
   - {fileID: -8111987116572309452, guid: d723018ff41426c48807be293a638a03, type: 3}
   - {fileID: -5580221820512699650, guid: b25b10b9639a90549ad4f8b05240460f, type: 3}

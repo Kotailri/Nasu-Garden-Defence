@@ -61,7 +61,7 @@ public class PlayerAttackPrefab : MonoBehaviour
         }
     }
 
-    private void AttackHitsEnemy(GameObject enemy)
+    protected void AttackHitsEnemy(GameObject enemy)
     {
         if (enemy.TryGetComponent(out EnemyGetHit hit))
         {

@@ -5,8 +5,6 @@ using UnityEngine;
 public abstract class PlayerAttack : MonoBehaviour
 {
     public GameObject AttackPrefab;
-    [Tooltip("Does the pet need to be facing forwards to attack")]
-    public bool IsPetFacingRequired = false;
     [Tooltip("Is the attack attached to the player")]
     public bool IsAttached = false;
     public Color AttackColor = Color.white;
@@ -40,7 +38,6 @@ public abstract class PlayerAttack : MonoBehaviour
     public void SetFromScriptable(PlayerAttackScriptable atk)
     {
         AttackPrefab = atk.AttackPrefab;
-        IsPetFacingRequired = atk.IsPetFacingRequired;
         AttackColor = atk.AttackColor;
         BaseDamage = atk.BaseDamage;
         DamageMultiplier = atk.DamageMultiplier;
@@ -52,11 +49,6 @@ public abstract class PlayerAttack : MonoBehaviour
     public void SetAttackPrefab(GameObject prefab)
     {
         AttackPrefab = prefab;
-    }
-
-    public void SetPetFacingRequirement(bool isRequired)
-    {
-        IsPetFacingRequired = isRequired;
     }
 
     public void SetAttackColour(Color col)
