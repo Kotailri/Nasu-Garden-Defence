@@ -45,12 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackPrefab: {fileID: 138231903007179278, guid: 12ac614eb6082c4429311deb07f5299b, type: 3}
-  IsPetFacingRequired: 0
   IsAttached: 1
   AttackColor: {r: 1, g: 1, b: 1, a: 1}
-  BaseDamage: 5
-  KnockbackAmount: 3
-  KnockbackTime: 0.2
+  BaseDamage: 4
+  KnockbackAmount: 5
+  KnockbackTime: 0.25
+  KnockbackType: 1
   DamageMultiplier: 1
   AttackLevel: 1
   IsOnAttackTimer: 1

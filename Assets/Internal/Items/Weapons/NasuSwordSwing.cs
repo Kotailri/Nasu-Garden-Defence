@@ -22,6 +22,7 @@ public class NasuSwordSwing : PlayerAttackPrefab, ISwordAttack
         sword.GetComponent<PlayerAttackPrefab>().SetDamage(Damage);
         sword.GetComponent<PlayerAttackPrefab>().SetKnockback(Knockback);
         sword.GetComponent<PlayerAttackPrefab>().SetKnockbackTime(KnockbackTime);
+        sword.GetComponent<PlayerAttackPrefab>().SetKnockbackType(KnockbackType);
 
         sword.GetComponent<BoxCollider2D>().enabled = false;
         if (ReverseSwing)

@@ -21,6 +21,7 @@ public class PurpleBoomerangLauncher : PlayerAttack
             * GlobalPlayer.GetStatValue(PlayerStatEnum.projectileDamage)));
         g.GetComponent<PurpleBoomerang>().SetKnockback(KnockbackAmount);
         g.GetComponent<PurpleBoomerang>().SetKnockbackTime(KnockbackTime);
+        g.GetComponent<PlayerAttackPrefab>().SetKnockbackType(KnockbackType);
         g.GetComponent<PurpleBoomerang>().SetReturnTransform(attachObject);
         g.GetComponent<PurpleBoomerang>().Launch(GetRandomWeightedDirection() * speed * GlobalPlayer.GetStatValue(PlayerStatEnum.projectileSpeed), distance);
         

@@ -33,7 +33,7 @@ public abstract class EnemyMovement : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!isMovementStarted && transform.position.x > 17f)
+        if (!isMovementStarted && transform.position.x > 18.5f)
         {
             transform.position += new Vector3(-Time.deltaTime * Global.WaveSpeed, 0, 0);
             return;
@@ -91,12 +91,17 @@ public abstract class EnemyMovement : MonoBehaviour
         appliedDirection = new Vector2(-1,0);
     }
 
-    public virtual void DoKnockback(float force, float knockbackTime=0f,Vector2? _direction=null)
+    public virtual void DoKnockback(float force, PlayerKnockbackType type=PlayerKnockbackType.None, float knockbackTime=0f,Vector2? _direction=null)
     {
         if (!CanBeKnockedBack)
             return;
 
         Vector2 direction = Vector2.right;
+        if (type == PlayerKnockbackType.AwayFromPlayer)
+        {
+            direction = transform.position-Global.playerTransform.position;
+        }
+
         if (_direction != null)
         {
             direction = (Vector2)_direction;

@@ -47,8 +47,8 @@ MonoBehaviour:
   AttackPrefab: {fileID: 572804994532909578, guid: bd485a95eaf0f944ea4352bdddad3310, type: 3}
   IsAttached: 0
   AttackColor: {r: 1, g: 1, b: 1, a: 1}
-  BaseDamage: 5
-  KnockbackAmount: 10
+  BaseDamage: 1
+  KnockbackAmount: 12
   KnockbackTime: 3
   DamageMultiplier: 0
   AttackLevel: 1
@@ -56,5 +56,5 @@ MonoBehaviour:
   AttackCount: 2
   OnOffset: 0
   AttackSound: 12
-  speed: 6
-  distance: 12
+  speed: 8
+  distance: 8

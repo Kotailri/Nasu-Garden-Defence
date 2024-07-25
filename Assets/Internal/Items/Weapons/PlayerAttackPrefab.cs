@@ -8,6 +8,13 @@ public enum PlayerAttackType
     Projectile
 }
 
+public enum PlayerKnockbackType
+{
+    AwayFromGarden,
+    AwayFromPlayer,
+    None
+}
+
 public class PlayerAttackPrefab : MonoBehaviour
 {
     public bool DestroyWhenOutside;
@@ -18,6 +25,7 @@ public class PlayerAttackPrefab : MonoBehaviour
 
     [Header("Fields for BASIC attacks only")]
     public int Damage;
+    public PlayerKnockbackType KnockbackType = PlayerKnockbackType.AwayFromGarden;
     public float Knockback;
     public float KnockbackTime = 0;
 
@@ -39,6 +47,11 @@ public class PlayerAttackPrefab : MonoBehaviour
     public void SetKnockbackTime(float time)
     {
         KnockbackTime = time;   
+    }
+
+    public void SetKnockbackType(PlayerKnockbackType type)
+    {
+        KnockbackType = type;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -86,7 +99,7 @@ public class PlayerAttackPrefab : MonoBehaviour
 
         if (enemy.TryGetComponent(out EnemyMovement move))
         {
-            move.DoKnockback(Knockback, KnockbackTime, null);
+            move.DoKnockback(Knockback, KnockbackType, KnockbackTime, null);
         }
 
         if (DestroyOnContact)

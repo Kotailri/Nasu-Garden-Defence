@@ -23,7 +23,7 @@ public class EnemyDeath : MonoBehaviour
 
             if (location != null)
             {
-                movement.DoKnockback(5, 0, ((Vector2)transform.position - (Vector2)location));
+                movement.DoKnockback(5, PlayerKnockbackType.None,0, (Vector2)transform.position - (Vector2)location);
             }
             else
             {

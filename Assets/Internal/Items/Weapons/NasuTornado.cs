@@ -10,8 +10,6 @@ public class NasuTornado : PlayerAttackPrefab
     private float distance;
     private float speed;
 
-    private bool isFirstHit = true;
-
     public void Launch(Vector2 launchVector, float _distance)
     {
         transform.localScale *= GlobalPlayer.GetStatValue(PlayerStatEnum.attackSize);
@@ -20,17 +18,14 @@ public class NasuTornado : PlayerAttackPrefab
         distance = _distance;
         startingPosition = transform.position;
         GetComponent<Rigidbody2D>().velocity = launchVector.normalized * speed;
-
-        Damage *= 2;
     }
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);
-        if (isFirstHit && collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            isFirstHit = false;
-            Damage /= 2;
+            Damage++;
         }
+        base.OnTriggerEnter2D(collision);
     }
 
     protected override void Update()

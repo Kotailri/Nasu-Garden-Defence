@@ -39,6 +39,7 @@ public class BucketHatSpinner : PlayerAttack
             g.GetComponent<PlayerAttackPrefab>().SetDamage(BaseDamage);
             g.GetComponent<PlayerAttackPrefab>().SetKnockback(KnockbackAmount);
             g.GetComponent<PlayerAttackPrefab>().SetKnockbackTime(KnockbackTime);
+            g.GetComponent<PlayerAttackPrefab>().SetKnockbackType(KnockbackType);
 
             g.transform.SetParent(transform, true);
 
@@ -78,6 +79,9 @@ public class BucketHatSpinner : PlayerAttack
 
     private IEnumerator SpinHats()
     {
+        transform.localScale = Vector2.zero;
+        LeanTween.scale(gameObject, Vector2.one, 1f);
+
         foreach (GameObject hat in BucketHatList)
         {
             hat.SetActive(true);
