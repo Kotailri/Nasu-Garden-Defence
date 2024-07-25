@@ -17,10 +17,6 @@ public class EnemyScriptable : ScriptableObject
     public float HealthRegen;
 
     [Header("Movement")]
-    [Range(0f, 100f)]
-    public float MovementSpeedMin;
-    [Range(0f, 100f)]
-    public float MovementSpeedMax;
     public float MovementSpeed;
     public BasicEnemyMovementType MovementTargetType;
 

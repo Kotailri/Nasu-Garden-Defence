@@ -25,6 +25,13 @@ public class EnemyStrafeMovement : EnemyMovement
             startsUp = false;
         }
 
-        LeanTween.moveY(gameObject, transform.position.y + ((startsUp ? 1 : -1) * waveAmplitude), waveFrequency).setEase(easeType).setLoopPingPong();
+        LeanTween.moveY(gameObject, transform.position.y + ((startsUp ? 1 : -1) * (waveAmplitude/2)), waveFrequency/2).setEase(easeType).setOnComplete(() =>
+        {
+            LeanTween.moveY(gameObject, transform.position.y + ((startsUp ? -1 : 1) * waveAmplitude), waveFrequency).setEase(easeType).setLoopPingPong()
+            .setOnUpdate((float _) => { 
+                transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, Global.YRange.min, Global.YRange.max), transform.position.z); 
+            });
+        });
+            
     }
 }

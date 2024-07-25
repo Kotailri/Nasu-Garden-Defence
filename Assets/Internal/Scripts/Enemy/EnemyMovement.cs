@@ -33,7 +33,7 @@ public abstract class EnemyMovement : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!isMovementStarted && transform.position.x > 20f)
+        if (!isMovementStarted && transform.position.x > 17f)
         {
             transform.position += new Vector3(-Time.deltaTime * Global.WaveSpeed, 0, 0);
             return;
@@ -44,9 +44,6 @@ public abstract class EnemyMovement : MonoBehaviour
             UpdateAppliedMovementDirection();
             UpdateAppliedMovementSpeed();
 
-            if (TryGetComponent(out Animator animator))
-                animator.speed = 1f;
-
             StartMovement();
         }
 
@@ -55,9 +52,9 @@ public abstract class EnemyMovement : MonoBehaviour
             ReapplyMovement();
         }
         
-        if (isMovementStarted && transform.position.x > 18.5f)
+        if (isMovementStarted && transform.position.x > 17f)
         {
-            transform.position = new Vector3(18.5f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(17f, transform.position.y, transform.position.z);
         }
 
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, Global.YRange.min, Global.YRange.max), transform.position.z);
@@ -155,6 +152,9 @@ public abstract class EnemyMovement : MonoBehaviour
     {
         if (slowAmount < currentSlowAmount) { return; }
 
+        if (TryGetComponent(out Animator animator))
+            animator.speed = 1 - currentSlowAmount;
+
         StopAllCoroutines();
         StartCoroutine(MovementSlowTimer());
         IEnumerator MovementSlowTimer()
@@ -166,6 +166,8 @@ public abstract class EnemyMovement : MonoBehaviour
 
             currentSlowAmount = 0;
             GetComponent<SpriteRenderer>().color = Color.white;
+            if (TryGetComponent(out Animator animator))
+                animator.speed = 1;
         }
     }
 }

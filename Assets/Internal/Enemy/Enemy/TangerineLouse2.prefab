@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 7435701935646035086}
   - component: {fileID: 8937410491003814063}
   m_Layer: 6
-  m_Name: TangerineLouse
+  m_Name: TangerineLouse2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +129,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,7 +151,7 @@ SpriteRenderer:
   m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1257085566, guid: 0835c0852e222154fbf4a2f78c3a68d7, type: 3}
-  m_Color: {r: 1, g: 0.739583, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.69103646, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aac1f8199737b94b9ff6da691805212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanBeKnockedBack: 1
 --- !u!114 &3376566937970729641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 467e518917b98bc478298a544b4eabad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyScriptable: {fileID: 11400000, guid: 77170ab6adc5b21449694878890d33bc, type: 2}
+  enemyScriptable: {fileID: 11400000, guid: 439d4aeaa092ea043b296447b0de55a0, type: 2}
   healthBar: {fileID: 6063625760232771311}
   GardenContactDamage: 0
 --- !u!95 &5917837259876303990

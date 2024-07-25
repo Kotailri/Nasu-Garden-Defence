@@ -143,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
             RB.velocity = moveInput.normalized * 12f;
         }
 
+        Global.playerMoveVector = RB.velocity;
         CurrentMovespeed = GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSlowMultiplier;
     }
 }

@@ -36,9 +36,6 @@ public class EnemyController : MonoBehaviour
         {
             gameObject.AddComponent<EnemyGetHit>();
         }
-
-        if (TryGetComponent(out Animator animator))
-            animator.speed = 0f;
     }
 
     private void OnEnable()

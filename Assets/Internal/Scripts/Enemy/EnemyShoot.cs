@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public enum EnemyShootTimerType
@@ -17,13 +18,19 @@ public class EnemyShoot : MonoBehaviour
     public Vector2 ProjectileDirection;
     public float ProjectileSpeed;
 
+    [Space(10f)]
+    public int NumberOfProjectiles;
+    public float DelayBetweenProjectiles;
+
     [Header("Timing")]
     public EnemyShootTimerType TimerType;
     public float ShootTimer;
     public int AnimationFrame;
+    public int AnimationFrameOffset;
 
     private float currentShootTimer = 0f;
     private bool didShootOnCurrentFrame = false;
+    private int currentAnimFrameOffset = 0;
 
     private void Awake()
     {
@@ -49,7 +56,13 @@ public class EnemyShoot : MonoBehaviour
                 {
                     if (didShootOnCurrentFrame == false)
                     {
-                        ShootProjectile();
+                        if (currentAnimFrameOffset >= AnimationFrameOffset)
+                        {
+                            Shoot();
+                            currentAnimFrameOffset = 0;
+                        }
+
+                        currentAnimFrameOffset++;
                         didShootOnCurrentFrame = true;
                     }
                 }
@@ -64,17 +77,31 @@ public class EnemyShoot : MonoBehaviour
 
                 if (currentShootTimer >= ShootTimer)
                 {
-                    ShootProjectile();
+                    Shoot();
                     currentShootTimer = 0;
                 }
                 break;
         }
     }
 
+    public virtual void Shoot()
+    {
+        StartCoroutine(ShootCoroutine());
+    }
+
     public virtual void ShootProjectile()
     {
         GameObject projectile = Instantiate(ProjectilePrefab, ShootPosition.transform.position, Quaternion.identity);
         projectile.GetComponent<Rigidbody2D>().velocity = ProjectileSpeed * ProjectileDirection.normalized;
+    }
+
+    protected virtual IEnumerator ShootCoroutine()
+    {
+        for(int i = 0; i < NumberOfProjectiles; i++)
+        {
+            ShootProjectile();
+            yield return new WaitForSeconds(DelayBetweenProjectiles);
+        }
     }
 
 }

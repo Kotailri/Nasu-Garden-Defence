@@ -44,12 +44,13 @@ public class EnemyHealth : MonoBehaviour
             return;
         }
 
-        Vector2 textSpawnLocation = (Vector2)transform.position + ((location - (Vector2)transform.position).normalized);
+        Vector2 textSpawnLocation = (Vector2)transform.position + (location - (Vector2)transform.position).normalized;
 
         if (Random.Range(0f, 1f) >= DodgeChance)
         {
             if (Random.Range(0f,1f) < GlobalPlayer.GetStatValue(PlayerStatEnum.critchance))
             {
+                // TODO crit sound effect
                 CurrentHealth -= (damage - Mathf.FloorToInt(damage * Resistance))*2;
                 Global.damageTextSpawner.SpawnText(textSpawnLocation, ((damage - Mathf.FloorToInt(damage * Resistance)) * 2).ToString(), DamageTextType.Crit, 1f);
             }
@@ -61,6 +62,7 @@ public class EnemyHealth : MonoBehaviour
 
             if (canGetExecuted && CurrentHealth > 0 && Global.itemPassiveManager.GetPassive(ItemPassiveEnum.LowHealthExecute) && (float)CurrentHealth/(float)Health <= Global.itemPassiveManager.LowHealthExecutePercent)
             {
+                // TODO execute sound + effect
                 CurrentHealth -= 99999;
                 Global.damageTextSpawner.SpawnText(textSpawnLocation, "99999", DamageTextType.White, 1f);
             }

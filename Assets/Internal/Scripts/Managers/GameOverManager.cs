@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour
 {
@@ -12,7 +11,6 @@ public class GameOverManager : MonoBehaviour
 
     [Space(5f)]
     public List<Transform> backgroundObjectsToDestroy = new();
-    public SpriteRenderer playerRenderer;
 
     private void Awake()
     {
@@ -40,10 +38,9 @@ public class GameOverManager : MonoBehaviour
         Global.playerTransform.gameObject.GetComponent<PlayerHitbox>().enabled = false;
         Global.playerTransform.gameObject.GetComponent<PlayerMovement>().enabled = false;
         Global.playerTransform.gameObject.GetComponent<PlayerAttackManager>().enabled = false;
-        playerRenderer.enabled = false;
 
-        foreach (Transform t in Global.playerTransform)
-            Destroy(t.gameObject);
+        //foreach (Transform t in Global.playerTransform)
+        //    Destroy(t.gameObject);
 
         GameOverUIFade.gameObject.SetActive(true);
 
@@ -51,6 +48,21 @@ public class GameOverManager : MonoBehaviour
         IEnumerator GameOverCoroutine()
         {
             Instantiate(ExplosionEffectObject, Global.playerTransform.position, Quaternion.identity);
+
+            Rigidbody2D rb = Global.playerTransform.gameObject.GetComponent<Rigidbody2D>();
+            rb.constraints = RigidbodyConstraints2D.None;
+            rb.gravityScale = 5.0f;
+            rb.velocity = Vector3.zero;
+            float explosionForce = 2f;
+
+            rb.isKinematic = false;
+
+            Vector2 direction = new(1, 1);
+            rb.AddForce(direction * explosionForce, ForceMode2D.Impulse);
+
+            Vector3 rotationDirection = new Vector3(0, 0, Mathf.Sign(direction.x));
+            rb.AddTorque(explosionForce*2, ForceMode2D.Impulse);
+
             yield return new WaitForSeconds(0.15f);
 
             foreach (Transform t in backgroundObjectsToDestroy)
@@ -61,6 +73,8 @@ public class GameOverManager : MonoBehaviour
             }
 
             yield return new WaitForSeconds(1f);
+            rb.gravityScale = 0f;
+            rb.velocity = Vector3.zero;
             AudioManager.instance.PlaySound(AudioEnum.GameOver);
             LeanTween.alphaCanvas(GameOverUIFade, 1f, 1f);
             yield return new WaitForSeconds(3f);

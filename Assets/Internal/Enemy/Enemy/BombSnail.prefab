@@ -163,13 +163,15 @@ GameObject:
   - component: {fileID: 5964027475326329598}
   - component: {fileID: 7962410223276198063}
   - component: {fileID: 2539888237098828142}
-  - component: {fileID: 7086605643172730589}
   - component: {fileID: 6955334069273514355}
   - component: {fileID: 735661770418128862}
   - component: {fileID: 6247835868584261106}
   - component: {fileID: 2285599850290857386}
+  - component: {fileID: 8608536174060068837}
+  - component: {fileID: 9135410219562929338}
+  - component: {fileID: 8839979090445879329}
   m_Layer: 6
-  m_Name: MiniBananaSlug
+  m_Name: BombSnail
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,7 +187,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5094761271894266582}
@@ -213,7 +215,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -234,7 +236,7 @@ SpriteRenderer:
   m_SortingLayerID: -356940509
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2113711652, guid: c003043fceeb151488b95e1ad15f7d99, type: 3}
+  m_Sprite: {fileID: -1522037053, guid: c6a90adc31d439946953129a2b8d8927, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -277,18 +279,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.04739359, y: -0.01519455}
+  m_Offset: {x: 0.012662157, y: -0.02336669}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.5}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9294947, y: 0.4352263}
+  m_Size: {x: 0.9417529, y: 0.80297136}
   m_EdgeRadius: 0
 --- !u!50 &2539888237098828142
 Rigidbody2D:
@@ -317,18 +319,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7086605643172730589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8120188403701684839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e363a57b3e0668c4694087bdbf1f5f20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6955334069273514355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aac1f8199737b94b9ff6da691805212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanBeKnockedBack: 1
 --- !u!114 &735661770418128862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 467e518917b98bc478298a544b4eabad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyScriptable: {fileID: 11400000, guid: e594a06c65b7c6d45aa11b58c432d4a5, type: 2}
+  enemyScriptable: {fileID: 11400000, guid: 1828c4149569189498e62960bb1f134e, type: 2}
   healthBar: {fileID: 7494576842727351548}
   GardenContactDamage: 0
 --- !u!95 &6247835868584261106
@@ -366,7 +357,7 @@ Animator:
   m_GameObject: {fileID: 8120188403701684839}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 46c8c01aeb1084d4e8bfec9d5e2a3896, type: 2}
+  m_Controller: {fileID: 9100000, guid: 74d5adb416b50374295b200a343c59e5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -390,6 +381,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FlashSprite: {fileID: 2423293081180355604}
+--- !u!114 &8608536174060068837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8120188403701684839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afa84d3c12d7444fbeb678076a1edc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulseColor: {r: 2, g: 0, b: 0, a: 1}
+  pulseDuration: 2
+--- !u!114 &9135410219562929338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8120188403701684839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5f1dde3b3b8994bbf6efbd03feb2ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExplosionPrefab: {fileID: 7596314985194952492, guid: c25fb2df90da9a64b9e08858e35b9ea9, type: 3}
+  ExplosionDamage: 10
+--- !u!114 &8839979090445879329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8120188403701684839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9632c375034dad84c8be93eaa9646bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnPlayerContactEvents:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9135410219562929338}
+        m_TargetAssemblyTypeName: EnemyExplodeDeath, Assembly-CSharp
+        m_MethodName: CallDie
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Damage: 0
+  DestroysSelfOnHit: 0
 --- !u!1001 &4306499734030576744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -544,11 +592,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9040968361195355838, guid: e912a0749f005484c8c9c80be9cb42fd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.14
+      value: 0.084
       objectReference: {fileID: 0}
     - target: {fileID: 9040968361195355838, guid: e912a0749f005484c8c9c80be9cb42fd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.291
+      value: -0.507
       objectReference: {fileID: 0}
     - target: {fileID: 9040968361195355838, guid: e912a0749f005484c8c9c80be9cb42fd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

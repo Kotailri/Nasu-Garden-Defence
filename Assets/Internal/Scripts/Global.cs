@@ -9,6 +9,7 @@ public static class Global
 
     public static Transform playerTransform;
     public static Transform cursorTransform;
+    public static Vector2 playerMoveVector = Vector2.zero;
 
     // Mangagers
     public static TextSpawner damageTextSpawner;
