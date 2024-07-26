@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a12d0afdb83f6b748886d0c48430a982, type: 3}
   m_Name: 3x_RandomStatBag
   m_EditorClassIdentifier: 
-  ItemName: D3 Stat Bag
+  ItemName: 12 choose 3
   ItemDescription: 'Adds 1 level to 3 random stats.
 
 
