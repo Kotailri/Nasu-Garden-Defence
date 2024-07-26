@@ -875,15 +875,13 @@ MonoBehaviour:
     ItemType: 0
   - Wave: {fileID: 4110626928451635750, guid: 18442b93cc8d0974eb034eaf138a24d5, type: 3}
     ItemType: 1
-  - Wave: {fileID: 4110626928451635750, guid: ff76b37b3d7a21d46a29898a6f2d046d, type: 3}
-    ItemType: 0
   - Wave: {fileID: 4110626928451635750, guid: fceb683a372d1764f9e21b24229035c4, type: 3}
     ItemType: 2
   - Wave: {fileID: 4110626928451635750, guid: 28de4f2d6bfabf14aa2516629b69b897, type: 3}
     ItemType: 1
   - Wave: {fileID: 4110626928451635750, guid: 75d7d03515a2e884383afac4696939ee, type: 3}
     ItemType: 1
-  CurrentWaveIndex: 4
+  CurrentWaveIndex: 0
   GivesItems: 0
   waveNameUI: {fileID: 2040071331}
   waveProgressBar: {fileID: 7695761220067284831}
@@ -22494,9 +22492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59518da54228be4781498ce713f0b14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugInventory:
-  - {fileID: -4960585179473724930, guid: 29bd14e1548c16e49b80fedcc5010b22, type: 3}
-  - {fileID: -3585581288498532571, guid: 606a1bcfa97cff64d87ab2451e6a88cf, type: 3}
+  debugInventory: []
   ItemPool_Weapon:
   - {fileID: -2324429805443389761, guid: 76ba63e3015f4974085d32a7472c9031, type: 3}
   - {fileID: -3585581288498532571, guid: 606a1bcfa97cff64d87ab2451e6a88cf, type: 3}
@@ -31045,6 +31041,9 @@ SceneRoots:
   - {fileID: 976972368}
   - {fileID: 519420032}
   - {fileID: 378316951}
+  - {fileID: 1757968119}
+  - {fileID: 1603488068}
+  - {fileID: 104518328}
   - {fileID: 428127801}
   - {fileID: 1873026667}
   - {fileID: 1187827584}
@@ -31053,6 +31052,3 @@ SceneRoots:
   - {fileID: 4674286}
   - {fileID: 1531515172}
   - {fileID: 1640080824}
-  - {fileID: 1757968119}
-  - {fileID: 1603488068}
-  - {fileID: 104518328}
