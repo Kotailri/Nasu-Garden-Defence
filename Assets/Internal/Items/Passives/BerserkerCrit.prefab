@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9fde2ad05009ae46904c17e5a62ce06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missingHealthPerCritPercent: 10
+  missingHealthPerCritPercent: 25

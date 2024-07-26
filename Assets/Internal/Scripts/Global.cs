@@ -303,6 +303,20 @@ public static class GlobalPlayer
     public static float ContactSlowTime = 1f;
 
     public static Dictionary<PlayerStatEnum, PlayerStat> PlayerStatDict = new();
+
+    public static Dictionary<PlayerStatEnum, PlayerStat> GetVisiblePlayerStatDict()
+    {
+        Dictionary<PlayerStatEnum, PlayerStat> pickableStats = PlayerStatDict;
+        foreach (var stat in PlayerStatDict)
+        {
+            if (!stat.Value.DoesShowInUI())
+            {
+                pickableStats.Remove(stat.Key);
+            }
+        }
+        return pickableStats;
+    }
+
     public static float GetStatValue(PlayerStatEnum stat)
     {
         if (PlayerStatDict.ContainsKey(stat))

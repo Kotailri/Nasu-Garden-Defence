@@ -60,7 +60,7 @@ public abstract class ItemAdder : MonoBehaviour
 
         foreach (int i in statLevelUps)
         {
-            PlayerStat levelStat = Global.GetRandomDictionaryValue(GlobalPlayer.PlayerStatDict);
+            PlayerStat levelStat = Global.GetRandomDictionaryValue(GlobalPlayer.GetVisiblePlayerStatDict());
             levelStat.SetLevel(i, true);
             statsLeveled.Add(levelStat);
         }

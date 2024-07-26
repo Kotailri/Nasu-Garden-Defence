@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a12d0afdb83f6b748886d0c48430a982, type: 3}
   m_Name: AttackSizeAdder
   m_EditorClassIdentifier: 
-  ItemName: Attack Size
+  ItemName: Zoomed Weapons
   ItemDescription: Increases the attack size stat by 1 level. Each level increases
     the size of attacks by 20% and increases the speed of projectiles by 25%.
   ItemIconImage: {fileID: 21300000, guid: f5c6ba5b326ca4c6894ee524d88dc4ce, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a12d0afdb83f6b748886d0c48430a982, type: 3}
   m_Name: ProjectileExplosionAdder
   m_EditorClassIdentifier: 
-  ItemName: It Go Boom
+  ItemName: Make it go Boom
   ItemDescription: Projectiles have a 20% chance to create an explosion on hit. This
     explosion does 50% less damage than a normal explosion.
   ItemIconImage: {fileID: 21300000, guid: 67ceb331988314ae39231e88577cc0be, type: 3}
