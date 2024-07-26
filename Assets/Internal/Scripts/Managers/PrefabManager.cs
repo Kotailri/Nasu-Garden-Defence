@@ -5,7 +5,8 @@ using UnityEngine;
 public enum PrefabEnum
 {
     PurpleExplosion,
-    NormalProjectile
+    NormalProjectile,
+    ExecuteEffect
 }
 
 [System.Serializable]

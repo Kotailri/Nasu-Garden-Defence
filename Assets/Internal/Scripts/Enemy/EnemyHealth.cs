@@ -50,7 +50,7 @@ public class EnemyHealth : MonoBehaviour
         {
             if (Random.Range(0f,1f) < GlobalPlayer.GetStatValue(PlayerStatEnum.critchance))
             {
-                // TODO crit sound effect
+                AudioManager.instance.PlaySound(AudioEnum.CritSound);
                 CurrentHealth -= (damage - Mathf.FloorToInt(damage * Resistance))*2;
                 Global.damageTextSpawner.SpawnText(textSpawnLocation, ((damage - Mathf.FloorToInt(damage * Resistance)) * 2).ToString(), DamageTextType.Crit, 1f);
             }
@@ -62,7 +62,13 @@ public class EnemyHealth : MonoBehaviour
 
             if (canGetExecuted && CurrentHealth > 0 && Global.itemPassiveManager.GetPassive(ItemPassiveEnum.LowHealthExecute) && (float)CurrentHealth/(float)Health <= Global.itemPassiveManager.LowHealthExecutePercent)
             {
-                // TODO execute sound + effect
+                AudioManager.instance.PlaySound(AudioEnum.ExecuteSound);
+                GameObject effect = Global.prefabManager.InstantiatePrefab(PrefabEnum.ExecuteEffect, transform.position, Quaternion.identity);
+                Vector3 originalScale = effect.transform.localScale;
+                effect.transform.SetParent(transform, false);
+                effect.transform.localScale = MathHelper.DivideVector3(originalScale, transform.lossyScale);
+                effect.transform.localPosition = Vector3.zero;
+
                 CurrentHealth -= 99999;
                 Global.damageTextSpawner.SpawnText(textSpawnLocation, "99999", DamageTextType.White, 1f);
             }

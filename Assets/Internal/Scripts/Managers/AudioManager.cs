@@ -22,6 +22,8 @@ public enum AudioEnum
     UhOh = 11,
     EnemyDamagedQuiet = 13,
     ShotgunShoot = 14,
+    ExecuteSound = 16,
+    CritSound = 17,
 
     None = 12,
     EmptyBG = 15,

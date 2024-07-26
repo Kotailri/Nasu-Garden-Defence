@@ -247,6 +247,16 @@ public static class MathHelper
     {
         return (toCheck >= min) && (toCheck <= max);
     }
+
+    public static Vector2 DivideVector2(Vector2 numerator, Vector2 denominator)
+    {
+        return new Vector2(numerator.x / denominator.x, numerator.y / denominator.y);
+    }
+
+    public static Vector3 DivideVector3(Vector3 numerator, Vector3 denominator)
+    {
+        return new Vector3(numerator.x / denominator.x, numerator.y / denominator.y, numerator.z / denominator.z);
+    }
 }
 
 public static class Config

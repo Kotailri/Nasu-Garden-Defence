@@ -10590,6 +10590,28 @@ MonoBehaviour:
     isMusic: 0
     playOnAwake: 0
     muteOnAwake: 0
+  - name: 16
+    clip: {fileID: 8300000, guid: 1d9b0d528c62e4c4fa267611e8ab69e0, type: 3}
+    volume: 0.2
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    SourceCount: 1
+    loops: 0
+    isMusic: 0
+    playOnAwake: 0
+    muteOnAwake: 0
+  - name: 17
+    clip: {fileID: 8300000, guid: 2c8d198aca7fb604cb91e8d2ad2c0aba, type: 3}
+    volume: 0.15
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    SourceCount: 5
+    loops: 0
+    isMusic: 0
+    playOnAwake: 0
+    muteOnAwake: 0
 --- !u!4 &807976887
 Transform:
   m_ObjectHideFlags: 0
@@ -15650,6 +15672,8 @@ MonoBehaviour:
   Prefabs:
   - prefabEnum: 0
     prefab: {fileID: 4708034332075412972, guid: 19148dadb25854c4e93f7fd4a56b014c, type: 3}
+  - prefabEnum: 2
+    prefab: {fileID: 7595658349089176666, guid: 2f7df63f25e8cd841bacb3a43e48bd95, type: 3}
 --- !u!4 &1210912319
 Transform:
   m_ObjectHideFlags: 0
@@ -22471,6 +22495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugInventory:
+  - {fileID: -4960585179473724930, guid: 29bd14e1548c16e49b80fedcc5010b22, type: 3}
   - {fileID: -3585581288498532571, guid: 606a1bcfa97cff64d87ab2451e6a88cf, type: 3}
   ItemPool_Weapon:
   - {fileID: -2324429805443389761, guid: 76ba63e3015f4974085d32a7472c9031, type: 3}
