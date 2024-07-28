@@ -7,9 +7,11 @@ public class EnemyGetHit : MonoBehaviour
 {
     public UnityEvent OnEnemyHitEvents;
 
-    public virtual void GetHit(int damage, Vector2 location)
+    public virtual void GetHit(GameObject attack, int damage, Vector2 location, bool destroyedByDeflection=false)
     {
         OnEnemyHitEvents?.Invoke();
+
+        AudioManager.instance.PlaySound(AudioEnum.EnemyDamaged);
 
         int newDamage = damage;
         if (GlobalItemToggles.HasAmplifier)

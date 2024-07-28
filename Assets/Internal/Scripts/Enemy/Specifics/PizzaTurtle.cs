@@ -15,6 +15,8 @@ public class PizzaTurtle : MonoBehaviour
     private Vector3 lockedPosition;
     private bool isHiding = false;
 
+    public GameObject blocker;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -24,6 +26,7 @@ public class PizzaTurtle : MonoBehaviour
     private void Start()
     {
         defaultHitbox = new Hitbox(col.offset, col.size);
+        blocker.transform.localScale = new Vector3(blocker.transform.localScale.x, 0, blocker.transform.localScale.z);
     }
 
     private void Update()
@@ -41,8 +44,9 @@ public class PizzaTurtle : MonoBehaviour
 
         IEnumerator HideCoroutine()
         {
-            yield return new WaitForSeconds(0.5f);
             yield return new WaitUntil(() => IsInAnimation == false);
+            LeanTween.cancel(blocker);
+            LeanTween.scaleY(blocker, 1.5f, 0.5f);
             GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             GetComponent<EnemyMovement>().CanBeKnockedBack = false;
             GetComponent<EnemyMovement>().DisableMovement();
@@ -65,8 +69,11 @@ public class PizzaTurtle : MonoBehaviour
 
         IEnumerator UnhideCoroutine()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1);
             yield return new WaitUntil(() => IsInAnimation == false);
+            LeanTween.cancel(blocker);
+            LeanTween.scaleY(blocker, 0, 0.25f);
+
             GetComponent<EnemyMovement>().CanBeKnockedBack = true;
             GetComponent<EnemyMovement>().EnableMovement();
             anim.SetTrigger("unhide");

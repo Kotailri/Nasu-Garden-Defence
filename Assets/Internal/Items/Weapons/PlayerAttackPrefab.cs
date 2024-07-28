@@ -19,9 +19,11 @@ public class PlayerAttackPrefab : MonoBehaviour
 {
     public bool DestroyWhenOutside;
     public bool DestroyOnContact;
-    
+    public bool destroyedByDeflection;
+
+
     public PlayerAttackType AttackType;
-    public AudioEnum AttackHitSound = AudioEnum.EnemyDamaged;
+    public AudioEnum AttackHitSound = AudioEnum.None;
 
     [Header("Fields for BASIC attacks only")]
     public int Damage;
@@ -94,7 +96,7 @@ public class PlayerAttackPrefab : MonoBehaviour
 
             }
             EventManager.TriggerEvent(EventStrings.ENEMY_HIT, null);
-            hit.GetHit(damage, transform.position);
+            hit.GetHit(gameObject, damage, transform.position, destroyedByDeflection);
         }
 
         if (enemy.TryGetComponent(out EnemyMovement move))

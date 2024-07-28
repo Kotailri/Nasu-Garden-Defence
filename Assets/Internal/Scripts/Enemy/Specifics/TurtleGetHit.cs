@@ -6,13 +6,22 @@ public class TurtleGetHit : EnemyGetHit
 {
     public bool IsImmune = false;
 
-    public override void GetHit(int damage, Vector2 location)
+    public override void GetHit(GameObject attack, int damage, Vector2 location, bool destroyedByDeflection = false)
     {
         if (IsImmune)
         {
-            // make particle spawner spawn deflection particle at location
+            if (destroyedByDeflection)
+            {
+                attack.SetActive(false);
+            }
+            AudioManager.instance.PlaySound(AudioEnum.Dink);
+            Global.prefabManager.InstantiatePrefab(PrefabEnum.DinkEffect, location, Quaternion.identity);
             return;
         }
+
+        OnEnemyHitEvents?.Invoke();
+
+        AudioManager.instance.PlaySound(AudioEnum.EnemyDamaged);
 
         int newDamage = damage;
         if (GlobalItemToggles.HasAmplifier)

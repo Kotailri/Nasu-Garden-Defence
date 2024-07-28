@@ -881,8 +881,8 @@ MonoBehaviour:
     ItemType: 1
   - Wave: {fileID: 4110626928451635750, guid: 75d7d03515a2e884383afac4696939ee, type: 3}
     ItemType: 1
-  CurrentWaveIndex: 0
-  GivesItems: 0
+  CurrentWaveIndex: 8
+  GivesItems: 1
   waveNameUI: {fileID: 2040071331}
   waveProgressBar: {fileID: 7695761220067284831}
   timer: {fileID: 1474897457}
@@ -10610,6 +10610,17 @@ MonoBehaviour:
     isMusic: 0
     playOnAwake: 0
     muteOnAwake: 0
+  - name: 18
+    clip: {fileID: 8300000, guid: b553ce202cb5f9d42a52da4117b1bfc8, type: 3}
+    volume: 0.1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0.266
+    SourceCount: 5
+    loops: 0
+    isMusic: 0
+    playOnAwake: 0
+    muteOnAwake: 0
 --- !u!4 &807976887
 Transform:
   m_ObjectHideFlags: 0
@@ -15672,6 +15683,8 @@ MonoBehaviour:
     prefab: {fileID: 4708034332075412972, guid: 19148dadb25854c4e93f7fd4a56b014c, type: 3}
   - prefabEnum: 2
     prefab: {fileID: 7595658349089176666, guid: 2f7df63f25e8cd841bacb3a43e48bd95, type: 3}
+  - prefabEnum: 3
+    prefab: {fileID: 6782073811334017820, guid: 921444e39e31c5243a71b7217d15257a, type: 3}
 --- !u!4 &1210912319
 Transform:
   m_ObjectHideFlags: 0

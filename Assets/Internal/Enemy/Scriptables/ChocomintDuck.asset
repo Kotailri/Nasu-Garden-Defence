@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChocomintDuck
   m_EditorClassIdentifier: 
   EnemyName: ChocoMint Duck
-  Health: 55
+  Health: 65
   Resistance: 0
   DodgeChance: 0
   HealthRegen: 0

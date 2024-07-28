@@ -48,5 +48,6 @@ public class NasuSwordSwing : PlayerAttackPrefab, ISwordAttack
     {
         sword.GetComponent<BoxCollider2D>().enabled = false;
         LeanTween.alpha(sword, 0f, DestroyDelay).setOnComplete(() => { Destroy(gameObject); });
+
     }
 }

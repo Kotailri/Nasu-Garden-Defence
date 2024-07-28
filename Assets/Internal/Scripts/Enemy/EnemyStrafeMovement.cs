@@ -14,24 +14,41 @@ public class EnemyStrafeMovement : EnemyMovement
     [Space(10f)]
     public LeanTweenType easeType = LeanTweenType.easeInOutSine;
 
+    private bool firstMovementStart = true;
+
+    public override void DisableMovement()
+    {
+        
+    }
+
     public override void StartMovement()
     {
-        if (startsRandom && Random.Range(0, 2) == 0)
+        if (firstMovementStart)
         {
-            startsUp = true;
+            if (startsRandom && Random.Range(0, 2) == 0)
+            {
+                startsUp = true;
+            }
+            else
+            {
+                startsUp = false;
+            }
+
+            LeanTween.moveY(gameObject, transform.position.y + ((startsUp ? 1 : -1) * (waveAmplitude / 2)), waveFrequency / 2).setEase(easeType).setOnComplete(() =>
+            {
+                LeanTween.moveY(gameObject, transform.position.y + ((startsUp ? -1 : 1) * waveAmplitude), waveFrequency).setEase(easeType).setLoopPingPong()
+                .setOnUpdate((float _) => {
+                    transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, Global.YRange.min, Global.YRange.max), transform.position.z);
+                });
+            });
+            firstMovementStart = false;
         }
         else
         {
-            startsUp = false;
-        }
-
-        LeanTween.moveY(gameObject, transform.position.y + ((startsUp ? 1 : -1) * (waveAmplitude/2)), waveFrequency/2).setEase(easeType).setOnComplete(() =>
-        {
-            LeanTween.moveY(gameObject, transform.position.y + ((startsUp ? -1 : 1) * waveAmplitude), waveFrequency).setEase(easeType).setLoopPingPong()
-            .setOnUpdate((float _) => { 
-                transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, Global.YRange.min, Global.YRange.max), transform.position.z); 
-            });
-        });
-            
+            LeanTween.moveY(gameObject, transform.position.y + waveAmplitude, waveFrequency).setEase(easeType).setLoopPingPong()
+                .setOnUpdate((float _) => {
+                    transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, Global.YRange.min, Global.YRange.max), transform.position.z);
+                });
+        }  
     }
 }

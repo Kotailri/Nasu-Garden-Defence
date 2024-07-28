@@ -6,7 +6,8 @@ public enum PrefabEnum
 {
     PurpleExplosion,
     NormalProjectile,
-    ExecuteEffect
+    ExecuteEffect,
+    DinkEffect
 }
 
 [System.Serializable]

@@ -24,6 +24,7 @@ public enum AudioEnum
     ShotgunShoot = 14,
     ExecuteSound = 16,
     CritSound = 17,
+    Dink = 18,
 
     None = 12,
     EmptyBG = 15,

@@ -174,9 +174,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DestroyWhenOutside: 1
   DestroyOnContact: 1
+  destroyedByDeflection: 1
   AttackType: 1
-  AttackHitSound: 13
+  AttackHitSound: 12
   Damage: 0
+  KnockbackType: 0
   Knockback: 0
   KnockbackTime: 0
   TimeAlive: 0.3

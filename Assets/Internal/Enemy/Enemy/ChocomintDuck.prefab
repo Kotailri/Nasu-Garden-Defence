@@ -275,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 1308508756537036837, guid: dfca768f05c29a0429be2da4227423f9, type: 3}
   ShootPosition: {fileID: 697853700426206992}
-  ProjectileDirection: {x: 0.2, y: 0.2}
+  ProjectileDirection: {x: 0.1, y: 0.1}
   ProjectileSpeed: 8
   NumberOfProjectiles: 3
   DelayBetweenProjectiles: 0.2
