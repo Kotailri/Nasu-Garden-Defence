@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public static class Global
 {
@@ -150,6 +151,22 @@ public static class Global
         {
             return false;
         }
+    }
+
+    public static Quaternion GetRandomRotation(bool randomX, bool randomY, bool randomZ)
+    {
+        // Generate a random rotation around the X, Y, and Z axes
+        float x = Random.Range(0f, 360f);
+        float y = Random.Range(0f, 360f);
+        float z = Random.Range(0f, 360f);
+
+        // Create and return the Quaternion rotation
+        return Quaternion.Euler(randomX ? x : 0, randomY ? y : 0, randomZ ? z : 0);
+    }
+
+    public static Quaternion GetRandom2DRotation()
+    {
+        return Quaternion.Euler(0, 0, Random.Range(0f, 360f));
     }
 
     public static Transform GetNearestEnemy(Vector2 point)

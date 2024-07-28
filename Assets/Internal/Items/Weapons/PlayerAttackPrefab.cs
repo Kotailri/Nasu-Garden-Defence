@@ -5,7 +5,8 @@ using UnityEngine;
 public enum PlayerAttackType
 {
     Melee,
-    Projectile
+    Projectile,
+    Neutral
 }
 
 public enum PlayerKnockbackType
@@ -92,6 +93,11 @@ public class PlayerAttackPrefab : MonoBehaviour
                 case PlayerAttackType.Melee:
                     damage = Mathf.FloorToInt(Damage * GlobalPlayer.CurrentPlayerDamageMultiplier *
                         GlobalPlayer.GetStatValue(PlayerStatEnum.damage) * GlobalPlayer.GetStatValue(PlayerStatEnum.meleeDamage));
+                    break;
+
+                case PlayerAttackType.Neutral:
+                    damage = Mathf.FloorToInt(Damage * GlobalPlayer.CurrentPlayerDamageMultiplier *
+                        GlobalPlayer.GetStatValue(PlayerStatEnum.damage));
                     break;
 
             }
