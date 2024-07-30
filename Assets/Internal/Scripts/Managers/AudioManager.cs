@@ -85,7 +85,7 @@ public class Sound
             }
             else
             {
-                sources[i].volume = GlobalAudio.SoundVolume * volume * (1 + UnityEngine.Random.Range(-randomVolume / 2f, randomVolume / 2f));
+                sources[i].volume = (i==0?1:0.75f) * GlobalAudio.SoundVolume * volume * (1 + UnityEngine.Random.Range(-randomVolume / 2f, randomVolume / 2f));
             }
             sources[i].pitch = pitch * (1 + UnityEngine.Random.Range(-randomPitch / 2f, randomPitch / 2f));
             sources[i].loop = loops;
@@ -152,30 +152,30 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        int index = 0;
         foreach (Sound sound in sounds)
         {
             for(int i = 0; i < sound.SourceCount; i++)
             {
-                GameObject _go = new GameObject("Sound_" + index + "_" + sound.name);
+                GameObject _go = new GameObject("Sound_" + i + "_" + sound.name);
                 _go.transform.SetParent(transform, false);
                 sound.SetSource(_go.AddComponent<AudioSource>());
-                if (sound.isMusic)
-                {
-                    CurrentMusic = sound;
-                }
-
-                if (sound.playOnAwake)
-                {
-                    sound.Play();
-                    if (sound.muteOnAwake)
-                    {
-                        sound.ChangeVolume(0);
-                    }
-                }
-                index++;
+                
             }
-            
+
+            if (sound.isMusic)
+            {
+                CurrentMusic = sound;
+            }
+
+            if (sound.playOnAwake)
+            {
+                sound.Play();
+                if (sound.muteOnAwake)
+                {
+                    sound.ChangeVolume(0);
+                }
+            }
+
         }
 
         if (!_debugMuteMusic)
