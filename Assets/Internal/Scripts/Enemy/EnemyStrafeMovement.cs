@@ -16,6 +16,11 @@ public class EnemyStrafeMovement : EnemyMovement
 
     private bool firstMovementStart = true;
 
+    private void Start()
+    {
+        firstMovementStart = true;
+    }
+
     public override void DisableMovement()
     {
         
@@ -45,7 +50,7 @@ public class EnemyStrafeMovement : EnemyMovement
         }
         else
         {
-            LeanTween.moveY(gameObject, transform.position.y + waveAmplitude, waveFrequency).setEase(easeType).setLoopPingPong()
+            LeanTween.moveY(gameObject, transform.position.y + ((Random.Range(0, 2) == 0 ? 1 : -1) * waveAmplitude), waveFrequency).setEase(easeType).setLoopPingPong()
                 .setOnUpdate((float _) => {
                     transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, Global.YRange.min, Global.YRange.max), transform.position.z);
                 });

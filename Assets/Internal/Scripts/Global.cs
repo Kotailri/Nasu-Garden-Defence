@@ -42,7 +42,7 @@ public static class Global
 
     public static float CoinValueMultiplier = 1f;
 
-    public static float DamageFlashTimer = 0.1f;
+    public static float DamageFlashTimer = 0.25f;
     public static float DamageFlashAlpha = 0.25f;
 
     public static float MaxX = 16.5f;
@@ -162,6 +162,22 @@ public static class Global
 
         // Create and return the Quaternion rotation
         return Quaternion.Euler(randomX ? x : 0, randomY ? y : 0, randomZ ? z : 0);
+    }
+
+
+    public static float GetLeftEdgeXPosition(GameObject obj)
+    {
+        return obj.transform.position.x - (GetSpriteHalfWidth(obj) / 2f);
+    }
+
+    public static float GetRightEdgeXPosition(GameObject obj)
+    {
+        return obj.transform.position.x + (GetSpriteHalfWidth(obj) / 2f);
+    }
+
+    public static float GetSpriteHalfWidth(GameObject obj)
+    {
+        return obj.GetComponent<SpriteRenderer>().bounds.size.x * obj.transform.localScale.x;
     }
 
     public static Quaternion GetRandom2DRotation()

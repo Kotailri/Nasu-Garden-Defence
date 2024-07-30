@@ -182,7 +182,7 @@ public class WaveManager : MonoBehaviour
         IEnumerator DelayNextWave(float delay)
         {
             yield return new WaitForSeconds(delay);
-            currentWave = Instantiate(waves[CurrentWaveIndex].Wave, new Vector3(Global.MaxX, -0.5f, transform.position.z), Quaternion.identity);
+            currentWave = Instantiate(waves[CurrentWaveIndex].Wave, new Vector3(Global.MaxX + 2f, -0.5f, transform.position.z), Quaternion.identity);
             
             if (Random.Range(0,2) == 0)
             {
