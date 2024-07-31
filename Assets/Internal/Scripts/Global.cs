@@ -79,8 +79,8 @@ public static class Global
         List<GameObject> activeEnemies = new();
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            if (MathHelper.IsBetweenFloatsInclusive(enemy.transform.position.x, XRange.min, XRange.max)
-             && MathHelper.IsBetweenFloatsInclusive(enemy.transform.position.y, YRange.min, YRange.max))
+            if (MathUtil.IsBetweenFloatsInclusive(enemy.transform.position.x, XRange.min, XRange.max)
+             && MathUtil.IsBetweenFloatsInclusive(enemy.transform.position.y, YRange.min, YRange.max))
             {
                 activeEnemies.Add(enemy);
             }
@@ -117,16 +117,16 @@ public static class Global
     {
         if (checkX && checkY)
         {
-            return (MathHelper.IsBetweenFloatsInclusive(obj.transform.position.x, XRange.min, XRange.max)
-             && MathHelper.IsBetweenFloatsInclusive(obj.transform.position.y, YRange.min, YRange.max));
+            return (MathUtil.IsBetweenFloatsInclusive(obj.transform.position.x, XRange.min, XRange.max)
+             && MathUtil.IsBetweenFloatsInclusive(obj.transform.position.y, YRange.min, YRange.max));
         }
         else if (checkX)
         {
-            return MathHelper.IsBetweenFloatsInclusive(obj.transform.position.x, XRange.min, XRange.max);
+            return MathUtil.IsBetweenFloatsInclusive(obj.transform.position.x, XRange.min, XRange.max);
         }
         else if (checkY)
         {
-            return MathHelper.IsBetweenFloatsInclusive(obj.transform.position.y, YRange.min, YRange.max);
+            return MathUtil.IsBetweenFloatsInclusive(obj.transform.position.y, YRange.min, YRange.max);
         }
         else
         {
@@ -267,23 +267,6 @@ public static class GlobalGarden
     public static int ItemRerolls = 0;
     public static int ItemRerollLevel = 0;
 
-}
-public static class MathHelper
-{
-    public static bool IsBetweenFloatsInclusive(float toCheck, float min, float max)
-    {
-        return (toCheck >= min) && (toCheck <= max);
-    }
-
-    public static Vector2 DivideVector2(Vector2 numerator, Vector2 denominator)
-    {
-        return new Vector2(numerator.x / denominator.x, numerator.y / denominator.y);
-    }
-
-    public static Vector3 DivideVector3(Vector3 numerator, Vector3 denominator)
-    {
-        return new Vector3(numerator.x / denominator.x, numerator.y / denominator.y, numerator.z / denominator.z);
-    }
 }
 
 public static class Config

@@ -73,7 +73,7 @@ public class EnemyHealth : MonoBehaviour
                 GameObject effect = Managers.Instance.Resolve<IPrefabMng>().InstantiatePrefab(PrefabEnum.ExecuteEffect, transform.position, Quaternion.identity);
                 Vector3 originalScale = effect.transform.localScale;
                 effect.transform.SetParent(transform, false);
-                effect.transform.localScale = MathHelper.DivideVector3(originalScale, transform.lossyScale);
+                effect.transform.localScale = VectorUtil.DivideVector3(originalScale, transform.lossyScale);
                 effect.transform.localPosition = Vector3.zero;
 
                 CurrentHealth -= 99999;
