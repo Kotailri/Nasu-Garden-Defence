@@ -5,9 +5,10 @@ using UnityEngine;
 public class BossHealth : EnemyHealth
 {
 
-    private void Awake()
+    protected override void Awake()
     {
         canGetExecuted = false;
+        base.Awake();
     }
 
     public override void TakeDamage(int damage, Vector2 location)

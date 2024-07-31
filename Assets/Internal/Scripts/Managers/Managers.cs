@@ -9,7 +9,8 @@ public class Managers : MonoBehaviour
 {
     private static Managers _instance;
     public static Managers Instance => _instance;
-    public List<GameObject> managerObjects = new List<GameObject>();
+    public List<GameObject> preloadedManagers = new();
+    public List<GameObject> managerObjects = new();
 
     private void Awake()
     {
@@ -55,6 +56,11 @@ public class Managers : MonoBehaviour
             managerObjects.Add(child.gameObject);
         }
 
+        foreach (GameObject gm in preloadedManagers)
+        {
+            managerObjects.Add(gm);
+        }
+
         Register<ITextSpawnerMng>(managerObjects.FindComponentInList<TextSpawner>());
         Register<IGameOverMng>(managerObjects.FindComponentInList<GameOverManager>());
         Register<IWaveMng>(managerObjects.FindComponentInList<WaveManager>());
@@ -64,6 +70,7 @@ public class Managers : MonoBehaviour
         Register<IGardenBuffMng>(managerObjects.FindComponentInList<GardenBuffManager>());
         Register<IPrefabMng>(managerObjects.FindComponentInList<PrefabManager>());
         Register<IAlertMng>(managerObjects.FindComponentInList<AlertManager>());
+        Register<IDamagePipelineMng>(managerObjects.FindComponentInList<DamagePipelineManager>());
     }
 
     

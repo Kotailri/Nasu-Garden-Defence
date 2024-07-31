@@ -6,6 +6,7 @@ public enum PlayerAttackType
 {
     Melee,
     Projectile,
+    Explosion,
     Neutral
 }
 
@@ -81,26 +82,7 @@ public class PlayerAttackPrefab : MonoBehaviour
     {
         if (enemy.TryGetComponent(out EnemyGetHit hit))
         {
-            int damage = 0;
-            switch (AttackType)
-            {
-                case PlayerAttackType.Projectile:
-                    damage = Mathf.FloorToInt(Damage * GlobalStats.CurrentPlayerDamageMultiplier *
-                        GlobalStats.GetStatValue(PlayerStatEnum.damage) * GlobalStats.GetStatValue(PlayerStatEnum.projectileDamage));
-
-                    break;
-
-                case PlayerAttackType.Melee:
-                    damage = Mathf.FloorToInt(Damage * GlobalStats.CurrentPlayerDamageMultiplier *
-                        GlobalStats.GetStatValue(PlayerStatEnum.damage) * GlobalStats.GetStatValue(PlayerStatEnum.meleeDamage));
-                    break;
-
-                case PlayerAttackType.Neutral:
-                    damage = Mathf.FloorToInt(Damage * GlobalStats.CurrentPlayerDamageMultiplier *
-                        GlobalStats.GetStatValue(PlayerStatEnum.damage));
-                    break;
-
-            }
+            int damage = Managers.Instance.Resolve<IDamagePipelineMng>().GetProcessedDamage(Damage, AttackType);
             EventManager.TriggerEvent(EventStrings.ENEMY_HIT, null);
             hit.GetHit(gameObject, damage, transform.position, destroyedByDeflection);
         }

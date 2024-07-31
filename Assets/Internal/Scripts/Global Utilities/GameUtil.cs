@@ -291,7 +291,6 @@ public static class GameUtil
         Global.gameplayStarted = false;
 
         // GlobalPlayer
-        GlobalStats.CurrentPlayerDamageMultiplier = 1f;
         GlobalStats.ResetStats();
 
         // Global Keystone

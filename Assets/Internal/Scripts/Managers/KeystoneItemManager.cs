@@ -15,6 +15,8 @@ public class KeystoneItemManager : MonoBehaviour
 }
 
     public int ApexStrideLevel = 0;
+    public float ApexStrideDamageMultiplier = 1f;
+
     public float DistanceAmplificationAmount = 0;
     public float BwoMovespeed = 0;
     public float ImmortalHarmonyShieldTime = 0f;

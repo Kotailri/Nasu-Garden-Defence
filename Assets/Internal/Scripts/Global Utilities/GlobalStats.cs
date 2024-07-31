@@ -34,12 +34,12 @@ public static class GlobalStats
 
     public static Dictionary<PlayerStatEnum, PlayerStat> GetVisiblePlayerStatDict()
     {
-        Dictionary<PlayerStatEnum, PlayerStat> pickableStats = PlayerStatDict;
+        Dictionary<PlayerStatEnum, PlayerStat> pickableStats = new();
         foreach (var stat in PlayerStatDict)
         {
-            if (!stat.Value.DoesShowInUI())
+            if (stat.Value.DoesShowInUI())
             {
-                pickableStats.Remove(stat.Key);
+                pickableStats.Add(stat.Key, stat.Value);
             }
         }
         return pickableStats;
@@ -79,6 +79,4 @@ public static class GlobalStats
             PlayerStatDict[stat.Key].ResetMultiplier();
         }
     }
-
-    public static float CurrentPlayerDamageMultiplier = 1f;
 }

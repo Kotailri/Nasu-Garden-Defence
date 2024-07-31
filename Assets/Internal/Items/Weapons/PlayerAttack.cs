@@ -13,12 +13,6 @@ public abstract class PlayerAttack : MonoBehaviour
     public float KnockbackTime = 0f;
     public PlayerKnockbackType KnockbackType;
 
-    [Tooltip("Damage Multiplier from INTERNAL Sources")]
-    public float DamageMultiplier = 1f;
-
-    [Space(10f)]
-    public int AttackLevel = 1;
-
     [Space(5f)]
     [Header("Attack Timer")]
     public bool IsOnAttackTimer;
@@ -41,7 +35,6 @@ public abstract class PlayerAttack : MonoBehaviour
         AttackPrefab = atk.AttackPrefab;
         AttackColor = atk.AttackColor;
         BaseDamage = atk.BaseDamage;
-        DamageMultiplier = atk.DamageMultiplier;
 
         IsOnAttackTimer = atk.IsOnAttackTimer;
         AttackCount = atk.AttackCount;
@@ -62,32 +55,10 @@ public abstract class PlayerAttack : MonoBehaviour
         BaseDamage = damage;
     }
 
-    public void SetDamageMultiplier(float damageMultiplier, bool isRelative=false)
-    {
-        if (isRelative)
-        {
-            DamageMultiplier += damageMultiplier;
-        }
-        else
-        {
-            DamageMultiplier = damageMultiplier;
-        }
-    }
-
-    public void IncrementLevel(int level)
-    {
-        AttackLevel += level;
-    }
-
     public void SetAttackTiming(bool IsOnTimer,  int AttackTiming)
     {
         IsOnAttackTimer = IsOnTimer;
         AttackCount = AttackTiming;
-    }
-
-    public int GetDamage()
-    {
-        return Mathf.RoundToInt(BaseDamage * DamageMultiplier * GlobalStats.CurrentPlayerDamageMultiplier);
     }
 
     public abstract void DoAttack(Vector2 attackPosition, Transform attachObject=null);

@@ -25,8 +25,7 @@ public class Explosion : ExplosionEffect
     {
         if (explosionDamage >= 0 && collisionObject.TryGetComponent(out EnemyGetHit hit))
         {
-            int damage = Mathf.FloorToInt(explosionDamage * GlobalStats.CurrentPlayerDamageMultiplier *
-                        GlobalStats.GetStatValue(PlayerStatEnum.damage) * GlobalStats.GetStatValue(PlayerStatEnum.explosionDamage));
+            int damage = Managers.Instance.Resolve<IDamagePipelineMng>().GetProcessedDamage(Mathf.RoundToInt(explosionDamage), PlayerAttackType.Explosion);
             hit.GetHit(gameObject, damage, transform.position);
         }
     }

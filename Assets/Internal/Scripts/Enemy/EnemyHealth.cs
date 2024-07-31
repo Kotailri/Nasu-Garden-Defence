@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour
 
     private ITextSpawnerMng TextSpawnerMng;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         TextSpawnerMng = Managers.Instance.Resolve<ITextSpawnerMng>();
     }
