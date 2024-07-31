@@ -9,7 +9,7 @@ public class EnemyAlertIndicator : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Garden"))
         {
-            Global.alertManager.CreateAlert(new(17.75f, transform.position.y), sound);
+            Managers.Instance.Resolve<IAlertMng>().CreateAlert(new(17.75f, transform.position.y), sound);
         }
     }
 }

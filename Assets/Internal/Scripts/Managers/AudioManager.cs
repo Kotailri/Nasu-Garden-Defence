@@ -120,11 +120,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
-        {
-            Debug.LogError("More than one Audio Manager found");
-        }    
-        else
+        if (instance == null)
         {
             instance = this;
         }

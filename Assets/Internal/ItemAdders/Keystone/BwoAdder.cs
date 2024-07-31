@@ -15,7 +15,7 @@ public class BwoAdder : ItemAdderNormal
         GameObject bwo = Instantiate(BwoPrefab, Global.playerTransform.position, Quaternion.identity);
 
         // refresh attack list
-        foreach (ItemAdder adder in Global.itemInventoryManager.ItemInventory)
+        foreach (ItemAdder adder in Managers.Instance.Resolve<IItemInventoryMng>().GetItemInventory())
         {
             if (adder is ItemAdderWithPrefab prefabAdder)
             {

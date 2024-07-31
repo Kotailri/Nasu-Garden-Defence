@@ -2,7 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOverManager : MonoBehaviour
+public interface IGameOverMng : IManager
+{
+    public void DoGameOver(DeathCondition deathCondition);
+}
+
+public class GameOverManager : MonoBehaviour, IGameOverMng
 {
     public GameObject ExplosionEffectObject;
     public GameObject GameOverUI;
@@ -14,7 +19,6 @@ public class GameOverManager : MonoBehaviour
 
     private void Awake()
     {
-        Global.gameOverManager = this;
         GameOverUIFade.alpha = 0f;
         GameOverUIFade.gameObject.SetActive(false);
         
@@ -29,6 +33,8 @@ public class GameOverManager : MonoBehaviour
 
     public void DoGameOver(DeathCondition deathCondition)
     {
+        Global.isGameOver = true;
+
         if (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
         {
             EventManager.TriggerEvent(EventStrings.GAME_OVER_KILL_ALL, null);
@@ -91,7 +97,7 @@ public class GameOverManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
-            Global.GameOver(DeathCondition.PlayerDeath);
+            Managers.Instance.Resolve<IGameOverMng>().DoGameOver(DeathCondition.PlayerDeath);
         }
     }
 }

@@ -25,7 +25,7 @@ public class GardenHealth : MonoBehaviour
 
     private void Update()
     {
-        if (!Global.waveManager.IsWaveOngoing())
+        if (!Global.IsWaveOngoing())
         {
             return;
         }
@@ -117,7 +117,7 @@ public class GardenHealth : MonoBehaviour
     {
         if (CurrentHP <= 0)
         {
-            Global.GameOver(DeathCondition.GardenDeath);
+            Managers.Instance.Resolve<IGameOverMng>().DoGameOver(DeathCondition.GardenDeath);
         }
     }
 }

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TextSpawner : MonoBehaviour
+public interface ITextSpawnerMng : IManager
+{
+    public void SpawnText(Vector2 position, string damageNumber, DamageTextType col, float variance = 0f);
+}
+
+public class TextSpawner : MonoBehaviour, ITextSpawnerMng
 {
     public GameObject damageTextObject;
-
-    private void Awake()
-    {
-        Global.damageTextSpawner = this;
-    }
 
     public void SpawnText(Vector2 position, string damageNumber, DamageTextType col, float variance = 0f)
     {

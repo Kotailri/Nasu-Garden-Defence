@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public interface IWaveMng : IManager
+{
+    public void StartGame();
+    public void SpawnNextWave();
+    public int GetCurrentWaveIndex();
+    public bool IsWaveOngoing();
+}
+
+
 [System.Serializable]
 public class WaveWithReward
 {
@@ -16,7 +25,7 @@ public class WaveWithReward
     }
 }
 
-public class WaveManager : MonoBehaviour
+public class WaveManager : MonoBehaviour, IWaveMng
 {
     public List<WaveWithReward> waves = new();
 
@@ -42,10 +51,9 @@ public class WaveManager : MonoBehaviour
     [Space(15f)]
     public bool EnableEverything = true;
 
-    private void Awake()
+    public int GetCurrentWaveIndex()
     {
-        Global.waveManager = this;
-        
+        return CurrentWaveIndex;
     }
 
     private void Start()
@@ -81,7 +89,7 @@ public class WaveManager : MonoBehaviour
         {
             for (int i = 0; i < CurrentWaveIndex; i++)
             {
-                Global.itemInventoryManager.AddRandomToInventory(waves[i].ItemType, i);
+                Managers.Instance.Resolve<IItemInventoryMng>().AddRandomToInventory(waves[i].ItemType, i);
             }
 
         }
@@ -120,7 +128,7 @@ public class WaveManager : MonoBehaviour
                 return;
             }
 
-            Global.itemSelectManager.CreateItems(waves[CurrentWaveIndex-1].ItemType);
+            Managers.Instance.Resolve<IItemSelectMng>().CreateItems(waves[CurrentWaveIndex-1].ItemType);
             Global.gardenHealth.SetHealth(GlobalGarden.GardenHealAfterWave, true);
             Global.playerTransform.gameObject.GetComponent<PlayerHealth>().HealPercent(GlobalGarden.PlayerPercentHealAfterWave);
 

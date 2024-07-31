@@ -51,7 +51,7 @@ public class NeggpalBwo : MonoBehaviour
 
     private void OnDisable()
     {
-        CoroutineManager.instance.StopAllManagerCoroutines();
+        
     }
 
     private bool ChangeState(IBwoState state)
@@ -121,7 +121,7 @@ public class NeggpalBwo : MonoBehaviour
         if (currentStateTime > StateDuration || CurrentState.IsEndStateTriggered()) 
         {
             currentStateTime = 0;
-            if (Global.waveManager.IsWaveOngoing())
+            if (Global.IsWaveOngoing())
             {
                 IBwoState changedState = GetNewState();
                 if (changedState != CurrentState)
@@ -272,7 +272,7 @@ public class BwoFollowState : IBwoState
 
     public void OnStateUpdate(NeggpalBwo bwo)
     {
-        if (Global.waveManager.IsWaveOngoing())
+        if (Global.IsWaveOngoing())
         {
             bwo.RB.velocity = ((Vector2)Global.playerTransform.position - (Vector2)bwo.transform.position).normalized * bwo.movespeed;
         }

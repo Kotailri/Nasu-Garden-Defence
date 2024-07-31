@@ -13,6 +13,13 @@ public class PlayerHealth : MonoBehaviour
 
     private float currentRegenAmount = 0f;
 
+    private ITextSpawnerMng TextSpawnerMng;
+
+    private void Awake()
+    {
+        TextSpawnerMng = Managers.Instance.Resolve<ITextSpawnerMng>();
+    }
+
     private void Start()
     {
         MaxHP = (int)GlobalPlayer.GetStatValue(PlayerStatEnum.playerHealth);
@@ -37,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        if (!Global.waveManager.IsWaveOngoing())
+        if (!Global.IsWaveOngoing())
         {
             return;
         }
@@ -93,7 +100,7 @@ public class PlayerHealth : MonoBehaviour
             if (_hp > 0)
             {
                 CurrentHP += _hp;
-                Global.damageTextSpawner.SpawnText(transform.position, _hp.ToString(), DamageTextType.Green, 1f);
+                TextSpawnerMng.SpawnText(transform.position, _hp.ToString(), DamageTextType.Green, 1f);
             }
             else if (_hp < 0)
             {
@@ -102,7 +109,7 @@ public class PlayerHealth : MonoBehaviour
                 FlashVignette();
                 AudioManager.instance.PlaySound(AudioEnum.PlayerDamaged);
                 AudioManager.instance.PlaySound(AudioEnum.UhOh);
-                Global.damageTextSpawner.SpawnText(transform.position, "-" + Mathf.FloorToInt(Mathf.Abs(damage)).ToString(), DamageTextType.Red, 1f);
+                TextSpawnerMng.SpawnText(transform.position, "-" + Mathf.FloorToInt(Mathf.Abs(damage)).ToString(), DamageTextType.Red, 1f);
             }
             else
             {
@@ -155,7 +162,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (CurrentHP <= 0)
         {
-            Global.GameOver(DeathCondition.PlayerDeath);
+            Managers.Instance.Resolve<IGameOverMng>().DoGameOver(DeathCondition.PlayerDeath);
         }
     }
 }

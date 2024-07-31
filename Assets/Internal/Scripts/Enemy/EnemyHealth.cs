@@ -15,6 +15,13 @@ public class EnemyHealth : MonoBehaviour
     protected float currentRegenAmount = 0f;
     private ProgressBar healthBar;
 
+    private ITextSpawnerMng TextSpawnerMng;
+
+    private void Awake()
+    {
+        TextSpawnerMng = Managers.Instance.Resolve<ITextSpawnerMng>();
+    }
+
     public void SetHealthBar(ProgressBar bar)
     {
         healthBar = bar;
@@ -33,7 +40,7 @@ public class EnemyHealth : MonoBehaviour
     public void Heal(int heal)
     {
         CurrentHealth += heal;
-        Global.damageTextSpawner.SpawnText(transform.position, heal.ToString(), DamageTextType.Green, 1f);
+        TextSpawnerMng.SpawnText(transform.position, heal.ToString(), DamageTextType.Green, 1f);
         CheckHealth();
     }
 
@@ -52,30 +59,30 @@ public class EnemyHealth : MonoBehaviour
             {
                 AudioManager.instance.PlaySound(AudioEnum.CritSound);
                 CurrentHealth -= (damage - Mathf.FloorToInt(damage * Resistance))*2;
-                Global.damageTextSpawner.SpawnText(textSpawnLocation, ((damage - Mathf.FloorToInt(damage * Resistance)) * 2).ToString(), DamageTextType.Crit, 1f);
+                TextSpawnerMng.SpawnText(textSpawnLocation, ((damage - Mathf.FloorToInt(damage * Resistance)) * 2).ToString(), DamageTextType.Crit, 1f);
             }
             else
             {
                 CurrentHealth -= damage - Mathf.FloorToInt(damage * Resistance);
-                Global.damageTextSpawner.SpawnText(textSpawnLocation, (damage - Mathf.FloorToInt(damage * Resistance)).ToString(), DamageTextType.White, 1f);
+                TextSpawnerMng.SpawnText(textSpawnLocation, (damage - Mathf.FloorToInt(damage * Resistance)).ToString(), DamageTextType.White, 1f);
             }
 
             if (canGetExecuted && CurrentHealth > 0 && Global.itemPassiveManager.GetPassive(ItemPassiveEnum.LowHealthExecute) && (float)CurrentHealth/(float)Health <= Global.itemPassiveManager.LowHealthExecutePercent)
             {
                 AudioManager.instance.PlaySound(AudioEnum.ExecuteSound);
-                GameObject effect = Global.prefabManager.InstantiatePrefab(PrefabEnum.ExecuteEffect, transform.position, Quaternion.identity);
+                GameObject effect = Managers.Instance.Resolve<IPrefabMng>().InstantiatePrefab(PrefabEnum.ExecuteEffect, transform.position, Quaternion.identity);
                 Vector3 originalScale = effect.transform.localScale;
                 effect.transform.SetParent(transform, false);
                 effect.transform.localScale = MathHelper.DivideVector3(originalScale, transform.lossyScale);
                 effect.transform.localPosition = Vector3.zero;
 
                 CurrentHealth -= 99999;
-                Global.damageTextSpawner.SpawnText(textSpawnLocation, "99999", DamageTextType.White, 1f);
+                TextSpawnerMng.SpawnText(textSpawnLocation, "99999", DamageTextType.White, 1f);
             }
         }
         else
         {
-            Global.damageTextSpawner.SpawnText(textSpawnLocation, "dodged", DamageTextType.Status, 1f);
+            TextSpawnerMng.SpawnText(textSpawnLocation, "dodged", DamageTextType.Status, 1f);
         }
             
 

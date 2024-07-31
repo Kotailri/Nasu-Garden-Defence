@@ -14,7 +14,20 @@ public enum ItemTypeEnum
     Keystone
 }
 
-public class ItemInventoryManager : MonoBehaviour
+public interface IItemInventoryMng : IManager
+{
+    public List<ItemAdder> GetItemInventory();
+    public ItemAdder GetItemFromInventory(ItemAdder _item);
+    public void AddRandomToInventory(ItemTypeEnum itemType, int waveIndex = int.MaxValue);
+    public void RemoveItemFromInventory(ItemAdder item);
+    public List<ItemAdder> GetRandomFromInventory(int num);
+
+    public List<ItemAdder> GetFullPool(ItemTypeEnum tier, int waveRequirement = 0);
+    public List<ItemAdder> GetRandomFromPool(int num, ItemTypeEnum tier, int waveRequirement = 0);
+    public void PoolToInventory(ItemAdder item);
+}
+
+public class ItemInventoryManager : MonoBehaviour, IItemInventoryMng
 {
     public List<ItemAdder> debugInventory = new();
 
@@ -34,11 +47,6 @@ public class ItemInventoryManager : MonoBehaviour
     public string StatUpPoolPath;
     public string PassivePoolPath;
     public string KeystoneItemPath;
-
-    private void Awake()
-    {
-        Global.itemInventoryManager = this;
-    }
 
     private void Start()
     {
@@ -71,6 +79,11 @@ public class ItemInventoryManager : MonoBehaviour
         {
             item.GetInfo();
         }
+    }
+
+    public List<ItemAdder> GetItemInventory()
+    {
+        return ItemInventory;
     }
 
     public ItemAdder GetItemFromInventory(ItemAdder _item)
@@ -141,7 +154,7 @@ public class ItemInventoryManager : MonoBehaviour
 
     public void AddRandomToInventory(ItemTypeEnum itemType, int waveIndex=int.MaxValue)
     {
-        List<ItemAdder> randomItems = Global.itemInventoryManager.GetRandomFromPool(3, itemType, waveIndex);
+        List<ItemAdder> randomItems = Managers.Instance.Resolve<IItemInventoryMng>().GetRandomFromPool(3, itemType, waveIndex);
         if (randomItems.Count == 0)
         {
             print("No Items to add to inventory");

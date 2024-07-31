@@ -21,10 +21,10 @@ public class GardenBuffResetter : MonoBehaviour
     public void ResetGarden()
     {
         AudioManager.instance.PlaySound(AudioEnum.ThingPlaced);
-        foreach (GardenBuff buff in Global.gardenBuffManager.gardenBuffList)
+        foreach (GardenBuff buff in Managers.Instance.Resolve<IGardenBuffMng>().GetGardenBuffList())
         {
             buff.Refund();
         }
-        Global.gardenBuffManager.saver.SaveBuffs();
+        Managers.Instance.Resolve<IGardenBuffMng>().SaveBuffs();
     }
 }

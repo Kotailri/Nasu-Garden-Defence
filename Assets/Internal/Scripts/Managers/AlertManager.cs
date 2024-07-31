@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlertManager : MonoBehaviour
+public interface IAlertMng : IManager
+{
+    public void CreateAlert(Vector2 alertPosition, AudioEnum alertSound);
+}
+
+public class AlertManager : MonoBehaviour, IAlertMng
 {
     public GameObject AlertObject;
     public float AlertTime;
-
-    private void Awake()
-    {
-        Global.alertManager = this;
-    }
 
     public void CreateAlert(Vector2 alertPosition, AudioEnum alertSound)
     {

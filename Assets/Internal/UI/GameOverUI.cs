@@ -9,6 +9,6 @@ public class GameOverUI : MonoBehaviour
 
     public void InitializeGameOverUI()
     {
-        waveTextBox.text = "Wave " + (Global.waveManager.CurrentWaveIndex).ToString();
+        waveTextBox.text = "Wave " + (Managers.Instance.Resolve<IWaveMng>().GetCurrentWaveIndex()).ToString();
     }
 }

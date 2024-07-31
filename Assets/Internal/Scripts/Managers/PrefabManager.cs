@@ -17,15 +17,19 @@ public class PrefabManagerClass
     public GameObject prefab;
 }
 
-public class PrefabManager : MonoBehaviour
+public interface IPrefabMng : IManager
+{
+    public GameObject InstantiatePrefab(PrefabEnum prefab, Vector2 position, Quaternion rotation);
+}
+
+
+public class PrefabManager : MonoBehaviour, IPrefabMng
 {
     public List<PrefabManagerClass> Prefabs = new();
     private Dictionary<PrefabEnum, GameObject> prefabList = new();
 
     private void Awake()
     {
-        Global.prefabManager = this;
-
         foreach (PrefabManagerClass prefab in Prefabs)
         {
             prefabList.Add(prefab.prefabEnum, prefab.prefab);

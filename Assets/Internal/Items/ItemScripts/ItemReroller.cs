@@ -50,7 +50,7 @@ public class ItemReroller : MonoBehaviour
         {
             canReroll = false;
             StartCoroutine(WaitRerollCooldown());
-            Global.itemSelectManager.RerollItems();
+            Managers.Instance.Resolve<IItemSelectMng>().RerollItems();
             UpdateRerollText();
         }
         else

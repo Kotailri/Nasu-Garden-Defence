@@ -12,7 +12,7 @@ public class BossHealth : EnemyHealth
 
     public override void TakeDamage(int damage, Vector2 location)
     {
-        if (Global.bossHealthBarManager.IsBarLoaded)
+        if (Managers.Instance.Resolve<IBossHealthBarMng>().IsBarLoaded())
         {
             base.TakeDamage(damage, location);
         }
@@ -25,7 +25,7 @@ public class BossHealth : EnemyHealth
             CurrentHealth = Health;
         }
 
-        Global.bossHealthBarManager?.UpdateHealthBar((float)CurrentHealth / (float)Health);
+        Managers.Instance.Resolve<IBossHealthBarMng>()?.UpdateHealthBar((float)CurrentHealth / (float)Health);
 
         if (CurrentHealth <= 0)
         {

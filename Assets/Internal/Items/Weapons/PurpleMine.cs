@@ -15,7 +15,7 @@ public class PurpleMine : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            GameObject exp = Global.prefabManager.InstantiatePrefab(PrefabEnum.PurpleExplosion, transform.position, Quaternion.identity);
+            GameObject exp = Managers.Instance.Resolve<IPrefabMng>().InstantiatePrefab(PrefabEnum.PurpleExplosion, transform.position, Quaternion.identity);
             exp.GetComponent<Explosion>().Initialize(damage);
             Destroy(gameObject);
         }

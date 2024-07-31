@@ -29,7 +29,7 @@ public class ClefCoin : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Bwo"))
         {
             AudioManager.instance.PlaySound(AudioEnum.Ding);
-            Global.gardenBuffManager.AddCoins(Mathf.RoundToInt(CoinValue * Global.CoinValueMultiplier));
+            Managers.Instance.Resolve<IGardenBuffMng>().AddCoins(Mathf.RoundToInt(CoinValue * Global.CoinValueMultiplier));
             Destroy(gameObject);
         }
     }

@@ -881,7 +881,7 @@ MonoBehaviour:
     ItemType: 1
   - Wave: {fileID: 4110626928451635750, guid: 75d7d03515a2e884383afac4696939ee, type: 3}
     ItemType: 1
-  CurrentWaveIndex: 2
+  CurrentWaveIndex: 0
   GivesItems: 1
   waveNameUI: {fileID: 2040071331}
   waveProgressBar: {fileID: 7695761220067284831}
@@ -4507,7 +4507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &375729772
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20193,7 +20193,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1523279626}
   - component: {fileID: 1523279625}
-  - component: {fileID: 1523279627}
   m_Layer: 0
   m_Name: Manager_Stats
   m_TagString: Untagged
@@ -20244,18 +20243,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1531515172}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1523279627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1523279624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63bf00de6fcf7c84abc3f467c01e82b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1527641940
 GameObject:
   m_ObjectHideFlags: 0
@@ -20339,9 +20326,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1263460620}
-  - {fileID: 1598946436}
   - {fileID: 1527641942}
+  - {fileID: 1598946436}
+  - {fileID: 1263460620}
   - {fileID: 1210912319}
   - {fileID: 706157260}
   - {fileID: 807976887}
@@ -20361,9 +20348,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1531515171}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1be4849bf3b7b04296b3d65c06ff464, type: 3}
+  m_Script: {fileID: 11500000, guid: 57e8b376cea51ba49b0c13f3abace746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  managerObjects: []
 --- !u!1 &1532997657
 GameObject:
   m_ObjectHideFlags: 0

@@ -134,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
         if (MovementLocked)
             moveInput = Vector2.zero;
 
-        if (Global.gameplayStarted && Global.waveManager.IsWaveOngoing())
+        if (Global.gameplayStarted && Global.IsWaveOngoing())
         {
             RB.velocity = moveInput.normalized * GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSlowMultiplier;
         }

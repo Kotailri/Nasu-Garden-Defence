@@ -66,7 +66,7 @@ public class ItemSelectObject : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && !LeanTween.isTweening(gameObject))
         {
             Canvas.transform.localScale = defaultScale + new Vector3(0.1f,0.1f,0.1f);
-            Global.itemSelectManager.SetItemSelected(gameObject);
+            Managers.Instance.Resolve<IItemSelectMng>().SetItemSelected(gameObject);
             isItemActive = true;
 
             AcquireItemBox.text = "Acquire Item [Space]";
@@ -87,8 +87,8 @@ public class ItemSelectObject : MonoBehaviour
     public void ItemSelectedClicked()
     {
         print("clicked");
-        Global.itemSelectManager.SetItemSelected(gameObject);
-        Global.itemSelectManager.ItemSelected();
+        Managers.Instance.Resolve<IItemSelectMng>().SetItemSelected(gameObject);
+        Managers.Instance.Resolve<IItemSelectMng>().ItemSelected();
     }
 
     public void AcquireItem()
@@ -96,6 +96,6 @@ public class ItemSelectObject : MonoBehaviour
         isItemActive = false;
         itemAdder.OnItemGet();
         AudioManager.instance.PlaySound(AudioEnum.ThingPlaced);
-        Global.itemInventoryManager.PoolToInventory(itemAdder);
+        Managers.Instance.Resolve<IItemInventoryMng>().PoolToInventory(itemAdder);
     }
 }

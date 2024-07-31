@@ -3,21 +3,30 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class BossHealthBarManager : MonoBehaviour
+public interface IBossHealthBarMng : IManager
+{
+    public bool IsBossHealthActive();
+    public bool IsBarLoaded();
+    public void SetBossName(string _bossName);
+    public void ActivateHealthBar(float _barLoadTime);
+    public void UpdateHealthBar(float val);
+    public void DeactivateHealthBar();
+}
+
+public class BossHealthBarManager : MonoBehaviour, IBossHealthBarMng
 {
     public ProgressBar bar;
     public TextMeshProUGUI bossNameBox;
 
     [Space(5f)]
     public float HealthBarLoadTime;
-    public bool IsBarLoaded = false;
+    private bool _isBarLoaded = false;
 
     private Vector3 activePosition = Vector3.one;
     private Vector3 inactivePosition = Vector3.one;
 
     private void Awake()
     {
-        Global.bossHealthBarManager = this;
         activePosition = transform.localPosition;
         inactivePosition = transform.localPosition - new Vector3(0,100f,0);
 
@@ -39,14 +48,14 @@ public class BossHealthBarManager : MonoBehaviour
     {
         isActive = true;
         HealthBarLoadTime = _barLoadTime;
-        IsBarLoaded = false;
+        _isBarLoaded = false;
         LeanTween.moveLocal(gameObject, activePosition, 1.5f);
         LoadHealthBar();
     }
 
     public void UpdateHealthBar(float val)
     {
-        if (IsBarLoaded)
+        if (_isBarLoaded)
         {
             bar.UpdateValue(val);
         }
@@ -59,7 +68,7 @@ public class BossHealthBarManager : MonoBehaviour
     public void DeactivateHealthBar()
     {
         if (gameObject == null) return;
-        IsBarLoaded = false;
+        _isBarLoaded = false;
         isActive = false;
         
         bar.UpdateValue(0);
@@ -74,6 +83,11 @@ public class BossHealthBarManager : MonoBehaviour
         LeanTween.value(gameObject, 0f, 1f, HealthBarLoadTime).setOnUpdate((float val) =>
         {
             bar.UpdateValue(val);
-        }).setOnComplete(() => { IsBarLoaded = true; });
+        }).setOnComplete(() => { _isBarLoaded = true; });
+    }
+
+    public bool IsBarLoaded()
+    {
+        return _isBarLoaded;
     }
 }

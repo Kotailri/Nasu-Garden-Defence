@@ -19,7 +19,7 @@ public class CameraMoveToStart : MonoBehaviour
             cam.gameObject.transform.position = new Vector3(GameplayPosition.x, GameplayPosition.y, transform.position.z);
             Global.playerTransform.position = Vector2.zero;
             Global.gameplayStarted = true;
-            Global.waveManager.StartGame();
+            Managers.Instance.Resolve<IWaveMng>().StartGame();
         }
         else
         {

@@ -11,28 +11,12 @@ public static class Global
     public static Transform playerTransform;
     public static Transform cursorTransform;
     public static Vector2 playerMoveVector = Vector2.zero;
-
-    // Mangagers
-    public static TextSpawner damageTextSpawner;
-
     public static PlayerControls playerControls;
-    public static StatManager statManager;
-
-    public static GameOverManager gameOverManager;
-    public static WaveManager waveManager;
 
     public static KeystoneItemManager keystoneItemManager;
-    
     public static ItemUI itemUI;
-    public static ItemSelectManager itemSelectManager;
-    public static ItemInventoryManager itemInventoryManager;
     public static ItemPassiveManager itemPassiveManager;
-
-    public static BossHealthBarManager bossHealthBarManager;
-    public static GardenBuffManager gardenBuffManager;
     public static GardenHealth gardenHealth;
-    public static PrefabManager prefabManager;
-    public static AlertManager alertManager;
 
     public static bool IsInEditorMode = false;
 
@@ -52,22 +36,19 @@ public static class Global
 
     public static int RemainingRerolls = 0;
 
-    public static void GameOver(DeathCondition deathCondition)
-    {
-        if (gameOverManager == null) return;
-        isGameOver = true;
-        
-        gameOverManager.DoGameOver(deathCondition);
-    }
-
     public static bool isGameOver = false;
+
+    public static bool IsWaveOngoing()
+    {
+        return Managers.Instance.Resolve<IWaveMng>().IsWaveOngoing();
+    }
 
     public static void ResetGame()
     {
         RemainingRerolls = GlobalGarden.ItemRerolls;
 
         EventManager.TriggerEvent(EventStrings.GAME_RESET, null);
-        gardenBuffManager.saver.SaveBuffs();
+        Managers.Instance.Resolve<IGardenBuffMng>().SaveBuffs();
 
         // Global
         EnemySpeedMultiplier = 1f;
@@ -162,6 +143,19 @@ public static class Global
 
         // Create and return the Quaternion rotation
         return Quaternion.Euler(randomX ? x : 0, randomY ? y : 0, randomZ ? z : 0);
+    }
+
+    public static T FindComponentInList<T>(this List<GameObject> gameObjects) where T : Component
+    {
+        foreach (GameObject obj in gameObjects)
+        {
+            T component = obj.GetComponent<T>();
+            if (component != null)
+            {
+                return component;
+            }
+        }
+        return null;
     }
 
 

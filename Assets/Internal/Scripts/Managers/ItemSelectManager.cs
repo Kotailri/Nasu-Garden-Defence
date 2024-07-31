@@ -3,7 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ItemSelectManager : MonoBehaviour
+public interface IItemSelectMng : IManager
+{
+    public void RerollItems();
+    public void SetItemSelected(GameObject item);
+    public void ItemSelected();
+    public void CreateItems(ItemTypeEnum itemType, bool isReroll = false);
+}
+
+
+public class ItemSelectManager : MonoBehaviour, IItemSelectMng
 {
     public GameObject SelectObject;
 
@@ -20,13 +29,6 @@ public class ItemSelectManager : MonoBehaviour
     private List<ItemAdder> currentAdderPool = new();
     private GameObject selectedItem = null;
     private ItemTypeEnum currentItemType = ItemTypeEnum.StatUp;
-
-
-
-    private void Awake()
-    {
-        Global.itemSelectManager = this;
-    }
 
     private void Update()
     {
@@ -72,7 +74,7 @@ public class ItemSelectManager : MonoBehaviour
 
         if (!isReroll)
         {
-            currentAdderPool = Global.itemInventoryManager.GetFullPool(itemType, Global.waveManager.CurrentWaveIndex);
+            currentAdderPool = Managers.Instance.Resolve<IItemInventoryMng>().GetFullPool(itemType, Managers.Instance.Resolve<IWaveMng>().GetCurrentWaveIndex());
         }
 
         currentItemType = itemType;
@@ -97,7 +99,7 @@ public class ItemSelectManager : MonoBehaviour
 
             if (selectPool.Count == 0)
             {
-                Global.waveManager.SpawnNextWave();
+                Managers.Instance.Resolve<IWaveMng>().SpawnNextWave();
                 yield break;
             }
 
@@ -147,7 +149,7 @@ public class ItemSelectManager : MonoBehaviour
 
     public void ItemSelected()
     {
-        if (!Global.waveManager.IsWaveOngoing())
+        if (!Global.IsWaveOngoing())
         {
             if (selectedItem != null && selectedItem.GetComponent<ItemSelectObject>().isItemActive)
             {
@@ -167,6 +169,6 @@ public class ItemSelectManager : MonoBehaviour
     private IEnumerator SpawnNextWaveDelay()
     {
         yield return new WaitForSeconds(1f);
-        Global.waveManager.SpawnNextWave();
+        Managers.Instance.Resolve<IWaveMng>().SpawnNextWave();
     }
 }

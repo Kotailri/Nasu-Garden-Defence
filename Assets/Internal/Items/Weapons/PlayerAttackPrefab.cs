@@ -69,7 +69,7 @@ public class PlayerAttackPrefab : MonoBehaviour
             if (AttackType == PlayerAttackType.Projectile && Global.itemPassiveManager.GetPassive(ItemPassiveEnum.ProjectileMightExplode) 
                 && Random.Range(0f,1f) < Global.itemPassiveManager.ProjectileExplosionChance)
             {
-                GameObject g = Global.prefabManager.InstantiatePrefab(PrefabEnum.PurpleExplosion, transform.position, Quaternion.identity);
+                GameObject g = Managers.Instance.Resolve<IPrefabMng>().InstantiatePrefab(PrefabEnum.PurpleExplosion, transform.position, Quaternion.identity);
                 g.GetComponent<Explosion>().Initialize(Global.itemPassiveManager.ProjectileExplosionDamage);
             }
             AudioManager.instance.PlaySound(AttackHitSound);

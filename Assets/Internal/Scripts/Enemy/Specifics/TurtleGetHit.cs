@@ -15,7 +15,7 @@ public class TurtleGetHit : EnemyGetHit
                 attack.SetActive(false);
             }
             AudioManager.instance.PlaySound(AudioEnum.Dink);
-            Global.prefabManager.InstantiatePrefab(PrefabEnum.DinkEffect, location, Quaternion.identity);
+            Managers.Instance.Resolve<IPrefabMng>().InstantiatePrefab(PrefabEnum.DinkEffect, location, Quaternion.identity);
             return;
         }
 

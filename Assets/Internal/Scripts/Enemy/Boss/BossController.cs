@@ -30,14 +30,14 @@ public class BossController : MonoBehaviour
 
     private void Start()
     {
-        Global.bossHealthBarManager.SetBossName(bossScriptable.BossName);
+        Managers.Instance.Resolve<IBossHealthBarMng>().SetBossName(bossScriptable.BossName);
     }
 
     private void Update()
     {
-        if (!Global.bossHealthBarManager.IsBossHealthActive() && transform.position.x <= BossActivePosition)
+        if (!Managers.Instance.Resolve<IBossHealthBarMng>().IsBossHealthActive() && transform.position.x <= BossActivePosition)
         {
-            Global.bossHealthBarManager.ActivateHealthBar(1.5f);
+            Managers.Instance.Resolve<IBossHealthBarMng>().ActivateHealthBar(1.5f);
         }
     }
 
@@ -53,7 +53,7 @@ public class BossController : MonoBehaviour
 
     private void OnDestroy()
     {
-        Global.bossHealthBarManager.DeactivateHealthBar();
+        Managers.Instance.Resolve<IBossHealthBarMng>().DeactivateHealthBar();
         EventManager.TriggerEvent(EventStrings.ENEMY_DELETED, null);
     }
 

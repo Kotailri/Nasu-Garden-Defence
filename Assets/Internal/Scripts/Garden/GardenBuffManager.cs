@@ -4,7 +4,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GardenBuffManager : MonoBehaviour
+public interface IGardenBuffMng : IManager
+{
+    public void AddCoins(int _coins);
+    public void RemoveCoins(int _coins);
+    public int GetCoins();
+
+    public void SaveBuffs();
+    public void LoadBuffs();
+
+    public List<GardenBuff> GetGardenBuffList();
+}
+
+public class GardenBuffManager : MonoBehaviour, IGardenBuffMng
 {
     public GameObject ClefCoin;
     public TextMeshProUGUI coinText;
@@ -17,13 +29,27 @@ public class GardenBuffManager : MonoBehaviour
 
     private void Awake()
     {
-        Global.gardenBuffManager = this;
         saver.LoadBuffs();
+    }
+
+    public List<GardenBuff> GetGardenBuffList()
+    {
+        return gardenBuffList;
     }
 
     private void Start()
     {
         UpdateCoinUI();
+    }
+
+    public void SaveBuffs()
+    {
+        saver.SaveBuffs();
+    }
+    
+    public void LoadBuffs()
+    {
+        saver.LoadBuffs();
     }
 
     private void OnEnable()
@@ -78,7 +104,7 @@ public class GardenBuffManager : MonoBehaviour
     {
         int startingCoins = GlobalGarden.Coins;
         GlobalGarden.Coins -= _coins;
-        Global.gardenBuffManager.saver.SaveBuffs();
+        Managers.Instance.Resolve<IGardenBuffMng>().SaveBuffs();
 
         if (!isRemoving)
         {

@@ -19,7 +19,7 @@ public class StartGameObject : MonoBehaviour
             {
                 EventManager.TriggerEvent(EventStrings.GAME_START, null);
                 moveCam.MoveToGameplay();
-                Global.waveManager.StartGame();
+                Managers.Instance.Resolve<IWaveMng>().StartGame();
                 Global.gameplayStarted = true;
             }
 

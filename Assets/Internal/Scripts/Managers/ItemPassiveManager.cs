@@ -9,6 +9,7 @@ public enum ItemPassiveEnum
     ProjectileMightExplode
 }
 
+
 public class ItemPassiveManager : MonoBehaviour
 {
     public Dictionary<ItemPassiveEnum, bool> ItemPassiveDictionary;

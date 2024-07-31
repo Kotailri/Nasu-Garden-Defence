@@ -55,7 +55,7 @@ public abstract class GardenBuff : MonoBehaviour
 
         if (CurrentLevel == MaxLevel) 
             return false;
-        return Global.gardenBuffManager.GetCoins() >= PriceAtEachLevel[CurrentLevel + 1];
+        return Managers.Instance.Resolve<IGardenBuffMng>().GetCoins() >= PriceAtEachLevel[CurrentLevel + 1];
 
     }
 
@@ -66,7 +66,7 @@ public abstract class GardenBuff : MonoBehaviour
         {
             total += PriceAtEachLevel[i];
         }
-        Global.gardenBuffManager.AddCoins(total);
+        Managers.Instance.Resolve<IGardenBuffMng>().AddCoins(total);
         CurrentLevel = 0;
         CheckLevel();
         UpdateLevel();
@@ -82,11 +82,11 @@ public abstract class GardenBuff : MonoBehaviour
             UpdateLevel();
             if (!Global.IsInEditorMode) 
             {
-                Global.gardenBuffManager.RemoveCoins(PriceAtEachLevel[CurrentLevel]);
+                Managers.Instance.Resolve<IGardenBuffMng>().RemoveCoins(PriceAtEachLevel[CurrentLevel]);
             }
             else
             {
-                Global.gardenBuffManager.saver.SaveBuffs();
+                Managers.Instance.Resolve<IGardenBuffMng>().SaveBuffs();
             }
             AudioManager.instance.PlaySound(AudioEnum.LevelUp);
         }
