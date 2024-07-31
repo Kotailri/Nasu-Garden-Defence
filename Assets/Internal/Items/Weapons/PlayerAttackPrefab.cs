@@ -34,7 +34,7 @@ public class PlayerAttackPrefab : MonoBehaviour
 
     public virtual void Start()
     {
-        transform.localScale *= GlobalPlayer.GetStatValue(PlayerStatEnum.attackSize);
+        transform.localScale *= GlobalStats.GetStatValue(PlayerStatEnum.attackSize);
     }
 
     public void SetDamage(int damage)
@@ -85,19 +85,19 @@ public class PlayerAttackPrefab : MonoBehaviour
             switch (AttackType)
             {
                 case PlayerAttackType.Projectile:
-                    damage = Mathf.FloorToInt(Damage * GlobalPlayer.CurrentPlayerDamageMultiplier *
-                        GlobalPlayer.GetStatValue(PlayerStatEnum.damage) * GlobalPlayer.GetStatValue(PlayerStatEnum.projectileDamage));
+                    damage = Mathf.FloorToInt(Damage * GlobalStats.CurrentPlayerDamageMultiplier *
+                        GlobalStats.GetStatValue(PlayerStatEnum.damage) * GlobalStats.GetStatValue(PlayerStatEnum.projectileDamage));
 
                     break;
 
                 case PlayerAttackType.Melee:
-                    damage = Mathf.FloorToInt(Damage * GlobalPlayer.CurrentPlayerDamageMultiplier *
-                        GlobalPlayer.GetStatValue(PlayerStatEnum.damage) * GlobalPlayer.GetStatValue(PlayerStatEnum.meleeDamage));
+                    damage = Mathf.FloorToInt(Damage * GlobalStats.CurrentPlayerDamageMultiplier *
+                        GlobalStats.GetStatValue(PlayerStatEnum.damage) * GlobalStats.GetStatValue(PlayerStatEnum.meleeDamage));
                     break;
 
                 case PlayerAttackType.Neutral:
-                    damage = Mathf.FloorToInt(Damage * GlobalPlayer.CurrentPlayerDamageMultiplier *
-                        GlobalPlayer.GetStatValue(PlayerStatEnum.damage));
+                    damage = Mathf.FloorToInt(Damage * GlobalStats.CurrentPlayerDamageMultiplier *
+                        GlobalStats.GetStatValue(PlayerStatEnum.damage));
                     break;
 
             }

@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        MaxHP = (int)GlobalPlayer.GetStatValue(PlayerStatEnum.playerHealth);
+        MaxHP = (int)GlobalStats.GetStatValue(PlayerStatEnum.playerHealth);
         CurrentHP = MaxHP;
         UpdateUI(CurrentHP);
 
@@ -44,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        if (!Global.IsWaveOngoing())
+        if (!GameUtil.IsWaveOngoing())
         {
             return;
         }
@@ -133,7 +133,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void OnMaxHpStatChanged(Dictionary<string, object> message)
     {
-        SetMaxHealth(Mathf.FloorToInt(GlobalPlayer.GetStatValue(PlayerStatEnum.playerHealth)) - MaxHP, true);
+        SetMaxHealth(Mathf.FloorToInt(GlobalStats.GetStatValue(PlayerStatEnum.playerHealth)) - MaxHP, true);
     }
 
     public void SetMaxHealth(int _hp, bool isRelative)

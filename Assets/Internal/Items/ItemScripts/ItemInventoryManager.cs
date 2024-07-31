@@ -144,12 +144,12 @@ public class ItemInventoryManager : MonoBehaviour, IItemInventoryMng
 
         selectedPool.RemoveAll(adder => adder.MinWaveIndex > waveRequirement);
 
-        return Global.GetRandomElements(selectedPool, num);
+        return GameUtil.GetRandomElements(selectedPool, num);
     }
 
     public List<ItemAdder> GetRandomFromInventory(int num)
     {
-        return Global.GetRandomElements(ItemInventory, num);
+        return GameUtil.GetRandomElements(ItemInventory, num);
     }
 
     public void AddRandomToInventory(ItemTypeEnum itemType, int waveIndex=int.MaxValue)

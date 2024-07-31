@@ -44,7 +44,7 @@ public class EnemyShoot : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!Global.IsObjectActiveOnField(this.gameObject, true, false))
+        if (!GameUtil.IsObjectActiveOnField(this.gameObject, true, false))
         {
             return;
         }
@@ -52,7 +52,7 @@ public class EnemyShoot : MonoBehaviour
         switch (TimerType)
         {
             case EnemyShootTimerType.ShootsOnAnimationFrame:
-                if (Global.GetCurrentAnimationFrame(GetComponent<Animator>()) == AnimationFrame)
+                if (GameUtil.GetCurrentAnimationFrame(GetComponent<Animator>()) == AnimationFrame)
                 {
                     if (didShootOnCurrentFrame == false)
                     {

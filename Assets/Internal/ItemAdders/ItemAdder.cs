@@ -49,7 +49,7 @@ public abstract class ItemAdder : MonoBehaviour
     {
         foreach (ItemStatAdder _item in statList)
         {
-            GlobalPlayer.GetStat(_item.stat).SetLevel(_item.levelup, true);
+            GlobalStats.GetStat(_item.stat).SetLevel(_item.levelup, true);
         }
     }
 
@@ -60,7 +60,7 @@ public abstract class ItemAdder : MonoBehaviour
 
         foreach (int i in statLevelUps)
         {
-            PlayerStat levelStat = Global.GetRandomDictionaryValue(GlobalPlayer.GetVisiblePlayerStatDict());
+            PlayerStat levelStat = GameUtil.GetRandomDictionaryValue(GlobalStats.GetVisiblePlayerStatDict());
             levelStat.SetLevel(i, true);
             statsLeveled.Add(levelStat);
         }

@@ -34,7 +34,7 @@ public abstract class EnemyMovement : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!isMovementStarted && Global.GetLeftEdgeXPosition(gameObject) > 18.4f)
+        if (!isMovementStarted && GameUtil.GetLeftEdgeXPosition(gameObject) > 18.4f)
         {
             transform.position += new Vector3(-Time.deltaTime * Global.WaveSpeed, 0, 0);
             return;
@@ -54,9 +54,9 @@ public abstract class EnemyMovement : MonoBehaviour
             ReapplyMovement();
         }
         
-        if (isMovementStarted && Global.GetLeftEdgeXPosition(gameObject) > 18.4f)
+        if (isMovementStarted && GameUtil.GetLeftEdgeXPosition(gameObject) > 18.4f)
         {
-            transform.position = new Vector3(18.4f - Global.GetSpriteHalfWidth(gameObject), transform.position.y, transform.position.z);
+            transform.position = new Vector3(18.4f - GameUtil.GetSpriteHalfWidth(gameObject), transform.position.y, transform.position.z);
         }
 
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, Global.YRange.min, Global.YRange.max), transform.position.z);

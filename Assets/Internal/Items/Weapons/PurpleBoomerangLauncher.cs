@@ -17,13 +17,13 @@ public class PurpleBoomerangLauncher : PlayerAttack
     public override void DoAttack(Vector2 attackPosition, Transform attachObject = null)
     {
         GameObject g = Instantiate(AttackPrefab, attackPosition, Quaternion.identity);
-        g.GetComponent<PurpleBoomerang>().SetDamage(Mathf.RoundToInt(BaseDamage * GlobalPlayer.GetStatValue(PlayerStatEnum.damage) 
-            * GlobalPlayer.GetStatValue(PlayerStatEnum.projectileDamage)));
+        g.GetComponent<PurpleBoomerang>().SetDamage(Mathf.RoundToInt(BaseDamage * GlobalStats.GetStatValue(PlayerStatEnum.damage) 
+            * GlobalStats.GetStatValue(PlayerStatEnum.projectileDamage)));
         g.GetComponent<PurpleBoomerang>().SetKnockback(KnockbackAmount);
         g.GetComponent<PurpleBoomerang>().SetKnockbackTime(KnockbackTime);
         g.GetComponent<PlayerAttackPrefab>().SetKnockbackType(KnockbackType);
         g.GetComponent<PurpleBoomerang>().SetReturnTransform(attachObject);
-        g.GetComponent<PurpleBoomerang>().Launch(GetRandomWeightedDirection() * speed * GlobalPlayer.GetStatValue(PlayerStatEnum.projectileSpeed), distance);
+        g.GetComponent<PurpleBoomerang>().Launch(GetRandomWeightedDirection() * speed * GlobalStats.GetStatValue(PlayerStatEnum.projectileSpeed), distance);
         
     }
 

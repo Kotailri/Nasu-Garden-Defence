@@ -42,17 +42,17 @@ public class PlayerStatInitializer : MonoBehaviour
 
     private void Awake()
     {
-        GlobalPlayer.PlayerStatDict.Clear();
+        GlobalStats.PlayerStatDict.Clear();
         foreach (PlayerStatScriptable stat in stats)
         {
-            if (GlobalPlayer.PlayerStatDict.ContainsKey(stat.StatEnum))
+            if (GlobalStats.PlayerStatDict.ContainsKey(stat.StatEnum))
             {
-                print("WARNING: " + stat.StatName + " stat is already used by " + GlobalPlayer.PlayerStatDict[stat.StatEnum].GetStatName());
+                print("WARNING: " + stat.StatName + " stat is already used by " + GlobalStats.PlayerStatDict[stat.StatEnum].GetStatName());
                 continue;
             }
             else
             {
-                GlobalPlayer.PlayerStatDict.Add(stat.StatEnum, PlayerStatFactory.CreatePlayerStat(stat.StatName, stat.StatEnum, stat.StatDescription,
+                GlobalStats.PlayerStatDict.Add(stat.StatEnum, PlayerStatFactory.CreatePlayerStat(stat.StatName, stat.StatEnum, stat.StatDescription,
                                                                                               stat.StatBase, stat.StatGrowth,
                                                                                               stat.StatGrowthType, stat.ShowsInUI));
             }

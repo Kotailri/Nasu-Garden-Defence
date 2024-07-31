@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DeathCondition
+{
+    PlayerDeath,
+    GardenDeath
+}
+
 public interface IGameOverMng : IManager
 {
     public void DoGameOver(DeathCondition deathCondition);

@@ -29,7 +29,7 @@ public class ShotgunShoot : PlayerAttack
         GameObject projectile = Instantiate(AttackPrefab, attackPosition, transform.rotation);
         projectile.transform.Rotate(0, 0, angle-90f);
         projectile.GetComponent<Rigidbody2D>().velocity = projectile.transform.up * (ProjectileSpeed 
-            * GlobalPlayer.GetStatValue(PlayerStatEnum.projectileSpeed) + GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed));
+            * GlobalStats.GetStatValue(PlayerStatEnum.projectileSpeed) + GlobalStats.GetStatValue(PlayerStatEnum.movespeed));
         projectile.GetComponent<PlayerAttackPrefab>().SetDamage(BaseDamage);
         projectile.GetComponent<PlayerAttackPrefab>().SetKnockback(KnockbackAmount);
     }

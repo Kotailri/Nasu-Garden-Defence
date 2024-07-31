@@ -24,7 +24,7 @@ public class EnemyMovementPush : EnemyMovement
     {
         if (isMovementStarted)
         {
-            if (Global.GetCurrentAnimationFrame(anim) == PushFrame)
+            if (GameUtil.GetCurrentAnimationFrame(anim) == PushFrame)
             {
                 Push();
             }

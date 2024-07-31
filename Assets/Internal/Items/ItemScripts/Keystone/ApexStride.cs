@@ -55,8 +55,8 @@ public class ApexStride : MonoBehaviour
         }
 
         Global.keystoneItemManager.ApexStrideLevel = level;
-        GlobalPlayer.CurrentPlayerDamageMultiplier -= currentDamageMultiplier;
-        GlobalPlayer.GetStat(PlayerStatEnum.movespeed).RemoveSharedStatMultiplier(currentSpeedMultiplier);
+        GlobalStats.CurrentPlayerDamageMultiplier -= currentDamageMultiplier;
+        GlobalStats.GetStat(PlayerStatEnum.movespeed).RemoveSharedStatMultiplier(currentSpeedMultiplier);
 
         Destroy(currentParticles);
         switch (level)
@@ -79,8 +79,8 @@ public class ApexStride : MonoBehaviour
                 currentDamageMultiplier = damageMultiplier;
                 break;
         }
-        GlobalPlayer.CurrentPlayerDamageMultiplier += currentDamageMultiplier;
-        GlobalPlayer.GetStat(PlayerStatEnum.movespeed).AddSharedStatMultiplier(currentSpeedMultiplier);
+        GlobalStats.CurrentPlayerDamageMultiplier += currentDamageMultiplier;
+        GlobalStats.GetStat(PlayerStatEnum.movespeed).AddSharedStatMultiplier(currentSpeedMultiplier);
         rampingLevel = level;
     }
 

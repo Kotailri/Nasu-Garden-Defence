@@ -28,7 +28,7 @@ public class PurpleBoomerang : PlayerAttackPrefab
 
     public void Launch(Vector2 launchVector, float _distance)
     {
-        transform.localScale *= GlobalPlayer.GetStatValue(PlayerStatEnum.attackSize);
+        transform.localScale *= GlobalStats.GetStatValue(PlayerStatEnum.attackSize);
         hasLaunched = true;
         speed = launchVector.magnitude;
         distance = _distance;

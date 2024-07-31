@@ -121,7 +121,7 @@ public class NeggpalBwo : MonoBehaviour
         if (currentStateTime > StateDuration || CurrentState.IsEndStateTriggered()) 
         {
             currentStateTime = 0;
-            if (Global.IsWaveOngoing())
+            if (GameUtil.IsWaveOngoing())
             {
                 IBwoState changedState = GetNewState();
                 if (changedState != CurrentState)
@@ -157,7 +157,7 @@ public class BwoChaseState : IBwoState
     {
         float minDistance = Mathf.Infinity;
         GameObject currentEnemy = null;
-        foreach (GameObject enemy in Global.GetActiveEnemies())
+        foreach (GameObject enemy in GameUtil.GetActiveEnemies())
         {
             float dist = Vector2.Distance(enemy.transform.position, bwo.transform.position);
             if (dist < minDistance)
@@ -272,7 +272,7 @@ public class BwoFollowState : IBwoState
 
     public void OnStateUpdate(NeggpalBwo bwo)
     {
-        if (Global.IsWaveOngoing())
+        if (GameUtil.IsWaveOngoing())
         {
             bwo.RB.velocity = ((Vector2)Global.playerTransform.position - (Vector2)bwo.transform.position).normalized * bwo.movespeed;
         }

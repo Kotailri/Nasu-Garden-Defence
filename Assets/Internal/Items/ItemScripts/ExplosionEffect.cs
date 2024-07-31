@@ -22,6 +22,6 @@ public class ExplosionEffect : MonoBehaviour
 
     protected virtual void DoExplosionEffect()
     {
-        LeanTween.scale(gameObject, scale * GlobalPlayer.GetStatValue(PlayerStatEnum.explosionRadius), explosionDuration).setEaseOutExpo().setOnComplete(() => { Destroy(gameObject); });
+        LeanTween.scale(gameObject, scale * GlobalStats.GetStatValue(PlayerStatEnum.explosionRadius), explosionDuration).setEaseOutExpo().setOnComplete(() => { Destroy(gameObject); });
     }
 }

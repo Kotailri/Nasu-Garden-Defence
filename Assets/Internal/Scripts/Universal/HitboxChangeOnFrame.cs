@@ -40,7 +40,7 @@ public class HitboxChangeOnFrame : MonoBehaviour
 
     private void Update()
     {
-        int currentFrame = Global.GetCurrentAnimationFrame(anim);
+        int currentFrame = GameUtil.GetCurrentAnimationFrame(anim);
         foreach (FrameHitbox frame in frameHitboxes)
         {
            if (frame.frame == currentFrame)

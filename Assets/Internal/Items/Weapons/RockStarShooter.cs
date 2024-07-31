@@ -21,7 +21,7 @@ public class RockStarShooter : PlayerAttack
 
             Vector2 direction = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
             GameObject projectile = Instantiate(AttackPrefab, transform.position, Quaternion.identity);
-            projectile.GetComponent<Rigidbody2D>().velocity = ProjectileSpeed * GlobalPlayer.GetStatValue(PlayerStatEnum.projectileSpeed) * direction.normalized;
+            projectile.GetComponent<Rigidbody2D>().velocity = ProjectileSpeed * GlobalStats.GetStatValue(PlayerStatEnum.projectileSpeed) * direction.normalized;
             projectile.GetComponent<PlayerAttackPrefab>().SetDamage(BaseDamage);
             //projectile.GetComponent<PlayerAttackPrefab>().SetKnockback(KnockbackAmount);
         }

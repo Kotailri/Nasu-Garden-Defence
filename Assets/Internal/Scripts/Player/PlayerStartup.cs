@@ -7,12 +7,10 @@ public class PlayerStartup : MonoBehaviour
     private void Awake()
     {
         Global.playerTransform = transform;
-        Player.playerGameObject = gameObject;
-
         Global.RemainingRerolls = GlobalGarden.ItemRerolls;
 
-        /*#if UNITY_EDITOR
+        #if UNITY_EDITOR
                 Global.IsInEditorMode = true;
-        #endif*/
+        #endif
     }
 }

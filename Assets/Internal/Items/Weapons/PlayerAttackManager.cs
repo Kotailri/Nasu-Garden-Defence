@@ -95,9 +95,9 @@ public class PlayerAttackManager : MonoBehaviour
 
     private void Update()
     {
-        if (!Global.gameplayStarted || !Global.IsWaveOngoing()) { return; }
+        if (!Global.gameplayStarted || !GameUtil.IsWaveOngoing()) { return; }
 
-        if (currentAttackTimer >= (AttackTimer - (AttackTimer * GlobalPlayer.GetStatValue(PlayerStatEnum.attackspeed)) - currentBuffedSpeed))
+        if (currentAttackTimer >= (AttackTimer - (AttackTimer * GlobalStats.GetStatValue(PlayerStatEnum.attackspeed)) - currentBuffedSpeed))
         {
             currentAttackTimer = 0;
             Attack();
@@ -107,6 +107,6 @@ public class PlayerAttackManager : MonoBehaviour
             currentAttackTimer += Time.deltaTime;
         }
 
-        ShootCooldownBar.UpdateValue(Mathf.Clamp01(currentAttackTimer/ (AttackTimer - (AttackTimer * GlobalPlayer.GetStatValue(PlayerStatEnum.attackspeed)) - currentBuffedSpeed)));
+        ShootCooldownBar.UpdateValue(Mathf.Clamp01(currentAttackTimer/ (AttackTimer - (AttackTimer * GlobalStats.GetStatValue(PlayerStatEnum.attackspeed)) - currentBuffedSpeed)));
     }
 }

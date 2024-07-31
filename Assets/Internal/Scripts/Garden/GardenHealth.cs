@@ -18,14 +18,14 @@ public class GardenHealth : MonoBehaviour
 
     private void Start()
     {
-        MaxHP = (int)GlobalPlayer.GetStatValue(PlayerStatEnum.gardenHealth);
+        MaxHP = (int)GlobalStats.GetStatValue(PlayerStatEnum.gardenHealth);
         CurrentHP = MaxHP;
         UpdateUI(CurrentHP);
     }
 
     private void Update()
     {
-        if (!Global.IsWaveOngoing())
+        if (!GameUtil.IsWaveOngoing())
         {
             return;
         }
@@ -87,7 +87,7 @@ public class GardenHealth : MonoBehaviour
 
     public void OnMaxHpStatChanged(Dictionary<string, object> message)
     {
-        SetMaxHealth((int)GlobalPlayer.GetStatValue(PlayerStatEnum.gardenHealth) - MaxHP, true);
+        SetMaxHealth((int)GlobalStats.GetStatValue(PlayerStatEnum.gardenHealth) - MaxHP, true);
         UpdateUI(CurrentHP);
     }
 

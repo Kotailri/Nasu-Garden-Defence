@@ -20,7 +20,7 @@ public class PlayerHitbox : MonoBehaviour
         spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
         canTakeDamage = false;
 
-        yield return new WaitForSeconds(GlobalPlayer.GetStatValue(PlayerStatEnum.invincDuration) + Global.keystoneItemManager.ImmortalHarmonyShieldTime);
+        yield return new WaitForSeconds(GlobalStats.GetStatValue(PlayerStatEnum.invincDuration) + Global.keystoneItemManager.ImmortalHarmonyShieldTime);
 
         if (spriteRenderer)
             spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
@@ -37,7 +37,7 @@ public class PlayerHitbox : MonoBehaviour
             if (dmg > 0) 
             {
                 health.SetHealth(-dmg, true);
-                GetComponent<PlayerMovement>().ApplySlow(GlobalPlayer.ContactSlowAmount, GlobalPlayer.ContactSlowTime);
+                GetComponent<PlayerMovement>().ApplySlow(Global.ContactSlowAmount, Global.ContactSlowTime);
                 EventManager.TriggerEvent(EventStrings.PLAYER_TAKE_DAMAGE, null);
             }
 

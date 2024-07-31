@@ -46,6 +46,6 @@ public class ImmortalHarmony : MonoBehaviour
         GameObject shield = Instantiate(shieldPrefab, Vector3.zero, Quaternion.identity);
         shield.transform.SetParent(Global.playerTransform, false);
         shield.transform.localPosition = Vector3.zero;
-        Destroy(shield, Global.keystoneItemManager.ImmortalHarmonyShieldTime + GlobalPlayer.GetStatValue(PlayerStatEnum.invincDuration));
+        Destroy(shield, Global.keystoneItemManager.ImmortalHarmonyShieldTime + GlobalStats.GetStatValue(PlayerStatEnum.invincDuration));
     }
 }

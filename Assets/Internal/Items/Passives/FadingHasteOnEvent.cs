@@ -28,7 +28,7 @@ public class FadingHasteOnEvent : MonoBehaviour
     private int FadingHasteID = -1;
     public void AddFadingHaste(float _boost, float _fadeTime)
     {
-        PlayerStat stat = GlobalPlayer.GetStat(PlayerStatEnum.movespeed);
+        PlayerStat stat = GlobalStats.GetStat(PlayerStatEnum.movespeed);
 
         if (LeanTween.isTweening(gameObject))
         {

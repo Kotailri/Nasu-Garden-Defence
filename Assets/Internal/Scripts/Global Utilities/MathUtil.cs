@@ -17,6 +17,18 @@ public static class MathUtil
     }
 
     /// <summary>
+    /// Generate a random quaternion rotation around the X, Y, and Z axes
+    /// </summary>
+    /// <param name="randomX"></param>
+    /// <param name="randomY"></param>
+    /// <param name="randomZ"></param>
+    /// <returns></returns>
+    public static Quaternion GetRandomRotation(bool randomX, bool randomY, bool randomZ)
+    {
+        return Quaternion.Euler(randomX ? Random.Range(0f, 360f) : 0, randomY ? Random.Range(0f, 360f) : 0, randomZ ? Random.Range(0f, 360f) : 0);
+    }
+
+    /// <summary>
     /// Wraps a float value to ensure it falls within a specified range [min, max).
     /// </summary>
     public static float Wrap(float value, float min, float max)

@@ -55,7 +55,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (Random.Range(0f, 1f) >= DodgeChance)
         {
-            if (Random.Range(0f,1f) < GlobalPlayer.GetStatValue(PlayerStatEnum.critchance))
+            if (Random.Range(0f,1f) < GlobalStats.GetStatValue(PlayerStatEnum.critchance))
             {
                 AudioManager.instance.PlaySound(AudioEnum.CritSound);
                 CurrentHealth -= (damage - Mathf.FloorToInt(damage * Resistance))*2;

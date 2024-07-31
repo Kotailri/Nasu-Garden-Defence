@@ -83,7 +83,7 @@ public class ItemSelectManager : MonoBehaviour, IItemSelectMng
 
         IEnumerator ItemSpawnCoroutine()
         {
-            List<ItemAdder> selectPool = Global.GetRandomElements(currentAdderPool, 3);
+            List<ItemAdder> selectPool = GameUtil.GetRandomElements(currentAdderPool, 3);
 
             if (!isReroll && currentAdderPool.Count >= 6)
             {
@@ -149,7 +149,7 @@ public class ItemSelectManager : MonoBehaviour, IItemSelectMng
 
     public void ItemSelected()
     {
-        if (!Global.IsWaveOngoing())
+        if (!GameUtil.IsWaveOngoing())
         {
             if (selectedItem != null && selectedItem.GetComponent<ItemSelectObject>().isItemActive)
             {

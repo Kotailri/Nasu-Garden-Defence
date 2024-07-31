@@ -8,7 +8,7 @@ public class RestartButton : MonoBehaviour
 {
     public void Restart()
     {
-        Global.ResetGame();
+        GameUtil.ResetGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

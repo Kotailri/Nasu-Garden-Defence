@@ -17,7 +17,7 @@ public class SharpLauncher : PlayerAttack
             float angle = i * angleStep;
             float angleRad = angle * Mathf.Deg2Rad;
 
-            GameObject g = Instantiate(AttackPrefab, transform.position, Global.GetRandom2DRotation());
+            GameObject g = Instantiate(AttackPrefab, transform.position, GameUtil.GetRandom2DRotation());
 
             g.GetComponent<PlayerAttackPrefab>().SetDamage(BaseDamage);
             g.GetComponent<PlayerAttackPrefab>().SetKnockback(KnockbackAmount);

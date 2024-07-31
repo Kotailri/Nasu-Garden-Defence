@@ -13,7 +13,7 @@ public class NasuTornadoLauncher : PlayerAttack
         GameObject g = Instantiate(AttackPrefab, attackPosition, Quaternion.identity);
         g.GetComponent<NasuTornado>().SetKnockback(KnockbackAmount);
         g.GetComponent<NasuTornado>().SetDamage(BaseDamage);
-        g.GetComponent<NasuTornado>().Launch(new Vector2(1, Random.Range(-0.8f, 0.8f)).normalized * speed * GlobalPlayer.GetStatValue(PlayerStatEnum.projectileSpeed), distance);
+        g.GetComponent<NasuTornado>().Launch(new Vector2(1, Random.Range(-0.8f, 0.8f)).normalized * speed * GlobalStats.GetStatValue(PlayerStatEnum.projectileSpeed), distance);
 
     }
 }

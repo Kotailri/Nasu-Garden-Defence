@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     {
         currentSlowMultiplier = Mathf.Clamp(currentSlowMultiplier, 0f, 1f);
         amount = Mathf.Clamp(amount, 0f, 1f);
-        amount += (amount * GlobalPlayer.GetStatValue(PlayerStatEnum.slowReduction));
+        amount += (amount * GlobalStats.GetStatValue(PlayerStatEnum.slowReduction));
 
         if (amount >= currentSlowMultiplier)
         {
@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Get axis x input
         float controllerInputX = 0;
-        if (Mathf.Abs(Global.playerControls.GetAxisInputXLeft()) >= Config.ControllerDeadZone)
+        if (Mathf.Abs(Global.playerControls.GetAxisInputXLeft()) >= ControllerConfiguration.ControllerDeadZone)
         {
             if (Global.playerControls.GetAxisInputXLeft() < 0) { controllerInputX = -1; }
             if (Global.playerControls.GetAxisInputXLeft() > 0) { controllerInputX = 1; }
@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Get axis y input
         float controllerInputY = 0;
-        if (Mathf.Abs(Global.playerControls.GetAxisInputYLeft()) >= Config.ControllerDeadZone)
+        if (Mathf.Abs(Global.playerControls.GetAxisInputYLeft()) >= ControllerConfiguration.ControllerDeadZone)
         {
             if (Global.playerControls.GetAxisInputYLeft() < 0) { controllerInputY = -1; }
             if (Global.playerControls.GetAxisInputYLeft() > 0) { controllerInputY = 1; }
@@ -134,9 +134,9 @@ public class PlayerMovement : MonoBehaviour
         if (MovementLocked)
             moveInput = Vector2.zero;
 
-        if (Global.gameplayStarted && Global.IsWaveOngoing())
+        if (Global.gameplayStarted && GameUtil.IsWaveOngoing())
         {
-            RB.velocity = moveInput.normalized * GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSlowMultiplier;
+            RB.velocity = moveInput.normalized * GlobalStats.GetStatValue(PlayerStatEnum.movespeed) * currentSlowMultiplier;
         }
         else
         {
@@ -144,6 +144,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Global.playerMoveVector = RB.velocity;
-        CurrentMovespeed = GlobalPlayer.GetStatValue(PlayerStatEnum.movespeed) * currentSlowMultiplier;
+        CurrentMovespeed = GlobalStats.GetStatValue(PlayerStatEnum.movespeed) * currentSlowMultiplier;
     }
 }

@@ -31,8 +31,8 @@ public class BerserkerCrit : MonoBehaviour
 
         percentCritIncrease = Mathf.Round(percentCritIncrease * 100.0f) / 100f;
 
-        GlobalPlayer.GetStat(PlayerStatEnum.critchance).RemoveStatAdditive(currentCritBoost);
-        GlobalPlayer.GetStat(PlayerStatEnum.critchance).AddStatAdditive(percentCritIncrease);
+        GlobalStats.GetStat(PlayerStatEnum.critchance).RemoveStatAdditive(currentCritBoost);
+        GlobalStats.GetStat(PlayerStatEnum.critchance).AddStatAdditive(percentCritIncrease);
 
         currentCritBoost = percentCritIncrease;
     }

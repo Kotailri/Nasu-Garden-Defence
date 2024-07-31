@@ -39,7 +39,7 @@ public class StatsMenuUI : MonoBehaviour
     private void Start()
     {
         int index = 0;
-        foreach (var item in GlobalPlayer.PlayerStatDict)
+        foreach (var item in GlobalStats.PlayerStatDict)
         {
             if (item.Value.DoesShowInUI())
             {
@@ -66,7 +66,7 @@ public class StatsMenuUI : MonoBehaviour
     private void UpdateStatsDisplay()
     {
         int index = 0;
-        foreach (var item in GlobalPlayer.PlayerStatDict)
+        foreach (var item in GlobalStats.PlayerStatDict)
         {
             if (item.Value.DoesShowInUI())
             {

@@ -10,6 +10,6 @@ public class ZoomedBombDropper : PlayerAttack
     {
         AudioManager.instance.PlaySound(AudioEnum.ThingPlaced);
         GameObject g = Instantiate(AttackPrefab, attackPosition, Quaternion.identity);
-        g.GetComponent<ZoomedBomb>().Initialize(BombFuseTimer, Mathf.RoundToInt(BaseDamage * GlobalPlayer.CurrentPlayerDamageMultiplier * GlobalPlayer.GetStatValue(PlayerStatEnum.explosionDamage)));
+        g.GetComponent<ZoomedBomb>().Initialize(BombFuseTimer, Mathf.RoundToInt(BaseDamage * GlobalStats.CurrentPlayerDamageMultiplier * GlobalStats.GetStatValue(PlayerStatEnum.explosionDamage)));
     }
 }
