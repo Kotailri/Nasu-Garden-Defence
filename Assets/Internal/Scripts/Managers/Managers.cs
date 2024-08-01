@@ -70,7 +70,7 @@ public class Managers : MonoBehaviour
         Register<IGardenBuffMng>(managerObjects.FindComponentInList<GardenBuffManager>());
         Register<IPrefabMng>(managerObjects.FindComponentInList<PrefabManager>());
         Register<IAlertMng>(managerObjects.FindComponentInList<AlertManager>());
-        Register<IDamagePipelineMng>(managerObjects.FindComponentInList<DamagePipelineManager>());
+        Register<IAttackPipelineMng>(managerObjects.FindComponentInList<DamagePipelineManager>());
     }
 
     

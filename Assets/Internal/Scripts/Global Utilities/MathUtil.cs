@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public static class MathUtil
@@ -25,7 +24,63 @@ public static class MathUtil
     /// <returns></returns>
     public static Quaternion GetRandomRotation(bool randomX, bool randomY, bool randomZ)
     {
-        return Quaternion.Euler(randomX ? Random.Range(0f, 360f) : 0, randomY ? Random.Range(0f, 360f) : 0, randomZ ? Random.Range(0f, 360f) : 0);
+        return Quaternion.Euler(randomX ? UnityEngine.Random.Range(0f, 360f) : 0, randomY ? UnityEngine.Random.Range(0f, 360f) : 0, randomZ ? UnityEngine.Random.Range(0f, 360f) : 0);
+    }
+
+    /// <summary>
+    /// Clamps a float to a max value
+    /// </summary>
+    /// <param name="val"></param>
+    /// <param name="max"></param>
+    /// <returns></returns>
+    public static float ClampMaxf(float val, float max)
+    {
+        if (val > max)
+            return max;
+
+        return val;
+    }
+
+    /// <summary>
+    /// Clamps a float to a min value
+    /// </summary>
+    /// <param name="val"></param>
+    /// <param name="min"></param>
+    /// <returns></returns>
+    public static float ClampMinf(float val, float min)
+    {
+        if (val < min)
+            return min;
+
+        return val;
+    }
+
+    /// <summary>
+    /// Clamps an int to a max value
+    /// </summary>
+    /// <param name="val"></param>
+    /// <param name="max"></param>
+    /// <returns></returns>
+    public static int ClampMaxInt(int val, int max)
+    {
+        if (val > max)
+            return max;
+
+        return val;
+    }
+
+    /// <summary>
+    /// Clamps an int to a min value
+    /// </summary>
+    /// <param name="val"></param>
+    /// <param name="min"></param>
+    /// <returns></returns>
+    public static int ClampMinInt(int val, int min)
+    {
+        if (val < min)
+            return min;
+
+        return val;
     }
 
     /// <summary>

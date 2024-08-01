@@ -82,7 +82,7 @@ public class PlayerAttackPrefab : MonoBehaviour
     {
         if (enemy.TryGetComponent(out EnemyGetHit hit))
         {
-            int damage = Managers.Instance.Resolve<IDamagePipelineMng>().GetProcessedDamage(Damage, AttackType);
+            int damage = Managers.Instance.Resolve<IAttackPipelineMng>().ProcessAttackMods(Damage, AttackType, gameObject);
             EventManager.TriggerEvent(EventStrings.ENEMY_HIT, null);
             hit.GetHit(gameObject, damage, transform.position, destroyedByDeflection);
         }

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefaultStat_DamageModule : MonoBehaviour, IDamageModule
+public class DefaultStat_DamageModule : MonoBehaviour, IAttackModule
 {
-    public int ProcessDamage(int damage, PlayerAttackType attackType)
+    public int Process(int damage, PlayerAttackType attackType, GameObject obj)
     {
         switch (attackType)
         {

@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamageModule
+public interface IAttackModule
 {
-    public int ProcessDamage(int damage, PlayerAttackType attackType);
+    public int Process(int damage, PlayerAttackType attackType, GameObject obj);
 }
 
-public interface IDamagePipelineMng : IManager
+public interface IAttackPipelineMng : IManager
 {
-    public int GetProcessedDamage(int damage, PlayerAttackType attackType);
+    public int ProcessAttackMods(int damage, PlayerAttackType attackType, GameObject obj);
 }
 
-public class DamagePipelineManager : MonoBehaviour, IDamagePipelineMng
+public class DamagePipelineManager : MonoBehaviour, IAttackPipelineMng
 {
-    public int GetProcessedDamage(int damage, PlayerAttackType attackType)
+    public int ProcessAttackMods(int damage, PlayerAttackType attackType, GameObject obj)
     {
         int _dmg = damage;
-        foreach (IDamageModule module in GetComponents<IDamageModule>())
+        foreach (IAttackModule module in GetComponents<IAttackModule>())
         {
-            _dmg = module.ProcessDamage(_dmg, attackType);
+            _dmg = module.Process(_dmg, attackType, obj);
         }
         return _dmg;
     }
