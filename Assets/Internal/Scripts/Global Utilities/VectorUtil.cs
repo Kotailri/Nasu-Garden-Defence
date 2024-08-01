@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public static class VectorUtil
 {
@@ -13,6 +17,17 @@ public static class VectorUtil
     public static Vector2 DirectionTo(Vector2 from, Vector2 to)
     {
         return (to - from).normalized;
+    }
+
+    /// <summary>
+    /// Calculates the normalized direction vector from one point to another.
+    /// </summary>
+    /// <param name="from"></param>
+    /// <param name="to"></param>
+    /// <returns></returns>
+    public static Vector2 DirectionTo(this Transform transform, Vector2 to)
+    {
+        return (to - (Vector2)transform.position).normalized;
     }
 
     /// <summary>

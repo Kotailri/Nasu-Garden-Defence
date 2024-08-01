@@ -25,8 +25,8 @@ public class Explosion : ExplosionEffect
     {
         if (explosionDamage >= 0 && collisionObject.TryGetComponent(out EnemyGetHit hit))
         {
-            int damage = Managers.Instance.Resolve<IAttackPipelineMng>().ProcessAttackMods(Mathf.RoundToInt(explosionDamage), PlayerAttackType.Explosion, gameObject);
-            hit.GetHit(gameObject, damage, transform.position);
+            AttackModuleInfoContainer info = new(Mathf.RoundToInt(explosionDamage), PlayerAttackType.Explosion, gameObject, transform.position);
+            hit.GetHit(info);
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PurpleFur : MonoBehaviour
 {
@@ -60,7 +61,8 @@ public class PurpleFur : MonoBehaviour
 
             if (collider.gameObject.TryGetComponent(out EnemyGetHit hit))
             {
-                hit.GetHit(gameObject, Damage, transform.position);
+                AttackModuleInfoContainer info = new(Damage, PlayerAttackType.Neutral);
+                hit.GetHit(info);
             }
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 public static class MathUtil
@@ -83,6 +84,11 @@ public static class MathUtil
         return val;
     }
 
+    public static float DivideFloat(float numerator, float denominator)
+    {
+        return ((float)numerator / (float)denominator);
+    }
+
     /// <summary>
     /// Wraps a float value to ensure it falls within a specified range [min, max).
     /// </summary>
@@ -90,6 +96,16 @@ public static class MathUtil
     {
         float range = max - min;
         return min + ((value - min) % range + range) % range;
+    }
+
+    /// <summary>
+    /// Returns true if a random[0,1] value is <= chance.
+    /// </summary>
+    /// <param name="chance"></param>
+    /// <returns></returns>
+    public static bool RollChance(float chance)
+    {
+        return UnityEngine.Random.Range(0f, 1f) <= chance;
     }
 
     /// <summary>

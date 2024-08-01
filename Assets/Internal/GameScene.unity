@@ -28722,8 +28722,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2022622650}
   - component: {fileID: 2022622653}
-  - component: {fileID: 2022622652}
   - component: {fileID: 2022622651}
+  - component: {fileID: 2022622652}
+  - component: {fileID: 2022622654}
   m_Layer: 0
   m_Name: Manager_Damage Pipeline
   m_TagString: Untagged
@@ -28782,6 +28783,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561392bb837de86468e40a0e73013f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2022622654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022622649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35cfda00d7b594a459f4543c440d34d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CritDamageMultiplier: 2
 --- !u!1 &2031321013
 GameObject:
   m_ObjectHideFlags: 0

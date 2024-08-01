@@ -11,11 +11,11 @@ public class BossHealth : EnemyHealth
         base.Awake();
     }
 
-    public override void TakeDamage(int damage, Vector2 location)
+    public override void TakeDamage(AttackModuleInfoContainer info)
     {
         if (Managers.Instance.Resolve<IBossHealthBarMng>().IsBarLoaded())
         {
-            base.TakeDamage(damage, location);
+            base.TakeDamage(info);
         }
     }
 

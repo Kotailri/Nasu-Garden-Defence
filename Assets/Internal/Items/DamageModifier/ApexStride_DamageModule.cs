@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ApexStride_DamageModule : MonoBehaviour, IAttackModule
 {
-    public int Process(int damage, PlayerAttackType attackType, GameObject obj)
+    public AttackModuleInfoContainer Process(AttackModuleInfoContainer info)
     {
-        return Mathf.RoundToInt(damage * Global.keystoneItemManager.ApexStrideDamageMultiplier);
+        info.Damage = Mathf.RoundToInt(info.Damage * Global.keystoneItemManager.ApexStrideDamageMultiplier);
+        return info;
     }
 }

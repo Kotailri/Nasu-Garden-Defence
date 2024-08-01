@@ -6,39 +6,19 @@ public class TurtleGetHit : EnemyGetHit
 {
     public bool IsImmune = false;
 
-    public override void GetHit(GameObject attack, int damage, Vector2 location, bool destroyedByDeflection = false)
+    public override void GetHit(AttackModuleInfoContainer info)
     {
         if (IsImmune)
         {
-            if (destroyedByDeflection)
+            if (info.IsObjectDestroyedByDeflect)
             {
-                attack.SetActive(false);
+                info.AttackObject.SetActive(false);
             }
             AudioManager.instance.PlaySound(AudioEnum.Dink);
-            Managers.Instance.Resolve<IPrefabMng>().InstantiatePrefab(PrefabEnum.DinkEffect, location, Quaternion.identity);
+            Managers.Instance.Resolve<IPrefabMng>().InstantiatePrefab(PrefabEnum.DinkEffect, info.HitPosition, Quaternion.identity);
             return;
         }
 
-        OnEnemyHitEvents?.Invoke();
-
-        AudioManager.instance.PlaySound(AudioEnum.EnemyDamaged);
-
-        int newDamage = damage;
-        if (GlobalItemToggles.HasAmplifier)
-        {
-            newDamage = Mathf.RoundToInt(damage * Global.keystoneItemManager.DistanceAmplificationAmount
-                * Vector2.Distance(Global.playerTransform.position, transform.position));
-        }
-
-        if (newDamage < damage)
-        {
-            newDamage = damage;
-        }
-
-        if (TryGetComponent(out DamageFlash flash))
-        {
-            flash.DoDamageFlash();
-        }
-        GetComponent<EnemyHealth>().TakeDamage(newDamage, location);
+        base.GetHit(info);
     }
 }

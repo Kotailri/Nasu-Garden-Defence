@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static VectorUtil;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -44,49 +45,54 @@ public class EnemyHealth : MonoBehaviour
         CheckHealth();
     }
 
-    public virtual void TakeDamage(int damage, Vector2 location)
+    public virtual void TakeDamage(AttackModuleInfoContainer info)
     {
-        if (damage == 0)
+
+        if (info == null || info.Damage == 0)
         {
             return;
         }
 
-        Vector2 textSpawnLocation = (Vector2)transform.position + (location - (Vector2)transform.position).normalized;
+        Vector2 textSpawnLocation = (Vector2)transform.position + (transform.DirectionTo(info.HitPosition) * 1.25f);
 
-        if (Random.Range(0f, 1f) >= DodgeChance)
+        if (MathUtil.RollChance(DodgeChance))
         {
-            if (Random.Range(0f,1f) < GlobalStats.GetStatValue(PlayerStatEnum.critchance))
-            {
-                AudioManager.instance.PlaySound(AudioEnum.CritSound);
-                CurrentHealth -= (damage - Mathf.FloorToInt(damage * Resistance))*2;
-                TextSpawnerMng.SpawnText(textSpawnLocation, ((damage - Mathf.FloorToInt(damage * Resistance)) * 2).ToString(), DamageTextType.Crit, 1f);
-            }
-            else
-            {
-                CurrentHealth -= damage - Mathf.FloorToInt(damage * Resistance);
-                TextSpawnerMng.SpawnText(textSpawnLocation, (damage - Mathf.FloorToInt(damage * Resistance)).ToString(), DamageTextType.White, 1f);
-            }
+            TextSpawnerMng.SpawnText(textSpawnLocation, "dodged", DamageTextType.Status, 1f);
+            return;
+        }
 
-            if (canGetExecuted && CurrentHealth > 0 && Global.itemPassiveManager.GetPassive(ItemPassiveEnum.LowHealthExecute) && (float)CurrentHealth/(float)Health <= Global.itemPassiveManager.LowHealthExecutePercent)
-            {
-                AudioManager.instance.PlaySound(AudioEnum.ExecuteSound);
-                GameObject effect = Managers.Instance.Resolve<IPrefabMng>().InstantiatePrefab(PrefabEnum.ExecuteEffect, transform.position, Quaternion.identity);
-                Vector3 originalScale = effect.transform.localScale;
-                effect.transform.SetParent(transform, false);
-                effect.transform.localScale = VectorUtil.DivideVector3(originalScale, transform.lossyScale);
-                effect.transform.localPosition = Vector3.zero;
+        if (Global.itemPassiveManager.GetPassive(ItemPassiveEnum.LowHealthExecute) // check execute
+            && (CurrentHealth-info.Damage) > 0 
+            && canGetExecuted
+            && MathUtil.DivideFloat((CurrentHealth - info.Damage), Health) <= Global.itemPassiveManager.LowHealthExecutePercent)
+        {
+            AudioManager.instance.PlaySound(AudioEnum.ExecuteSound);
 
-                CurrentHealth -= 99999;
-                TextSpawnerMng.SpawnText(textSpawnLocation, "99999", DamageTextType.White, 1f);
-            }
+            GameObject effect = Managers.Instance.Resolve<IPrefabMng>().InstantiatePrefab(PrefabEnum.ExecuteEffect, transform.position, Quaternion.identity);
+            Vector3 originalScale = effect.transform.localScale;
+            effect.transform.SetParent(transform, false);
+            effect.transform.localScale = DivideVector3(originalScale, transform.lossyScale);
+            effect.transform.localPosition = Vector3.zero;
+
+            CurrentHealth -= 99999;
+            TextSpawnerMng.SpawnText(textSpawnLocation, "99999", DamageTextType.White, 1f);
         }
         else
         {
-            TextSpawnerMng.SpawnText(textSpawnLocation, "dodged", DamageTextType.Status, 1f);
-        }
-            
+            if (info.IsCrit)
+            {
+                AudioManager.instance.PlaySound(AudioEnum.CritSound);
+                TextSpawnerMng.SpawnText(textSpawnLocation, (info.Damage - Mathf.FloorToInt(info.Damage * Resistance)).ToString(), DamageTextType.Crit, 1f);
+            }
+            else
+            {
+                TextSpawnerMng.SpawnText(textSpawnLocation, (info.Damage - Mathf.FloorToInt(info.Damage * Resistance)).ToString(), DamageTextType.White, 1f);
+            }
 
-        CheckHealth(location);
+            CurrentHealth -= info.Damage;
+        }
+
+        CheckHealth(info.HitPosition);
     }
 
     protected virtual void CheckHealth(Vector2? location=null)

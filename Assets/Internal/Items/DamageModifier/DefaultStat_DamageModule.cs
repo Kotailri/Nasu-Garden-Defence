@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class DefaultStat_DamageModule : MonoBehaviour, IAttackModule
 {
-    public int Process(int damage, PlayerAttackType attackType, GameObject obj)
+    public AttackModuleInfoContainer Process(AttackModuleInfoContainer info)
     {
-        switch (attackType)
+        switch (info.AttackType)
         {
             case PlayerAttackType.Projectile:
-                return Mathf.RoundToInt(damage * GlobalStats.GetStatValue(PlayerStatEnum.damage) * GlobalStats.GetStatValue(PlayerStatEnum.projectileDamage));
+                info.Damage = Mathf.RoundToInt(info.Damage * GlobalStats.GetStatValue(PlayerStatEnum.damage) * GlobalStats.GetStatValue(PlayerStatEnum.projectileDamage));
+                break;
 
             case PlayerAttackType.Melee:
-                return Mathf.RoundToInt(damage * GlobalStats.GetStatValue(PlayerStatEnum.damage) * GlobalStats.GetStatValue(PlayerStatEnum.meleeDamage));
+                info.Damage = Mathf.RoundToInt(info.Damage * GlobalStats.GetStatValue(PlayerStatEnum.damage) * GlobalStats.GetStatValue(PlayerStatEnum.meleeDamage));
+                break;
 
             case PlayerAttackType.Explosion:
-                return Mathf.RoundToInt(damage * GlobalStats.GetStatValue(PlayerStatEnum.damage) * GlobalStats.GetStatValue(PlayerStatEnum.explosionDamage));
+                info.Damage = Mathf.RoundToInt(info.Damage * GlobalStats.GetStatValue(PlayerStatEnum.damage) * GlobalStats.GetStatValue(PlayerStatEnum.explosionDamage));
+                break;
 
             case PlayerAttackType.Neutral:
-                return Mathf.RoundToInt(damage * GlobalStats.GetStatValue(PlayerStatEnum.damage));
+                info.Damage = Mathf.RoundToInt(info.Damage * GlobalStats.GetStatValue(PlayerStatEnum.damage));
+                break;
 
         }
-        return damage;
+        return info;
     }
 }
