@@ -36,6 +36,21 @@ public class StatsMenuUI : MonoBehaviour
         transform.position = activePosition - new Vector2(leftSlideAmount, 0);
     }
 
+    private void OnEnable()
+    {
+        EventManager.StartListening(EventStrings.STATS_UPDATED, UpdateStatsDisplay);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening(EventStrings.STATS_UPDATED, UpdateStatsDisplay);
+    }
+
+    private void UpdateStatsDisplay(Dictionary<string, object>_)
+    {
+        UpdateStatsDisplay();
+    }
+
     private void Start()
     {
         int index = 0;

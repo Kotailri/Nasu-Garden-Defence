@@ -35,26 +35,6 @@ public class PlayerAttackManager : MonoBehaviour
         RefreshAttackList();
     }
 
-    private float currentBuffedSpeed = 0f;
-    public void AddTempAttackSpeed(float multiplier, float time)
-    {
-        float newBuffedSpeed = multiplier * AttackTimer;
-
-        if (newBuffedSpeed > currentBuffedSpeed)
-        {
-            StopAllCoroutines();
-            currentBuffedSpeed = multiplier * AttackTimer;
-            StartCoroutine(BuffSpeed(time));
-        }
-        
-    }
-
-    private IEnumerator BuffSpeed(float timer)
-    {
-        yield return new WaitForSeconds(timer);
-        currentBuffedSpeed = 0;
-    }
-
     int count = 1;
     private void Attack()
     {
@@ -97,7 +77,7 @@ public class PlayerAttackManager : MonoBehaviour
     {
         if (!Global.gameplayStarted || !GameUtil.IsWaveOngoing()) { return; }
 
-        if (currentAttackTimer >= (AttackTimer - (AttackTimer * GlobalStats.GetStatValue(PlayerStatEnum.attackspeed)) - currentBuffedSpeed))
+        if (currentAttackTimer >= GetAttackTimer())
         {
             currentAttackTimer = 0;
             Attack();
@@ -107,6 +87,11 @@ public class PlayerAttackManager : MonoBehaviour
             currentAttackTimer += Time.deltaTime;
         }
 
-        ShootCooldownBar.UpdateValue(Mathf.Clamp01(currentAttackTimer/ (AttackTimer - (AttackTimer * GlobalStats.GetStatValue(PlayerStatEnum.attackspeed)) - currentBuffedSpeed)));
+        ShootCooldownBar.UpdateValue(Mathf.Clamp01(currentAttackTimer/ GetAttackTimer()));
+    }
+
+    private float GetAttackTimer()
+    {
+        return AttackTimer - Mathf.Clamp(AttackTimer * GlobalStats.GetStatValue(PlayerStatEnum.attackspeed), 0, (AttackTimer * 0.99f));
     }
 }

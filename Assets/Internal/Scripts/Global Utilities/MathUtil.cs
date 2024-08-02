@@ -84,6 +84,16 @@ public static class MathUtil
         return val;
     }
 
+    public static float ClampToZerof(float val)
+    {
+        return ClampMinf(val, 0);
+    }
+
+    public static int ClampToZero(int val)
+    {
+        return ClampMinInt(val, 0);
+    }
+
     public static float DivideFloat(float numerator, float denominator)
     {
         return ((float)numerator / (float)denominator);

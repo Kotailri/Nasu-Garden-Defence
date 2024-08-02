@@ -98,12 +98,4 @@ public class GameOverManager : MonoBehaviour, IGameOverMng
             LeanTween.moveLocalY(GameOverUI, GameOverUIActivePositionY, 0.5f).setEaseOutBounce();
         }
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            Managers.Instance.Resolve<IGameOverMng>().DoGameOver(DeathCondition.PlayerDeath);
-        }
-    }
 }

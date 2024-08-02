@@ -173,6 +173,9 @@ public abstract class PlayerStat
         {
             StatLevel = increase;
         }
+
+        StatLevel = MathUtil.ClampToZero(StatLevel);
+
         EventManager.TriggerEvent(EventStrings.STATS_UPDATED, null);
     }
 

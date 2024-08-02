@@ -16,6 +16,6 @@ MonoBehaviour:
   StatEnum: 21
   StatDescription: Increases chance of inflicting double damage.
   StatBase: 0
-  StatGrowth: 0.025
+  StatGrowth: 0.03
   StatGrowthType: 0
   ShowsInUI: 1
