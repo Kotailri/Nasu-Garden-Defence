@@ -79,7 +79,7 @@ public class PlayerHealth : MonoBehaviour
 
     public float GetHealthPercent()
     {
-        return (float)CurrentHP / (float)MaxHP;
+        return MathUtil.DivideFloat(CurrentHP, MaxHP);
     }
 
     public void FullHeal()

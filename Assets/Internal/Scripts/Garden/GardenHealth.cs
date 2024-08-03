@@ -120,4 +120,9 @@ public class GardenHealth : MonoBehaviour
             Managers.Instance.Resolve<IGameOverMng>().DoGameOver(DeathCondition.GardenDeath);
         }
     }
+
+    public float GetHealthPercent()
+    {
+        return MathUtil.DivideFloat(CurrentHP, MaxHP);
+    }
 }

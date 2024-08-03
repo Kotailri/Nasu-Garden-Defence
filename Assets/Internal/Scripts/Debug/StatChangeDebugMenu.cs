@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class StatChangeDebugMenu : MonoBehaviour
+public class StatChangeDebugMenu : MonoBehaviour, IDebugMenu
 {
     public PlayerStatEnum selectedStat = PlayerStatEnum.attackSize;
 
     private TMP_Dropdown dropdown;
     private TMP_InputField setStatField;
-    private bool firstLaunch = true;
 
     private void Awake()
     {
@@ -26,21 +25,12 @@ public class StatChangeDebugMenu : MonoBehaviour
                 dropdown = _dropdown;
             }
         }
-
         
     }
 
-    private void OnEnable()
+    public void LoadMenu()
     {
-        if (firstLaunch)
-        {
-            firstLaunch = false;
-        }
-        else
-        {
-            UpdateStatDisplay();
-        }
-        
+        UpdateStatDisplay();
     }
 
     public void IncrementStat(bool isIncrement)
@@ -145,4 +135,6 @@ public class StatChangeDebugMenu : MonoBehaviour
     {
         selectedStat = IntToStatEnum(selection);
     }
+
+    
 }
