@@ -11,7 +11,8 @@ public enum ItemTypeEnum
     Weapon,
     StatUp,
     Passive,
-    Keystone
+    Keystone,
+    WeaponAndPassive
 }
 
 public interface IItemInventoryMng : IManager
@@ -81,6 +82,15 @@ public class ItemInventoryManager : MonoBehaviour, IItemInventoryMng
         }
     }
 
+    public void ReAddStartingItems()
+    {
+        foreach (ItemAdder item in StartingItems)
+        {
+            item.OnItemGet();
+            PoolToInventory(item);
+        }
+    }
+
     public List<ItemAdder> GetItemInventory()
     {
         return ItemInventory;
@@ -116,6 +126,9 @@ public class ItemInventoryManager : MonoBehaviour, IItemInventoryMng
             case ItemTypeEnum.Keystone:
                 selectedPool = new List<ItemAdder>(ItemPool_Keystone);
                 break;
+            case ItemTypeEnum.WeaponAndPassive:
+                selectedPool = ExtraUtil.MergeLists(ItemPool_Passive, ItemPool_Weapon);
+                break;
         }
 
         selectedPool.RemoveAll(adder => adder.MinWaveIndex > waveRequirement);
@@ -144,12 +157,12 @@ public class ItemInventoryManager : MonoBehaviour, IItemInventoryMng
 
         selectedPool.RemoveAll(adder => adder.MinWaveIndex > waveRequirement);
 
-        return GameUtil.GetRandomElements(selectedPool, num);
+        return ExtraUtil.GetRandomElements(selectedPool, num);
     }
 
     public List<ItemAdder> GetRandomFromInventory(int num)
     {
-        return GameUtil.GetRandomElements(ItemInventory, num);
+        return ExtraUtil.GetRandomElements(ItemInventory, num);
     }
 
     public void AddRandomToInventory(ItemTypeEnum itemType, int waveIndex=int.MaxValue)
@@ -166,6 +179,11 @@ public class ItemInventoryManager : MonoBehaviour, IItemInventoryMng
             PoolToInventory(item);
         }
         
+    }
+
+    public void ClearItemInventory()
+    {
+        ItemInventory.Clear();
     }
 
     public void RemoveItemFromInventory(ItemAdder item)

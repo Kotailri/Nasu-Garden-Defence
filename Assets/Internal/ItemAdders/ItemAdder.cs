@@ -27,6 +27,9 @@ public abstract class ItemAdder : MonoBehaviour
     public bool isExcemptFromPoolRemoval;
     public bool addsToUI = true;
 
+    [Space(10f)]
+    public bool isStartingItem;
+
     private List<KeyValuePair<string, string>> replacements = new();
     private List<PlayerStat> statsLeveled = new();
 
@@ -60,7 +63,7 @@ public abstract class ItemAdder : MonoBehaviour
 
         foreach (int i in statLevelUps)
         {
-            PlayerStat levelStat = GameUtil.GetRandomDictionaryValue(GlobalStats.GetVisiblePlayerStatDict());
+            PlayerStat levelStat = ExtraUtil.GetRandomDictionaryValue(GlobalStats.GetVisiblePlayerStatDict());
             levelStat.SetLevel(i, true);
             statsLeveled.Add(levelStat);
         }

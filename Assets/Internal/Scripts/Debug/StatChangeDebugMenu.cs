@@ -10,6 +10,8 @@ public class StatChangeDebugMenu : MonoBehaviour, IDebugMenu
     private TMP_Dropdown dropdown;
     private TMP_InputField setStatField;
 
+    private DebugMenuController debugMenuController;
+
     private void Awake()
     {
         foreach (Transform t in transform)
@@ -136,5 +138,8 @@ public class StatChangeDebugMenu : MonoBehaviour, IDebugMenu
         selectedStat = IntToStatEnum(selection);
     }
 
-    
+    public void SetDebugMenuController(DebugMenuController controller)
+    {
+        debugMenuController = controller;
+    }
 }

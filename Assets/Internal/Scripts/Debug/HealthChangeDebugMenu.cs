@@ -11,14 +11,18 @@ public class HealthChangeDebugMenu : MonoBehaviour, IDebugMenu
     public Button setPlayerHealthButton;
     public TMP_InputField playerHealthField;
     public Slider playerHealthSlider;
+    public Button killPlayerButton;
 
     [Header("Garden Health")]
     public Button setGardenHealthButton;
     public TMP_InputField gardenHealthField;
     public Slider gardenHealthSlider;
+    public Button killGardenButton;
 
     private PlayerHealth playerHealth;
     private GardenHealth gardenHealth;
+
+    private DebugMenuController debugMenuController;
 
     private void Start()
     {
@@ -45,6 +49,7 @@ public class HealthChangeDebugMenu : MonoBehaviour, IDebugMenu
         {
             CleanInputs();
             playerHealth.SetHealth(int.Parse(playerHealthField.text), false);
+            playerHealthSlider.value = playerHealth.GetHealthPercent();
         });
 
         // Garden
@@ -67,7 +72,24 @@ public class HealthChangeDebugMenu : MonoBehaviour, IDebugMenu
         {
             CleanInputs();
             gardenHealth.SetHealth(int.Parse(gardenHealthField.text), false);
+            gardenHealthSlider.value = gardenHealth.GetHealthPercent();
         });
+
+        killPlayerButton.onClick.AddListener(() =>
+        {
+            Kill(DeathCondition.PlayerDeath);
+        });
+
+        killGardenButton.onClick.AddListener(() =>
+        {
+            Kill(DeathCondition.GardenDeath);
+        });
+    }
+
+    private void Kill(DeathCondition deathCondition)
+    {
+        debugMenuController.ToggleDebugMenu(false);
+        Managers.Instance.Resolve<IGameOverMng>().DoGameOver(deathCondition);
     }
 
     private void CleanInputs()
@@ -83,5 +105,10 @@ public class HealthChangeDebugMenu : MonoBehaviour, IDebugMenu
 
         gardenHealthField.text = gardenHealth.CurrentHP.ToString();
         gardenHealthSlider.value = gardenHealth.GetHealthPercent();
+    }
+
+    public void SetDebugMenuController(DebugMenuController controller)
+    {
+        debugMenuController = controller;
     }
 }

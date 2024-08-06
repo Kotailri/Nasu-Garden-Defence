@@ -50,5 +50,6 @@ MonoBehaviour:
   statLevelUps: 
   isExcemptFromPoolRemoval: 0
   addsToUI: 1
+  isStartingItem: 1
   prefab: {fileID: 1575511201513785632, guid: a64feb01a3755094094d92a25410e51a, type: 3}
   isAttachedToPet: 1

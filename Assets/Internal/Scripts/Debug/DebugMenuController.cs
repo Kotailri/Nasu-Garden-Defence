@@ -6,7 +6,7 @@ public class DebugMenuController : MonoBehaviour
 {
     public GameObject DebugMenuObject;
     private bool isDebugActive = false;
-
+    private Canvas canvas;
     private List<IDebugMenu> menus = new();
 
     private void Awake()
@@ -15,53 +15,54 @@ public class DebugMenuController : MonoBehaviour
         {
             if (t.gameObject.TryGetComponent(out IDebugMenu menu))
             {
+                menu.SetDebugMenuController(this);
                 menus.Add(menu);
             }
         }
+
+        canvas = GetComponent<Canvas>();
     }
 
     private void Start()
     {
-        DebugMenuObject.SetActive(false);
+        ToggleDebugMenu(false);
     }
 
-    public void KillGarden()
+    public void ToggleDebugMenu(bool active)
     {
-        Kill(DeathCondition.GardenDeath);
-    }
+        if (active)
+        {
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
-    public void KillPlayer()
-    {
-        Kill(DeathCondition.PlayerDeath);
-    }
+            foreach (IDebugMenu menu in menus)
+            {
+                menu.LoadMenu();
+            }
 
-    private void Kill(DeathCondition deathCondition)
-    {
-        isDebugActive = false;
-        Time.timeScale = 1f;
-        DebugMenuObject.SetActive(isDebugActive);
-
-        Managers.Instance.Resolve<IGameOverMng>().DoGameOver(deathCondition);
+            Time.timeScale = 0f;
+            isDebugActive = true;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            canvas.renderMode = RenderMode.WorldSpace;
+            DebugMenuObject.SetActive(false);
+            DebugMenuObject.SetActive(true);
+            isDebugActive = false;
+        }
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightAlt))
         {
-            isDebugActive = !isDebugActive;
-            DebugMenuObject.SetActive(isDebugActive);
-
             if (isDebugActive)
             {
-                Time.timeScale = 0f;
-                foreach (IDebugMenu menu in menus)
-                {
-                    menu.LoadMenu();
-                }
+                ToggleDebugMenu(false);
             }
             else
             {
-                Time.timeScale = 1f;
+                ToggleDebugMenu(true);
             }
         }
     }
@@ -69,6 +70,7 @@ public class DebugMenuController : MonoBehaviour
 
 public interface IDebugMenu
 {
+    public void SetDebugMenuController(DebugMenuController controller);
     public void LoadMenu();
 }
 

@@ -18,7 +18,7 @@ public abstract class GardenBuff : MonoBehaviour
     public bool IsSelected = false;
     protected string DefaultBoxText;
 
-    private void Start()
+    public virtual void Start()
     {
         MaxLevel = PriceAtEachLevel.Count-1;
         SetStartingLevel();

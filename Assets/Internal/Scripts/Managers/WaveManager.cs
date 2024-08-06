@@ -8,7 +8,11 @@ public interface IWaveMng : IManager
     public void StartGame();
     public void SpawnNextWave();
     public int GetCurrentWaveIndex();
+    public void KillWave();
     public bool IsWaveOngoing();
+    public void StartWave(int waveIndex);
+    public WaveWithReward GetCurrentWave();
+    public List<WaveWithReward> GetWaves();
 }
 
 
@@ -28,8 +32,8 @@ public class WaveWithReward
 public class WaveManager : MonoBehaviour, IWaveMng
 {
     public List<WaveWithReward> waves = new();
-
-    public int CurrentWaveIndex = 0;
+    public int DebugStartingIndex;
+    
     public bool GivesItems = true;
 
     private GameObject currentWave;
@@ -51,18 +55,34 @@ public class WaveManager : MonoBehaviour, IWaveMng
     [Space(15f)]
     public bool EnableEverything = true;
 
+    [Header("Readonly")]
+    public int CurrentWaveIndex = 0;
+    public int StartingIndex = 0;
+
     public int GetCurrentWaveIndex()
     {
         return CurrentWaveIndex;
+    }
+
+    public void KillWave()
+    {
+        StartCoroutine(KillWaveCoroutine());
+    }
+
+    public List<WaveWithReward> GetWaves()
+    {
+        return waves;
+    }
+
+    public WaveWithReward GetCurrentWave()
+    {
+        return waves[CurrentWaveIndex];
     }
 
     private void Start()
     {
         waveProgressBar.UpdateValue(0);
         DemoCompleteUI.SetActive(false);
-
-        CurrentWaveIndex--;
-
         if (CurrentWaveIndex < 0)
         {
             CurrentWaveIndex = 0;
@@ -74,7 +94,6 @@ public class WaveManager : MonoBehaviour, IWaveMng
         return isWaveOngoing;
     }
 
-
     public void StartGame()
     {
         Global.playerTransform.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
@@ -84,16 +103,22 @@ public class WaveManager : MonoBehaviour, IWaveMng
             return; 
         }
 
-        CurrentWaveIndex += GlobalGarden.LevelsToSkip;
+        StartingIndex += GlobalGarden.LevelsToSkip;
         if (GivesItems) 
         {
-            for (int i = 0; i < CurrentWaveIndex; i++)
+            for (int i = 0; i < StartingIndex; i++)
             {
                 Managers.Instance.Resolve<IItemInventoryMng>().AddRandomToInventory(waves[i].ItemType, i);
             }
 
         }
         
+        if (DebugStartingIndex > 0)
+        {
+            StartingIndex = DebugStartingIndex;
+        }
+
+        CurrentWaveIndex = StartingIndex;
 
         timer.ResetTimer();
         SpawnNextWave();
@@ -109,16 +134,31 @@ public class WaveManager : MonoBehaviour, IWaveMng
         EventManager.StopListening(EventStrings.ENEMY_DELETED, CheckWaveEnd);
     }
 
+    public void StartWave(int waveIndex)
+    {
+        isWaveOngoing = false;
+
+        if (currentWave)
+            Destroy(currentWave);
+
+        CurrentWaveIndex = waveIndex;
+        SpawnNextWave();
+    }
+
     private void CheckWaveEnd(Dictionary<string, object> message)
     {
         if (!EnableEverything)
             return;
 
-            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && isWaveOngoing)
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && isWaveOngoing)
         {
-            isWaveOngoing = false;
-            Destroy(currentWave);
+            if (currentWave)
+                Destroy(currentWave);
 
+            isWaveOngoing = false;
+
+            EventManager.TriggerEvent(EventStrings.WAVE_END, null);
+            
             timer.PauseTimer();
 
             if (CurrentWaveIndex >= waves.Count && !Global.isGameOver)
@@ -128,22 +168,17 @@ public class WaveManager : MonoBehaviour, IWaveMng
                 return;
             }
 
-            Managers.Instance.Resolve<IItemSelectMng>().CreateItems(waves[CurrentWaveIndex-1].ItemType);
+            Managers.Instance.Resolve<IItemSelectMng>().CreateItems(waves[CurrentWaveIndex].ItemType);
             Global.gardenHealth.SetHealth(GlobalGarden.GardenHealAfterWave, true);
             Global.playerTransform.gameObject.GetComponent<PlayerHealth>().HealPercent(GlobalGarden.PlayerPercentHealAfterWave);
 
-            EventManager.TriggerEvent(EventStrings.WAVE_END, null);
+            CurrentWaveIndex++;
+            
         }
     }
 
     private void Update()
     {
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            StartCoroutine(KillWave());
-        }
-#endif
 
         if (lastEnemy != null)
         {
@@ -154,7 +189,7 @@ public class WaveManager : MonoBehaviour, IWaveMng
         }
     }
 
-    private IEnumerator KillWave()
+    private IEnumerator KillWaveCoroutine()
     {
         foreach (GameObject g in GameObject.FindGameObjectsWithTag("Enemy"))
         {
@@ -181,8 +216,8 @@ public class WaveManager : MonoBehaviour, IWaveMng
 
         timer.StartTimer();
 
-        isWaveOngoing = true;
-        waveNameUI.text = "Wave " + (CurrentWaveIndex+1);
+        
+        waveNameUI.text = "Wave " + CurrentWaveIndex.ToString();
 
         StartCoroutine(DelayNextWave(1f));
         waveProgressBar.UpdateValue(0);
@@ -190,6 +225,7 @@ public class WaveManager : MonoBehaviour, IWaveMng
         IEnumerator DelayNextWave(float delay)
         {
             yield return new WaitForSeconds(delay);
+            isWaveOngoing = true;
             currentWave = Instantiate(waves[CurrentWaveIndex].Wave, new Vector3(Global.MaxX + 2f, -0.5f, transform.position.z), Quaternion.identity);
             
             if (Random.Range(0,2) == 0)
@@ -201,13 +237,6 @@ public class WaveManager : MonoBehaviour, IWaveMng
                 }
             }
             
-
-            CurrentWaveIndex++;
-
-            if (CurrentWaveIndex >= waves.Count)
-            {
-                //CurrentWaveIndex = 0;
-            }
 
             MarkLastEnemy();
         }

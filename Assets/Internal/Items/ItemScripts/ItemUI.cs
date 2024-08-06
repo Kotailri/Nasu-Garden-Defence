@@ -39,6 +39,15 @@ public class ItemUI : MonoBehaviour
         print("Could not replace" + _old.ItemName + " with " + _new.ItemName + "in UI");
     }
 
+    public void ClearUI()
+    {
+        ItemInventory.Clear();
+        foreach (Transform child in transform)
+        {
+            Destroy(child);
+        }
+    }
+
     public void AddItemToUI(ItemScriptable item, List<KeyValuePair<string, string>> descriptionReplacements = null)
     {
         GameObject newItem = Instantiate(UIItemPrefab.gameObject, Vector2.zero, Quaternion.identity);

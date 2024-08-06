@@ -83,7 +83,7 @@ public class ItemSelectManager : MonoBehaviour, IItemSelectMng
 
         IEnumerator ItemSpawnCoroutine()
         {
-            List<ItemAdder> selectPool = GameUtil.GetRandomElements(currentAdderPool, 3);
+            List<ItemAdder> selectPool = ExtraUtil.GetRandomElements(currentAdderPool, 3);
 
             if (!isReroll && currentAdderPool.Count >= 6)
             {
